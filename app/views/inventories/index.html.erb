@@ -1,0 +1,13 @@
+<h1>Inventories List</h1>
+
+<% @inventories.each do |t| %>
+
+<h2>Prod Name = <%= link_to t.pName, t %></h2><!--the link_to second argument automatically take the inventory id--> 
+<p>Quantity = <%= t.pQuantity %></p>
+<p>Size = <%= t.pMeter%></p>
+<p>Weight = <%= t.pWeight%></p>
+<p>Price = <%= t.pSellPrice%></p>
+<p>Category = <%= t.pCategory%></p>
+<p>Produc Picture = <%= t.pPic%></p>
+<hr />
+<% end %>

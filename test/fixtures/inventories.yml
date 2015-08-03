@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pName: MyString
+  pQuantity: 1
+  pMeter: MyString
+  pWeight: 
+  pWeight: 
+  pSellPrice: 
+  pSellPrice: 
+  pCategory: MyString
+  pPic: 
+
+two:
+  pName: MyString
+  pQuantity: 1
+  pMeter: MyString
+  pWeight: 
+  pWeight: 
+  pSellPrice: 
+  pSellPrice: 
+  pCategory: MyString
+  pPic: 
