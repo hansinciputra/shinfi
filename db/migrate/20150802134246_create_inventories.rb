@@ -1,5 +1,4 @@
 class CreateInventories < ActiveRecord::Migration
-  attr_accessible :pName, :pQuantity, :pMeter, :pWeight, :pSellPrice, :pCategory, :pPic
   def change
     create_table :inventories do |t|
       t.string :pName
