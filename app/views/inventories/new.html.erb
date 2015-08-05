@@ -1,0 +1,28 @@
+<h1>Creating New Inventory</h1>
+<hr />
+<%= form_for @inventory do |t| %>
+	<p>	
+		<%= t.label :Name %>
+		<%= t.text_field :pName%>
+		<br />
+		<%= t.label :Quantity %>
+		<%= t.text_field :pQuantity%>
+		<br />
+		<%= t.label :Meter %>
+		<%= t.text_field :pMeter%>
+		<br />
+		<%= t.label :Weight %>
+		<%= t.text_field :pWeight%>
+		<br />
+		<%= t.label :SellPrice %>
+		<%= t.text_field :pSellPrice%>
+		<br />
+		<%= t.label :Category %>
+		<%= t.text_field :pCategory%>
+		<br />
+		<%= t.label :Pic %>
+		<%= t.text_field :pPic%>
+		<br />
+		<%= t.submit "Insert" %> <!--this submit button will go to controller create action-->
+	</p>	
+<%end%>

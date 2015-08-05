@@ -2,7 +2,7 @@
 
 <% @inventories.each do |t| %>
 
-<h2>Prod Name = <%= link_to t.pName, t %></h2><!--the link_to second argument automatically take the inventory id--> 
+<h2>Prod Name = <%= link_to t.pName, t %></h2><!--the link_to second argument automatically take the inventories id--> 
 <p>Quantity = <%= t.pQuantity %></p>
 <p>Size = <%= t.pMeter%></p>
 <p>Weight = <%= t.pWeight%></p>
@@ -11,3 +11,5 @@
 <p>Produc Picture = <%= t.pPic%></p>
 <hr />
 <% end %>
+
+<p><%= link_to "Create New Inventory", new_inventory_path %></p>
