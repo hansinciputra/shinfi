@@ -1,0 +1,38 @@
+<h1>Edit Post</h1>
+<hr />
+<%= form_for @inventory do |t| %>
+	<% if @inventory.errors.any? %>
+		<h2>Errors:</h2>
+		<ul>
+			<% @inventory.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	<%end%>	
+	<p>	
+		<%= t.label :Name %>
+		<%= t.text_field :pName%>
+		<br />
+		<%= t.label :Quantity %>
+		<%= t.text_field :pQuantity%>
+		<br />
+		<%= t.label :Meter %>
+		<%= t.text_field :pMeter%>
+		<br />
+		<%= t.label :Weight %>
+		<%= t.text_field :pWeight%>
+		<br />
+		<%= t.label :SellPrice %>
+		<%= t.text_field :pSellPrice%>
+		<br />
+		<%= t.label :Category %>
+		<%= t.text_field :pCategory%>
+		<br />
+		<%= t.label :Pic %>
+		<%= t.text_field :pPic%>
+		<br />
+		<%= t.submit "Edit" %> <!--this submit button will go to controller create action-->
+	</p>	
+	
+
+<%end%>

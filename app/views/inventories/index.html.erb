@@ -9,6 +9,10 @@
 <p>Price = <%= t.pSellPrice%></p>
 <p>Category = <%= t.pCategory%></p>
 <p>Produc Picture = <%= t.pPic%></p>
+<p><%= link_to "Edit Inventory", edit_inventory_path(t) %>
+	<!--We need to specify the :method => :delete since the delete will use the same parameters as the find, the method is to tell the browser to use https delete function-->
+   <%= link_to "Delete Inventory", t, :confirm => "Delete Inventory?", :method => :delete %>
+</p>
 <hr />
 <% end %>
 

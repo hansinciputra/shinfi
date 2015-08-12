@@ -1,6 +1,14 @@
 <h1>Creating New Inventory</h1>
 <hr />
 <%= form_for @inventory do |t| %>
+	<% if @inventory.errors.any? %>
+		<h2>Errors:</h2>
+		<ul>
+			<% @inventory.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	<%end%>	
 	<p>	
 		<%= t.label :Name %>
 		<%= t.text_field :pName%>
