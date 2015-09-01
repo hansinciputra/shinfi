@@ -4,22 +4,9 @@
 <hr/>
 <div id = "InventoryList">
 	<% @inventories.each do |t| %>
-	
-	<h2>Prod Name = <%= link_to t.pName, t %></h2><!--the link_to second argument automatically take the inventories id--> 
-	<p>Quantity = <%= t.pQuantity %></p>
-	<p>Size = <%= t.pMeter%></p>
-	<p>Weight = <%= t.pWeight%></p>
-	<p>Price = <%= t.pSellPrice%></p>
-	<p>Category = <%= t.pCategory%></p>
-	<p>Produc Picture = <%= t.pPic%></p>
-	<p><%= link_to "Edit Inventory", edit_inventory_path(t) %>
-		<!--We need to specify the :method => :delete since the delete will use the same parameters as the find, the method is to tell the browser to use https delete function-->
-	   <%= link_to "Delete Inventory", t, :confirm => "Delete Inventory?", :method => :delete %>
-	</p>
-	<hr />
+		<!--this link_to already equal to onclick in jquery-->
+		<h2 class= "link"><%= link_to t.pName, inventory_path(t), :remote => true %></h2><!--the link_to second argument automatically take the inventories id--> 
 	<% end %>
 </div>
-<div id ="InventoryDetail">
-	
-</div>
+<div id ="InventoryDetail">ass1</div><!-- where the JS get called-->
 <p><%= link_to "Create New Inventory", new_inventory_path %></p>
