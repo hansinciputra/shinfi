@@ -1,12 +1,16 @@
-<h1>Inventories List</h1>
-<hr/>
-
-<hr/>
-<div id = "InventoryList">
-	<% @inventories.each do |t| %>
-		<!--this link_to already equal to onclick in jquery-->
-		<h2 class= "link"><%= link_to t.pName, inventory_path(t), :remote => true %></h2><!--the link_to second argument automatically take the inventories id--> 
-	<% end %>
+<div id = "Main_Container">
+	<h1>Inventories List</h1>
+	<p><%= link_to "Create New Inventory", new_inventory_path %></p>
+	<hr/>
+	<div id= "InventoryLeft">	
+		<div id = "InventoryList">
+			<% @inventories.each do |t| %>
+				<!--this link_to already equal to onclick in jquery-->
+				<h4 class= "link"><%= link_to t.pName, inventory_path(t), :remote => true %></h4><!--the link_to second argument automatically take the inventories id--> 
+			<% end %>
+		</div>
+	</div>
+	<div id = "InventoryRight">	
+		<div id ="InventoryDetail"></div><!-- where the JS get called-->
+	</div>	
 </div>
-<div id ="InventoryDetail">ass1</div><!-- where the JS get called-->
-<p><%= link_to "Create New Inventory", new_inventory_path %></p>
