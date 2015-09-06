@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150802134246) do
+ActiveRecord::Schema.define(version: 20150902141924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,16 @@ ActiveRecord::Schema.define(version: 20150802134246) do
     t.string   "pName"
     t.integer  "pQuantity"
     t.string   "pMeter"
-    t.decimal  "pWeight",    precision: 6,  scale: 4
-    t.decimal  "pSellPrice", precision: 10, scale: 2
+    t.decimal  "pWeight",            precision: 6,  scale: 4
+    t.decimal  "pSellPrice",         precision: 10, scale: 2
     t.string   "pCategory"
     t.binary   "pPic"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
 end

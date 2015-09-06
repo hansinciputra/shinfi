@@ -1,8 +1,12 @@
 <h2>Prod Name = <%= @inventory.pName%></h2>
+<hr/>
+<div id = "imgContainer">
+<%= link_to image_tag(@inventory.image.url(:thumb)),@inventory.image.url(:thumb), :class=>"fancybox"%> 
+</div>
 <p>Quantity = <%= @inventory.pQuantity %></p>
 <p>Size = <%= @inventory.pMeter%></p>
 <p>Weight = <%= @inventory.pWeight%></p>
-<p>Price = <%= @inventory.pSellPrice%></p>
-<p>Category = <%= number_to_currency @inventory.pCategory%></p>
-<p>Produc Picture = <%= @inventory.pPic%></p>
+<p>Price = <%= number_to_currency @inventory.pSellPrice%></p>
+<p>Category = <%= @inventory.pCategory%></p>
+
 <%= link_to "Edit This Inventory", edit_inventory_path(@inventory) %>

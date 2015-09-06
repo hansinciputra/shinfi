@@ -11,6 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require fancybox 
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+//the .ajaxComplete will call the fancybox function after ajax call has been called
+$(document).ajaxComplete(function(){
+	$("a.fancybox").fancybox({'type' : 'image'});
+});

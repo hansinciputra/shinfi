@@ -14,17 +14,30 @@ a:hover{
   margin-left : 20px;
 
 }
-
+#InventoryContainer{
+  //border:solid black 5px;
+  margin:auto;
+  width:650px;
+  padding-left:50px 10px ;
+}
 #InventoryDetail{
   //background-color:blue;
+  margin-left : 30px;
 }
 #InventoryLeft{
-  border-right:solid black 5px;
+  //border:solid black 5px;
   width:200px;
   float:left;
 }
 #InventoryRight{
-  //border:solid black 1px;
-  width:50%;
-  margin-left:40%;
+  border-left:solid black 5px;
+  width:450px;
+  margin-left:35%;
+}
+//for the product image in inventory AJAX file
+#imgContainer{
+  border : black solid 5px;
+  width : 250px;
+  height: 250px;
+  padding:auto -100px auto 10;
 }
