@@ -3,10 +3,12 @@
 <div id = "imgContainer">
 <%= link_to image_tag(@inventory.image.url(:thumb)),@inventory.image.url(:thumb), :class=>"fancybox"%> 
 </div>
-<p>Quantity = <%= @inventory.pQuantity %></p>
-<p>Size = <%= @inventory.pMeter%></p>
-<p>Weight = <%= @inventory.pWeight%></p>
-<p>Price = <%= number_to_currency @inventory.pSellPrice%></p>
-<p>Category = <%= @inventory.pCategory%></p>
+<h3 class = "label_Prod">Quantity :</h3>  <div class = "answer_Prod"><%= @inventory.pQuantity %></div>
+<h3 class = "label_Prod">Size :</h3>  <div class = "answer_Prod"><%= @inventory.pMeter%></div>
+<h3 class = "label_Prod">Weight : </h3>  <div class = "answer_Prod"><%= @inventory.pWeight%></div>
+<h3 class = "label_Prod">Price :</h3>  <div class = "answer_Prod"><%= number_to_currency @inventory.pSellPrice%></div>
+<h3 class = "label_Prod">Category :</h3>  <div class = "answer_Prod"><%= @inventory.pCategory%></div>
 
-<%= link_to "Edit This Inventory", edit_inventory_path(@inventory) %>
+<%= link_to "Edit", edit_inventory_path(@inventory) %>
+||
+<%= link_to "Delete", @inventory, :confirm => "Delete ?",:method => :delete %>

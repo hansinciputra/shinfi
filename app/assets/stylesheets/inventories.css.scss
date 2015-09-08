@@ -9,6 +9,37 @@ a ,:link{
 a:hover{
   color: black;
 }
+ul{
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+label{
+  width: 4em;
+  float: left;
+  text-align :right;
+  margin-right: 0.5em;
+  display:block;
+}
+.label_Prod{
+  //border:solid black 5px;
+  width: 4em;
+  text-align :right;
+  margin-right: 0.5em;
+  display:inline;
+
+}
+.answer_Prod{
+  //border:solid black 5px;
+  width: 4em;
+  text-align :left;
+  margin-right: 0.5em;
+  
+}
+.textField{
+  width: 75px;
+  margin-left: 20px;
+}
 #InventoryList{
   //background-color:red;
   margin-left : 20px;
@@ -25,9 +56,11 @@ a:hover{
   margin-left : 30px;
 }
 #InventoryLeft{
-  //border:solid black 5px;
+  border:solid black 5px;
   width:200px;
+  height: 750px;
   float:left;
+  text-align:left;
 }
 #InventoryRight{
   border-left:solid black 5px;
@@ -39,5 +72,6 @@ a:hover{
   border : black solid 5px;
   width : 250px;
   height: 250px;
-  padding:auto -100px auto 10;
+  padding: auto;
+  margin-bottom: 10px;
 }

@@ -12,4 +12,8 @@ class Inventory < ActiveRecord::Base
   validates :pName, :uniqueness => {:messages => "Nama Barang Sudah Ada"}
   validates :pQuantity,:pWeight,:pSellPrice, :numericality => true
   
+  searchable do
+    text :pName
+  end
+  
 end
