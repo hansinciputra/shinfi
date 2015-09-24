@@ -1,8 +1,6 @@
 class InventoriesController < ApplicationController
   def index #to display all results
-    
     @inventories = Inventory.all
-    
   end
   def show #to display specified results
     @inventory = Inventory.find(params[:id])
