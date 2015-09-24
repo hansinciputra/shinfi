@@ -1,10 +1,7 @@
 class InventoriesController < ApplicationController
   def index #to display all results
     
-    @search = Inventory.search do
-      fulltext params[:search]
-    end
-    @inventories = @search.results
+    @inventories = Inventory.all
     
   end
   def show #to display specified results
