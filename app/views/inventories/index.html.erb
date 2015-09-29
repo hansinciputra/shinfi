@@ -3,7 +3,11 @@
 	<p><%= link_to "Create New Inventory", new_inventory_path %></p>
 	<hr/>
 	<div id="InventoryContainer">
-		<div id= "InventoryLeft">
+		<div id = "InventoryLeft">	
+			<div id ="InventoryDetail"> Click on the Product Code</div><!-- where the JS get called-->
+		</div>
+
+		<div id= "InventoryRight">
 			<h3 style ="margin-left:20px;">Search for Product</h3>
 			<%= form_tag inventories_path, :method => :get do %>
 				<p>
@@ -15,13 +19,23 @@
 			<div id = "InventoryList">
 				<!--this link_to already equal to onclick in jquery-->
 				<!--remote true to call AJAX file from inventory controler-->
-				<% @inventories.each do |t| %>
-					<ul class= "link"><%= link_to t.pName, inventory_path(t), :remote => true %></ul><!--the link_to second argument automatically take the inventories id--> 
-				<% end %>
+				<table id = "inventory_table">
+					<tr>
+						<td class = "prodCodeTitle"><h3>Prod Code</h3></td>
+						<td class = "prodResult"><h3>Quantity</h3></td>
+						<td class = "prodResult"><h3>Size</h3></td>
+						<td class = "prodResult"><h3>Price</h3></td>
+					</tr>
+						<% @inventories.each do |t| %>
+					<tr>
+						<td class ="prodResult"><%= link_to t.pName, inventory_path(t), :remote => true %></td>
+						<td class = "prodResult"><%= t.pQuantity %></td>
+						<td class = "prodResult"><%= t.pMeter %></td>
+						<td class = "prodResult"><%= t.pSellPrice %></td>
+					</tr>
+						<% end %>
+				</table>
 			</div>
-		</div>
-		<div id = "InventoryRight">	
-			<div id ="InventoryDetail"></div><!-- where the JS get called-->
 		</div>
 	</div>	
 </div>

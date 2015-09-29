@@ -18,6 +18,14 @@
 	margin: auto;
 	/*border:solid 1px black;*/
 	width: 989px;
-	
+	font-family: 'Amaranth', sans-serif;
 }
+#logo{
+	margin:auto;
+	height:158px;
+	width:600px;
+	!border:solid black 1px;
+	padding: 0 0 0 50px;
+}
+
 

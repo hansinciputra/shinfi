@@ -43,12 +43,15 @@ label{
 #InventoryList{
   //background-color:red;
   margin-left : 20px;
+  //border : black solid 1px;
+  overflow:scroll;
+  height:900px;
 
 }
 #InventoryContainer{
   //border:solid black 5px;
   margin:auto;
-  width:650px;
+  width:100%;
   padding-left:50px 10px ;
 }
 #InventoryDetail{
@@ -57,15 +60,15 @@ label{
 }
 #InventoryLeft{
   border:solid black 5px;
-  width:200px;
+  width:350px;
   height: 750px;
   float:left;
   text-align:left;
 }
 #InventoryRight{
-  border-left:solid black 5px;
-  width:450px;
-  margin-left:35%;
+  //border-right:solid black 5px;
+  width:650px;
+  margin-left:40%;
 }
 //for the product image in inventory AJAX file
 #imgContainer{
@@ -74,4 +77,27 @@ label{
   height: 250px;
   padding: auto;
   margin-bottom: 10px;
+}
+#inventory_table{
+  //border : black solid 1px;
+  background-color: #FFFFFF;
+}
+//nth-child is css default parameter to target the child of tr
+tr:nth-child(even){
+ background-color: #FFF1F8; 
+}
+table{
+  border-collapse: collapse;
+  width: 600px;
+}
+td{
+  border : red solid 1px;
+}
+.prodCodeTitle{
+  width : 40%;
+  text-align:center;
+}
+.prodResult{
+  width :20%;
+  text-align:center;
 }
