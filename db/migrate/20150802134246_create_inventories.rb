@@ -8,7 +8,7 @@ class CreateInventories < ActiveRecord::Migration
       t.decimal :pSellPrice, :precision => 10, :scale => 2
       t.string :pCategory
       t.binary :pPic
-
+      
       t.timestamps
     end
   end

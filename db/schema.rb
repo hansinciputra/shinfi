@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150902141924) do
+ActiveRecord::Schema.define(version: 20151002095408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "customers", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "inventories", force: true do |t|
     t.string   "pName"
@@ -31,5 +39,23 @@ ActiveRecord::Schema.define(version: 20150902141924) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  create_table "inventory_orders", id: false, force: true do |t|
+    t.integer "orders_id"
+    t.integer "inventories_id"
+  end
+
+  add_index "inventory_orders", ["inventories_id"], name: "index_inventory_orders_on_inventories_id", using: :btree
+  add_index "inventory_orders", ["orders_id"], name: "index_inventory_orders_on_orders_id", using: :btree
+
+  create_table "orders", force: true do |t|
+    t.decimal  "total_price", precision: 10, scale: 2
+    t.integer  "customer_id"
+    t.datetime "order_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
 
 end
