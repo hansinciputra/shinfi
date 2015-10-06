@@ -6,11 +6,11 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
     @inventories_list = Inventory.all #controller can call any model
-  end
-
+  end 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    @order = Order.find(params[:id])
   end
 
   # GET /orders/new
@@ -26,9 +26,9 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    #this is where we play next...
-    @order = Order.new(order_params)
 
+    @order = Order.new(order_params)
+    @inventories_list = Inventory.all #controller can call any model
     respond_to do |format|
       if @order.save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
@@ -72,6 +72,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params[:order]
+      params.require(:order).permit(:customer_id, :inventory_ids => [])
     end
 end

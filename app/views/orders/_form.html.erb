@@ -15,7 +15,6 @@
 <!--the beginning of the inventory order code-->
 <div id = "Main_Container">
   <h1>Transaction</h1>
-
   <hr/>
   <div id="InventoryContainer">
     <div id = "InventoryLeft">  
@@ -31,29 +30,34 @@
         </p>
       <% end %>
       
-      <div id = "InventoryList">
-        <!--this link_to already equal to onclick in jquery-->
-        <!--remote true to call AJAX file from inventory controler-->
-        <table id = "inventory_table">
-          <tr>
-            <td class = "prodCodeTitle"><h3>Prod Code</h3></td>
-            <td class = "prodResult"><h3>Quantity</h3></td>
-            <td class = "prodResult"><h3>Size</h3></td>
-            <td class = "prodResult"><h3>Price</h3></td>
-            <td class = "checklist"> square </td>
-          </tr>
-            <% @inventories_list.each do |t| %>
-          <tr>
-            <td class ="prodResult"><%= link_to t.pName, inventory_path(t), :remote => true %></td>
-            <td class = "prodResult"><%= t.pQuantity %></td>
-            <td class = "prodResult"><%= t.pMeter %></td>
-            <td class = "prodResult"><%= t.pSellPrice %></td>
-            <td class = "checklist"> square </td>
-          </tr>
-            <% end %>
-        </table>
-          <p><%= link_to "Submit", new_order_path %></p>
-      </div>
+      <!--The Form for Order List Start Here! -->
+              <div id = "InventoryList">
+                <%= f.label :customer_id,'customer ID' %>
+                <%= f.text_field :customer_id %>
+                <!--this link_to already equal to onclick in jquery-->
+                <!--remote true to call AJAX file from inventory controler-->
+                <table id = "inventory_table">
+                  <tr>
+                    <td class = "prodCodeTitle"><h3>Prod Code</h3></td>
+                    <td class = "prodResult"><h3>Quantity</h3></td>
+                    <td class = "prodResult"><h3>Size</h3></td>
+                    <td class = "prodResult"><h3>Price</h3></td>
+                    <td class = "checkbox"> Check </td>
+                  </tr>
+                    <% @inventories_list.each do |t| %>
+                  <tr>
+                    <td class ="prodResult"><%= link_to t.pName, inventory_path(t), :remote => true %></td>
+                    <td class = "prodResult"><%= f.text_field :quantity %></td>
+                    <td class = "prodResult"><%= t.pMeter %></td>
+                    <td class = "prodResult"><%= t.pSellPrice %></td>
+                    <td class = "checkbox"> <%= check_box_tag 'order[inventory_ids][]',t.id %></td>
+                  </tr>
+                    <% end %>
+                </table>
+                  <p><%= submit_tag "Submit" %></p> <!--will go to create controller-->
+              </div>
+   
+    <!--The Form for Order List End Here!-->
     </div>
   </div>  
 </div>

@@ -1,4 +1,6 @@
 class Order < ActiveRecord::Base
 	belongs_to :customer
-	has_and_belongs_to_many :inventories
+	has_many :inventory_orders
+	has_many :inventories, through: :inventory_orders
+	validates :customer_id, :presence => true
 end

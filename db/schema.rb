@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151002095408) do
+ActiveRecord::Schema.define(version: 20151006060258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,12 +41,13 @@ ActiveRecord::Schema.define(version: 20151002095408) do
   end
 
   create_table "inventory_orders", id: false, force: true do |t|
-    t.integer "orders_id"
-    t.integer "inventories_id"
+    t.integer "order_id"
+    t.integer "inventory_id"
+    t.integer "quantity"
   end
 
-  add_index "inventory_orders", ["inventories_id"], name: "index_inventory_orders_on_inventories_id", using: :btree
-  add_index "inventory_orders", ["orders_id"], name: "index_inventory_orders_on_orders_id", using: :btree
+  add_index "inventory_orders", ["inventory_id"], name: "index_inventory_orders_on_inventory_id", using: :btree
+  add_index "inventory_orders", ["order_id"], name: "index_inventory_orders_on_order_id", using: :btree
 
   create_table "orders", force: true do |t|
     t.decimal  "total_price", precision: 10, scale: 2
