@@ -1,15 +1,11 @@
 <p id="notice"><%= notice %></p>
 <p> Order Number #00<%= @order.id %></p>
 <%= @order.inventories.each do |inventory| %>
-	<li>inventory.id</li>
-	<li>inventory.pName</li>
+	<li><%= inventory.id %></li>
+	<li><%= inventory.pName %></li>
 <% end %>
 <hr/>
-<%= @order.inventories %>
-<br>
-<%= @order.inventory_ids %>
-<br>
-<%= @order.inventories.pName %>
-<br>
+
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

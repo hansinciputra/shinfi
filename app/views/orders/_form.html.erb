@@ -47,10 +47,14 @@
                     <% @inventories_list.each do |t| %>
                   <tr>
                     <td class ="prodResult"><%= link_to t.pName, inventory_path(t), :remote => true %></td>
-                    <td class = "prodResult"><%= f.text_field :quantity %></td>
+                    <td class = "prodResult">
+                      <%= f.fields_for :inventory_orders do |qty| %>
+                       <%= qty.text_field 'quantity[]' %>
+                       <%end%>
+                    </td>
                     <td class = "prodResult"><%= t.pMeter %></td>
                     <td class = "prodResult"><%= t.pSellPrice %></td>
-                    <td class = "checkbox"> <%= check_box_tag 'order[inventory_ids][]',t.id %></td>
+                    
                   </tr>
                     <% end %>
                 </table>
