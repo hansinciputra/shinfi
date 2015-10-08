@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @inventories_list = Inventory.all #controller can call any model
+    @inventory_order = @order.inventory_orders.build #to build instance of inventory order on the view page, otherwise the field_for will think that there is no inventory_order class and thus not showinf the field_for tag in the view
   end
 
   # GET /orders/1/edit
@@ -29,8 +30,19 @@ class OrdersController < ApplicationController
 
     @order = Order.new(order_params)
     @inventories_list = Inventory.all #controller can call any model
+    #inv_id = params[:inventory_orders_attributes][:inv_id]
+    #qty =  params[:inventory_orders][:quantity]
+    #inv_id = @order.inventory_orders.build(params[:inv_id])
+   # qty = @order.inventory_orders.build(params[:quantity])
+    #inv_id = @inventory_order.build_inventory(params[:inv_id])
+
+    #inventory_order = Inventory_order.new(order_id: @order.id, inventory_id: inv_id.id)
+
     respond_to do |format|
       if @order.save
+
+        #InventoryOrder.create(order_id: @order.id, inventory_id: inv_id, quantity: qty)
+
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -72,6 +84,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:customer_id, :inventory_ids => [])
+      params.require(:order).permit(:customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
+      #specify [:id,:inv_id, :quantity], otherwhise record when edit each record will be created again
     end
 end
