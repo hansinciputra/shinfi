@@ -28,12 +28,16 @@
           <%= text_field_tag :search, params[:search],:class => "textField" %>
           <%= submit_tag "Cari", :name => nil %>  
         </p>
-      <% end %>
       
       <!--The Form for Order List Start Here! -->
               <div id = "InventoryList">
-                <%= f.label :customer_id,'customer ID' %>
-                <%= f.text_field :customer_id %>
+                <div id = "customer_list">
+                 <%= 
+                 collection_select(:order,:customer_id,@customer,:id,:name) #(:class or object, :method or attribute inside that object that we want to store the info to, the collection of options, key, value)
+                 %>
+
+                  <%end%>
+                </div>
                 <!--this link_to already equal to onclick in jquery-->
                 <!--remote true to call AJAX file from inventory controler-->
                 <table id = "inventory_table">
@@ -51,7 +55,7 @@
                     <td class = "prodResult">
                       <%= f.fields_for :inventory_orders do |qty| %>
                          <%= qty.hidden_field :inventory_id , value: t.id %>
-                         <%= qty.text_field :quantity %>
+                         <%= qty.number_field :quantity %>
                      <%end%>
                     </td>
                     <td class = "prodResult"><%= t.pMeter %></td>
@@ -59,6 +63,7 @@
                     
                   </tr>
                     <% end %>
+                    
                 </table>
                   <p><%= submit_tag "Submit" %></p> <!--will go to create controller-->
               </div>
