@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151006060258) do
+ActiveRecord::Schema.define(version: 20151017134832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 20151006060258) do
   end
 
   create_table "inventories", force: true do |t|
-    t.string   "pName"
-    t.integer  "pQuantity"
-    t.string   "pMeter"
-    t.decimal  "pWeight",            precision: 6,  scale: 4
-    t.decimal  "pSellPrice",         precision: 10, scale: 2
-    t.string   "pCategory"
-    t.binary   "pPic"
+    t.string   "name"
+    t.integer  "quantity"
+    t.string   "meter"
+    t.decimal  "weight",             precision: 6,  scale: 4
+    t.decimal  "sellprice",          precision: 10, scale: 2
+    t.string   "category"
+    t.binary   "pic"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20151006060258) do
     t.datetime "image_updated_at"
   end
 
-  create_table "inventory_orders", id: false, force: true do |t|
+  create_table "inventory_orders", force: true do |t|
     t.integer "order_id"
     t.integer "inventory_id"
     t.integer "quantity"

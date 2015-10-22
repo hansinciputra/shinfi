@@ -83,14 +83,14 @@ label{
   background-color: #FFFFFF;
 }
 //nth-child is css default parameter to target the child of tr
-tr:nth-child(even){
+#inventory_table tr:nth-child(even){
  background-color: #FFF1F8; 
 }
 table{
   border-collapse: collapse;
   width: 600px;
 }
-td{
+#inventory_table td{
   border : red solid 1px;
 }
 .prodCodeTitle{

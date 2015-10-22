@@ -46,24 +46,23 @@
                     <td class = "prodResult"><h3>Quantity</h3></td>
                     <td class = "prodResult"><h3>Size</h3></td>
                     <td class = "prodResult"><h3>Price</h3></td>
-                    <td class = "prodResult"><h3>Check</h3></td>
                   </tr>
                     <% @inventories_list.each do |t| %>
                   <tr>
 
-                    <td class ="prodResult"><%= link_to t.pName, inventory_path(t), :remote => true %></td>
+                    <td class ="prodResult"><%= link_to t.name, inventory_path(t), :remote => true %></td>
                     <td class = "prodResult">
-                      <%= f.fields_for :inventory_orders do |qty| %>
-                         <%= qty.hidden_field :inventory_id , value: t.id %>
-                         <%= qty.number_field :quantity %>
-                     <%end%>
+                    
+                         <%= f.fields_for :inventory_orders do |qty| %>
+                           <%= qty.hidden_field :inventory_id, value: t.id %> <!--id of inventory--> 
+                           <%= qty.number_field :quantity %>
+
+                         <%end%>
                     </td>
-                    <td class = "prodResult"><%= t.pMeter %></td>
-                    <td class = "prodResult"><%= t.pSellPrice %></td>
-                    
+                    <td class = "prodResult"><%= t.meter %></td>
+                    <td class = "prodResult"><%= number_to_currency(t.sellprice, :unit => "Rp. ") %></td>
+                    <% end %>         
                   </tr>
-                    <% end %>
-                    
                 </table>
                   <p><%= submit_tag "Submit" %></p> <!--will go to create controller-->
               </div>

@@ -1,3 +1,54 @@
 // Place all the styles related to the Orders controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#order_container{
+margin: auto;
+	border:black solid 2px;
+	width: 800px;
+}
+#inventory_ordered{
+	margin: auto;
+	text-align: center;
+	border:black solid 2px;
+	background-color:white;
+}
+#customer_detail{
+	margin-left: 100px;
+	width: 300px;
+	border:black solid 2px;
+	text-align:left;
+}
+.left_q{
+	width: 100px;
+	padding-left:10px;
+	border-right:black solid 2px;
+}
+.right_q{
+	padding-left:10px;
+}
+#sub_title{
+	width:300px;
+	margin:20px auto 20px auto;
+	text-align:center;
+	border-bottom: solid black 1px;
+}
+#small_title{
+	margin: 0px 10px 0px 10px;
+	border-bottom: black solid 2px;
+}
+#admin_menu{
+	width: 200px;
+	margin: auto;
+}
+.currency_small{
+	text-align: left;
+	//border:black solid 2px;
+	padding-left: 15px;
+}
+.currency_large{
+	width: 150px;
+	text-align: left;
+	//border:black solid 2px;
+	padding-left: 45px;
+}

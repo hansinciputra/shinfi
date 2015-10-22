@@ -28,10 +28,10 @@
 					</tr>
 						<% @inventories.each do |t| %>
 					<tr>
-						<td class ="prodResult"><%= link_to t.pName, inventory_path(t), :remote => true %></td>
-						<td class = "prodResult"><%= t.pQuantity %></td>
-						<td class = "prodResult"><%= t.pMeter %></td>
-						<td class = "prodResult"><%= t.pSellPrice %></td>
+						<td class ="prodResult"><%= link_to t.name, inventory_path(t), :remote => true %></td>
+						<td class = "prodResult"><%= t.quantity %></td>
+						<td class = "prodResult"><%= t.meter %></td>
+						<td class = "prodResult"><%= t.sellprice %></td>
 					</tr>
 						<% end %>
 				</table>

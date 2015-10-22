@@ -6,11 +6,15 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
     @inventories_list = Inventory.all #controller can call any model
+    
   end 
   # GET /orders/1
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
+    @inventory_ordered = Order.find_by_sql(["SELECT inventories.name, inventories.sellprice, inventory_orders.quantity , inventories.sellprice*inventory_orders.quantity as Total FROM inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id WHERE inventory_orders.order_id = ?", params[:id]]);
+    @total_ordered = Order.find_by_sql(["select sum(inventories.sellprice*inventory_orders.quantity) as total_price from inventories left join inventory_orders on inventories.id = inventory_orders.inventory_id where inventory_orders.order_id = ?", params[:id]])
+
   end
 
   # GET /orders/new
@@ -26,9 +30,9 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @customer = Customer.all
     @inventories_list = Inventory.all
-    #@inventory_order_result = Inventory_order.find(params[:id])
-    @inventory_order = @order.inventory_orders
-    #@inventory_order = @order.inventory_orders.build #to build instance of inventory order on the view page, otherwise the field_for will think that there is no inventory_order class and thus not showinf the field_for tag in the view
+    @edt_inv = Order.find_by_sql(["select inventories.id as inventory_id, inventories.name, inventories.meter, inventories.sellprice, temp.id as id, temp.quantity FROM inventories LEFT OUTER JOIN (select * from inventory_orders where inventory_orders.order_id = ?)temp on inventories.id = temp.inventory_id" , params[:id]])
+    #@inventory_order = @order.inventory_orders.build
+    #@order2 = InventoryOrder.find_by_order_id(params[:id])
 
   end
 
@@ -53,9 +57,6 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    @order = Order.new(order_params)
-    @inventories_list = Inventory.all #controller can call any model
-
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
