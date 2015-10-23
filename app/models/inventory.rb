@@ -16,4 +16,5 @@ class Inventory < ActiveRecord::Base
   validates :quantity,:weight,:sellprice, :numericality => true
    
   accepts_nested_attributes_for :inventory_orders, :reject_if => lambda { |a| a[:quantity].blank?}
+
 end

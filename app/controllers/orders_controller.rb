@@ -5,8 +5,9 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+    @orders_index = Order.find_by_sql("SELECT orders.id , orders.status, customers.name , sum(inventories.sellprice*inventory_orders.quantity) as total_price FROM customers LEFT JOIN orders on customers.id = orders.customer_id LEFT JOIN inventory_orders on orders.id = inventory_orders.order_id LEFT JOIN inventories on inventory_orders.inventory_id = inventories.id GROUP BY orders.id, customers.name ORDER BY id")
     @inventories_list = Inventory.all #controller can call any model
-    
+
   end 
   # GET /orders/1
   # GET /orders/1.json
@@ -30,7 +31,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @customer = Customer.all
     @inventories_list = Inventory.all
-    @edt_inv = Order.find_by_sql(["select inventories.id as inventory_id, inventories.name, inventories.meter, inventories.sellprice, temp.id as id, temp.quantity FROM inventories LEFT OUTER JOIN (select * from inventory_orders where inventory_orders.order_id = ?)temp on inventories.id = temp.inventory_id" , params[:id]])
+    @edt_inv = Order.find_by_sql(["select inventories.id as inventory_id, inventories.name, inventories.meter, inventories.sellprice, inventories.quantity as stock_left, temp.id as id, temp.quantity FROM inventories LEFT OUTER JOIN (select * from inventory_orders where inventory_orders.order_id = ?)temp on inventories.id = temp.inventory_id" , params[:id]])
     #@inventory_order = @order.inventory_orders.build
     #@order2 = InventoryOrder.find_by_order_id(params[:id])
 

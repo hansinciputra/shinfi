@@ -1,7 +1,3 @@
-
-
-<h1>Editing order <%= @order.id %></h1>
-
 <%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
@@ -18,6 +14,7 @@
   <div class="actions">
 <!--the beginning of the inventory order code-->
 <div id = "Main_Container">
+  <h1 class= "page_title">Editing order Number #<%= @order.id %></h1>
   <h1>Transaction</h1>
   <hr/>
   <div id="InventoryContainer">
@@ -48,7 +45,7 @@
 	                <table id = "inventory_table" class = "inventory_edit">
 	                  <tr>
 	                    <td class = "prodCodeTitle"><h3>Prod Code</h3></td>
-	                    
+	                    <td class = "prodResult"><h3>Stock</h3></td>
 	                    <td class = "prodResult"><h3>Size</h3></td>
 	                     <td class = "prodResult"><h3>Price</h3></td>
 	                    <td class = "prodResult"><h3>Quantity</h3></td>
@@ -59,17 +56,18 @@
 	                    <tr class = "prodQuantity">
 	                    	<%= qty.hidden_field :id , value: qty.object.id %>
 	                    	<%= qty.hidden_field :inventory_id , value: qty.object.inventory_id %>
-	                    		<td><%= link_to qty.object.name, inventory_path(qty.object.inventory_id) , :remote => true %></td>
-	                    		<td ><%= qty.object.meter %></td>
-	                    		<td ><%= qty.object.sellprice %></td>
-	                           <td ><%= qty.number_field :quantity %></td>
-	                          
+	                    		<td class="prodResult"><%= link_to qty.object.name, inventory_path(qty.object.inventory_id) , :remote => true %></td>
+                          <td class ="prodResult"><%= qty.object.stock_left %></td>
+	                    		<td class="prodResult"><%= qty.object.meter %></td>
+	                    		<td class="prodResult"><%= number_to_currency(qty.object.sellprice , :unit => "Rp. ") %></td>
+	                           <td class="prodResult"><%= qty.number_field :quantity %></td>
 	                           <!-- _.object.column_name -> to get a specific object in field_for or form_for-->
 	                       </tr>
 	                   <%end%>
 	                </table>
        		</div>        
-                  <p><%= submit_tag "Submit" %></p> <!--will go to create controller-->
+                  <p><%= submit_tag "Submit" %> | <%= link_to 'Back', orders_path %> | <%= link_to 'Show', @order %> |</p> <!--will go to create controller-->
+                  
               </div>
    		
     <!--The Form for Order List End Here!-->
@@ -82,5 +80,5 @@
 <%= debug params %>
 
 
-<%= link_to 'Show', @order %> |
-<%= link_to 'Back', orders_path %>
+
+

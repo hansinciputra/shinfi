@@ -22,19 +22,20 @@
     </div>
 
     <div id= "InventoryRight">
-      <h3 style ="margin-left:20px;">Search for Product</h3>
-      <%= form_tag inventories_path, :method => :get do %>
-        <p>
-          <%= text_field_tag :search, params[:search],:class => "textField" %>
-          <%= submit_tag "Cari", :name => nil %>  
-        </p>
-      
+      <table style ="margin-left:30px;">
+        <tr>
+         <td style ="margin-left:20px;width:150px; !border:solid black 1px;">Search for Product : <%= form_tag inventories_path, :method => :get do %></td>
+         <td style ="!border:solid black 1px;"><%= text_field_tag :search, params[:search],:class => "textField" %>
+          <%= submit_tag "Cari", :name => nil %> </td>
+      </tr>
+    </table>
       <!--The Form for Order List Start Here! -->
               <div id = "InventoryList">
                 <div id = "customer_list">
+                  <p> Order untuk : 
                  <%= 
                  collection_select(:order,:customer_id,@customer,:id,:name) #(:class or object, :method or attribute inside that object that we want to store the info to, the collection of options, key, value)
-                 %>
+                 %></p>
 
                   <%end%>
                 </div>
@@ -43,6 +44,7 @@
                 <table id = "inventory_table">
                   <tr>
                     <td class = "prodCodeTitle"><h3>Prod Code</h3></td>
+                    <td class = "prodResult"><h3>Stock</h3></td>
                     <td class = "prodResult"><h3>Quantity</h3></td>
                     <td class = "prodResult"><h3>Size</h3></td>
                     <td class = "prodResult"><h3>Price</h3></td>
@@ -51,6 +53,7 @@
                   <tr>
 
                     <td class ="prodResult"><%= link_to t.name, inventory_path(t), :remote => true %></td>
+                     <td class ="prodResult"><%= t.quantity %></td>
                     <td class = "prodResult">
                     
                          <%= f.fields_for :inventory_orders do |qty| %>
@@ -64,7 +67,7 @@
                     <% end %>         
                   </tr>
                 </table>
-                  <p><%= submit_tag "Submit" %></p> <!--will go to create controller-->
+                  <p><%= submit_tag "Submit" %> | <%= link_to 'Cancel', orders_path %></p> <!--will go to create controller-->
               </div>
    
     <!--The Form for Order List End Here!-->
@@ -74,4 +77,3 @@
  <!--the end of the inventory order code-->
   </div>
 <% end %>
-<%= debug params %>

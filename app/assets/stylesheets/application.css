@@ -26,5 +26,37 @@
 	width:600px;
 	padding: 0 0 0 50px;
 }
-
+#admin_menu{
+	width: 100px;
+	border: black solid 1px;
+	text-align: center;
+}
+#head_menu{
+	width: 800px;
+	text-align: center;
+	border: black solid 1px;
+	margin: 40px auto 0 auto;
+}
+#head_menu ul li{
+	display: inline
+}
+.report_table{
+	margin : auto;
+}
+.report_table .title{
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+.report_table .content{
+	text-align: center;
+}
+.report_table tr:nth-child(even){
+ 	background-color: #FFF1F8; 
+}
+.page_title
+{
+	width: 200px;
+	margin: 30px auto 30px auto;
+}
 
