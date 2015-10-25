@@ -1,4 +1,4 @@
-<%= form_for(@order) do |f| %>
+<%= form_for @order, :url => {:action =>'create'} do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -14,7 +14,7 @@
   <div class="actions">
 <!--the beginning of the inventory order code-->
 <div id = "Main_Container">
-  <h1>Transaction For Stocked Order</h1>
+  <h1>Transaction For Purchase Order</h1>
   <hr/>
   <div id="InventoryContainer">
     <div id = "InventoryLeft">  
@@ -32,7 +32,7 @@
       <!--The Form for Order List Start Here! -->
               <div id = "InventoryList">
                 <div id = "customer_list">
-                  <%= f.hidden_field :readyorpo, value: 'STOCKED' %>
+                  <%= f.hidden_field :readyorpo, value: 'PO' %>
                   <p> Order untuk : 
                  <%= 
                  collection_select(:order,:customer_id,@customer,:id,:name) #(:class or object, :method or attribute inside that object that we want to store the info to, the collection of options, key, value)
@@ -68,7 +68,7 @@
                     <% end %>         
                   </tr>
                 </table>
-                  <p><%= submit_tag "Submit" %> | <%= link_to 'Cancel', orders_path %></p> <!--will go to create controller-->
+                  <p><%= submit_tag "Submit" %> | <%= link_to 'Cancel', order_pos_path %></p> <!--will go to create controller-->
               </div>
    
     <!--The Form for Order List End Here!-->

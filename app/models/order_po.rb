@@ -1,0 +1,2 @@
+class OrderPo < Order
+end

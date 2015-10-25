@@ -1,0 +1,39 @@
+<div id= "Main_Container">
+  <h1 class="page_title">Listing PO orders</h1>
+  <div id = "admin_menu">
+    <%= link_to 'New Order', new_order_po_path %>
+  </div>
+  <table class = "report_table">
+    <thead>
+      <tr>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class = "title">
+        <td>No.</td>
+        <td>Order ID.</td>
+        <td>Nama Cust.</td>
+        <td>Total Amount</td>
+        <td>Status</td>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+      </tr>
+      <% @orders_index.each_with_index do |order, i| %>
+        <tr>
+          <td><%= i+1 %>.</td>
+          <td class = "content"><%= order.id %></td>
+          <td class = "content"><%= order.name%></td>
+          <td><%= number_to_currency(order.total_price , :unit => "Rp. ") %></td>
+          <td><%= order.status %></td>
+          <td><%= link_to 'Show', order_po_path(order) %></td>
+          <td><%= link_to 'Edit', edit_order_po_path(order) %></td>
+          <td><%= link_to 'Destroy', order_po_path(order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+</div>
