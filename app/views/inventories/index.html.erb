@@ -1,5 +1,5 @@
 <div id = "Main_Container">
-	<h1>Inventories List</h1>
+	<h1>All Inventories List</h1>
 	<p><%= link_to "Create New Inventory", new_inventory_path %></p>
 	<hr/>
 	<div id="InventoryContainer">
@@ -8,13 +8,14 @@
 		</div>
 
 		<div id= "InventoryRight">
-			<h3 style ="margin-left:20px;">Search for Product</h3>
-			<%= form_tag inventories_path, :method => :get do %>
-				<p>
-					<%= text_field_tag :search, params[:search],:class => "textField" %>
-					<%= submit_tag "Cari", :name => nil %>	
-				</p>
-			<% end %>
+			
+			<table style ="margin-left:30px;">
+        <tr>
+          <!--perform search on product-->
+         <td style ="margin-left:20px;width:150px; !border:solid black 1px;"><h3 style ="margin-left:20px;">Search for Product</h3> </td>
+         <td style ="!border:solid black 1px;"><input type = "text" id ="search-prod"></td>
+      </tr>
+    </table>
 			
 			<div id = "InventoryList">
 				<!--this link_to already equal to onclick in jquery-->
@@ -27,8 +28,8 @@
 						<td class = "prodResult"><h3>Price</h3></td>
 					</tr>
 						<% @inventories.each do |t| %>
-					<tr>
-						<td class ="prodResult"><%= link_to t.name, inventory_path(t), :remote => true %></td>
+					<tr id = "prodResultContainer">
+						<td class ="prodResult"><div id ="prodNameTest"><%= link_to t.name, inventory_path(t), :remote => true %></div></td>
 						<td class = "prodResult"><%= t.quantity %></td>
 						<td class = "prodResult"><%= t.meter %></td>
 						<td class = "prodResult"><%= t.sellprice %></td>

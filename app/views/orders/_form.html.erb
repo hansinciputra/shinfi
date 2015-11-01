@@ -1,4 +1,3 @@
-<%= form_for(@order) do |f| %>
   <% if @order.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -14,7 +13,7 @@
   <div class="actions">
 <!--the beginning of the inventory order code-->
 <div id = "Main_Container">
-  <h1>Transaction For Stocked Order</h1>
+
   <hr/>
   <div id="InventoryContainer">
     <div id = "InventoryLeft">  
@@ -24,21 +23,19 @@
     <div id= "InventoryRight">
       <table style ="margin-left:30px;">
         <tr>
-         <td style ="margin-left:20px;width:150px; !border:solid black 1px;">Search for Product : <%= form_tag inventories_path, :method => :get do %></td>
-         <td style ="!border:solid black 1px;"><%= text_field_tag :search, params[:search],:class => "textField" %>
-          <%= submit_tag "Cari", :name => nil %> </td>
+          <!--perform search on product-->
+         <td style ="margin-left:20px;width:150px; !border:solid black 1px;">Search for Product </td>
+         <td style ="!border:solid black 1px;"><input type = "text" id ="search-prod"></td>
       </tr>
     </table>
       <!--The Form for Order List Start Here! -->
               <div id = "InventoryList">
                 <div id = "customer_list">
-                  <%= f.hidden_field :readyorpo, value: 'STOCKED' %>
+
                   <p> Order untuk : 
                  <%= 
                  collection_select(:order,:customer_id,@customer,:id,:name) #(:class or object, :method or attribute inside that object that we want to store the info to, the collection of options, key, value)
                  %></p>
-
-                  <%end%>
                 </div>
                 <!--this link_to already equal to onclick in jquery-->
                 <!--remote true to call AJAX file from inventory controler-->
@@ -51,22 +48,21 @@
                     <td class = "prodResult"><h3>Price</h3></td>
                   </tr>
                     <% @inventories_list.each do |t| %>
-                  <tr>
+                    <tr id = "prodResultContainer">
+                        <td class ="prodResult"><div id ="prodNameTest"><%= link_to t.name, inventory_path(t), :remote => true %></div></td>
+                         <td class ="prodResult"><%= t.quantity %></td>
+                        <td class = "prodResult">
+                        
+                             <%= f.fields_for :inventory_orders do |qty| %>
+                               <%= qty.hidden_field :inventory_id, value: t.id %> <!--id of inventory--> 
+                               <%= qty.number_field :quantity %>
 
-                    <td class ="prodResult"><%= link_to t.name, inventory_path(t), :remote => true %></td>
-                     <td class ="prodResult"><%= t.quantity %></td>
-                    <td class = "prodResult">
-                    
-                         <%= f.fields_for :inventory_orders do |qty| %>
-                           <%= qty.hidden_field :inventory_id, value: t.id %> <!--id of inventory--> 
-                           <%= qty.number_field :quantity %>
-
-                         <%end%>
-                    </td>
-                    <td class = "prodResult"><%= t.meter %></td>
-                    <td class = "prodResult"><%= number_to_currency(t.sellprice, :unit => "Rp. ") %></td>
-                    <% end %>         
-                  </tr>
+                             <%end%>
+                        </td>
+                        <td class = "prodResult"><%= t.meter %></td>
+                        <td class = "prodResult"><%= number_to_currency(t.sellprice, :unit => "Rp. ") %></td>
+                      <% end %>         
+                    </tr>
                 </table>
                   <p><%= submit_tag "Submit" %> | <%= link_to 'Cancel', orders_path %></p> <!--will go to create controller-->
               </div>
@@ -77,4 +73,4 @@
 </div>
  <!--the end of the inventory order code-->
   </div>
-<% end %>
+

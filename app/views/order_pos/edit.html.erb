@@ -1,72 +1,7 @@
 <%= form_for @order, :url => {:action =>'update'} do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-      <% @order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-<!--the beginning of the inventory order code-->
-<div id = "Main_Container">
-  <h1 class= "page_title">Editing order Number #<%= @order.id %></h1>
-  <h1>Edit PO Transaction</h1>
-  <hr/>
-  <div id="InventoryContainer">
-    <div id = "InventoryLeft">  
-      <div id ="InventoryDetail"> Click on the Product Code</div><!-- where the JS get called-->
-    </div>
-
-    <div id= "InventoryRight">
-      <h3 style ="margin-left:20px;">Search for Product</h3>
-      <%= form_tag inventories_path, :method => :get do %>
-        <p>
-          <%= text_field_tag :search, params[:search],:class => "textField" %>
-          <%= submit_tag "Cari", :name => nil %>  
-        </p>
-      
-      <!--The Form for Order List Start Here! -->
-              <div id = "InventoryList">
-                <div id = "customer_list">
-                  <%= f.hidden_field :readyorpo, value: 'PO' %>
-                 <%= 
-                 collection_select(:order,:customer_id,@customer,:id,:name) #(:class or object, :method or attribute inside that object that we want to store the info to, the collection of options, key, value)
-                 %>
-
-                  <%end%>
-                </div>
-                <!--this link_to already equal to onclick in jquery-->
-                <!--remote true to call AJAX file from inventory controler-->
-            <div id = "table_container">   
-	                <table id = "inventory_table" class = "inventory_edit">
-	                  <tr>
-	                    <td class = "prodCodeTitle"><h3>Prod Code</h3></td>
-	                    <td class = "prodResult"><h3>Stock</h3></td>
-	                    <td class = "prodResult"><h3>Size</h3></td>
-	                     <td class = "prodResult"><h3>Price</h3></td>
-	                    <td class = "prodResult"><h3>Quantity</h3></td>
-	                  </tr>       
-	                    <!--fields_for :instance, Model do |a| , the second argument is the model where we get the data we wanted-->
-	                    
- 						<%= f.fields_for :inventory_orders, @edt_inv do |qty| %>
-	                    <tr class = "prodQuantity">
-	                    	<%= qty.hidden_field :id , value: qty.object.id %>
-	                    	<%= qty.hidden_field :inventory_id , value: qty.object.inventory_id %>
-	                    		<td class="prodResult"><%= link_to qty.object.name, inventory_path(qty.object.inventory_id) , :remote => true %></td>
-                          <td class ="prodResult"><%= qty.object.stock_left %></td>
-	                    		<td class="prodResult"><%= qty.object.meter %></td>
-	                    		<td class="prodResult"><%= number_to_currency(qty.object.sellprice , :unit => "Rp. ") %></td>
-	                           <td class="prodResult"><%= qty.number_field :quantity %></td>
-	                           <!-- _.object.column_name -> to get a specific object in field_for or form_for-->
-	                       </tr>
-	                   <%end%>
-	                </table>
-       		</div>        
+<%= f.hidden_field :readyorpo, value: 'PO' %>
+<h1>Edit PO Transaction</h1>
+  <%= render :template => 'orders/_editform', :locals => {:f => f} %>
                   <p><%= submit_tag "Submit" %> | <%= link_to 'Back', order_pos_path %><!--will go to create controller-->
                   
               </div>

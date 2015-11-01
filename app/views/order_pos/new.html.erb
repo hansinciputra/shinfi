@@ -1,1 +1,6 @@
-<%= render 'form' %>
+<%= form_for @order, :url => {:action =>'create'} do |f| %>
+<%= f.hidden_field :readyorpo, value: 'PO' %>
+  <h1>Transaction For Purchase Order</h1>
+<%= render :template => 'orders/_form', :locals => {:f => f }%>
+<% end %>
+

@@ -10,8 +10,8 @@
 		<br>
 		<div id = "order_detail">
 			<ul>
-				<li>Order Dibuat pada tanggal : <%= @order.created_at %></li>
-				<li>Tanggal Terakhir Update : <%= @order.updated_at %></li>
+				<li>Order Dibuat pada tanggal : <%= @order.created_at.strftime("%d /%b /%y") %></li>
+				<li>Tanggal Terakhir Update : <%= @order.updated_at.strftime("%d /%b /%y") %></li>
 			</ul>
 		</div>
 			<table id = "customer_detail">

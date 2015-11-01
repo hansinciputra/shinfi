@@ -20,3 +20,21 @@
 $(document).ajaxComplete(function(){
 	$("a.fancybox").fancybox({'type' : 'image'});
 });
+//this need to be changed to coffee script and stored locally
+$(document).ready(function(){
+	$("#search-prod").on("keyup",function(){
+		var inputed = $(this).val().toLowerCase();
+		$("#prodNameTest a").each(function(){
+			var text = $(this).text();
+			if(text.indexOf(inputed)!= -1)
+			{
+				$(this).parent().parent().parent().show();
+			}
+			else
+			{
+				$(this).parent().parent().parent().hide();
+			}
+		});
+	});
+});
+
