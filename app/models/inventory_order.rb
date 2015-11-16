@@ -8,4 +8,10 @@ class InventoryOrder < ActiveRecord::Base
 
 	accepts_nested_attributes_for :inventory, :reject_if => lambda { |a| a[:quantity].blank?}
 		
+	def reduce_from_inventories(qty)
+		inventory.reduce_inventory(qty)
+	end
+	def update_form_inventories(qty)
+		inventory.add_inventory(qty)
+	end
 end
