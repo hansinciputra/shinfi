@@ -21,7 +21,7 @@ $(document).ajaxComplete(function(){
 	$("a.fancybox").fancybox({'type' : 'image'});
 });
 //this need to be changed to coffee script and stored locally
-$(document).ready(function(){
+ready = function(){
 	$("#search-prod").on("keyup",function(){
 		var inputed = $(this).val().toLowerCase();
 		$("#prodNameTest a").each(function(){
@@ -36,5 +36,7 @@ $(document).ready(function(){
 			}
 		});
 	});
-});
+}
+$(document).ready(ready);
+$(document).on('page:load', ready);
 

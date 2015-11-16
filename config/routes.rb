@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   resources :customers
 
-  resources :orders
+  resources :orders do
+    member do 
+      get 'orderpymnt'
+    end
+  end
 
   #this resources will give CRUD function on inventories controller
   resources :inventories

@@ -5,7 +5,9 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
-    @orders_index = Order.find_by_sql("SELECT orders.id , orders.status, customers.name , sum(inventories.sellprice*inventory_orders.quantity) as total_price FROM customers LEFT JOIN orders on customers.id = orders.customer_id LEFT JOIN inventory_orders on orders.id = inventory_orders.order_id LEFT JOIN inventories on inventory_orders.inventory_id = inventories.id  WHERE orders.readyorpo = 'STOCKED' GROUP BY orders.id, customers.name ORDER BY id")
+    @orders_index = Order.find_by_sql("SELECT orders_temp.id , orders_temp.status, customers.name , sum(inventories.sellprice*inventory_orders.quantity) AS total_price FROM customers LEFT JOIN (SELECT orders.id, orders.customer_id, orders.readyorpo, order_statuses.name AS status FROM orders LEFT JOIN order_statuses on orders.order_status_id = order_statuses.id
+)orders_temp on customers.id = orders_temp.customer_id LEFT JOIN inventory_orders on orders_temp.id = inventory_orders.order_id LEFT JOIN inventories on inventory_orders.inventory_id = inventories.id  WHERE orders_temp.readyorpo = 'STOCKED' GROUP BY orders_temp.id, orders_temp.status, customers.name ORDER BY id")
+    @orderstatus = OrderStatus.all
   end 
   # GET /orders/1
   # GET /orders/1.json
@@ -19,7 +21,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @customer = Customer.all
-    @inventories_list = Inventory.where("quantity >'0'") #controller can call any model
+    @inventories_list = Inventory.where("quantity >'0'").order("name") #controller can call any model
     @inventory_order = @order.inventory_orders.build #to build instance of inventory order on the view page, otherwise the field_for will think that there is no inventory_order class and thus not showinf the field_for tag in the view
   end
 
@@ -27,7 +29,7 @@ class OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
     @customer = Customer.all
-    @edt_inv = Order.find_by_sql(["select inventories.id as inventory_id, inventories.name, inventories.meter, inventories.sellprice, inventories.quantity as stock_left, temp.id as id, temp.quantity FROM inventories LEFT OUTER JOIN (select * from inventory_orders where inventory_orders.order_id = ?)temp on inventories.id = temp.inventory_id WHERE inventories.quantity > '0'" , params[:id]])
+    @edt_inv = Order.find_by_sql(["select inventories.id as inventory_id, inventories.name, inventories.meter, inventories.sellprice, inventories.quantity as stock_left, temp.id as id, temp.quantity FROM inventories LEFT OUTER JOIN (select * from inventory_orders where inventory_orders.order_id = ?)temp on inventories.id = temp.inventory_id WHERE inventories.quantity > '0' OR temp.quantity > '0' ORDER BY inventories.name" , params[:id]])
   end
 
   # POST /orders
@@ -35,7 +37,11 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     respond_to do |format|
-      if @order.save
+        if @order.save
+        #reduce the quantity of inventory for each item inputed in order, will have problem at scale since it is not considering two orders entered at the same time
+        @order.inventory_orders.each do |x|
+          x.reduce_from_inventories(x.quantity)
+        end      
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -48,8 +54,17 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    #we add the quantity based on user previous user input before update it with the new input
+    @order.inventory_orders.each do |x|
+          x.update_form_inventories(x.quantity)
+        end
     respond_to do |format|
-      if @order.update(order_params)
+     if @order.update(order_params) 
+        @order.inventory_orders.each do |x|
+          x.reduce_from_inventories(x.quantity)
+          
+        end
+      
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
         format.json { render :show, status: :ok, location: @order }
       else
@@ -62,11 +77,18 @@ class OrdersController < ApplicationController
   # DELETE /orders/1  
   # DELETE /orders/1.json
   def destroy
+      @order.inventory_orders.each do |x|
+        x.update_form_inventories(x.quantity)
+      end
     @order.destroy
     respond_to do |format|
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def updatepayment
+    
   end
 
   private
