@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :customers
 
   resources :orders do
-    member do 
-      get 'orderpymnt'
+   collection do 
+    put 'update_multiple_payment'
     end
   end
 

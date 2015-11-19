@@ -11,7 +11,7 @@
     </thead>
 
     <tbody>
-    <%= form_tag("/updatepayment", method: "POST" ) do |f| %>
+    
       <tr class = "title">
         <td>No.</td>
         <td>Order ID.</td>
@@ -19,6 +19,7 @@
         <td>Total Amount</td>
         <td>Status</td>
         <td>Payment</td>
+        <td> </td>
         <td>1</td>
         <td>2</td>
         <td>3</td>
@@ -30,13 +31,21 @@
           <td class = "content"><%= order.name%></td>
           <td><%= number_to_currency(order.total_price , :unit => "Rp. ") %></td>
           <td><%= order.status %></td>
-          <td><input type ="text"></td>
+          <td>
+            <!--SAMPEK SINI!!!!!!!!!!!!!!!!!!-->
+          <%= form_for :order, :url => update_multiple_payment_orders_path, :html => { :method => :put } do |f| %>
+              <%= f.hidden_field :id , value: order.id %>
+              <%= f.number_field :payment, value: order.payment %>
+           
+          </td>
+          <td><%= f.submit("Submit Payment") %></td>
+          <% end %>
           <td><%= link_to 'Show', order %></td>
           <td><%= link_to 'Edit', edit_order_path(order) %></td>
           <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-      <% end %>
-      <%= submit_tag("Submit Payment") %>
+      
+      
     <%end #for form_for%>
     </tbody>
   </table>
