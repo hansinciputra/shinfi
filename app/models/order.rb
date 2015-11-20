@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
 	belongs_to :customer
+	has_many :order_status
 	has_many :inventory_orders, :inverse_of => :order, :dependent => :destroy
 	has_many :inventories, through: :inventory_orders
 	validates :customer_id, :presence => true

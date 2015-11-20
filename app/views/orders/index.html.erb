@@ -17,6 +17,7 @@
         <td>Order ID.</td>
         <td>Nama Cust.</td>
         <td>Total Amount</td>
+        <td>Outstanding</td>
         <td>Status</td>
         <td>Payment</td>
         <td> </td>
@@ -30,13 +31,12 @@
           <td class = "content"><%= order.id %></td>
           <td class = "content"><%= order.name%></td>
           <td><%= number_to_currency(order.total_price , :unit => "Rp. ") %></td>
-          <td><%= order.status %></td>
-          <td>
-            <!--SAMPEK SINI!!!!!!!!!!!!!!!!!!-->
+          <td><%= number_to_currency(order.outstanding , :unit => "Rp. ")%></td>
           <%= form_for :order, :url => update_multiple_payment_orders_path, :html => { :method => :put } do |f| %>
+          <td><%= f.collection_select :order_status_id , @orderstatus, :id,:name ,{:selected=> order.status}%></td>
+          <td>
               <%= f.hidden_field :id , value: order.id %>
-              <%= f.number_field :payment, value: order.payment %>
-           
+              <%= f.number_field :payment, value: order.payment %>      
           </td>
           <td><%= f.submit("Submit Payment") %></td>
           <% end %>

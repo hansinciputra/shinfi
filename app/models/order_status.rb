@@ -1,3 +1,3 @@
 class OrderStatus < ActiveRecord::Base
-	belongs_to :orders
+	belongs_to :order
 end

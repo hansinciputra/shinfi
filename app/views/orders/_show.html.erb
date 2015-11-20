@@ -14,6 +14,7 @@
 				<li>Tanggal Terakhir Update : <%= @order.updated_at.strftime("%d /%b /%y") %></li>
 			</ul>
 		</div>
+		<div>
 			<table id = "customer_detail">
 					<tr>
 						<td colspan = 2> <h4 id= "small_title">Customer Detail</h4></td>
@@ -31,19 +32,28 @@
 						<td class = "right_q"><%= @order.customer.address %></td>
 					</tr>
 			</table>
-		
+		<table id = "payment_status">
+			<tr>
+				<td colspan = "6">STATUS ORDER IMAGE</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+		</div>
 		<% @order.inventory_orders.each do |t| %>
 		<%end%>
 		<br/>
 		<table id = "inventory_ordered">
 			<tr>
-				<td><h4>No.</h4></td>
-				<td><h4>Prod Name</h4></td>
-				<td><h4>Price</h4></td>
-				<td><h4>x</h4></td>
-				<td><h4>Quantity</h4></td>
-				<td><h4>=</h4></td>
-				<td><h4>Total Price</h4></td>
+				<th><h4>No.</h4></th>
+				<th><h4>Prod Name</h4></th>
+				<th><h4>Price</h4></th>
+				<th><h4>x</h4></th>
+				<th><h4>Quantity</h4></th>
+				<th><h4>=</h4></th>
+				<th><h4>Total Price</h4></th>
 			</tr>
 
 			<% @inventory_ordered.each_with_index do |inventory, i| %>
@@ -59,12 +69,55 @@
 			</tr>
 			<% end %>
 			<tr>
+
 				<div id = "total_order">
-					<td colspan = 6><h3>Total Order</h3></td>
-					<td class= "currency_large"><h3><%= number_to_currency(@total_ordered.first.total_price, :unit => "Rp. ") %></h3></td>
+					<td colspan = 6 class= "c_title"><h3>Total Order</h3></td>
+					<td class= "currency_large">	<div id="c_line"> + </div><h3><%= number_to_currency(@total_ordered.first.total_price, :unit => "Rp. ") %></h3></td>
 				</div>
+			</tr>
+			<tr>
+				<td colspan = 6 class= "c_title"><h3>Amount Paid</h3></td>
+				<td class= "currency_large">
+					<h3 style="color:#ff4d4d">(<%= number_to_currency(@down_payment_calculation.first.payment, :unit => "Rp. ") %>)</h3>
+					<div id="c_line"> - </div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan = 6 class= "c_title"><h3>Outstanding Amount</h3></td>
+				<td class= "currency_large"><h3><%= number_to_currency(@down_payment_calculation.first.outstanding, :unit => "Rp. ") %></h3></td>
 			</tr>
 		</table>
 		<br/>
+		
+			<table id ="bank_detail">
+				<th colspan ="2">Pembayaran Melalui:</th>
+				<th></th>
+				<tr>
+					<td>Rekening:</td>
+					<td> BCA</td>
+				</tr>
+				<tr>
+					<td>No.Rekening</td>
+					<td>0198230190123</td>
+				<tr>
+					<td>A/N:</td>
+					<td>Shinfi</td>
+				</tr>
+				<tr>
+					<td colspan= "2">setelah melakukan pembayaran harap konfirmasi dengan menghubungi nomor: 019823982173917</td>
+					<td></td>
+				</tr>
+			</table>
+			<table id = "signature">
+				<tr>
+					<td>Shinfi Signature</td>
+				</tr>
+				<tr>
+					<td id="sign">SIGNATURE</td>
+				</tr>
+				<tr>
+					<td><div id="c_line" style="margin-left:70px;"> </div>Shinfiani Teja</td>
+				</tr>
+			</table>
 	</div>
 </div>

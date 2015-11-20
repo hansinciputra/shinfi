@@ -8,19 +8,22 @@ margin: auto;
 	width: 800px;
 }
 #inventory_ordered{
-	margin: auto;
 	text-align: center;
 	border:black solid 2px;
 	background-color:white;
+	margin-left:50px;
+	width: 700px;
 }
 #customer_detail{
-	margin-left: 100px;
+	margin: 0 40px 30px 50px;
+	
 	width: 300px;
 	border:black solid 2px;
 	text-align:left;
+	float:left;
 }
 #order_detail{
-	margin-left : 100px;
+	margin-left : 50px;
 }
 .left_q{
 	width: 100px;
@@ -50,9 +53,37 @@ margin: auto;
 	padding-left: 15px;
 }
 .currency_large{
-	width: 150px;
+	width: 180px;
 	text-align: left;
 	//border:black solid 2px;
 	padding-left: 45px;
+}
+#c_line{
+	border-bottom:black solid 2px;
+	width:120px;
+	text-align:right;
+}
+.c_title{
+	text-align:right;
+}
+#payment_status{
+	border: black solid 1px;
+	width: 360px;
+	height: 100px;
+	text-align:center;
+}
+#bank_detail{
+	width: 300px;
+	//border: black solid 1px;
+	margin-left: 50px;
+}
+#signature{
+	margin: 0 0 50px 500px;
+	text-align:center;
+	width: 250px;
+	//border: black solid 1px;
+}
+#sign{
+	height: 100px;
 }
 

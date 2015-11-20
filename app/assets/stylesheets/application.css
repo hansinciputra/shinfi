@@ -42,6 +42,7 @@
 }
 .report_table{
 	margin : auto;
+	width: 980px;
 }
 .report_table .title{
 	text-align: center;
