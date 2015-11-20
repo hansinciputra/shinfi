@@ -71,12 +71,12 @@
 			<tr>
 
 				<div id = "total_order">
-					<td colspan = 6 class= "c_title"><h3>Total Order</h3></td>
+					<td colspan = 6 class= "c_title" style="padding-top:25px;"><h3>Total Order</h3></td>
 					<td class= "currency_large">	<div id="c_line"> + </div><h3><%= number_to_currency(@total_ordered.first.total_price, :unit => "Rp. ") %></h3></td>
 				</div>
 			</tr>
 			<tr>
-				<td colspan = 6 class= "c_title"><h3>Amount Paid</h3></td>
+				<td colspan = 6 class= "c_title" style="padding-top:-100px;"><h3>Amount Paid</h3></td>
 				<td class= "currency_large">
 					<h3 style="color:#ff4d4d">(<%= number_to_currency(@down_payment_calculation.first.payment, :unit => "Rp. ") %>)</h3>
 					<div id="c_line"> - </div>

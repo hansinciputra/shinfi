@@ -5,14 +5,16 @@ class OrderPosController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
-    @orders_index = Order.find_by_sql("SELECT orders.id , orders.status, customers.name , sum(inventories.sellprice*inventory_orders.quantity) as total_price FROM customers LEFT JOIN orders on customers.id = orders.customer_id LEFT JOIN inventory_orders on orders.id = inventory_orders.order_id LEFT JOIN inventories on inventory_orders.inventory_id = inventories.id WHERE orders.readyorpo = 'PO' GROUP BY orders.id, customers.name ORDER BY id")
+    @orders_index = Order.find_by_sql("SELECT orders_temp.id , orders_temp.payment, orders_temp.status, customers.name , sum(inventories.sellprice*inventory_orders.quantity) AS total_price, sum(inventories.sellprice*inventory_orders.quantity)- orders_temp.payment AS outstanding FROM customers LEFT JOIN (SELECT orders.id, orders.payment, orders.customer_id, orders.readyorpo, order_statuses.id AS status FROM orders LEFT JOIN order_statuses on orders.order_status_id = order_statuses.id
+)orders_temp on customers.id = orders_temp.customer_id LEFT JOIN inventory_orders on orders_temp.id = inventory_orders.order_id LEFT JOIN inventories on inventory_orders.inventory_id = inventories.id  WHERE orders_temp.readyorpo = 'PO' GROUP BY orders_temp.id, orders_temp.payment, orders_temp.status, customers.name ORDER BY id")
+   @orderstatus = OrderStatus.all
   end 
   # GET /orders/1
   # GET /orders/1.json
   def show
     @inventory_ordered = Order.find_by_sql(["SELECT inventories.name, inventories.sellprice, inventory_orders.quantity , inventories.sellprice*inventory_orders.quantity as Total FROM inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id WHERE inventory_orders.order_id = ?", params[:id]]);
     @total_ordered = Order.find_by_sql(["select sum(inventories.sellprice*inventory_orders.quantity) as total_price from inventories left join inventory_orders on inventories.id = inventory_orders.inventory_id where inventory_orders.order_id = ?", params[:id]])
-
+    @down_payment_calculation = Order.find_by_sql(["SELECT orders.payment, sum(inventories.sellprice*inventory_orders.quantity) - orders.payment as outstanding From inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id LEFT JOIN orders on inventory_orders.order_id = orders.id where order_id = ? GROUP BY orders.payment", params[:id]]);
   end
 
   # GET /orders/new
@@ -67,7 +69,16 @@ class OrderPosController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def update_multiple_payment
+    @order = Order.find(params[:order_pos][:id])
+     if @order.update_attributes(params.require(:order_pos).permit(:payment, :order_status_id))
+      redirect_to order_pos_path , :notice => "Payment Berhasil Terupdate"
+    else
+      redirect_to order_pos_path , :notice => "Payment Gagal Terupdate"
+    end
 
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order

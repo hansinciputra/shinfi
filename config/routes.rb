@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :order_pos
+  resources :order_pos do
+   collection do 
+    put 'update_multiple_payment'
+    end
+  end
 
   resources :customers
 
