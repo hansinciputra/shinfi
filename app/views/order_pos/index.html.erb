@@ -1,8 +1,21 @@
 <div id= "Main_Container">
-  <h1 class="page_title">Listing PO orders</h1>
+  <h1 class="page_title" style= "width: 300px; text-align:center;">Listing PO orders</h1>
+<div id="POpage">
   <div id = "admin_menu">
     <%= link_to 'New Order', new_order_po_path %>
   </div>
+       <table style = "width:280px; margin-left:5px;">
+      <tr>
+        <td> Find Order By Status</td>
+        <td> <%= form_for :order_pos,:url =>order_pos_path,:html =>{:method =>:get} do |x|%>
+    <!--By pass the collection_select :option with empty {}-->
+    <%= x.collection_select :status , @orderstatus,:id,:name,{include_blank: 'Select'},{:onchange =>"this.form.submit();"} %>
+        <%end%>
+        </td>
+      </tr>
+    </table>
+
+    
   <table class = "report_table">
     <thead>
       <tr>
@@ -47,4 +60,5 @@
     </tbody>
   </table>
   <br>
+</div><!--div for PO PAGE-->
 </div>

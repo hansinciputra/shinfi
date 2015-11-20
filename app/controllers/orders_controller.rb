@@ -5,8 +5,13 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
-    @orders_index = Order.find_by_sql("SELECT orders_temp.id , orders_temp.payment, orders_temp.status, customers.name , sum(inventories.sellprice*inventory_orders.quantity) AS total_price, sum(inventories.sellprice*inventory_orders.quantity)- orders_temp.payment AS outstanding FROM customers LEFT JOIN (SELECT orders.id, orders.payment, orders.customer_id, orders.readyorpo, order_statuses.id AS status FROM orders LEFT JOIN order_statuses on orders.order_status_id = order_statuses.id
+    if params[:order] && params[:order][:status]
+    @orders_index = Order.find_by_sql(["SELECT orders_temp.id , orders_temp.payment, orders_temp.status, customers.name , sum(inventories.sellprice*inventory_orders.quantity) AS total_price, sum(inventories.sellprice*inventory_orders.quantity)- orders_temp.payment AS outstanding FROM customers LEFT JOIN (SELECT orders.id, orders.payment, orders.customer_id, orders.readyorpo, order_statuses.id AS status FROM orders LEFT JOIN order_statuses on orders.order_status_id = order_statuses.id
+)orders_temp on customers.id = orders_temp.customer_id LEFT JOIN inventory_orders on orders_temp.id = inventory_orders.order_id LEFT JOIN inventories on inventory_orders.inventory_id = inventories.id  WHERE orders_temp.readyorpo = 'STOCKED' AND orders_temp.status = ? GROUP BY orders_temp.id, orders_temp.payment, orders_temp.status, customers.name ORDER BY id", params[:order][:status]])  
+  else 
+     @orders_index = Order.find_by_sql("SELECT orders_temp.id , orders_temp.payment, orders_temp.status, customers.name , sum(inventories.sellprice*inventory_orders.quantity) AS total_price, sum(inventories.sellprice*inventory_orders.quantity)- orders_temp.payment AS outstanding FROM customers LEFT JOIN (SELECT orders.id, orders.payment, orders.customer_id, orders.readyorpo, order_statuses.id AS status FROM orders LEFT JOIN order_statuses on orders.order_status_id = order_statuses.id
 )orders_temp on customers.id = orders_temp.customer_id LEFT JOIN inventory_orders on orders_temp.id = inventory_orders.order_id LEFT JOIN inventories on inventory_orders.inventory_id = inventories.id  WHERE orders_temp.readyorpo = 'STOCKED' GROUP BY orders_temp.id, orders_temp.payment, orders_temp.status, customers.name ORDER BY id")
+  end
     @orderstatus = OrderStatus.all
   end 
   # GET /orders/1

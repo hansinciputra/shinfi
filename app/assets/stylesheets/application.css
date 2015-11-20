@@ -60,4 +60,12 @@
 	width: 200px;
 	margin: 30px auto 30px auto;
 }
+#flash_notice
+{
+	margin:auto;
+	width: 250px;
+	text-align:center;
+	background-color: #00ff00;
+	color:#ffffff;
+}
 
