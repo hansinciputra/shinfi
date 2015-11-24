@@ -1,5 +1,8 @@
 <%= render 'show' %>
+<%if current_user && current_user.role == "Admin" %>
+
 <div id = "admin_menu">
 	<%= link_to 'Edit', edit_order_path(@order) %> |
 	<%= link_to 'Back', orders_path %>
 </div>
+<%end%>

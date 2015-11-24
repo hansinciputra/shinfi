@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
+  get "sign_up" => 'users#new', :as =>"sign_up"
+  get "log_out" => 'sessions#destroy', :as =>"log_out"
+  resources :sessions
+  resources :users
+  resources :customers
+  
   resources :order_pos do
    collection do 
     put 'update_multiple_payment'
     end
   end
-
-  resources :customers
-
   resources :orders do
    collection do 
     put 'update_multiple_payment'

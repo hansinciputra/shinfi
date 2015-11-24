@@ -1,4 +1,5 @@
 class InventoriesController < ApplicationController
+  before_filter :authorize
   def index #to display all results
     @inventories = Inventory.all
   end

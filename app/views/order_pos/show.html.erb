@@ -1,6 +1,8 @@
 <%= render :template => "orders/_show" %>
+<%if current_user && current_user.role == "Admin" %>
 <div id = "admin_menu">
 	<%= link_to 'Edit', edit_order_po_path(@order) %> |
 	<%= link_to 'Back', order_pos_path %>
 </div>
+<%end%>
 
