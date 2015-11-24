@@ -42,7 +42,7 @@
           <td class = "content"><%= order.id %></td>
           <td class = "content"><%= order.name%></td>
           <td><%= number_to_currency(order.total_price , :unit => "Rp. ") %></td>
-          <td><%= number_to_currency(order.outstanding , :unit => "Rp. ")%></td>
+          <td style = "color:#eb111f"><%= number_to_currency(order.outstanding , :unit => "Rp. ")%></td>
           <%= form_for :order, :url => update_multiple_payment_orders_path, :html => { :method => :put } do |f| %>
           <td><%= f.collection_select :order_status_id , @orderstatus, :id,:name ,{:selected=> order.status}%></td>
           <td>

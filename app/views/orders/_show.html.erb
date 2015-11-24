@@ -69,7 +69,6 @@
 			</tr>
 			<% end %>
 			<tr>
-
 				<div id = "total_order">
 					<td colspan = 6 class= "c_title" style="padding-top:25px;"><h3>Total Order</h3></td>
 					<td class= "currency_large">	<div id="c_line"> + </div><h3><%= number_to_currency(@total_ordered.first.total_price, :unit => "Rp. ") %></h3></td>
@@ -77,15 +76,19 @@
 			</tr>
 			<tr>
 				<div id = "ongkir">
-					<td colspan = 6 class= "c_title" style="padding-top:25px;"><h5>Ongkir Tiki/JNE</h5></td>
-					<td class= "currency_large"><h5><%= number_to_currency(@orders.ongkir, :unit => "Rp. ") %></h5></td>
+					<td colspan = 3 class= "c_title">Ongkir Tiki/JNE</td>
+					<td class= "currency_large" colspan =4><%= number_to_currency(@orders.ongkir, :unit => "Rp. ") %></td>
+					
 				</div>
 			</tr>
 			<tr>
 				<div id = "discount">
-					<td colspan = 6 class= "c_title" style="padding-top:25px;"><h5>Discount</h5></td>
-					<td class= "currency_large"><h5 style="color:#ff4d4d">(<%= number_to_currency(@orders.discount, :unit => "Rp. ") %>)</h5><div id="c_line"> + </div></td>
+					<td colspan = 3 class= "c_title" >Discount</td>
+					<td class= "currency_large" colspan =4 style="color:#ff4d4d;">(<%= number_to_currency(@orders.discount, :unit => "Rp. ") %>)</td>
 				</div>
+			</tr>
+			<tr>
+				<td colspan = 7 ><div id="c_line" style="margin-left:375px; margin-top:-20px"> + </div></td>
 			</tr>
 			<tr>
 				<td colspan = 6 class= "c_title" style="padding-top:-100px;"><h3>Total Amount</h3></td>
@@ -97,8 +100,11 @@
 				<td colspan = 6 class= "c_title" style="padding-top:-100px;"><h3>Amount Paid</h3></td>
 				<td class= "currency_large">
 					<h3 style="color:#ff4d4d">(<%= number_to_currency(@down_payment_calculation.first.payment, :unit => "Rp. ") %>)</h3>
-					<div id="c_line"> - </div>
+					
 				</td>
+			</tr>
+			<tr>
+				<td colspan = 7><div id="c_line" style="margin-left:525px; margin-top:-23px;"> - </div></td>
 			</tr>
 			<tr>
 				<td colspan = 6 class= "c_title"><h3>Outstanding Amount</h3></td>
