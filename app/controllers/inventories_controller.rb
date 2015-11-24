@@ -1,7 +1,7 @@
 class InventoriesController < ApplicationController
   before_filter :authorize
   def index #to display all results
-    @inventories = Inventory.all
+    @inventories = Inventory.all.order(:name)
   end
   def show #to display specified results
     @inventory = Inventory.find(params[:id])

@@ -76,6 +76,24 @@
 				</div>
 			</tr>
 			<tr>
+				<div id = "ongkir">
+					<td colspan = 6 class= "c_title" style="padding-top:25px;"><h5>Ongkir Tiki/JNE</h5></td>
+					<td class= "currency_large"><h5><%= number_to_currency(@orders.ongkir, :unit => "Rp. ") %></h5></td>
+				</div>
+			</tr>
+			<tr>
+				<div id = "discount">
+					<td colspan = 6 class= "c_title" style="padding-top:25px;"><h5>Discount</h5></td>
+					<td class= "currency_large"><h5 style="color:#ff4d4d">(<%= number_to_currency(@orders.discount, :unit => "Rp. ") %>)</h5><div id="c_line"> + </div></td>
+				</div>
+			</tr>
+			<tr>
+				<td colspan = 6 class= "c_title" style="padding-top:-100px;"><h3>Total Amount</h3></td>
+				<td class= "currency_large">
+					<h3><%= number_to_currency(@total_amount.first.total_amount, :unit => "Rp. ") %></h3>
+				</td>
+			</tr>
+			<tr>
 				<td colspan = 6 class= "c_title" style="padding-top:-100px;"><h3>Amount Paid</h3></td>
 				<td class= "currency_large">
 					<h3 style="color:#ff4d4d">(<%= number_to_currency(@down_payment_calculation.first.payment, :unit => "Rp. ") %>)</h3>
