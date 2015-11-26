@@ -11,7 +11,7 @@ class Inventory < ActiveRecord::Base
       :content_type => ["image/jpg" ,"image/jpeg", "image/png"] 
   validates_attachment_size :image, :less_than => 5.megabytes
   
-  validates :name, :quantity, :meter, :weight, :sellprice, :category, :presence => true
+  validates :name, :quantity, :meter, :weight, :sellprice, :presence => true
   validates :name, :uniqueness => {:messages => "Nama Barang Sudah Ada"}
   validates :quantity,:weight,:sellprice, :numericality => true
    
@@ -23,5 +23,6 @@ class Inventory < ActiveRecord::Base
   end
   def add_inventory(qty)
     self.quantity = self.quantity + qty
+    save
   end
 end

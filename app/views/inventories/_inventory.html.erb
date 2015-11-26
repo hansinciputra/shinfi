@@ -6,7 +6,7 @@
 <h3 class = "label_Prod">Quantity :</h3>  <div class = "answer_Prod"><%= @inventory.quantity %></div>
 <h3 class = "label_Prod">Size :</h3>  <div class = "answer_Prod"><%= @inventory.meter%></div>
 <h3 class = "label_Prod">Weight : </h3>  <div class = "answer_Prod"><%= @inventory.weight%></div>
-<h3 class = "label_Prod">Price :</h3>  <div class = "answer_Prod"><%= number_to_currency @inventory.sellprice%></div>
+<h3 class = "label_Prod">Price :</h3>  <div class = "answer_Prod"><%= number_to_currency @inventory.sellprice, :unit => "Rp."%></div>
 <h3 class = "label_Prod">Category :</h3>  <div class = "answer_Prod"><%= @inventory.category%></div>
 
 <%= link_to "Edit", edit_inventory_path(@inventory) %>

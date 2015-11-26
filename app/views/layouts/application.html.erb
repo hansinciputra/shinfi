@@ -13,24 +13,26 @@
       <%= link_to "logout", log_out_path %>
     </div>
     <div id = "session_status">
-      <p>Welcome <%= current_user.name %></p>
+      <p>Welcome <%= current_user.name %>!</p>
     </div>
 
   <%else%>
   <div id="login">
       <%=form_tag sessions_path do %>
           <ul>
-            <li><%= label_tag "email" %><%= text_field_tag "email"%> </li>
-            <li><%= label_tag "password" %><%= password_field_tag "password"%></li>
+            <li>email</li>
+            <li><%= text_field_tag "email" ,'',size: 10%> </li>
+            <li>password</li>
+            <li><%= password_field_tag "password",'',size:10%></li>
             <li><%= submit_tag "Login"%></li>
+            <li id = "signup"> || <%= link_to "Sign Up" , sign_up_path%></li>
           </ul>
       <%end%>
-      <p><%= link_to "Sign Up" , sign_up_path%></p>
-  </div>
+  </div>    
  
   <%end%>
-  <% if current_user %>
-    <div id="head_menu">
+ <% if current_user && current_user.role == "Admin" %>
+    <div id="head_menu">      
     		<ul>
     			<li><%= link_to 'Home  |' , root_path %></li>
     			<li><%= link_to 'Orders |', orders_path %></li>
@@ -38,7 +40,14 @@
     			<li><%= link_to 'Inventories |', inventories_path %></li>
     			<li><%= link_to 'Customers |', customers_path %></li>
     		</ul>
-    </div>
+      </div>
+        <%elsif current_user%>
+        <div id="head_menu"> 
+        <ul>
+          <li><%= link_to 'Home  |' , root_path %></li>
+          <li><%= link_to 'Inventories |', inventories_path %></li>
+        </ul>
+        </div>
   <%end%>
 </head>
 <body>

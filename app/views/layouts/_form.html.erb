@@ -1,3 +1,4 @@
+<div id = "universal_form">
 <%= form_for @inventory, html: {multipart: true} do |t| %>
 	<% if @inventory.errors.any? %>
 		<h2>Errors:</h2>
@@ -26,8 +27,13 @@
 		<%= t.label :Category %>
 		<%= t.text_field :category%>
 		<br />
+		<div id = "submit_button">
+			Input Gambar Produk:
 		<%= t.file_field :image %><!--call paperclip upload file-->
 		<br />
+	
 		<%= t.submit "Submit" %> <!--this submit button will go to controller create action-->
+	</div>
 	</p>	
 <%end%>
+</div>

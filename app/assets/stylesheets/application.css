@@ -20,6 +20,22 @@
 	width: 989px;
 	font-family: 'Amaranth', sans-serif;
 }
+#universal_form{
+	margin:auto;
+	margin-top:10px;
+	width: 600px;
+	height:600px;
+	border:solid 1px black;
+}
+#universal_form label{
+	display:inline-block;
+	width:200px;
+	text-align: right;
+}
+.unversal_form_title{
+	text-align:center;
+}
+
 #logo{
 	margin:auto;
 	height:158px;
@@ -68,4 +84,39 @@
 	background-color: #00ff00;
 	color:#ffffff;
 }
-
+#login
+{
+	/*border:black solid 1px;*/
+	width: 400px;
+	height:25px;
+	margin:auto;
+}
+#login ul li
+{
+	display:inline;
+	font-size: 10px;
+}
+#signup
+{
+	font-size: 10px;
+}
+#logout
+{
+	/*border:black solid 1px;*/
+	width: 100px;
+	height:25px;
+}
+#session_status
+{
+	border:black solid 1px;
+	width: 200px;
+	height:25px;
+}
+#home_container
+{
+	width: 1000px;
+	height: 1200px;
+	border:black solid 1px;
+	margin: auto;
+	margin-top: 20px;
+}

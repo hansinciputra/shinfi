@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     respond_to do |format|
-        if @order.save
+        if @order.save!
         #reduce the quantity of inventory for each item inputed in order, will have problem at scale since it is not considering two orders entered at the same time
         @order.inventory_orders.each do |x|
           x.reduce_from_inventories(x.quantity)

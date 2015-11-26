@@ -32,7 +32,7 @@
 						<td class ="prodResult"><div id ="prodNameTest"><%= link_to t.name, inventory_path(t), :remote => true %></div></td>
 						<td class = "prodResult"><%= t.quantity %></td>
 						<td class = "prodResult"><%= t.meter %></td>
-						<td class = "prodResult"><%= t.sellprice %></td>
+						<td class = "prodResult"><%= number_to_currency(t.sellprice, :unit => "Rp.") %></td>
 					</tr>
 						<% end %>
 				</table>

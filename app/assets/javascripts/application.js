@@ -23,7 +23,7 @@ $(document).ajaxComplete(function(){
 //this need to be changed to coffee script and stored locally
 ready = function(){
 	$("#search-prod").on("keyup",function(){
-		var inputed = $(this).val().toLowerCase();
+		var inputed = $(this).val();
 		$("#prodNameTest a").each(function(){
 			var text = $(this).text();
 			if(text.indexOf(inputed)!= -1)
