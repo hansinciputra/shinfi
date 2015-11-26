@@ -64,6 +64,10 @@
                       <% end %>         
                     </tr>
                 </table>
+                <div id = "additional_transaction">
+                    <h3><%= f.label :ongkir %><%=f.number_field :ongkir%></h3>
+                    <h3><%= f.label :discount %><%=f.number_field :discount%></h3>
+                  </div>
                   <p><%= submit_tag "Submit" %> | <%= link_to 'Cancel', orders_path %></p> <!--will go to create controller-->
               </div>
    
