@@ -1,17 +1,28 @@
 <div id = "Main_Container">
-  <h1>Listing customers</h1>
-
-  <table>
+  <h1 class="page_title" style="text-align:center; width: 300px">Listing customers</h1>
+  <hr/>
+<div id = "admin_menu">
+  <%= link_to 'New Customer', new_customer_path %>
+</div>
+  <table class = "report_table">
     <thead>
       <tr>
-        <th colspan="3"></th>
+        <th>no.</th>
+        <th style="width:100px">Nama</th>
+        <th>Alamat</th>
+        <th>No.Tlp</th>
+        <th>Tanggal Daftar</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
       </tr>
     </thead>
 
     <tbody>
-      <% @customers.each do |customer| %>
+      <% @customers.each_with_index do |customer,i| %>
         <tr>
-          <td><%= customer.name %></td>
+          <td><%= i + 1 %>.</td>
+          <td style="width:100px"><%= customer.name %></td>
           <td><%= customer.address %></td>
           <td><%= customer.phone %> </td>
           <td><%= customer.created_at %></td>
@@ -22,8 +33,6 @@
       <% end %>
     </tbody>
   </table>
-
+  <hr/>
   <br>
-
-  <%= link_to 'New Customer', new_customer_path %>
 </div>

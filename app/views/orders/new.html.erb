@@ -1,5 +1,5 @@
 <%= form_for(@order) do |f| %>
 <%= f.hidden_field :readyorpo, value: 'STOCKED' %>
-  <h1>Transaction For Stocked Order</h1>
+  <h1 style = "width:500px; text-align:center; margin:10px auto 5px auto;">Transaction For Stocked Order</h1>
 	<%= render 'form', f: f %>
 <% end %>
