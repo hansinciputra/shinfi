@@ -31,7 +31,7 @@ label{
 }
 .answer_Prod{
   //border:solid black 5px;
-  width: 4em;
+  width: 15em;
   text-align :left;
   margin-right: 0.5em;
   
@@ -79,17 +79,20 @@ label{
   padding: auto;
   margin-bottom: 10px;
 }
-#inventory_table{
-  //border : black solid 1px;
-  background-color: #FFFFFF;
-}
+
 //nth-child is css default parameter to target the child of tr
 #inventory_table tr:nth-child(even){
  background-color: #FFF1F8; 
 }
 table{
   border-collapse: collapse;
-  width: 600px;
+  width: 550px;
+}
+#inventory_table{
+  //border : black solid 1px;
+  background-color: #FFFFFF;
+  width:550px;
+  margin-top: 20px;
 }
 #inventory_table td{
   border : red solid 1px;

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :categories, :only => [:index,:new,:create,:destroy]
+  resources :type_inventories, :only => [:index,:new,:create,:destroy]
+
   get "sign_up" => 'users#new', :as =>"sign_up"
   get "log_out" => 'sessions#destroy', :as =>"log_out"
   resources :sessions

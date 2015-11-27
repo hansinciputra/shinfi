@@ -24,8 +24,17 @@
 		<%= t.label :SellPrice %>
 		<%= t.text_field :sellprice%>
 		<br />
+		<%= t.label :Material %>
+		<%= t.text_field :material%>
+		<br />
 		<%= t.label :Category %>
-		<%= t.text_field :category%>
+		<%= t.collection_select :category, @categories, :name, :name, :prompt=>true %>
+		<br />
+		<%= t.label :Type %>
+		<%= t.collection_select :fabrictype, @type, :name, :name, :prompt=>true %>
+		<br />
+		<%= t.label :Link %>
+		<%= t.text_field :link%>
 		<br />
 		<div id = "submit_button">
 			Input Gambar Produk:

@@ -21,41 +21,53 @@
     </div>
 
     <div id= "InventoryRight">
-      <table style ="margin-left:30px;">
-        <tr>
-          <!--perform search on product-->
-         <td style ="margin-left:20px;width:150px; !border:solid black 1px;">Search for Product </td>
-         <td style ="!border:solid black 1px;"><input type = "text" id ="search-prod"></td>
-      </tr>
-    </table>
+     
       <!--The Form for Order List Start Here! -->
               <div id = "InventoryList">
                 <div id = "customer_list">
-
-                  <p> Order untuk : 
+                  <fieldset>
+                    <legend>Information</legend>
+                 <div id = "additional_transaction">
+                  <h3> <label>Nama Customer</label>
                  <%= 
                  collection_select(:order,:customer_id,@customer,:id,:name) #(:class or object, :method or attribute inside that object that we want to store the info to, the collection of options, key, value)
-                 %></p>
-                </div>
+                 %></h3>
+                    <h3><%= f.label :delvethod , 'metode pengiriman' %><%=f.text_field :delvmethod%></h3>
+                    <h3><%= f.label :ongkir %><%=f.number_field :ongkir%></h3>
+                    <h3><%= f.label :discount %><%=f.number_field :discount%></h3>
+                  </div>
+               </div>
+             </fieldset>
+             <br/>
+             <fieldset>
+              <legend>Transaction</legend>
+              <table>
+                  <tr>
+                    <!--perform search on product-->
+                   <td style ="width:150px; !border:solid black 1px;"><h4>Search for Product</h4> </td>
+                   <td style ="!border:solid black 1px;"><input type = "text" id ="search-prod"></td>
+                </tr>
+              </table>
+            
                 <!--this link_to already equal to onclick in jquery-->
                 <!--remote true to call AJAX file from inventory controler-->
                 <table id = "inventory_table">
                   <tr>
                     <td class = "prodCodeTitle"><h3>Prod Code</h3></td>
-                    <td class = "prodResult"><h3>Stock</h3></td>
-                    <td class = "prodResult"><h3>Yard</h3></td>
+                    <td class = "prodResult" style="width:50px;"><h3>Stock</h3></td>
+                    <td class = "prodResult" style="width:50px;"><h3>Yard</h3></td>
                     <td class = "prodResult"><h3>Ukuran</h3></td>
                     <td class = "prodResult"><h3>Price</h3></td>
                   </tr>
                     <% @inventories_list.each do |t| %>
                     <tr id = "prodResultContainer">
                         <td class ="prodResult"><div id ="prodNameTest"><%= link_to t.name, inventory_path(t), :remote => true %></div></td>
-                         <td class ="prodResult"><%= t.quantity %></td>
-                        <td class = "prodResult">
+                         <td class ="prodResult" style="width:50px;"><%= t.quantity %></td>
+                        <td class = "prodResult" style="width:50px;">
                         
                              <%= f.fields_for :inventory_orders do |qty| %>
                                <%= qty.hidden_field :inventory_id, value: t.id %> <!--id of inventory--> 
-                               <%= qty.number_field :quantity %>
+                               <%= qty.number_field :quantity, max: 100 , min: 5 %>
 
                              <%end%>
                         </td>
@@ -64,13 +76,9 @@
                       <% end %>         
                     </tr>
                 </table>
-                <div id = "additional_transaction">
-                    <h3><%= f.label :ongkir %><%=f.number_field :ongkir%></h3>
-                    <h3><%= f.label :discount %><%=f.number_field :discount%></h3>
-                  </div>
                   <p><%= submit_tag "Submit" %> | <%= link_to 'Cancel', orders_path %></p> <!--will go to create controller-->
               </div>
-   
+   </fieldset>
     <!--The Form for Order List End Here!-->
     </div>
   </div>  

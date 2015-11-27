@@ -1,0 +1,11 @@
+<div id = "Main_Container">
+<h2 style="text-align:center;">Create New Category:</h2>
+	<div id ="universal_form">
+			<!--categories here is the path to custom routes i generate for create-->
+			<%= form_tag ("/categories") do %>
+				<%= label_tag :name , "Category:" %>
+				<%= text_field_tag :name %>
+				<%= submit_tag "Submit" %>
+			<% end %>
+	</div>
+</div>

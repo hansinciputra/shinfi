@@ -3,12 +3,17 @@
 <div id = "imgContainer">
 <%= link_to image_tag(@inventory.image.url(:thumb)),@inventory.image.url(:thumb), :class=>"fancybox"%> 
 </div>
-<h3 class = "label_Prod">Quantity :</h3>  <div class = "answer_Prod"><%= @inventory.quantity %></div>
-<h3 class = "label_Prod">Size :</h3>  <div class = "answer_Prod"><%= @inventory.meter%></div>
-<h3 class = "label_Prod">Weight : </h3>  <div class = "answer_Prod"><%= @inventory.weight%></div>
+<h3 class = "label_Prod">Quantity :</h3>  <div class = "answer_Prod"><%= @inventory.quantity %> yard</div>
+<h3 class = "label_Prod">Size :</h3>  <div class = "answer_Prod"><%= @inventory.meter%> centimeter</div>
+<h3 class = "label_Prod">Weight : </h3>  <div class = "answer_Prod"><%= @inventory.weight%> gram</div>
 <h3 class = "label_Prod">Price :</h3>  <div class = "answer_Prod"><%= number_to_currency @inventory.sellprice, :unit => "Rp."%></div>
+<h3 class = "label_Prod">Type :</h3>  <div class = "answer_Prod"><%= @inventory.fabrictype%></div>
+<h3 class = "label_Prod">Material :</h3>  <div class = "answer_Prod"><%= @inventory.material%></div>
 <h3 class = "label_Prod">Category :</h3>  <div class = "answer_Prod"><%= @inventory.category%></div>
+<% if current_user && current_user.role == "Admin"%>
+<h3 class = "label_Prod">link :</h3>  <div class = "answer_Prod"><a href = <%= @inventory.link%>>Click Here</a></div>
 
 <%= link_to "Edit", edit_inventory_path(@inventory) %>
 ||
 <%= link_to "Delete", @inventory, :confirm => "Delete ?",:method => :delete %>
+<%end%>

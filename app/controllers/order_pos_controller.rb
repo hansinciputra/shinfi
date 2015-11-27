@@ -99,7 +99,7 @@ class OrderPosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:ongkir,:discount,:readyorpo, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
+      params.require(:order).permit(:ongkir,:discount,:readyorpo,:delvmethod, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
       #specify [:id,:inventory_id, :quantity], otherwhise record when edit each record will be created again
     end
 end

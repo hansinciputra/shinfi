@@ -1,6 +1,8 @@
 <div id = "Main_Container">
 	<h1>All Inventories List</h1>
+	<% if current_user && current_user.role == "Admin"%>
 	<p><%= link_to "Create New Inventory", new_inventory_path %></p>
+	<%end%>
 	<hr/>
 	<div id="InventoryContainer">
 		<div id = "InventoryLeft">	

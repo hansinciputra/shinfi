@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124104047) do
+ActiveRecord::Schema.define(version: 20151126172251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "customers", force: true do |t|
     t.string   "name"
@@ -38,6 +44,9 @@ ActiveRecord::Schema.define(version: 20151124104047) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.decimal  "weight",             precision: 10, scale: 2
+    t.string   "material"
+    t.string   "link"
+    t.string   "fabrictype"
   end
 
   create_table "inventory_orders", force: true do |t|
@@ -71,9 +80,16 @@ ActiveRecord::Schema.define(version: 20151124104047) do
     t.decimal  "payment",         precision: 10, scale: 2
     t.decimal  "ongkir",          precision: 10, scale: 2
     t.decimal  "discount",        precision: 10, scale: 2
+    t.string   "delvmethod"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
+
+  create_table "type_inventories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

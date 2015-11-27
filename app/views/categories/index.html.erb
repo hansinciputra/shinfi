@@ -1,0 +1,19 @@
+<div id = "Main_Container">
+
+	<div id ="universal_form">
+<h2 style="text-align:center;">List of Categories:</h2>
+
+<%= form_for :categories, :url => categories_path, :html => {:method => :post} do |f| %>
+		<%= f.label :addmore %>
+		<%= f.text_field :name , :value => nil%>
+	<%= f.submit %>
+<%end%>
+
+<% @categories.each_with_index do |t , i| %>
+	<ul>
+		<li><%= i + 1 %>. <%= t.name %>
+		<%= link_to "Delete", t , method: :delete, data: { confirm: 'Are you sure?' }%></li>
+	</ul>
+<%end%>
+	</div>
+</div>

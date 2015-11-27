@@ -12,10 +12,12 @@ class InventoriesController < ApplicationController
   end
   def new #to display a form to create a new post
     @inventory = Inventory.new
+    @categories = Category.all 
+    @type = TypeInventory.all
   end
 
   def create #no view, only process the form in the new actions
-    @inventory = Inventory.new(params.require(:inventory).permit(:name, :quantity, :meter, :weight, :sellprice, :category, :image))
+    @inventory = Inventory.new(inventory_params)
     
     if @inventory.save
       redirect_to inventories_path, :notice => "Berhasil Menginput Inventori"
@@ -26,14 +28,15 @@ class InventoriesController < ApplicationController
   
   def edit #to display the edit form
     @inventory = Inventory.find(params[:id])
-   
+    @categories = Category.all 
+    @type = TypeInventory.all
   end
   
   def update #no view, only process the form in edit actions
     @inventory = Inventory.find(params[:id]) #this to find the post that we wanted to update, the id is from parameters when submit button is pressed
     
     #get the inventory parameters from user input , we get the data from from_for @inventory in edit view
-    if @inventory.update_attributes(params.require(:inventory).permit(:name, :quantity, :meter, :weight, :sellprice, :category, :image))
+    if @inventory.update_attributes(inventory_params)
       redirect_to inventories_path , :notice => "Inventori Berhasil Terupdate"
     else
       render "edit"
@@ -45,5 +48,7 @@ class InventoriesController < ApplicationController
     @inventory.destroy
     redirect_to inventories_path, :notice => "Inventori Telah Dihapus"
   end
-  
+  def inventory_params
+    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category, :image)
+  end
 end

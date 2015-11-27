@@ -1,0 +1,19 @@
+<div id="Main_Container">
+	<div id = "universal_form">
+<h1 style = "text-align:center">List of Fabric Types</h1>
+<%= form_for :type, :url => type_inventories_path, :html => {:method => :post} do |f| %>
+	<%= f.label :addmore %>
+	<%= f.text_field :name %>
+	<%= f.submit %>
+<%end%>
+
+<% @type_list.each_with_index do |t,i| %>
+	<ul>
+		<li><%= i + 1 %>.
+			<%= t.name %>
+			<%= link_to "Delete", t , method: :delete, data: { confirm: 'Are you sure?' }%></li>
+		</li>
+	</ul>
+<%end%>
+	</div>
+</div>

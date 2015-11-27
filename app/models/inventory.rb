@@ -2,7 +2,6 @@ class Inventory < ActiveRecord::Base
   #check ruby guides for full validates helper
   has_many :inventory_orders, :inverse_of => :inventory
   has_many :orders, through: :inventory_orders
-  
   has_attached_file :image, :styles => { :thumb => "250x250>"} ,
        :default_url => "missing.png",
        :default_style => "150x150#",

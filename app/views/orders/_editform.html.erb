@@ -14,7 +14,7 @@
   <div class="actions">
 <!--the beginning of the inventory order code-->
 <div id = "Main_Container">
-  <h1 class= "page_title">Editing order Number #<%= @order.id %></h1>
+  <h1 class= "page_title" style = "width: 300px; text-align:center;">Editing order Number #<%= @order.id %></h1>
   <h1>Transaction</h1>
   <hr/>
   <div id="InventoryContainer">
@@ -23,20 +23,30 @@
     </div>
 
     <div id= "InventoryRight">
-      <table style ="margin-left:30px;">
-        <tr>
-          <!--perform search on product-->
-         <td style ="margin-left:20px;width:150px; !border:solid black 1px;">Search for Product </td>
-         <td style ="!border:solid black 1px;"><input type = "text" id ="search-prod"></td>
-      </tr>
-    </table>
       <!--The Form for Order List Start Here! -->
               <div id = "InventoryList">
                 <div id = "customer_list">
+                  <fieldset>
+                    <legend>Information</legend>
+                 <div id = "additional_transaction">
+                  <h3> <label>Nama Customer</label>
                  <%= 
                  collection_select(:order,:customer_id,@customer,:id,:name) #(:class or object, :method or attribute inside that object that we want to store the info to, the collection of options, key, value)
-                 %>
-                </div>
+                 %></h3>
+                    <h3><%= f.label :delvethod , 'metode pengiriman' %><%=f.text_field :delvmethod%></h3>
+                    <h3><%= f.label :ongkir %><%=f.number_field :ongkir%></h3>
+                    <h3><%= f.label :discount %><%=f.number_field :discount%></h3>
+                  </div>
+               </div>
+             </fieldset>
+
+             <table>
+                  <tr>
+                    <!--perform search on product-->
+                   <td style ="width:150px; !border:solid black 1px;"><h4>Search for Product</h4> </td>
+                   <td style ="!border:solid black 1px;"><input type = "text" id ="search-prod"></td>
+                </tr>
+              </table>
                 <!--this link_to already equal to onclick in jquery-->
                 <!--remote true to call AJAX file from inventory controler-->
             <div id = "table_container">   
@@ -62,8 +72,4 @@
                          </tr>
                      <%end%>
                   </table>
-                  <div id = "additional_transaction">
-                    <h3><%= f.label :ongkir %><%=f.number_field :ongkir%></h3>
-                    <h3><%= f.label :discount %><%=f.number_field :discount%></h3>
-                  </div>
           </div>  

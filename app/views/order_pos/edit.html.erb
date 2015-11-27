@@ -1,6 +1,6 @@
 <%= form_for @order, :url => {:action =>'update'} do |f| %>
 <%= f.hidden_field :readyorpo, value: 'PO' %>
-<h1>Edit PO Transaction</h1>
+<h1 class = "page_title" style = "width: 300px; text-align:center;">Edit PO Transaction</h1>
   <%= render :template => 'orders/_editform', :locals => {:f => f} %>
                   <p><%= submit_tag "Submit" %> | <%= link_to 'Back', order_pos_path %><!--will go to create controller-->
                   
