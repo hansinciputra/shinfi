@@ -40,3 +40,12 @@ ready = function(){
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
+//javascript for adding multiple product picture
+$(document).ready(function(){
+	document.getElementById("add_more_pic").onclick= function(){
+		$(this).parent().parent().append(document.getElementById("picture").cloneNode(true));
+	}
+	document.getElementById("del_pic").onclick= function(){
+		$(this).parent().remove();
+	}
+});

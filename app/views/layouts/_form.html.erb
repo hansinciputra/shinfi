@@ -38,7 +38,9 @@
 		<br />
 		<div id = "submit_button">
 			Input Gambar Produk:
-		<%= t.file_field :image %><!--call paperclip upload file-->
+		<ul>
+			<li id = "picture"><%= t.file_field :image %><a href ="#" id ="del_pic">x</a>|<a  href="#" id = "add_more_pic">More Pic</a></li><!--call paperclip upload file-->
+		</ul>
 		<br />
 	
 		<%= t.submit "Submit" %> <!--this submit button will go to controller create action-->
