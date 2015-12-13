@@ -2,9 +2,11 @@ class InventoriesController < ApplicationController
   before_filter :authorize
   def index #to display all results
     @inventories = Inventory.all.order(:name)
+
   end
   def show #to display specified results
     @inventory = Inventory.find(params[:id])
+    @product_images = ProductImage.find_by inventory_id: @inventory.id
        respond_to do |format|
           format.html
           format.js
@@ -14,6 +16,7 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new
     @categories = Category.all 
     @type = TypeInventory.all
+    @product_images = @inventory.product_images.build
   end
 
   def create #no view, only process the form in the new actions
@@ -22,7 +25,7 @@ class InventoriesController < ApplicationController
     if @inventory.save
       redirect_to inventories_path, :notice => "Berhasil Menginput Inventori"
     else
-      render "new"
+      renderirect_to inventories_new_path, :notice => "Gagal Menginput Inventory"
     end
   end
   
@@ -30,6 +33,7 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.find(params[:id])
     @categories = Category.all 
     @type = TypeInventory.all
+    @product_images = ProductImage.find_by inventory_id: @inventory.id
   end
   
   def update #no view, only process the form in edit actions
@@ -49,6 +53,6 @@ class InventoriesController < ApplicationController
     redirect_to inventories_path, :notice => "Inventori Telah Dihapus"
   end
   def inventory_params
-    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category, :image)
+    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category, :product_images_attributes => [:id,:prod_img])
   end
 end

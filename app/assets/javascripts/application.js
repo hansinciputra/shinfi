@@ -14,12 +14,17 @@
 //= require fancybox 
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-fileupload/basic
 //= require_tree .
 
 //the .ajaxComplete will call the fancybox function after ajax call has been called
 $(document).ajaxComplete(function(){
-	$("a.fancybox").fancybox({'type' : 'image'});
+	$("a.fancybox").fancybox({'type' : 'iframe'});
 });
+$(document).ready(function(){
+	$("a.fancybox").fancybox({'type' : 'iframe'});
+});
+
 //this need to be changed to coffee script and stored locally
 ready = function(){
 	$("#search-prod").on("keyup",function(){
@@ -41,11 +46,4 @@ $(document).ready(ready);
 $(document).on('page:load', ready);
 
 //javascript for adding multiple product picture
-$(document).ready(function(){
-	document.getElementById("add_more_pic").onclick= function(){
-		$(this).parent().parent().append(document.getElementById("picture").cloneNode(true));
-	}
-	document.getElementById("del_pic").onclick= function(){
-		$(this).parent().remove();
-	}
-});
+

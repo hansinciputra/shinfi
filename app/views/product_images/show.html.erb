@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product_image.name %>
+</p>
+
+<p>
+  <strong>Inventory:</strong>
+  <%= @product_image.inventory_id %>
+</p>
+
+<%= link_to 'Edit', edit_product_image_path(@product_image) %> |
+<%= link_to 'Back', product_images_path %>

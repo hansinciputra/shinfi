@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :product_images
+
   resources :categories, :only => [:index,:new,:create,:destroy]
   resources :type_inventories, :only => [:index,:new,:create,:destroy]
 

@@ -1,10 +1,17 @@
 
+<div id = "imgContainer">
+	<% @inventory.product_images.each do |img|%>
+		<%= link_to(image_tag(img.prod_img.to_s),img.prod_img.to_s, :class=>"fancybox")%> 
+	<%end%>
+</div>
+
 <h2>Prod Name = <%= @inventory.name%></h2>
 <p>Quantity = <%= @inventory.quantity %></p>
 <p>Size = <%= @inventory.meter%></p>
 <p>Weight = <%= @inventory.weight%></p>
 <p>Price = <%= @inventory.sellprice%></p>
 <p>Category = <%= @inventory.category%></p>
-<p>Product Picture = <%= @inventory.pic%></p>
+<p>Upload more picture</p>
+
 
 <h2></h2>

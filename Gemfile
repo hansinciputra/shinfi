@@ -23,9 +23,14 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-#paperclip gem for uploading image
-gem "paperclip","~>3.5.3"
-
+#carrierwave gem for uploading image
+gem 'carrierwave'
+#rmagick gem for carrierwave resize capability
+gem 'rmagick'
+#UI for upload many file
+gem 'jquery-fileupload-rails'
+#fog gem for connections with amazon s3
+gem 'fog'
 #fancybox gem for image click
 gem 'fancybox-rails'
 
