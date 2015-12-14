@@ -11,19 +11,23 @@
 // about supported directives.
 //
 //= require jquery
-//= require fancybox 
 //= require jquery_ujs
-//= require turbolinks
 //= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//= require fancybox 
+//= require turbolinks
 //= require_tree .
 
 //the .ajaxComplete will call the fancybox function after ajax call has been called
 $(document).ajaxComplete(function(){
 	$("a.fancybox").fancybox({'type' : 'iframe'});
 });
-$(document).ready(function(){
+
+image_fancy = function(){
 	$("a.fancybox").fancybox({'type' : 'iframe'});
-});
+};
+$(document).ready(image_fancy);
+$(document).on('page:load', image_fancy);
 
 //this need to be changed to coffee script and stored locally
 ready = function(){
@@ -45,5 +49,4 @@ ready = function(){
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
-//javascript for adding multiple product picture
-
+var $ = jQuery.noConflict(); 

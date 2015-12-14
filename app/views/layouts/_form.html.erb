@@ -45,6 +45,8 @@
                                <!--Where we upload multiple picture using carrierwave-->
                                <li id = "picture"><%= qty.file_field :prod_img, multiple: true, name: "inventory[product_images_attributes][][prod_img]" %><a href ="#" id ="del_pic">x</a>|<a  href="#" id = "add_more_pic">More Pic</a></li><!--call paperclip upload file-->
             <%end%>
+            </div>
+
 			
 		</ul>
 		<br />
@@ -53,4 +55,4 @@
 	</div>
 	</p>	
 <%end%>
-</div>
+

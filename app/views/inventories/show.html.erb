@@ -1,17 +1,48 @@
+<div id = "Main_Container">
+	
+		<div id = "picture_frame">
+			<p class = "open_fancybox">test</p>
+		<% @inventory.product_images.each do |img|%>
+		<div id = "le_picture">
+			<%= link_to(image_tag(img.prod_img.to_s),img.prod_img.to_s, :class=>"fancybox")%> 
+		</div>
+		<%end%>
+			
+		</div>
 
-<div id = "imgContainer">
-	<% @inventory.product_images.each do |img|%>
-		<%= link_to(image_tag(img.prod_img.to_s),img.prod_img.to_s, :class=>"fancybox")%> 
-	<%end%>
-</div>
-
-<h2>Prod Name = <%= @inventory.name%></h2>
-<p>Quantity = <%= @inventory.quantity %></p>
-<p>Size = <%= @inventory.meter%></p>
-<p>Weight = <%= @inventory.weight%></p>
-<p>Price = <%= @inventory.sellprice%></p>
-<p>Category = <%= @inventory.category%></p>
-<p>Upload more picture</p>
+	<h2>Prod Name = <%= @inventory.name%></h2>
+	<p>Quantity = <%= @inventory.quantity %></p>
+	<p>Size = <%= @inventory.meter%></p>
+	<p>Weight = <%= @inventory.weight%></p>
+	<p>Price = <%= @inventory.sellprice%></p>
+	<p>Category = <%= @inventory.category%></p>
+	<p><a href = "http://www.google.com" class = "iframe">Upload more picture</a></p>
 
 
-<h2></h2>
+	<h2></h2>
+</div>	
+<script type="text/javascript">
+//this code was meant to be the fancybox code that display slider of all product image
+	$(document).ready(function(){
+		jQuery('.open_fancybox').click(function(){
+		jQuery.fancybox.open([
+			<% @inventory.product_images.each do |img|%>
+			{
+				href :  '<%=img.prod_img.to_s%>'
+			},
+			<%end%> 
+		]);
+	});
+
+	});
+//end of the fancybox code
+//below is the code to call fancybox for every link with class iframe
+//we use it for : 1. calling add image page from inventory edit
+	jQuery(function(){
+		$(".iframe").fancybox({
+			type: 'iframe'
+		});
+		return false;
+	});
+
+</script>
