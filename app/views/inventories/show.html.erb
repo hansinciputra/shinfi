@@ -23,9 +23,8 @@
 </div>	
 <script type="text/javascript">
 //this code was meant to be the fancybox code that display slider of all product image
-	$(document).ready(function(){
 		jQuery('.open_fancybox').click(function(){
-		jQuery.fancybox.open([
+		$(".open_fancybox").fancybox.open([
 			<% @inventory.product_images.each do |img|%>
 			{
 				href :  '<%=img.prod_img.to_s%>'
@@ -34,8 +33,8 @@
 		]);
 	});
 
-	});
 //end of the fancybox code
+
 //below is the code to call fancybox for every link with class iframe
 //we use it for : 1. calling add image page from inventory edit
 	jQuery(function(){

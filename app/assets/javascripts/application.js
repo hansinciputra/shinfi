@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
@@ -18,16 +19,24 @@
 //= require turbolinks
 //= require_tree .
 
-//the .ajaxComplete will call the fancybox function after ajax call has been called
-$(document).ajaxComplete(function(){
-	$("a.fancybox").fancybox({'type' : 'iframe'});
-});
 
+/*the command below will let all fancybox class be part of html <body> tag, 
+we need this because turbolink gem we install earlier will make the page load faster 
+at the expense of not reloading the header, thus by calling the code below we ensure that the 
+fancybox keep on getting called
+*/
+
+//the .ajaxComplete will call the fancybox function after ajax call has been called
 image_fancy = function(){
-	$("a.fancybox").fancybox({'type' : 'iframe'});
+	jQuery("a.fancybox").fancybox({
+		scrolling: 'no',
+		autoScale: true,
+		'width' : 350,
+		'height': 850,
+		'type' : 'iframe'
+	});
 };
-$(document).ready(image_fancy);
-$(document).on('page:load', image_fancy);
+$(document).on('page:load ready', image_fancy);
 
 //this need to be changed to coffee script and stored locally
 ready = function(){
@@ -49,4 +58,3 @@ ready = function(){
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
-var $ = jQuery.noConflict(); 
