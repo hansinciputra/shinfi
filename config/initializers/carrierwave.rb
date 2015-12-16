@@ -5,8 +5,8 @@ CarrierWave.configure do |config|
 
   config.fog_credentials = {
     :provider               => 'AWS',                             # required
-    :aws_access_key_id      => 'bodoh!',            # required
-    :aws_secret_access_key  => 'bodoh!!',     # required
+    :aws_access_key_id      => 'damnbot',            # required
+    :aws_secret_access_key  => 'damnbot!!!',     # required
     :region                 => 'ap-southeast-1'                        # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = 'shinfithecraft-product-image'               # required
