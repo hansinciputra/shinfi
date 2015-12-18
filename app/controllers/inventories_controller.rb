@@ -25,7 +25,7 @@ class InventoriesController < ApplicationController
     if @inventory.save
       redirect_to inventories_path, :notice => "Berhasil Menginput Inventori"
     else
-      renderirect_to inventories_new_path, :notice => "Gagal Menginput Inventory"
+      redirect_to inventories_new_path, :notice => "Gagal Menginput Inventory"
     end
   end
   
@@ -33,7 +33,8 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.find(params[:id])
     @categories = Category.all 
     @type = TypeInventory.all
-    @product_images = ProductImage.find_by inventory_id: @inventory.id
+    @product_images_show = ProductImage.find_by inventory_id: @inventory.id
+    @product_images = @inventory.product_images.build
   end
   
   def update #no view, only process the form in edit actions
@@ -41,7 +42,7 @@ class InventoriesController < ApplicationController
     
     #get the inventory parameters from user input , we get the data from from_for @inventory in edit view
     if @inventory.update_attributes(inventory_params)
-      redirect_to inventories_path , :notice => "Inventori Berhasil Terupdate"
+      redirect_to edit_inventory_path(@inventory) , :notice => "Inventori Berhasil Terupdate"
     else
       render "edit"
     end
@@ -52,7 +53,15 @@ class InventoriesController < ApplicationController
     @inventory.destroy
     redirect_to inventories_path, :notice => "Inventori Telah Dihapus"
   end
+  
+  def remove_photo
+    @inventory = Inventory.find(params[:id])
+    @image_id = ProductImage.find(params[:prod_id])
+
+    @image_id.destroy
+    redirect_to edit_inventory_path(@inventory), :notice => "Inventori Telah Dihapus"
+  end
   def inventory_params
-    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category, :product_images_attributes => [:id,:prod_img])
+    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img])
   end
 end

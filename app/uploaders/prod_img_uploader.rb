@@ -7,8 +7,8 @@ class ProdImgUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :fog
-  # storage :file
+  #storage :fog
+  storage :file
 
   include CarrierWave::MimeTypes
   process :set_content_type
@@ -35,8 +35,17 @@ class ProdImgUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
+   version :standard do
+     process :resize_to_limit => [320, 320]
+   end
    version :thumb do
      process :resize_to_limit => [250, 250]
+   end
+   version :medium_thumb, from_version: :thumb do
+     process :resize_to_limit => [70,70]
+   end
+   version :thumb_small do
+     process :resize_to_limit => [33, 33]
    end
 
   # Add a white list of extensions which are allowed to be uploaded.

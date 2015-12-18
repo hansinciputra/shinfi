@@ -22,7 +22,12 @@ Rails.application.routes.draw do
   end
 
   #this resources will give CRUD function on inventories controller
-  resources :inventories
+  resources :inventories do
+    #member to get the id
+    member do
+      delete 'remove_photo'
+    end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

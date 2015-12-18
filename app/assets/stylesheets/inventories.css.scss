@@ -107,15 +107,30 @@ table{
   text-align:center;
 }
 #picture_frame{
-  width: 330px;
-  height: 330px;
+//border:red solid 5px;
+  max-width: 320px;
+  max-height: 320px;
   background-color: #ebebeb;
   float:left;
-  margin: 20px 0 0 80px;
+  margin: 0px 0 0 80px;
 }
 #le_picture{
-  border:black solid 5px;
-  width: 320px;
-  height:320px;
-  margin: 10px auto;
+  //border:red solid 5px;
+  max-width: 320px;
+  min-height: 320px;
+}
+#le_small_picture_container{
+  //border:red solid 5px;
+  width: 330px;
+  height:100px;
+  margin: auto;
+  padding: 5px 0 5px 5px;
+}
+#le_small_picture{
+  border:black solid 2px;
+  width: 33px;
+  height: 33px;
+  margin-right:5px;
+  margin-top:5px;
+  float: left;
 }

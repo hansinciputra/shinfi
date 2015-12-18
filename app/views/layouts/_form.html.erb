@@ -37,22 +37,38 @@
 		<%= t.label :Link %>
 		<%= t.text_field :link%>
 		<br />
-		<div id = "submit_button">
-			Input Gambar Produk:
-		<ul>
-			<%= t.fields_for :product_images do |qty| %>
-                            
-                               <!--Where we upload multiple picture using carrierwave-->
-                               <li id = "picture"><%= qty.file_field :prod_img, multiple: true, name: "inventory[product_images_attributes][][prod_img]" %><a href ="#" id ="del_pic">x</a>|<a  href="#" id = "add_more_pic">More Pic</a></li><!--call paperclip upload file-->
-            <%end%>
-            </div>
+		<% if @inventory.id  %><!--kalau new berarti inventory.id belum ada-->
+		<div id = "list_pic">
+			<%= t.fields_for :product_images do |x| %>
+				<%= image_tag(x.object.prod_img_url(:medium_thumb).to_s)%>
+				<%= x.check_box :remove_prod_img %>
+			<%end%>
+			<fieldset>
 
-			
-		</ul>
-		<br />
-	
-		<%= t.submit "Submit" %> <!--this submit button will go to controller create action-->
-	</div>
+					<% @inventory.product_images.each do |f|%>
+						<%= image_tag(f.prod_img_url(:medium_thumb).to_s)%>
+
+						ini id!!!<%= f.id %>
+
+						<%= link_to 'remove', remove_photo_inventory_path(@inventory, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete %>
+					<% end%>
+				
+			</fieldset>
+		</div>
+		<% end %>
+		
+			<div id = "submit_button">
+				Input Gambar Produk:
+					<ul>
+						<%= t.fields_for @product_images do |qty| %>                           
+			                               <!--Where we upload multiple picture using carrierwave-->
+			                               <li id = "picture"><%= qty.file_field :prod_img, multiple: true, name: "inventory[product_images_attributes][][prod_img]" %><a href ="#" id ="del_pic">x</a>|<a  href="#" id = "add_more_pic">More Pic</a></li><!--call paperclip upload file-->
+			            <%end%> 
+			        </ul>  
+	        <%= t.submit "Submit" %> <!--this submit button will go to controller create action-->
+	        </div>
+		<br />		
+		</div>
 	</p>	
 <%end%>
 

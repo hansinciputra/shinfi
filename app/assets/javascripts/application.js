@@ -14,26 +14,18 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
 //= require fancybox 
 //= require turbolinks
 //= require_tree .
 
-
-/*the command below will let all fancybox class be part of html <body> tag, 
-we need this because turbolink gem we install earlier will make the page load faster 
-at the expense of not reloading the header, thus by calling the code below we ensure that the 
-fancybox keep on getting called
-*/
-
-//the .ajaxComplete will call the fancybox function after ajax call has been called
 image_fancy = function(){
 	jQuery("a.fancybox").fancybox({
 		scrolling: 'no',
 		autoScale: true,
 		'width' : 350,
 		'height': 850,
-		'type' : 'iframe'
+		padding: 0,
+		'type' : 'image'
 	});
 };
 $(document).on('page:load ready', image_fancy);
