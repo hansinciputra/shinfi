@@ -33,7 +33,6 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.find(params[:id])
     @categories = Category.all 
     @type = TypeInventory.all
-    @product_images_show = ProductImage.find_by inventory_id: @inventory.id
     @product_images = @inventory.product_images.build
   end
   
@@ -58,8 +57,12 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.find(params[:id])
     @image_id = ProductImage.find(params[:prod_id])
 
-    @image_id.destroy
-    redirect_to edit_inventory_path(@inventory), :notice => "Inventori Telah Dihapus"
+    if @image_id.destroy
+      FileUtils.rm_rf("#{Rails.root}/public/uploads/product_image/prod_img/#{params[:prod_id]}")
+      redirect_to edit_inventory_path(@inventory), :notice => "Gambar Telah Dihapus"
+    else
+      redirect_to edit_inventory_path(@inventory), :notice => "Gambar Gagal Dihapus"
+    end
   end
   def inventory_params
     params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img])

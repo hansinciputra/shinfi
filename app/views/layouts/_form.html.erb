@@ -39,19 +39,16 @@
 		<br />
 		<% if @inventory.id  %><!--kalau new berarti inventory.id belum ada-->
 		<div id = "list_pic">
-			<%= t.fields_for :product_images do |x| %>
-				<%= image_tag(x.object.prod_img_url(:medium_thumb).to_s)%>
-				<%= x.check_box :remove_prod_img %>
-			<%end%>
+	
 			<fieldset>
-
-					<% @inventory.product_images.each do |f|%>
-						<%= image_tag(f.prod_img_url(:medium_thumb).to_s)%>
-
-						ini id!!!<%= f.id %>
-
-						<%= link_to 'remove', remove_photo_inventory_path(@inventory, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete %>
-					<% end%>
+						<% @inventory.product_images.each do |f|%>
+							<% if f.id != nil %>
+								<div id ="list_pic_container">
+									<%= image_tag(f.prod_img_url(:medium_thumb).to_s)%>
+									<%= link_to 'x', remove_photo_inventory_path(@inventory, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete, :id=> 'remove_picture' %>
+								</div>
+							<%end%>
+						<% end%>
 				
 			</fieldset>
 		</div>
