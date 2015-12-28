@@ -1,0 +1,16 @@
+ <div id="Main_Container">
+
+ <div id="login">
+ 	<p>Klik "Daftar Baru" untuk membuat account di shinfithecraft!</p>
+ <%=form_tag sessions_path do %>
+            <ul>
+              <li>email</li>
+              <li><%= text_field_tag "email" ,'',size: 10%> </li>
+              <li>password</li>
+              <li><%= password_field_tag "password",'',size:10%></li>
+              <li><%= submit_tag "Login"%></li>
+              <li id = "signup"> || <%= link_to "Daftar Baru" , sign_up_path%></li>
+            </ul>
+        <%end%>
+  </div>
+</div>

@@ -107,17 +107,25 @@ table{
   text-align:center;
 }
 #picture_frame{
-//border:red solid 5px;
+  //border:black solid 3px;
   max-width: 320px;
-  max-height: 320px;
-  background-color: #ebebeb;
+  max-height: 310px;
   float:left;
-  margin: 0px 0 0 80px;
 }
 #le_picture{
   //border:red solid 5px;
   max-width: 320px;
   min-height: 320px;
+  
+}
+#prod_detail
+{
+  //border:blue solid 5px;
+  margin-left:20px;
+  width:300px;
+  float:left;
+  display:inline-block;
+
 }
 #le_small_picture_container{
   //border:red solid 5px;
@@ -148,4 +156,30 @@ table{
   margin-left:-15px;
   background-color:black;
   color:white;
+}
+
+#product_container
+{
+  border:black solid 1px;
+  width:70%;
+  margin:auto;
+  height: 800px;
+  margin-top:20px;
+  padding:10px 0 0 50px;
+}
+#comments_box
+{
+  border:black solid 3px;
+  width:80%;
+  height:30%;
+  float:left;
+  margin-top:80px;
+  padding: 20px;
+}
+#inventory_cart
+{
+  margin-top: 30px;
+  width: 100px;
+  height: 60px;
+  border:black solid 2px;
 }

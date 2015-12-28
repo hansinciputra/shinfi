@@ -1,5 +1,5 @@
 class ProductImagesController < ApplicationController
-  before_action :set_product_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_product_image, only: [:edit, :update, :destroy]
 
   # GET /product_images
   # GET /product_images.json
@@ -10,6 +10,10 @@ class ProductImagesController < ApplicationController
   # GET /product_images/1
   # GET /product_images/1.json
   def show
+    #the params is set to get data from inventories.id -> from order show invoice page, thus the exception of before action no include :show
+  @product_image = ProductImage.find_by(:inventory_id => params[:id])  
+  @inventory_name = Inventory.find_by_sql(["SELECT product_images.id, product_images.inventory_id, inventories.name as name FROM inventories LEFT JOIN product_images on inventories.id = product_images.inventory_id WHERE inventories.id = ? LIMIT 1", params[:id]])
+   render :layout => false #to remove layout
   end
 
   # GET /product_images/new

@@ -1,9 +1,11 @@
-<h1 style="width: 400px; margin: 10px auto 0 auto; text-align:center;">READY STOCK</h1>
-<%= render 'show' %>
+<h1 style="width: 200px; margin: 10px auto 0 auto;text-align: center;">INVOICE</h1>
 <%if current_user && current_user.role == "Admin" %>
-
-<div id = "admin_menu">
-	<%= link_to 'Edit', edit_order_path(@order) %> |
-	<%= link_to 'Back', orders_path %>
-</div>
+	<div id = "admin_menu_order">
+		<%= link_to 'Edit', edit_order_path(@order) %> |
+		<%= link_to 'Back', orders_path %>
+	</div>
 <%end%>
+<%= render 'show' %>
+
+
+

@@ -1,5 +1,7 @@
 <div id = "Main_Container">
-	
+
+	<div id = "product_container">
+		<h2>Prod Name = <%= @inventory.name%></h2>
 	<div id = "picture_frame">
 		<div id = "le_picture">
 			<%= image_tag(@inventory.product_images.first.prod_img_url(:standard).to_s, :class=>"open_fancybox") %>
@@ -14,17 +16,27 @@
 
 		</div>
 	</div>
+	<div id = "prod_detail">
 
-	<h2>Prod Name = <%= @inventory.name%></h2>
-	<p>Quantity = <%= @inventory.quantity %></p>
-	<p>Size = <%= @inventory.meter%></p>
-	<p>Weight = <%= @inventory.weight%></p>
-	<p>Price = <%= @inventory.sellprice%></p>
-	<p>Category = <%= @inventory.category%></p>
-	<p><a href = "http://www.google.com" class = "iframe">Upload more picture</a></p>
+		<% if current_user && current_user.role == 'Admin' %>
+		<h3>Product Details: <%= link_to "Edit", edit_inventory_path(@inventory) %></h3>
+		<%end%>
+		<ul>
+			<li class = "label_Prod"><b>Sisa Yard :</b></li> <li class = "answer_Prod"><%= @inventory.quantity %> Yard</li>
+			<li class = "label_Prod"><b>Size :</b></li> <li class = "answer_Prod"><%= @inventory.meter%> meter</li>
+			<li class = "label_Prod"><b>Weight :</b></li> <li class = "answer_Prod"><%= @inventory.weight%> gram</li>
+			<li class = "label_Prod"><b>Price :</b></li> <li class = "answer_Prod"><%= number_to_currency @inventory.sellprice , :unit => "Rp."%></li>
+			<li class = "label_Prod"><b>Category :</b></li> <li class = "answer_Prod"><%= @inventory.category%></li>
+		</ul>
+		<div id = "inventory_cart">
+			Add to Cart!
+		</div>
+	</div>
+		<div id = "comments_box">
+			Diskusi Produk: 
+		</div>
+	</div><!--div untuk product container-->
 
-
-	<h2></h2>
 </div>	
 <script type="text/javascript">
 //this code was meant to be the fancybox code that display slider of all product image

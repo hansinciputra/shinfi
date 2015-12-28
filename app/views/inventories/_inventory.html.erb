@@ -12,8 +12,9 @@
 <h3 class = "label_Prod">Category :</h3>  <div class = "answer_Prod"><%= @inventory.category%></div>
 <% if current_user && current_user.role == "Admin"%>
 <h3 class = "label_Prod">link :</h3>  <div class = "answer_Prod"><a href = <%= @inventory.link%>>Click Here</a></div>
-
-<%= link_to "Edit", edit_inventory_path(@inventory) %>
-||
-<%= link_to "Delete", @inventory, :confirm => "Delete ?",:method => :delete %>
+	<%if current_user && current_user.role == "Admin" %>
+		<%= link_to "Edit", edit_inventory_path(@inventory) %>
+		||
+		<%= link_to "Delete", @inventory, :confirm => "Delete ?",:method => :delete %>
+	<%end%>
 <%end%>

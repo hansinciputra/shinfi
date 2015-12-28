@@ -1,0 +1,34 @@
+<div id = "Main_Container">
+  <h1 class="page_title" style="text-align:center; width: 300px">Listing customers</h1>
+  <hr/>
+<div id = "admin_menu">
+  <%= link_to 'New User', new_user_path %>
+</div>
+  <table class = "report_table">
+    <thead>
+      <tr>
+        <th>no.</th>
+        <th style="width:100px">Nama</th>
+        <th>email</th>
+ 		<th>1</th>
+ 		<th>2</th>
+ 		<th>3</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @user.each_with_index do |user , i| %>
+        <tr>
+          <td><%= i + 1 %>.</td>
+          <td style="width:100px"><%= user.name %></td>
+          <td><%= user.email %> </td>
+            <td><%= link_to 'Show', user %></td>
+            <td><%= link_to 'Edit', edit_user_path(user) %></td>
+            <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <hr/>
+  <br>
+</div>

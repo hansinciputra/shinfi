@@ -1,0 +1,36 @@
+<div id = "Main_Container">
+	<div id = "universal_form">
+	<h1 class= "unversal_form_title">Sign Up</h1>
+	<%= form_for @user do |f|%>
+		<% if @user.errors.any? %>
+			<h2>Form is Invalid</h2>
+			<ul>
+				<% for message in @user.errors.full_messages %>
+					<li><%= message %></li>
+				<%end%>
+			</ul>
+		<%end%>
+		<div id ="new_user">
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<br/>
+			<%= f.label :email %>
+			<%= f.text_field :email %>
+			<br/>
+			<%= f.label :password %>
+			<%= f.password_field :password %>
+			<br/>
+			<%= f.label :password_confirmation %>
+			<%= f.password_field :password_confirmation %>
+			<br/>
+			<% if current_user && current_user.role == "Admin" %>
+			<%= f.label :role %>
+			<%= f.select :role , options_for_select(["Visitor","Admin"]) %>
+			<%end%>
+			<div id ="submit_button">
+		<%= f.submit%> || <%= link_to "Cancel", root_path %>
+			</div>
+		</div>
+	<%end%>
+	</div>
+</div>

@@ -1,9 +1,10 @@
-<h1 style="width: 200px; margin: 10px auto 0 auto;">PESANAN PO</h1>
-<%= render :template => "orders/_show" %>
+<h1 style="width: 200px; margin: 10px auto 0 auto;text-align: center;">INVOICE</h1>
 <%if current_user && current_user.role == "Admin" %>
-<div id = "admin_menu">
+<div id = "admin_menu_order">
 	<%= link_to 'Edit', edit_order_po_path(@order) %> |
 	<%= link_to 'Back', order_pos_path %>
 </div>
 <%end%>
+<%= render :template => "orders/_show" %>
+
 

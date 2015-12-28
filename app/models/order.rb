@@ -7,5 +7,8 @@ class Order < ActiveRecord::Base
 
 	accepts_nested_attributes_for :inventory_orders, :reject_if => lambda { |a| a[:quantity].blank?}, :allow_destroy => true
 	#accepts_nested_attributes_for :customers
-
+	def generate_unique_id(id)
+		self.url_id = "#{id}s#{SecureRandom.hex(3)}" 
+		save
+	end
 end

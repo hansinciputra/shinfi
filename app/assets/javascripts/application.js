@@ -50,3 +50,9 @@ ready = function(){
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
+jQuery(function(){
+		$(".iframe").fancybox({
+			type: 'iframe'
+		});
+		return false;
+	});

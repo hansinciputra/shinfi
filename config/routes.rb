@@ -6,8 +6,14 @@ Rails.application.routes.draw do
 
   get "sign_up" => 'users#new', :as =>"sign_up"
   get "log_out" => 'sessions#destroy', :as =>"log_out"
+  
+  resources :application, :only => [:index]
   resources :sessions
-  resources :users
+  resources :users do
+    collection do
+      get :login
+    end
+  end
   resources :customers
   
   resources :order_pos do
@@ -15,12 +21,14 @@ Rails.application.routes.draw do
     put 'update_multiple_payment'
     end
   end
+
   resources :orders do
    collection do 
     put 'update_multiple_payment'
     end
   end
-
+match "orders/:url_id" => "orders#show", :via=> [:get],:as => 'order_show'
+match "order_pos/:url_id" => "order_pos#show", :via=> [:get],:as => 'order_po_show'
   #this resources will give CRUD function on inventories controller
   resources :inventories do
     #member to get the id

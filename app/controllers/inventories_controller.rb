@@ -1,5 +1,6 @@
 class InventoriesController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :except => [:show]
+  
   def index #to display all results
     @inventories = Inventory.all.order(:name)
 
@@ -48,9 +49,17 @@ class InventoriesController < ApplicationController
   end
   def destroy #no view, only process 
     @inventory = Inventory.find(params[:id])
+    @image = ProductImage.where(:inventory_id => params[:id])
     #simply use .destroy method to delete inventory 
-    @inventory.destroy
-    redirect_to inventories_path, :notice => "Inventori Telah Dihapus"
+    if @inventory.destroy
+      @image.each do |images|
+        #supposed to delete the image folder, but not working @_@
+        FileUtils.rm_rf("#{Rails.root}/public/uploads/product_image/prod_img/#{images.id}")
+      end
+      redirect_to inventories_path, :notice => "Inventori Telah Dihapus"
+    else
+      redirect_to inventories_path, :notice => "Inventori Gagal Dihapus"
+    end
   end
   
   def remove_photo
@@ -58,6 +67,7 @@ class InventoriesController < ApplicationController
     @image_id = ProductImage.find(params[:prod_id])
 
     if @image_id.destroy
+      #if we change database location to amazon S3, need to change this folder directory too
       FileUtils.rm_rf("#{Rails.root}/public/uploads/product_image/prod_img/#{params[:prod_id]}")
       redirect_to edit_inventory_path(@inventory), :notice => "Gambar Telah Dihapus"
     else
@@ -65,6 +75,6 @@ class InventoriesController < ApplicationController
     end
   end
   def inventory_params
-    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img])
+    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic])
   end
 end
