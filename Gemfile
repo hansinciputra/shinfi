@@ -42,6 +42,9 @@ gem 'bcrypt', :require => 'bcrypt'
 # Use unicorn as the app server
 # gem 'unicorn'
 
+#gem rails_12factor is used when running rake asset:precompile for the production site
+gem 'rails_12factor', group: :production
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
