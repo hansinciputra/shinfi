@@ -16,15 +16,14 @@
   <hr>
 <%end %>
 <br>
-<% @inventory.product_images.each do |f|%>
-    <% if f.id != nil %>
-
-                <div id ="list_pic_container">
-                  <%= image_tag(f.prod_img_url(:medium_thumb).to_s)%>
-                  <%= link_to 'x', remove_photo_inventory_path(@inventory, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete, :id=> 'remove_picture' %>
-                </div>
-              <%end%>
-    <%end %>
+      <div id ="list_pic_container">
+         <% @inventory.product_images.each do |f|%>
+            <% if f.id != nil %>
+             <%= image_tag(f.prod_img_url(:medium_thumb).to_s)%>
+             <%= link_to 'x', remove_photo_inventory_path(@inventory, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete, :id=> 'remove_picture' %>
+            <%end%>
+         <%end %>
+      </div>
 <br>
   <!--the UI javascript code for displaying upload image progress-->
         <script id="template-upload" type="text/x-tmpl">
