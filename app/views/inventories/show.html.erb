@@ -4,16 +4,19 @@
 		<h2>Prod Name = <%= @inventory.name%></h2>
 	<div id = "picture_frame">
 		<div id = "le_picture">
+			<!--to prevent error if no picture uploaded-->
+			<% if @product_images %>
 			<%= image_tag(@inventory.product_images.first.prod_img_url(:standard).to_s, :class=>"open_fancybox") %>
+			<%end%>
 		</div>
 		<div id = "le_small_picture_container">
-			
-		<% @inventory.product_images.each do |img|%>
-		<div id= "le_small_picture">
-			<%= link_to(image_tag(img.prod_img_url(:thumb_small).to_s),img.prod_img.to_s, :class=>"fancybox")%> 
-			</div>
+		<% if @product_images %>	
+			<% @inventory.product_images.each do |img|%>
+			<div id= "le_small_picture">
+				<%= link_to(image_tag(img.prod_img_url(:thumb_small).to_s),img.prod_img.to_s, :class=>"fancybox")%> 
+				</div>
+			<%end%>
 		<%end%>
-
 		</div>
 	</div>
 	<div id = "prod_detail">

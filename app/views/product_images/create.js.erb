@@ -1,0 +1,5 @@
+<% if @product_images.new_record? %>
+	alert("Failed");
+<%else%>
+	$("#list_pic_container").append("<img src = <%= @product_images.prod_img_url(:medium_thumb).to_s %>/>");
+<%end%>

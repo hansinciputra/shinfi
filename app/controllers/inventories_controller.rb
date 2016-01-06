@@ -24,9 +24,9 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new(inventory_params)
     
     if @inventory.save
-      redirect_to inventories_path, :notice => "Berhasil Menginput Inventori"
+      redirect_to new_product_image_path(:id=>@inventory), :notice => "Berhasil Menginput Inventori"
     else
-      redirect_to inventories_new_path, :notice => "Gagal Menginput Inventory"
+      redirect_to new_inventory_path, :notice => "Gagal Menginput Inventory"
     end
   end
   

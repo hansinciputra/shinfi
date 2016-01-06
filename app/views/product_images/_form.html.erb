@@ -1,25 +1,31 @@
-<%= form_for(@product_image) do |f| %>
-  <% if @product_image.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@product_image.errors.count, "error") %> prohibited this product_image from being saved:</h2>
+<fieldset>
+<h3 style = "display:inline;">Upload More Picture</h3>    
 
-      <ul>
-      <% @product_image.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+<fieldset>
+  <hr>
+  <%= form_for @product_images do |each| %>                 
+   <!--Where we upload multiple picture using carrierwave-->
+   <div id = "picture"><%= each.file_field :prod_img, multiple: true, name: "product_image[prod_img]" %>
+      <% i = 1 %>
+         <!--ini untuk membuat increment number di picture table, supaya bisa menentukan display picture, tp hanya angka 1 yang ter print-->
+      <%= each.hidden_field :displaypic, value: i %>
+      <%= each.hidden_field :inventory_id, value: @inventory.id %>
+      <% i+1 %>
   </div>
-  <div class="field">
-    <%= f.label :inventory_id %><br>
-    <%= f.number_field :inventory_id %>
-  </div>
+  <hr>
+<%end %>
+<br>
+<% @inventory.product_images.each do |f|%>
+    <% if f.id != nil %>
 
+                <div id ="list_pic_container">
+                  <%= image_tag(f.prod_img_url(:medium_thumb).to_s)%>
+                  <%= link_to 'x', remove_photo_inventory_path(@inventory, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete, :id=> 'remove_picture' %>
+                </div>
+              <%end%>
+    <%end %>
+<br>
   <!--the UI javascript code for displaying upload image progress-->
         <script id="template-upload" type="text/x-tmpl">
         <div class = "upload">
@@ -29,7 +35,4 @@
           </div>
         </div>
         </script>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+

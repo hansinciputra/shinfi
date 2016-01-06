@@ -4,3 +4,6 @@
 
 #the code for displaying upload progress... but might not needed right now
 
+jQuery ->
+	$('#product_image_prod_img').fileupload
+		dataType: "script"

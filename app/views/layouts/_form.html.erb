@@ -53,20 +53,16 @@
 			</fieldset>
 		</div>
 		<% end %>
-		
+			<br>
 			<div id = "submit_button">
-				Input Gambar Produk:
-					<ul>
-						<%= t.fields_for @product_images do |qty| %>                           
-			                               <!--Where we upload multiple picture using carrierwave-->
-			                               <li id = "picture"><%= qty.file_field :prod_img, multiple: true, name: "inventory[product_images_attributes][][prod_img]" %><a href ="#" id ="del_pic">x</a>|<a  href="#" id = "add_more_pic">More Pic</a></li><!--call paperclip upload file-->
-			                               <% i = 1 %>
-			                               <!--ini untuk membuat increment number di picture table, supaya bisa menentukan display picture, tp hanya angka 1 yang ter print-->
-			                               <%= qty.hidden_field :displaypic,name:"inventory[product_images_attributes][][displaypic]", value: i %>
-			                               <% i+1 %>
-			            <%end%> 
-			        </ul>  
-	        <%= t.submit "Submit" %> <!--this submit button will go to controller create action-->
+			<% if @inventory.id %>
+				<button><%= link_to 'Upload More Picture', new_product_image_path(:id => @inventory.id) %></button> 
+				<h3><%= t.submit "Finished" %></h3>
+				<%else%>
+				<%= t.submit "Next Step" %> <!--this submit button will go to controller create action-->
+			<%end%>
+			<br>
+	        
 	        </div>
 		<br />		
 		</div>

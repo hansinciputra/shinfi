@@ -1,5 +1,5 @@
 class ProductImagesController < ApplicationController
-  before_action :set_product_image, only: [:edit, :update, :destroy]
+  before_action :set_product_image, only: [:update, :destroy]
 
   # GET /product_images
   # GET /product_images.json
@@ -18,27 +18,23 @@ class ProductImagesController < ApplicationController
 
   # GET /product_images/new
   def new
-    @product_image = ProductImage.new
+    #action new is called when uploading product when creating new Inventory
+    @product_images = ProductImage.new
+    @inventory = Inventory.find_by(:id => params[:id])
   end
 
   # GET /product_images/1/edit
   def edit
+    @product_images = ProductImage.find_by(:inventory_id => params[:id])
+    @inventory = Inventory.find_by(:id => params[:id])
   end
 
   # POST /product_images
   # POST /product_images.json
   def create
-    @product_image = ProductImage.new(product_image_params)
-
-    respond_to do |format|
-      if @product_image.save
-        format.html { redirect_to @product_image, notice: 'Product image was successfully created.' }
-        format.json { render :show, status: :created, location: @product_image }
-      else
-        format.html { render :new }
-        format.json { render json: @product_image.errors, status: :unprocessable_entity }
-      end
-    end
+    @product_images = ProductImage.create(product_image_params)
+    @inventory = Inventory.find_by(:id => params[:id])
+    
   end
 
   # PATCH/PUT /product_images/1
@@ -73,6 +69,6 @@ class ProductImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_image_params
-      params.require(:product_image).permit(:name, :inventory_id)
+      params.require(:product_image).permit(:name, :inventory_id, :displaypic, :prod_img)
     end
 end

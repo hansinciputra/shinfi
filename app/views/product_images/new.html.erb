@@ -1,6 +1,9 @@
-<h1>New product_image</h1>
+<div id = "Main_Container">
+	<div id = "universal_form">
+	<h1 style = "text-align:center;">Insert Image for Product <%=@inventory.name%></h1>
+	<h2 style = "text-align:center;">Product ID : <%= @inventory.id %></h2>
+	<%= render 'form' %>
 
-<%= render 'form' %>
-
-
-<%= link_to 'Back', product_images_path %>
+	<button><%= link_to 'Finished', inventory_path(@inventory.id)%></button>
+	</div>
+</div>

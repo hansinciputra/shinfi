@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require fancybox 
 //= require turbolinks
 //= require_tree .
