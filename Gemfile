@@ -27,6 +27,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 #carrierwave gem for uploading image
 gem 'carrierwave'
+gem 'carrierwave_direct'
+gem 'sidekiq'
 #rmagick gem for carrierwave resize capability
 gem 'rmagick'
 #UI for upload many file
