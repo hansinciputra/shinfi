@@ -273,7 +273,7 @@ DEPENDENCIES
   carrierwave_direct
   coffee-rails (~> 4.0.0)
   fancybox2-rails (~> 0.2.8)
-  figaro
+  figaro (>= 1.0.0.rc1)
   fog
   jbuilder (~> 2.0)
   jquery-fileupload-rails

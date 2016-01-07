@@ -40,7 +40,7 @@ gem 'fog'
 gem 'fancybox2-rails', '~>0.2.8'
 
 #figaro for ensuring security credential, preventing AWS key from being exposed to public
-gem 'figaro'
+gem 'figaro','>= 1.0.0.rc1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt', :require => 'bcrypt'
