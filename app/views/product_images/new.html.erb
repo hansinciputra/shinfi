@@ -7,3 +7,9 @@
 	<button><%= link_to 'Finished', inventory_path(@inventory.id)%></button>
 	</div>
 </div>
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress progress-striped"><div class="progress-bar" style="width: 0%"></div></div>
+</div>
+</script>

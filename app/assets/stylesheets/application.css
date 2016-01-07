@@ -12,6 +12,7 @@
  *
  *= require_self
  *= require fancybox
+ *= require jquery.fileupload-ui
  *= require_tree .
  */
 #Main_Container{

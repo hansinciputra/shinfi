@@ -31,11 +31,14 @@ gem 'carrierwave'
 gem 'rmagick'
 #UI for upload many file
 gem 'jquery-fileupload-rails'
+gem 'jquery-ui-rails'
 #fog gem for connections with amazon s3
 gem 'fog'
 #fancybox gem for image click
 gem 'fancybox2-rails', '~>0.2.8'
 
+#figaro for ensuring security credential, preventing AWS key from being exposed to public
+gem 'figaro'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt', :require => 'bcrypt'

@@ -41,15 +41,16 @@
 		<div id = "list_pic">
 	
 			<fieldset>
+				<div id ="list_pic_container">
 						<% @inventory.product_images.each do |f|%>
 							<% if f.id != nil %>
-								<div id ="list_pic_container">
+								<div id ="list_pic">
 									<%= image_tag(f.prod_img_url(:medium_thumb).to_s)%>
 									<%= link_to 'x', remove_photo_inventory_path(@inventory, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete, :id=> 'remove_picture' %>
 								</div>
 							<%end%>
 						<% end%>
-				
+				</div>
 			</fieldset>
 		</div>
 		<% end %>
