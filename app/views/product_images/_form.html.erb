@@ -17,11 +17,15 @@
   <%= form_for @product_images do |each| %>                 
    <!--Where we upload multiple picture using carrierwave-->
    <div id = "picture"><%= each.file_field :prod_img, multiple: true, name: "product_image[prod_img]" %>
-      <% i = 1 %>
-         <!--ini untuk membuat increment number di picture table, supaya bisa menentukan display picture, tp hanya angka 1 yang ter print-->
-      <%= each.hidden_field :displaypic, value: i %>
       <%= each.hidden_field :inventory_id, value: @inventory.id %>
-      <% i+1 %>
+     
+  <!--If no picture yet then set the first picture as the displayed picture , displaypic with value of 1-->
+      <% if !@check_image  %>
+      <h3 style ="color:red">Penting!! </h3>
+        <h3 style ="color:#f000f0"> Harap Masukan Hanya Satu Gambar pertama yang akan dijadikan Display Picture, Lalu refresh halaman</h3>
+      <% i = 1 %>
+      <%= each.hidden_field :displaypic, value: i %>
+      <%end%>
   </div>
 
 <div class="progress progress-striped" style = "width:300px;border:black solid 1px;margin-left:5px;"><div class="progress-bar" style="width: 0%; height: 20px;border:black solid 1px;background-color:blue;"></div></div>

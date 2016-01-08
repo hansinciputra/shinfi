@@ -55,11 +55,11 @@
   <%end%>
 </head>
 <body>
-<div id="flash_notice">
-  <% flash.each do |key , value| %>
-  	<p><%= value%></p>
-  <% end %>
-</div>
+  <div id="flash_notice">
+    <% flash.each do |key , value| %>
+    	<p><%= value%></p>
+    <% end %>
+  </div>
 <%= yield %>
 
 </body>

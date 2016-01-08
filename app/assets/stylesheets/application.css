@@ -22,20 +22,17 @@
 	font-family: 'Amaranth', sans-serif;
 	min-height: 1000px;
 }
-#home_container
-{
-	width: 1000px;
-	height: 1200px;
-	border:black solid 1px;
-	margin: auto;
-	margin-top: 20px;
-}
+
 footer{
-	width: 1000px;
+	display: block;
+	width: 100%;
 	font-family: 'Amaranth', sans-serif;
 	border:solid black 1px;
 	height:230px;
 	margin:auto;
+}
+.pagination{
+	margin:10px;
 }
 #universal_form{
 	margin:auto;
@@ -65,7 +62,7 @@ footer{
 	text-align: center;
 }
 #head_menu{
-	width: 800px;
+	width: 100%;
 	text-align: center;
 	border: black solid 1px;
 	margin: 40px auto 0 auto;
@@ -190,4 +187,37 @@ footer #f_right{
 }
 #socmed ul li{
 	display:inline;
+}
+#home_container
+{
+	width: 1000px;
+	margin: auto;
+	margin-top: 20px;
+	min-height: 1000px;
+}
+.banner{
+	width: 980px;
+	height: 180px;
+	border: black solid 1px;
+	margin: 5px auto 30px auto;
+}
+/*for index page*/
+#index_image_display_container{
+	width:321px;
+	height:400px;
+	float:left;
+	margin:5px;
+	display:inline-block;
+}
+#index_image_display{
+	width: 290px;
+	height: 290px;
+	overflow: hidden;
+	margin:auto;
+}
+#index_product_summary{
+	width:310px;
+	height:67px;
+	text-align:center;
+	margin:auto;
 }

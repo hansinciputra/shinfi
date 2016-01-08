@@ -35,7 +35,7 @@
 		<%= t.collection_select :fabrictype, @type, :name, :name, :prompt=>true %>
 		<br />
 		<%= t.label :Link %>
-		<%= t.text_field :link%>
+		<%= t.text_field :link , :value => 'http://'%>
 		<br />
 		<% if @inventory.id  %><!--kalau new berarti inventory.id belum ada-->
 		<div id = "list_pic">

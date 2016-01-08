@@ -50,7 +50,8 @@ gem 'rails_12factor', group: :production
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+#will paginate to handle pagination on page
+gem 'will_paginate', '~>3.0.5'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
