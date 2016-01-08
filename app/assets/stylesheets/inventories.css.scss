@@ -141,6 +141,7 @@ table{
   margin-right:5px;
   margin-top:5px;
   float: left;
+  overflow:scroll;
 }
 #list_pic_container{
   //border:red solid 2px;
@@ -169,17 +170,18 @@ table{
   border:black solid 1px;
   width:70%;
   margin:auto;
-  height: 800px;
+  height: 900px;
   margin-top:20px;
   padding:10px 0 0 50px;
 }
 #comments_box
 {
-  border:black solid 3px;
+  border-top:grey solid 1px;
+  border-bottom:grey solid 1px;
   width:80%;
   height:30%;
   float:left;
-  margin-top:80px;
+  margin-top:180px;
   padding: 20px;
 }
 #inventory_cart
@@ -187,5 +189,6 @@ table{
   margin-top: 30px;
   width: 100px;
   height: 60px;
-  border:black solid 2px;
+  background-color:#bebebe;
+  text-align:center;
 }
