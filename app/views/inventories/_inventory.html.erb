@@ -5,7 +5,7 @@
 	<%= link_to image_tag @product_images.prod_img_url(:thumb).to_s%> 
 	<%end%>
 </div>
-<h3 class = "label_Prod">Quantity :</h3>  <div class = "answer_Prod"><%= @inventory.quantity %> yard</div>
+<h3 class = "label_Prod">Quantity :</h3>  <div class = "answer_Prod"><%= @inventory.quantity %></div>
 <h3 class = "label_Prod">Size :</h3>  <div class = "answer_Prod"><%= @inventory.meter%> centimeter</div>
 <h3 class = "label_Prod">Weight : </h3>  <div class = "answer_Prod"><%= @inventory.weight%> gram</div>
 <h3 class = "label_Prod">Price :</h3>  <div class = "answer_Prod"><%= number_to_currency @inventory.sellprice, :unit => "Rp."%></div>

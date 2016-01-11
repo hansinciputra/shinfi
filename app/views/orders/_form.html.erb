@@ -67,7 +67,7 @@
                         
                              <%= f.fields_for :inventory_orders do |qty| %>
                                <%= qty.hidden_field :inventory_id, value: t.id %> <!--id of inventory--> 
-                               <%= qty.number_field :quantity, max: 100 , min: 5 %>
+                               <%= qty.number_field :quantity%>
 
                              <%end%>
                         </td>
