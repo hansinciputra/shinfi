@@ -13,6 +13,8 @@
  *= require_self
  *= require fancybox
  *= require jquery.fileupload-ui
+ *= require owl.carousel
+ *= require owl.theme
  *= require_tree .
  */
 #Main_Container{

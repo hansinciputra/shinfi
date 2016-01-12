@@ -67,7 +67,7 @@
                           <td class ="prodResult"><%= qty.object.stock_left %></td>
                           <td class="prodResult"><%= qty.object.meter %></td>
                           <td class="prodResult"><%= number_to_currency(qty.object.sellprice , :unit => "Rp. ") %></td>
-                             <td class="prodResult"><%= qty.number_field :quantity %></td>
+                             <td class="prodResult"><%= qty.number_field :quantity,:step => 'any' %></td>
                              <!-- _.object.column_name -> to get a specific object in field_for or form_for-->
                          </tr>
                      <%end%>

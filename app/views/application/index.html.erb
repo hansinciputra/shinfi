@@ -1,7 +1,10 @@
 <div id = "Main Container">
 	<div id = "home_container">
-		<div class = "banner">		
-			<p> Moving Banner</p>
+			<div class="owl-carousel">
+  				<div><img alt="Logo" src="/assets/LOGO.png" /></div>
+ 				 <div><img alt="Logo" src="/assets/LOGO.png" /></div>
+ 			</div>
+		<div class = "banner">	
 		</div>
 		<hr>
 		<br>
@@ -26,3 +29,15 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+
+	$(".owl-carousel").owlCarousel({
+	    autoPlay: 3000, //Set AutoPlay to 3 seconds
+	    items: 2,
+	    itemsDesktop: [1199, 3],
+	    itemsDesktopSmall: [979, 3]
+
+  });
+});
+</script>
