@@ -1,10 +1,12 @@
 <div id = "Main Container">
 	<div id = "home_container">
-			<div class="owl-carousel">
-  				<div><img alt="Logo" src="/assets/LOGO.png" /></div>
- 				 <div><img alt="Logo" src="/assets/LOGO.png" /></div>
+			
+			<div class="owl-carousel col-lg-12">
+  				<div class="item"><%= image_tag("LOGO.png") %></img></div>
+ 				 <div class="item"><%= image_tag("LOGO.png") %></img></div>
+ 				 <div class="item"><%= image_tag("LOGO.png") %></img></div>
  			</div>
-		<div class = "banner">	
+		<div class = "banner">
 		</div>
 		<hr>
 		<br>
@@ -29,15 +31,14 @@
 		</div>
 	</div>
 </div>
-<script>
+<script type="text/javascript">
+//to check owl-carousel properties: http://owlgraphic.com/owlcarousel/
 $(document).ready(function(){
-
 	$(".owl-carousel").owlCarousel({
 	    autoPlay: 3000, //Set AutoPlay to 3 seconds
-	    items: 2,
+	    singleItem: true,
 	    itemsDesktop: [1199, 3],
 	    itemsDesktopSmall: [979, 3]
-
   });
 });
 </script>

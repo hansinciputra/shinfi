@@ -33,10 +33,12 @@
     			<li><%= link_to 'Orders |', orders_path %></li>
     			<li><%= link_to 'Orders - PO |', order_pos_path %></li>
     			<li><%= link_to 'Inventories |', inventories_path %>
-            <ul class = "dropdown-menu">
+            <div class ="dropdown-menu">
+            <ul>
               <li><%=link_to 'Category', categories_path%></li>
-               <li><%=link_to 'Type', type_inventories_path%></li>
+              <li><%=link_to 'Type', type_inventories_path%></li>
             </ul>
+          </div>
           </li>
     			<li><%= link_to 'Customers |', customers_path %></li> 
           <li><%= link_to 'Users |', users_path %></li>
@@ -52,7 +54,15 @@
             <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
           </ul>
         </div>
+
   <%end%>
+  <!--new head menu project-->
+        <div id="head_menu">
+          <ul>
+            <li>Fabrics</li>
+            <li>Craft Accessories</li>
+          </ul>
+        </div>
 </head>
 <body>
   <div id="flash_notice">
@@ -64,6 +74,6 @@
 
 </body>
 <footer>
- 
+  <%= render 'layouts/footer'%>
 </footer>
 </html>

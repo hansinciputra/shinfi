@@ -25,14 +25,6 @@
 	min-height: 1000px;
 }
 
-footer{
-	display: inline-block;
-	width: 100%;
-	font-family: 'Amaranth', sans-serif;
-	border:solid black 1px;
-	height:230px;
-	margin:auto;
-}
 .pagination{
 	margin:10px;
 	width: 100%;
@@ -133,15 +125,15 @@ footer{
 .dropdown-menu
 {
 	display:none;
+	position:absolute;
+	float:left;
+	width:400px;
+	height:300px;
 }
 ul li{
 	position: relative;
 }
-ul li ul.dropdown-menu a:hover{
-	display: block;
-	border:solid black 1px;
-}
-ul li:hover ul.dropdown-menu{
+ul li:hover .dropdown-menu{
 	display:block;
 	position: absolute;
 	background-color: #ebebeb;
@@ -151,48 +143,95 @@ ul li:hover ul.dropdown-menu{
 	text-align: left;
 	padding-left: 5px;
 }
-
+/*Bagian Footer*/
+footer{
+	display: inline-block;
+	width: 100%;
+	font-family: 'Amaranth', sans-serif;
+	border:solid black 1px;
+	height:150%;
+	margin:auto;
+	background-color: black;
+	color:white;
+	text-align: center;
+}
+#footer_container{
+	margin:auto;
+	height:350px;
+	width:80%;
+	/*border:solid blue 5px;*/
+}
 footer #f_left{
 	width:25%;
-	height:100%;
-	border:solid black 1px;
+	height:80%;
+	/*border:solid white 1px;*/
 	float:left;
 }
 #site_map{
 	width:70%;
-	min-height: 70%;
-	border:solid red 1px;
+	/*border:solid red 1px;*/
 	margin: 10% auto 0 auto;
-
+}
+#site_map_middle{
+	width:80%;
+	/*border:solid red 1px;*/
+	margin: 10% 5% 5% 10%;
+	display: block;
 }
 footer #f_middle{
-	width:49.3%;
-	height:100%;	
-	border:solid black 1px;
+	width:24%;
+	height:80%;	
+	/*border:solid white 1px;*/
 	float:left;
+}
+footer #f_bottom{
+	width:100%;
+	height:20%;	
+	/*border:solid white 1px;*/
+}
+footer #f_bottom ul li{
+	display:inline;
+	margin:50px;
+	font-size: 8px;
+}
+footer #f_bottom ul{
+	width: 80%;
+	margin:auto;
+	text-align: center;
 }
 #brands ul li{
 	margin: 20px 25px 15px 30px;
 	width: 100px;
 	height: 70px;
-	border:solid black 2px;
+	/*border:solid black 2px;*/
 	float:left;
+}
+.subcontent{
+	color: grey;
+	font-size: 10px;
+}
+.subcontent a{
+	text-decoration: none;
+	color: grey;
+	font-size: 10px;
 }
 footer #f_right{
 	width:25%;
-	height:100%;
-	border:solid black 1px;
+	height:80%;
+	/*border:solid white 1px;*/
 	float:left;
 }
 #socmed{
 	width:70%;
 	min-height: 70%;
-	border:solid red 1px;
+	/*border:solid red 1px;*/
 	margin: 10% auto 0 auto;
 }
 #socmed ul li{
 	display:inline;
+	margin-left:10px;
 }
+/* end of footer */
 #home_container
 {
 	width: 1000px;
