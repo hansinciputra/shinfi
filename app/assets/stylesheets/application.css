@@ -61,7 +61,7 @@
 #head_menu{
 	width: 100%;
 	text-align: center;
-	border: black solid 1px;
+	border: black solid 2px;
 	margin: 40px auto 0 auto;
 }
 #head_menu ul li{
@@ -121,28 +121,72 @@
 {
 	color:#ff2994;
 }
-
+/*for drop down function*/
+#head_menu li{
+	padding:2px;
+}
 .dropdown-menu
 {
 	display:none;
 	position:absolute;
 	float:left;
-	width:400px;
-	height:300px;
+	margin-top: -0.1px;
+	background-color: white;
+	
+}
+.dropdown-double
+{
+	width: 300px;
+	height: 120px;
+}
+.submenu_container{
+	float: left;
+	width: 45%;
+	margin: 2px;
+}
+.dropdown-menu ul{
+	table-layout: fixed;
+	z-index: 3;
+}
+.dropdown-menu ul li{
+	display: table-cell;
+	width: auto;
+	float: left;
+	white-space:nowrap;
+	width: 120px;
+	font-size: 0.9em;
+}
+.dropdown-menu ul li a {
+	text-align: left;
+	display: block;
+}
+.dropdown-menu ul li:hover{
+	background-color: #ffd2ff;
 }
 ul li{
 	position: relative;
 }
+ul li .title_menu{
+	font-style: bold;
+	border-bottom: solid gray 1px;
+	margin-bottom: 2px;
+}
 ul li:hover .dropdown-menu{
 	display:block;
 	position: absolute;
-	background-color: #ebebeb;
 	min-width:80px;
-	z-index: 999;
+	z-index: 100;
 	left:0;
 	text-align: left;
 	padding-left: 5px;
+	border:black solid 2px;
+	-webkit-transition: all 0.3s ease-out;
+              -moz-transition: all 0.3s ease-out;
+              -o-transition: all 0.3s ease-out;
+              transition: all 0.3s ease-out;
 }
+
+
 /*Bagian Footer*/
 footer{
 	display: inline-block;
