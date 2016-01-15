@@ -33,14 +33,14 @@
 
          <div id="head_menu">
           <ul>
-            <li><a href ="#">Fabrics |</a>
+            <li><%= link_to 'Fabrics |', fabrics_path%>
               <div class = "dropdown-menu">
                   <ul>
-                    <li class ="title_menu"><b><a href ="#">All Fabrics</a></b></li>
-                    <li><a href ="#">Cotton</a></li>
-                    <li><a href ="#">Cotton Linen</a></li>
-                    <li><a href ="#">Canvas</a></li>
-                    <li><a href ="#">Panel</a></li> 
+                    <li class ="title_menu"><b><%= link_to 'All Fabrics', fabrics_path%></b></li>
+                    <li><%= link_to 'Cotton', fabrics_path(:type => "Cotton")%></li>
+                    <li><%= link_to 'Cotton Linen', fabrics_path(:type => "Cotton Linen")%></li>
+                    <li><%= link_to 'Canvas', fabrics_path(:type => "Canvas")%></li>
+                    <li><%= link_to 'Panel', fabrics_path(:type => "Panel")%></li> 
                   </ul>
               </div>
             </li>
@@ -50,9 +50,9 @@
                   <ul class = "submenu_container"> 
                     <li class = "title_menu"><b><a href ="#">US Fabric</a></b></li>
                     
-                    <li><a href ="#">Michael Millers</a></li>
-                    <li><a href ="#">Art Gallery</a></li>
-                    <li><a href ="#">Cloud 9</a></li>
+                    <li><%= link_to 'Michael Millers', fabrics_path(:category => "Michael Miller Fabrics")%></li>
+                    <li><%= link_to 'Art Gallery Fabrics', fabrics_path(:category => "Art Gallery Fabrics")%></li>
+                    <li><%= link_to 'Cloud 9', fabrics_path(:category => "Cloud 9")%></li>
                     <li class = "title_menu"><b><a href ="#">Our Private Brand</a></b></li>
                     <li><a href ="#">Shinfi's</a></li>
                   </ul>

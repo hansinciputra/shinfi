@@ -10,25 +10,7 @@
 		</div>
 		<hr>
 		<br>
-	<%= form_for :application,:url =>application_index_path,:html =>{:method =>:get} do |x|%>
-    <!--By pass the collection_select :option with empty {}-->
-    <%= x.collection_select :type , @type,:name,:name,{include_blank: 'Product Type'},{:onchange =>"this.form.submit();"} %>
-    <%end%>
-		<% @image.each do |f|%>
-		<div id = "index_image_display_container">
-			<div id = "index_image_display"><%= image_tag(f.prod_img_url(:standard).to_s)%></div>
-			<div id = "index_product_summary">
-				<b><%= f.name %></b>
-				<ul>
-					<li><%= f.fabrictype%></li>
-					<li><%= number_to_currency(f.sellprice, :unit => "Rp. ")%></li>	
-				</ul>
-			</div>
-		</div>
-		<%end%>
-		<div class = "pagination">
-			<%= will_paginate @image%>
-		</div>
+	
 	</div>
 </div>
 <script type="text/javascript">

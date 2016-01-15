@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get "sign_up" => 'users#new', :as =>"sign_up"
   get "log_out" => 'sessions#destroy', :as =>"log_out"
-  
+  resources :fabrics, :only => [:index]
   resources :application, :only => [:index]
   resources :sessions
   resources :users do

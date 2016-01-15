@@ -1,0 +1,48 @@
+<div id = "Main Container">
+	<div id = "home_container">
+			
+		<div class = "banner">
+		</div>
+		<hr>
+		<br>
+	<% if @image %>	
+	<div id = "product_helper_menu">
+	<%= form_for :fabrics,:url =>fabrics_path,:html =>{:method =>:get} do |x|%>
+    <!--By pass the collection_select :option with empty {}-->
+    <%= x.collection_select :type , @category,:name,:name,{include_blank: 'Product Type'},{:onchange =>"this.form.submit();"} %>
+    <%end%>
+	</div>
+		<div id = "product_display_container">
+			<% @image.each do |f|%>
+			<div id = "index_image_display_container">
+				<div id = "index_image_display"><%= image_tag(f.prod_img_url(:standard).to_s)%></div>
+				<div id = "index_product_summary">
+					<b><%= f.name %></b>
+					<ul>
+						<li><%= f.fabrictype%></li>
+						<li><%= f.category%></li>
+						<li><%= number_to_currency(f.sellprice, :unit => "Rp. ")%></li>	
+					</ul>
+				</div>
+			</div>
+			<%end%>
+				<div class = "pagination">
+					<%= will_paginate @image%>
+				</div>
+		</div>
+		<%else%>
+		<p> Product Not Found </p>
+		<%end%>
+	</div>
+</div>
+<script type="text/javascript">
+//to check owl-carousel properties: http://owlgraphic.com/owlcarousel/
+$(document).ready(function(){
+	$(".owl-carousel").owlCarousel({
+	    autoPlay: 3000, //Set AutoPlay to 3 seconds
+	    singleItem: true,
+	    itemsDesktop: [1199, 3],
+	    itemsDesktopSmall: [979, 3]
+  });
+});
+</script>
