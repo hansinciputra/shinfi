@@ -5,12 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def index
-    if(params[:application] && params[:application][:type])
-      @image = ProductImage.joins(:inventory).select('product_images.prod_img,product_images.id,inventories.name,inventories.category,inventories.fabrictype,inventories.sellprice').where(:inventories=>{:fabrictype => params[:application][:type]}).paginate(:page => params[:page],:per_page => 9)
-    else
-     @image = ProductImage.joins(:inventory).select('product_images.prod_img,product_images.id,inventories.name,inventories.category,inventories.fabrictype,inventories.sellprice').where(:displaypic => 1).paginate(:page => params[:page],:per_page => 9)
-    end
-    @type = TypeInventory.all
+    
   end
   def current_user
   	if session[:user_id]

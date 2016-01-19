@@ -15,7 +15,7 @@
 		<div id = "product_display_container">
 			<% @image.each do |f|%>
 			<div id = "index_image_display_container">
-				<div id = "index_image_display"><%= image_tag(f.prod_img_url(:standard).to_s)%></div>
+				<div id = "index_image_display"><%= link_to image_tag(f.prod_img_url(:standard).to_s), inventory_path(:id => f.inventory_id)%></div>
 				<div id = "index_product_summary">
 					<b><%= f.name %></b>
 					<ul>

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authorize, except: [:login]
   def index
     @user = User.all
   end
