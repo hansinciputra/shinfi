@@ -1,0 +1,46 @@
+<div id = "Main_Container">
+<h1>Belanjaan Kamu~</h1>
+<hr>
+<br>
+<h1 style="text-align:center;">1. Keranjang -> 2. Input Alamat -> 3. Konfirmasi</h1>
+</br>
+<table id = "cart_table">
+	<th>Product</th>
+	<th>Harga</th>
+	<th>Quantity</th>
+	<th>Total</th>
+	<th class= "remove_item">Delete</th>
+
+<% @cart_items.each do |inventory| %>
+	<% #to display the image since << operator in controller does not accept join 
+		prod_img = ProductImage.find_by(:inventory_id => inventory.id)
+	%>
+		<tr>
+			<td>
+				<ul>
+					<li id ="cart_prod_image">
+					<%= link_to(image_tag(prod_img.prod_img_url(:medium_thumb).to_s),prod_img.prod_img.to_s, :class=>"fancybox")%> 
+					</li>
+					<li class ="cart_prod_detail"><b><%= link_to inventory.name, inventory_path(inventory.id)%></b></li>
+					<li class ="cart_prod_detail"><i><%= inventory.category %></i></li>
+					<li class ="cart_prod_detail">Ukuran: <%= inventory.meter %></li>
+					<li class ="cart_prod_detail">Material: <%= inventory.material %></li>
+				</ul>
+			</td>
+			<td>
+				<%= number_to_currency(inventory.sellprice, :unit => "Rp. ") %>
+			</td>
+			<td>
+				<p>Quantity Here!</p>
+			</td>
+			<td>
+				<p>JavaScript Here!</p>
+			</td>
+			<td class= "remove_item">
+				<p><%= link_to('Remove', cart_clear_path(:id => inventory.id)) %></p>
+			</td>
+		</tr>
+<%end%>
+</table>
+<br>
+</div>

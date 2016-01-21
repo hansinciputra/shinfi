@@ -32,7 +32,7 @@
 			<li class = "label_Prod"><b>Category :</b></li> <li class = "answer_Prod"><%= @inventory.category%></li>
 		</ul>
 		<div id = "inventory_cart">
-			Add to Cart!
+			<%= link_to 'Buy' , cart_add_path(:id=>@inventory.id)%>
 		</div>
 	</div>
 		<div id = "comments_box">

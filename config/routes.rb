@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'cart/index'
+
+  get 'cart/add'
+
+  get 'cart/clear'
+
   resources :product_images
 
   resources :categories, :only => [:index,:new,:create,:destroy]
