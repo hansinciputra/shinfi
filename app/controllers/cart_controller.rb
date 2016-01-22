@@ -34,6 +34,9 @@ class CartController < ApplicationController
   	redirect_to :action => :index
   end
 
+  def addquantity
+  end
+
   def clear
   	id = params[:id]
   	session[:cart].delete id

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'cart/index'
-
+  get 'cart/addquantity'
   get 'cart/add'
 
   get 'cart/clear'

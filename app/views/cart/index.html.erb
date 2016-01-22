@@ -23,7 +23,7 @@
 					</li>
 					<li class ="cart_prod_detail"><b><%= link_to inventory.name, inventory_path(inventory.id)%></b></li>
 					<li class ="cart_prod_detail"><i><%= inventory.category %></i></li>
-					<li class ="cart_prod_detail">Ukuran: <%= inventory.meter %></li>
+					<li class ="cart_prod_detail">Ukuran: <%= inventory.meter %> <%=inventory.ukuran%></li>
 					<li class ="cart_prod_detail">Material: <%= inventory.material %></li>
 				</ul>
 			</td>
@@ -31,6 +31,7 @@
 				<%= number_to_currency(inventory.sellprice, :unit => "Rp. ") %>
 			</td>
 			<td>
+				
 				<p>Quantity Here!</p>
 			</td>
 			<td>
