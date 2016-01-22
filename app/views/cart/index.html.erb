@@ -10,7 +10,7 @@
 	<th>Quantity</th>
 	<th>Total</th>
 	<th class= "remove_item">Delete</th>
-
+<%= form_tag(cart_addquantity_path) do %>
 <% @cart_items.each do |inventory| %>
 	<% #to display the image since << operator in controller does not accept join 
 		prod_img = ProductImage.find_by(:inventory_id => inventory.id)
@@ -31,8 +31,10 @@
 				<%= number_to_currency(inventory.sellprice, :unit => "Rp. ") %>
 			</td>
 			<td>
+					<%= hidden_field_tag
+					<div id="cart_quantity"><%= number_field_tag :quantity,params[:quantity]%></div>
+
 				
-				<p>Quantity Here!</p>
 			</td>
 			<td>
 				<p>JavaScript Here!</p>
@@ -43,5 +45,8 @@
 		</tr>
 <%end%>
 </table>
+	<%= submit_tag "Checkout"%>
+	<%end%>
 <br>
+<%= session[:cart].inspect%>
 </div>
