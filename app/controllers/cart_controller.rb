@@ -35,6 +35,16 @@ class CartController < ApplicationController
   end
 
   def addquantity
+  	quantity = params[:quantity]
+  	product_id = params[:product_id]
+  	
+  	session[:cart] = {}
+  	cart = session[:cart]
+
+  	
+  	cart[product_id]=quantity
+
+  	redirect_to :action => :index
   end
 
   def clear

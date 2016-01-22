@@ -31,8 +31,10 @@
 				<%= number_to_currency(inventory.sellprice, :unit => "Rp. ") %>
 			</td>
 			<td>
-					<%= hidden_field_tag
-					<div id="cart_quantity"><%= number_field_tag :quantity,params[:quantity]%></div>
+				<div id="cart_quantity">
+					<%= hidden_field_tag 'product_id[]', inventory.id%>
+					<%= number_field_tag 'quantity[]',params[:quantity]%>
+				</div>
 
 				
 			</td>
@@ -49,4 +51,5 @@
 	<%end%>
 <br>
 <%= session[:cart].inspect%>
+<%= session[:product_id].inspect%>
 </div>
