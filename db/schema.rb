@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111150526) do
+ActiveRecord::Schema.define(version: 20160122025051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 20160111150526) do
     t.string   "material"
     t.string   "link"
     t.string   "fabrictype"
+    t.string   "satuan"
+    t.string   "ukuran"
+    t.string   "berat"
+    t.string   "warna"
   end
 
   create_table "inventory_orders", force: true do |t|

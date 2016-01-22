@@ -14,13 +14,8 @@ ul{
   padding: 0px;
   margin: 0px;
 }
-label{
-  width: 4em;
-  float: left;
-  text-align :right;
-  margin-right: 0.5em;
-  display:block;
-}
+
+
 .label_Prod{
   //border:solid black 5px;
   width: 4em;
@@ -40,6 +35,41 @@ label{
   width: 75px;
   margin-left: 20px;
 }
+
+#inventory_form_container{
+  margin:auto;
+  width:99%;
+  height:200px;
+  padding:10px;
+}
+.measurement input {
+  width:80px;
+  float:left;
+}
+.inventory_value{
+  float:left;
+}
+.inventory_value input{
+  width:30px;
+  margin-right:5px;
+  display:inline-block;
+}
+#inventory_form_container label{
+  width: 5em;
+  float: left;
+  text-align :right;
+  margin-right: 0.5em;
+  display:block;
+}
+#inventory_form_left{
+  width:290px;
+  float:left;
+}
+#inventory_form_right{
+  width:290px;
+  float:left;
+}
+
 #InventoryList{
   //background-color:red;
   margin-left : 20px;

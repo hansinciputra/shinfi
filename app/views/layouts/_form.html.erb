@@ -1,4 +1,7 @@
 <div id = "universal_form">
+	<br>
+	<h2 style="text-align:center;">1.Input Data Inventory -> 2. Upload Gambar -> 3. Finished</h2>
+	<br>
 	<!--multiplat is true for uploading file-->
 <%= form_for @inventory, html: {multipart: true} do |t| %>
 	<% if @inventory.errors.any? %>
@@ -9,34 +12,74 @@
 			<% end %>
 		</ul>
 	<%end%>	
-	<p>	
-		<%= t.label :Name %>
-		<%= t.text_field :name%>
-		<br />
-		<%= t.label :Quantity %>
-		<%= t.text_field :quantity%>
-		<br />
-		<%= t.label :Meter %>
-		<%= t.text_field :meter%>
-		<br />
-		<%= t.label :Weight %>
-		<%= t.text_field :weight%>
-		<br />
-		<%= t.label :SellPrice %>
-		<%= t.text_field :sellprice%>
-		<br />
-		<%= t.label :Material %>
-		<%= t.text_field :material%>
-		<br />
-		<%= t.label :Category %>
-		<%= t.collection_select :category, @categories, :name, :name, :prompt=>true %>
-		<br />
-		<%= t.label :Type %>
-		<%= t.collection_select :fabrictype, @type, :name, :name, :prompt=>true %>
-		<br />
-		<%= t.label :Link %>
-		<%= t.text_field :link , :value => 'http://'%>
-		<br />
+	<div id ="inventory_form_container">
+		
+	<ul id ="inventory_form_left">	
+		<fieldset>
+			<legend>Informasi</legend>
+		<li>
+			<%= t.label :Name %>
+			<%= t.text_field :name%>
+		</li>	
+		<li>
+			<%= t.label :SellPrice %>
+			<%= t.text_field :sellprice%>
+		</li>	
+		<li>
+			<%= t.label :Warna %>
+			<%= t.text_field :warna%>
+		</li>	
+		<li>
+			<%= t.label :Material %>
+			<%= t.text_field :material%>
+		</li>
+		<li>
+			<%= t.label :Category %>
+			<%= t.collection_select :category, @categories, :name, :name, :prompt=>true %>
+		</li>
+		<li>
+			<%= t.label :Type %>
+			<%= t.collection_select :fabrictype, @type, :name, :name, :prompt=>true %>
+		</li>
+		<li>
+			<%= t.label :Link %>
+			<%= t.text_field :link , :value => 'http://'%>
+		</li>
+		</fieldset>
+	</ul>
+		
+	
+	<ul id = "inventory_form_right">
+		<fieldset>
+		<legend>Measurement</legend>
+			<li class = "inventory_value">
+				<%= t.label :Quantity %>
+				<%= t.text_field :quantity%>
+			</li>
+			<li class="measurement">
+				
+				<%= t.text_field :satuan, :placeholder => "Yard,Pcs,Unit"%>
+			</li>
+			<li class = "inventory_value">
+				<%= t.label :Meter %>
+				<%= t.text_field :meter%>
+			</li>
+			<li class="measurement">	
+				
+				<%= t.text_field :ukuran, :placeholder => "Meter,Centimeter"%>
+			</li>
+			<li class = "inventory_value">
+				<%= t.label :Weight %>
+				<%= t.text_field :weight%>
+			</li>
+			<li class="measurement">	
+				
+				<%= t.text_field :berat, :placeholder => "KG, gram"%>
+			</li>
+			</fieldset>
+		</ul>
+		
+		</div>
 		<% if @inventory.id  %><!--kalau new berarti inventory.id belum ada-->
 		<div id = "list_pic">
 	
@@ -67,6 +110,6 @@
 	        </div>
 		<br />		
 		</div>
-	</p>	
+		
 <%end%>
 

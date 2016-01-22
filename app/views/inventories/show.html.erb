@@ -25,9 +25,9 @@
 		<h3>Product Details: <%= link_to "Edit", edit_inventory_path(@inventory) %></h3>
 		<%end%>
 		<ul>
-			<li class = "label_Prod"><b>Sisa Yard :</b></li> <li class = "answer_Prod"><%= @inventory.quantity %> Yard</li>
-			<li class = "label_Prod"><b>Size :</b></li> <li class = "answer_Prod"><%= @inventory.meter%> meter</li>
-			<li class = "label_Prod"><b>Weight :</b></li> <li class = "answer_Prod"><%= @inventory.weight%> gram</li>
+			<li class = "label_Prod"><b>Sisa Quantity :</b></li> <li class = "answer_Prod"><%= @inventory.quantity %> <%=@inventory.satuan%></li>
+			<li class = "label_Prod"><b>Size :</b></li> <li class = "answer_Prod"><%= @inventory.meter%> <%=@inventory.ukuran%></li>
+			<li class = "label_Prod"><b>Weight :</b></li> <li class = "answer_Prod"><%= @inventory.weight%> <%=@inventory.berat%></li>
 			<li class = "label_Prod"><b>Price :</b></li> <li class = "answer_Prod"><%= number_to_currency @inventory.sellprice , :unit => "Rp."%></li>
 			<li class = "label_Prod"><b>Category :</b></li> <li class = "answer_Prod"><%= @inventory.category%></li>
 		</ul>
