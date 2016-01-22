@@ -7,8 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 OrderStatus.delete_all
 OrderStatus.create! id: 1, name: "DownPayment"
-OrderStatus.create! id: 2, name: "DP Confirmed"
-OrderStatus.create! id: 3, name: "Full Payment"
-OrderStatus.create! id: 4, name: "FP Confirmed"
-OrderStatus.create! id: 5, name: "Shipped"
-OrderStatus.create! id: 6, name: "Completed"
+OrderStatus.create! id: 2, name: "Full Payment"
+OrderStatus.create! id: 3, name: "Completed"
