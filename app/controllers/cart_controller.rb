@@ -1,17 +1,7 @@
 class CartController < ApplicationController
   def index
   	if session[:cart]
-  		cart = session[:cart]
-
-  		@cart_items = []
-  		#keys karena cart session menampung 2 data :key => :values
-  		cart.keys.each do |x|
-  			product = Inventory.find(x)
-  			if product
-  				#this is how we populte the cart_item array with each result of the find method
-  				@cart_items << product
-  			end
-  		end
+  		cart = session[:cart]	
   	else
   		@cart = {}
   	end
@@ -35,15 +25,14 @@ class CartController < ApplicationController
   end
 
   def addquantity
-  	quantity = params[:quantity]
-  	product_id = params[:product_id]
-  	
-  	session[:cart] = {}
-  	cart = session[:cart]
+  new_quantity = params[:quantity] 
+  product_id = params[:product_id]
 
-  	
-  	cart[product_id]=quantity
-
+	cart = session[:cart]
+	#index disini sebagai penunjuk urutan array dari new_quantity
+	product_id.each_with_index do |key,index|
+		cart[key] = new_quantity[index]
+	end  
   	redirect_to :action => :index
   end
 

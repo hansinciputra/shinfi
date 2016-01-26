@@ -4,36 +4,38 @@
 <br>
 <h1 style="text-align:center;">1. Keranjang -> 2. Input Alamat -> 3. Konfirmasi</h1>
 </br>
+<%= form_tag(cart_addquantity_path) do %>
 <table id = "cart_table">
 	<th>Product</th>
 	<th>Harga</th>
 	<th>Quantity</th>
 	<th>Total</th>
 	<th class= "remove_item">Delete</th>
-<%= form_tag(cart_addquantity_path) do %>
-<% @cart_items.each do |inventory| %>
-	<% #to display the image since << operator in controller does not accept join 
-		prod_img = ProductImage.find_by(:inventory_id => inventory.id)
+
+	<%
+		session[:cart].each do |id , quantity|
+			product = Inventory.find_by(:id => id)
+			prod_img = ProductImage.find_by(:inventory_id => id)
 	%>
 		<tr>
 			<td>
 				<ul>
 					<li id ="cart_prod_image">
-					<%= link_to(image_tag(prod_img.prod_img_url(:medium_thumb).to_s),prod_img.prod_img.to_s, :class=>"fancybox")%> 
+					<%= link_to(image_tag(prod_img.prod_img_url(:medium_thumb).to_s),prod_img.prod_img.to_s, :class=>"fancybox")%>
 					</li>
-					<li class ="cart_prod_detail"><b><%= link_to inventory.name, inventory_path(inventory.id)%></b></li>
-					<li class ="cart_prod_detail"><i><%= inventory.category %></i></li>
-					<li class ="cart_prod_detail">Ukuran: <%= inventory.meter %> <%=inventory.ukuran%></li>
-					<li class ="cart_prod_detail">Material: <%= inventory.material %></li>
+					<li class ="cart_prod_detail"><b><%= link_to product.name, inventory_path(product.id)%></b></li>
+					<li class ="cart_prod_detail"><i><%= product.category %></i></li>
+					<li class ="cart_prod_detail">Ukuran: <%= product.meter %> <%=product.ukuran%></li>
+					<li class ="cart_prod_detail">Material: <%= product.material %></li>
 				</ul>
 			</td>
 			<td>
-				<%= number_to_currency(inventory.sellprice, :unit => "Rp. ") %>
+				<%= number_to_currency(product.sellprice, :unit => "Rp. ") %>
 			</td>
 			<td>
 				<div id="cart_quantity">
-					<%= hidden_field_tag 'product_id[]', inventory.id%>
-					<%= number_field_tag 'quantity[]',params[:quantity]%>
+					<%= hidden_field_tag 'product_id[]', product.id%>
+					<%= number_field_tag 'quantity[]',params[:quantity], :value => quantity %>
 				</div>
 
 				
@@ -42,7 +44,7 @@
 				<p>JavaScript Here!</p>
 			</td>
 			<td class= "remove_item">
-				<p><%= link_to('Remove', cart_clear_path(:id => inventory.id)) %></p>
+				<p><%= link_to('Remove', cart_clear_path(:id => product.id)) %></p>
 			</td>
 		</tr>
 <%end%>
@@ -52,4 +54,5 @@
 <br>
 <%= session[:cart].inspect%>
 <%= session[:product_id].inspect%>
+<%= @hash_array %>
 </div>
