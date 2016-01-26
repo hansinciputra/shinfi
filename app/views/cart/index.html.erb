@@ -30,7 +30,7 @@
 				</ul>
 			</td>
 			<td>
-				<%= number_to_currency(product.sellprice, :unit => "Rp. ") %>
+				<div id ="p"><%= number_to_currency(product.sellprice, :unit => "Rp. ") %></div>
 			</td>
 			<td>
 				<div id="cart_quantity">
@@ -41,18 +41,20 @@
 				
 			</td>
 			<td>
-				<p>JavaScript Here!</p>
+				<div id = "result_price"><%= number_to_currency(product.sellprice * quantity.to_i, :unit => "Rp. ") %></div>
 			</td>
 			<td class= "remove_item">
 				<p><%= link_to('Remove', cart_clear_path(:id => product.id)) %></p>
 			</td>
 		</tr>
+		
 <%end%>
+		<tr colspan = "5" syle="border:solid 1px black;">
+			<td colspan = "3"><h2>Total Order</h2></td>
+			<td id ="total"><h2><%=number_to_currency(@total.inject(:+), :unit => "Rp. ")%></h2></td>
+		</tr>
 </table>
-	<%= submit_tag "Checkout"%>
+	<%= submit_tag "Update"%>
 	<%end%>
 <br>
-<%= session[:cart].inspect%>
-<%= session[:product_id].inspect%>
-<%= @hash_array %>
 </div>

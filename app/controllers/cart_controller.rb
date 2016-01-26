@@ -1,7 +1,16 @@
 class CartController < ApplicationController
   def index
   	if session[:cart]
-  		cart = session[:cart]	
+  		cart = session[:cart]
+
+  		@total = []	
+  		cart.each do |key , value|
+		sellprice = Inventory.select("id,sellprice").where(:id => key)
+			sellprice.each do |t|
+			sum = value.to_i * t.sellprice
+			@total << sum
+			end
+		end
   	else
   		@cart = {}
   	end
@@ -17,7 +26,8 @@ class CartController < ApplicationController
   		cart = session[:cart]
   	end
   	if cart[product_id]
-  		cart[product_id] = cart[product_id]+1
+  		#this line is really not important, will delete later..
+  		cart[product_id] = cart[product_id]
   	else
   		cart[product_id] = 1
   	end
