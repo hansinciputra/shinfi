@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def index
-    
+   if session[:user_id]
+    data_customer = Customer.where(:user_id => session[:user_id])
+      data_customer.each do |data|
+        session[:customer_id] = data.user_id
+      end
+   end
   end
   def current_user
   	if session[:user_id]

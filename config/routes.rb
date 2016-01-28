@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   get 'cart/index'
-  post 'cart/addquantity'
+  post'cart/addquantity'
   get 'cart/add'
-
+  get 'cart/checkout'
+  get 'cart/checkout_po'
   get 'cart/clear'
 
   resources :product_images

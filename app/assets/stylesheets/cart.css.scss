@@ -27,3 +27,33 @@
 #cart_quantity input{
 	width:50px;
 }
+#checkout_container{
+	width: 70%;
+	border:solid red 1px;
+}
+#helpermenu{
+	width:700px;
+	margin:20px auto 20px auto;
+	height:100px;
+	background-color:#f4f4f4;
+}
+#left{
+	min-width:230px;
+	height:100%;
+	border:solid white 1px;
+	float:left;
+	text-align:center;
+}
+#center{
+	min-width:230px;
+	height:100%;	
+	border:solid white 1px;
+	float:left;
+	text-align:center;
+}
+#right{
+	min-width:232px;
+	height:100%;
+	border:solid white 1px;
+	text-align:center;
+}

@@ -1,12 +1,9 @@
-<div id = "Main_Container">
-<h1>Belanjaan Kamu~</h1>
-<%= render 'helpermenu' %>
-<% if session[:cart]%>
-<hr>
-<br>
-<h1 style="text-align:center;">1. Keranjang -> 2. Input Alamat -> 3. Konfirmasi</h1>
-</br>
-<%= form_tag(cart_addquantity_path) do %>
+<ul>
+	<li>Nama : <%= @customer.name %></li>
+	<li>eMail : <%= @customer.email %></li>
+	<li>Alamat :<%= @customer.address %></li>
+	<li>Phone: <%= @customer.phone %></li>
+</ul>
 <table id = "cart_table">
 	<th>Product</th>
 	<th>Harga</th>
@@ -36,8 +33,7 @@
 			</td>
 			<td>
 				<div id="cart_quantity">
-					<%= hidden_field_tag 'product_id[]', product.id%>
-					<%= number_field_tag 'quantity[]',params[:quantity], :value => quantity %>
+					<%= quantity %>
 				</div>
 
 				
@@ -56,17 +52,20 @@
 			<td id ="total"><h2><%=number_to_currency(@total.inject(:+), :unit => "Rp. ")%></h2></td>
 		</tr>
 </table>
-	<%= submit_tag "Update"%>
-	<%end%>
-	<% if session[:customer_id]%>
-		<%= link_to 'Checkout' , root_path %>
-	<%else%>
-		<%= link_to 'Checkout', login_users_path  %>
-	<%end%>
-<br>
-<%else%>
-<p>Your Cart is Empty</p>
 
-<%end%>
-<%= link_to 'Continue Shopping',root_path%>
-</div>
+
+
+<%= form_for(@order), :url => {:action =>'create'} do |f| %>
+	customer id = <%= @customer.id %>
+	<%= f.hidden_field :customer_id, :value => @customer.id %>
+	<%if %>
+	<%= f.hidden_field :readyorpo, value: 'PO' %>
+	<%end%>
+	<% session[:cart].each do |id , quantity| %>
+		<%= f.fields_for :inventory_orders do |qty| %>
+              <%= qty.hidden_field :inventory_id, value: id %> <!--id of inventory--> 
+              <%= qty.hidden_field :quantity,value: quantity, :step => 'any'%>
+        <%end%>
+	<%end%>
+<%= submit_tag "Order Now!" %>
+<% end %>

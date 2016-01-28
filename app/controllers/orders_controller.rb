@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, except: [:show]
+  before_filter :authorize, except: [:show, :create]
   # GET /orders
   # GET /orders.json
   def index

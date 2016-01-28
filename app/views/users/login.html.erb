@@ -1,9 +1,9 @@
  <div id="Main_Container">
-
+<div id ="login_container">
  <div id="login">
  	<p>Klik "Daftar Baru" untuk membuat account di shinfithecraft!</p>
  <%=form_tag sessions_path do %>
-            <ul>
+            <ul id ="authentification">
               <li>email</li>
               <li><%= text_field_tag "email" ,'',size: 10%> </li>
               <li>password</li>
@@ -12,5 +12,22 @@
               <li id = "signup"> || <%= link_to "Daftar Baru" , sign_up_path%></li>
             </ul>
         <%end%>
+  <br>
+  <ul>
+    <p><b>Keuntungan mendaftar ke Shinfithecraft</b></p>
+    <li>1. Kemudahan dalam transaksi.</li>
+    <li>2. Promo-promo menarik untuk member.</li>
+    <li>3. Discount untuk crafter.</li>
+    <li>4. Terhubung dengan sesama crafter di nusantara.</li>
+  </ul>
+</div>
+  <div id = "guest">
+    <p>Lanjutkan Sebagai Tamu</p>
+    <% if session[:cart] %>
+    <%= link_to 'Lanjut', new_customer_path %>
+    <% else %>
+    <%= link_to 'Lanjut', root_path %>
+    <%end%>
   </div>
+</div>
 </div>

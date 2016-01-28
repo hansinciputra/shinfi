@@ -47,11 +47,34 @@
 	text-align:center;
 }
 
+#banner_index{
+	width:1200px;
+	margin:auto;
+	height: 160px;
+}
 #logo{
 	margin:auto;
 	height:158px;
 	width:600px;
 	padding: 0 0 0 50px;
+	float:left;
+}
+#promo{
+	width:23%;
+	height: 158px;
+	float:left;
+}
+#cart{
+	width:21.5%;
+	height: 158px;
+	float:left;
+	text-align: left;
+	margin-top: 30px;
+}
+#cart_image{
+	width:50px;
+	display: inline;
+	float: left;
 }
 #admin_menu{
 	width: 100px;
@@ -105,16 +128,23 @@
 	background-color: #00ff00;
 	color:#ffffff;
 }
-#login
+#login_container
 {
-	/*border:black solid 1px;*/
-	width: 400px;
-	height:25px;
+	border:black solid 1px;
+	width: 800px;
+	height: 300px;
+	padding:30px;
 	margin:auto;
 	margin-top:10px;
-	min-height: 500px;
 }
-#login ul li
+#login{
+	width: 420px;
+	float:left;
+	border-right:solid black 2px;
+	margin-right: 20px;
+	height:90%;
+}
+#authentification li
 {
 	display:inline;
 	font-size: 10px;
@@ -318,4 +348,17 @@ footer #f_right{
 	height:67px;
 	text-align:center;
 	margin:auto;
+}
+#info_bottom{
+	width:100%;
+	height: 100%;
+	background-color: #f4f4f4;
+	padding:5px;
+	margin-top: 25px;
+
+}
+.info p{
+	font-size: 1em;
+	font-family: 'Amaranth', sans-serif;
+	text-align: justify;
 }
