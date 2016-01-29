@@ -27,10 +27,12 @@ class ProdtypesController < ApplicationController
   end
 
   def destroy
-    @prodtype.destroy
-    respond_to do |format|
-      format.html { redirect_to prodtypes_url, notice: 'Product type was successfully destroyed.' }
-      format.json { head :no_content }
+    @prodtype = Prodtype.find(params[:id])
+    
+    if @prodtype.destroy
+      redirect_to prodtypes_path,:notice => "Product Type Destroyed"
+    else
+      redirect_to prodtypes_path, :notice => "Failed to Destroy Product Type"
     end
   end
 

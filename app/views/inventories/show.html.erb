@@ -33,7 +33,9 @@
 			<li class = "label_Prod"><b>Type :</b></li> <li class = "answer_Prod"><%= @inventory.fabrictype%></li>
 		</ul>
 		<div id = "inventory_cart">
-			<%= link_to 'Buy' , cart_add_path(:id=>@inventory.id)%>
+			<!--store previous page to the session-->
+			<%  session[:return_to] ||= request.referer %>
+			<%= link_to 'Add to Cart' , cart_add_path(:id=>@inventory.id)%>
 		</div>
 	</div>
 		<div id = "comments_box">

@@ -23,7 +23,7 @@ class CartController < ApplicationController
 
   def add
   	product_id ||= params[:id]
-
+   
   	if session[:cart] 
   		cart = session[:cart]
   	else
@@ -36,7 +36,7 @@ class CartController < ApplicationController
   	else
   		cart[product_id] = 1
   	end
-  	redirect_to :action => :index
+  	redirect_to session.delete(:return_to)
   end
 
   def addquantity

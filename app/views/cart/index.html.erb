@@ -46,7 +46,7 @@
 				<div id = "result_price"><%= number_to_currency(product.sellprice * quantity.to_i, :unit => "Rp. ") %></div>
 			</td>
 			<td class= "remove_item">
-				<p><%= link_to('Remove', cart_clear_path(:id => product.id)) %></p>
+				<p><%= link_to(image_tag("trash.png"), cart_clear_path(:id => product.id)) %></p>
 			</td>
 		</tr>
 		

@@ -14,11 +14,24 @@
 	</div>
 		<div id = "product_helper_container">
 			<div id ="category_helper">
-				Category	
+				<p><b><i>Find By Brand</i></b></p>
 				<%= form_for :fabrics,:url =>fabrics_path,:html =>{:method =>:get} do |x|%>
    				 <!--By pass the collection_select :option with empty {}-->
-  				<%= x.collection_select :type , @category,:name,:name,{include_blank: 'Product Type'},{:onchange =>"this.form.submit();"} %>
+   				 <%= x.hidden_field :type , :value => params[:type] %>
+  				<%= x.collection_select :category , @category,:name,:name,{include_blank: 'Product Type'},{:style=>"width:100%;",:onchange =>"this.form.submit();"} %>
     		<%end%>
+			</div>
+			<div id ="color_helper">
+				<p><b><i>Warna Dominan</i></b></p>
+				<%= link_to ' ',fabrics_path(:warna => 'Merah',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:red" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Hijau',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:green" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Biru',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:blue" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Putih',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:white" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Pink',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:pink" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Abu',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:grey" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Coklat',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:chocolate" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Oranye',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:orange" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Hitam',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:black" }%>
 			</div>
 		</div>
 		<div id = "product_display_container">
