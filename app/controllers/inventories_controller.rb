@@ -17,6 +17,7 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new
     @categories = Category.all 
     @type = TypeInventory.all
+    @productype = Prodtype.all
     @product_images = @inventory.product_images.build
   end
 
@@ -34,6 +35,7 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.find(params[:id])
     @categories = Category.all 
     @type = TypeInventory.all
+    @productype = Prodtype.all
     @product_images = @inventory.product_images.build
   end
   
@@ -75,6 +77,6 @@ class InventoriesController < ApplicationController
     end
   end
   def inventory_params
-    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :category,:satuan,:ukuran,:berat,:warna, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic])
+    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :prodtype,:category,:satuan,:ukuran,:berat,:warna, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic])
   end
 end

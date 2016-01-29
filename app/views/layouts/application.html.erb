@@ -12,7 +12,8 @@
               <div class ="dropdown-menu">
                 <ul>
                   <li><%=link_to 'Category', categories_path%></li>
-                  <li><%=link_to 'Type', type_inventories_path%></li>
+                  <li><%=link_to 'Product Type', prodtypes_path%></li>
+                  <li><%=link_to 'Fabric Type', type_inventories_path%></li>     
                 </ul>
               </div>
           </li>
@@ -69,6 +70,7 @@
          <div id="head_menu">
           <ul>
             <li><%= link_to 'Fabrics |', fabrics_path%>
+              <!--Menu harus diupdate secara manual?-->
               <div class = "dropdown-menu">
                   <ul>
                     <li class ="title_menu"><b><%= link_to 'All Fabrics', fabrics_path%></b></li>

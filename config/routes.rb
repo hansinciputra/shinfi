@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :prodtypes
+
   get 'cart/index'
   post'cart/addquantity'
   get 'cart/add'
@@ -7,7 +9,7 @@ Rails.application.routes.draw do
   get 'cart/clear'
 
   resources :product_images
-
+  resources :prodtypes, :only => [:index,:new,:create,:destroy]
   resources :categories, :only => [:index,:new,:create,:destroy]
   resources :type_inventories, :only => [:index,:new,:create,:destroy]
 

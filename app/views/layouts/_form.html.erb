@@ -34,6 +34,10 @@
 			<%= t.text_field :material%>
 		</li>
 		<li>
+			<%= t.label :Prodtype %>
+			<%= t.collection_select :prodtype, @productype, :name, :name, :prompt=>true %>
+		</li>
+		<li>
 			<%= t.label :Category %>
 			<%= t.collection_select :category, @categories, :name, :name, :prompt=>true %>
 		</li>

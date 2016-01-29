@@ -1,0 +1,19 @@
+<div id="Main_Container">
+  <div id = "universal_form">
+<h1 style = "text-align:center">List of Product Types</h1>
+<%= form_for :prodtype, :url => prodtypes_path, :html => {:method => :post} do |f| %>
+  <%= f.label :addmore %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Save' %>
+<%end%>
+
+<% @prodtypes.each_with_index do |t,i| %>
+  <ul>
+    <li><%= i + 1 %>.
+      <%= t.name %>
+      <%= link_to "Delete", t , method: :delete, data: { confirm: 'Are you sure?' }%></li>
+    </li>
+  </ul>
+<%end%>
+  </div>
+</div>

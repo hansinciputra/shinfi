@@ -1,0 +1,2 @@
+module ProdtypesHelper
+end
