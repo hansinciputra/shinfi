@@ -1,0 +1,37 @@
+<fieldset>
+<h3 style = "display:inline;">Upload More Picture</h3>    
+
+
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress progress-striped"><div id="progress-bar" style="width: 0%"></div></div>
+</div>
+</script>
+
+<fieldset>
+   <!--the UI javascript code for displaying upload image progress-->
+  <hr>
+  <%= form_for @mainposter do |each| %>                 
+   <!--Where we upload multiple picture using carrierwave-->
+   <div id = "picture"><%= each.file_field :mainposter, multiple: true, name: "main_poster[mainposter]" %>
+      <%= each.hidden_field :type, value: "MainPoster" %>
+  </div>
+
+<div class="progress progress-striped" style = "width:300px;border:black solid 1px;margin-left:5px;"><div class="progress-bar" style="width: 0%; height: 20px;border:black solid 1px;background-color:green;"></div></div>
+  <hr>
+<%end %>
+<br>
+      <div id ="list_pic_container_poster">
+         <% @listposter.each do |f|%>
+            <% if f.id != nil %>
+            <div id ="list_pic">
+              <%= image_tag(f.mainposter_url(:standard).to_s)%>
+              <%=link_to 'x', f, method: :delete %>
+              <td>
+            <%end%>
+           </div>
+         <%end %>
+      </div>  
+<br>
+

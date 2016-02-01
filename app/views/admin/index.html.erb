@@ -1,0 +1,21 @@
+        
+        <ul>
+          <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
+          <li><%= link_to 'Home ' , root_path %></li>
+          <li><%= link_to 'Main Poster', new_main_poster_path %></li>
+          <li><%= link_to 'Sub Poster', new_sub_poster_path %></li>
+          <li><%= link_to 'Banner', new_banner_path %></li>
+          <li><%= link_to 'Orders', orders_path %></li>
+          <li><%= link_to 'Orders - PO', order_pos_path %></li>
+          <li><%= link_to 'Inventories', inventories_path %>
+              <div class ="dropdown-menu">
+                <ul>
+                  <li><%=link_to 'Category', categories_path%></li>
+                  <li><%=link_to 'Product Type', prodtypes_path%></li>
+                  <li><%=link_to 'Fabric Type', type_inventories_path%></li>     
+                </ul>
+              </div>
+          </li>
+          <li><%= link_to 'Customers', customers_path %></li> 
+          <li><%= link_to 'Users', users_path %></li>
+        </ul>

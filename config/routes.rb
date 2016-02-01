@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'cart/clear'
 
   resources :product_images
+  resources :admin, :only => [:index]
+  resources :main_posters
+  resources :banners
+  resources :sub_posters
   resources :prodtypes, :only => [:index,:new,:create,:destroy]
   resources :categories, :only => [:index,:new,:create,:destroy]
   resources :type_inventories, :only => [:index,:new,:create,:destroy]

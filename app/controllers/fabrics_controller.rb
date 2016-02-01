@@ -1,5 +1,6 @@
 class FabricsController < ApplicationController
 	def index
+        @banner = Poster.where(:type => "Banner")
 	if(params[:type] && params[:warna])
         @image = ProductImage.joins(:inventory).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.category,inventories.fabrictype,inventories.quantity,inventories.sellprice').where(:inventories=>{:warna => params[:warna]}).where(:inventories=>{:fabrictype => params[:type]}).where("inventories.prodtype = 'Fabric'").where("inventories.quantity > ?", 0).paginate(:page => params[:page],:per_page => 24)
     elsif(params[:type])

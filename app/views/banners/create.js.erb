@@ -1,0 +1,5 @@
+<% if @banner.new_record? %>
+	alert("Failed");
+<%else%>
+	$("#list_pic_container").append("<img src = <%= @banner.banner_url.to_s %>/>");
+<%end%>

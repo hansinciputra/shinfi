@@ -1,12 +1,25 @@
 <div id = "Main Container">
 	<div id = "home_container">
-			
+		<div class = "main_poster">	
 			<div class="owl-carousel col-lg-12">
-  				<div class="item"><%= image_tag("LOGO.png") %></img></div>
- 				 <div class="item"><%= image_tag("LOGO.png") %></img></div>
- 				 <div class="item"><%= image_tag("LOGO.png") %></img></div>
+				<%if @mainposter %>
+					<% @mainposter.each do |img|%>
+	  					<div class="item"><%=image_tag(img.mainposter_url(:display).to_s) %>	</div>
+	 				 <%end%>
+ 				 <%end%>
  			</div>
-		<div class = "banner">
+ 		</div>
+ 		<div id = "second_poster">
+			<div class = "fabric_poster">
+				<%if @subposter1 %>
+					<% @subposter1.each do |img|%>
+						<%=image_tag(img.subposter_url(:display).to_s)%>
+					<%end%>
+				<%end%>
+			</div>
+			<div class = "openpo_poster">
+
+			</div>
 		</div>
 		<hr>
 		<br>

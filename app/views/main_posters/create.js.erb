@@ -1,0 +1,5 @@
+<% if @mainposter.new_record? %>
+	alert("Failed");
+<%else%>
+	$("#list_pic_container").append("<img src = <%= @mainposter.mainposter_url.to_s %>/>");
+<%end%>

@@ -405,3 +405,31 @@ footer #f_right{
 	font-family: 'Amaranth', sans-serif;
 	text-align: justify;
 }
+
+.main_poster{
+	width:1200px;
+	height: 500px;
+	border:red solid 1px;
+	margin:auto;
+	display: block;
+}
+#second_poster{
+	width:1200px;
+	height: 500px;
+	border:black solid 1px;
+	margin:auto;
+}
+.fabric_poster{
+	width:500px;
+	height: 250px;
+	border:black solid 1px;
+	float: left;
+	margin:10px;
+}
+.openpo_poster{
+	width:500px;
+	height: 250px;
+	border:black solid 1px;
+	float: left;
+	margin:10px;
+}

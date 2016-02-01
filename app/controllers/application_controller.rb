@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def index
+    @mainposter = Poster.where(:type => "MainPoster")
+    @subposter1 = Poster.where(:type => "SubPoster")
    if session[:user_id]
     data_customer = Customer.where(:user_id => session[:user_id])
       data_customer.each do |data|

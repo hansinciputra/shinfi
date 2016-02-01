@@ -2,6 +2,9 @@
 	<div id = "home_container">
 			
 		<div class = "banner">
+			<% @banner.each do |img|%>
+				<%=image_tag(img.banner_url(:display).to_s) %>
+			<%end%>
 		</div>
 		<hr>
 		<br>
