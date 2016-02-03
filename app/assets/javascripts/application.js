@@ -19,6 +19,7 @@
 //= require owl.carousel
 //= require fancybox 
 //= require turbolinks
+//= require jquery-te-1.4.0.min.js
 //= require_tree .
 
 image_fancy = function(){

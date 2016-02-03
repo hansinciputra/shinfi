@@ -28,8 +28,9 @@
 			<li class = "label_Prod"><b>Sisa Quantity :</b></li> <li class = "answer_Prod"><%= @inventory.quantity %> <%=@inventory.satuan%></li>
 			<li class = "label_Prod"><b>Wide :</b></li> <li class = "answer_Prod"><%= @inventory.meter%> <%=@inventory.ukuran%></li>
 			<li class = "label_Prod"><b>Weight :</b></li> <li class = "answer_Prod"><%= @inventory.weight%> <%=@inventory.berat%></li>
-			<li class = "label_Prod"><b>Price :</b></li> <li class = "answer_Prod"><%= number_to_currency @inventory.sellprice , :unit => "Rp."%></li>
+			<li class = "label_Prod"><b>Price :</b></li> <li class = "answer_Prod"><%= number_to_currency @inventory.sellprice , :unit => "Rp."%> per <%= @inventory.satuan%></li>
 			<li class = "label_Prod"><b>Category :</b></li> <li class = "answer_Prod"><%= @inventory.category%></li>
+			<li class = "label_Prod"><b>Komposisi :</b></li> <li class = "answer_Prod"><%= @inventory.material%></li>
 			<li class = "label_Prod"><b>Type :</b></li> <li class = "answer_Prod"><%= @inventory.fabrictype%></li>
 		</ul>
 		<div id = "inventory_cart">

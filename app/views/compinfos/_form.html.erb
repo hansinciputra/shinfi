@@ -1,0 +1,42 @@
+<div id = "compinfo">
+<%= form_for(@compinfo) do |f| %>
+  <% if @compinfo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@compinfo.errors.count, "error") %> prohibited this compinfo from being saved:</h2>
+
+      <ul>
+      <% @compinfo.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Type' %><br>
+    <%= f.select :infotype, options_for_select(["FAQ","Tentang Kami","Milestone","Join Us","Contact Info","Tata Cara Pembelian", "Return Policy","Syarat Penggunaan","Ketentuan Privasi"])%>
+  </div>
+
+  <div class="field" id ="content_title">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content , :size => "100x30", :class=>'textarea_box' %>
+  </div>
+  
+  <div class="field">
+    <%= f.hidden_field :creator, :value => session[:user_id] %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Submit'%>
+    <%= link_to '| Back', compinfos_path %>
+  </div>
+<% end %>
+</div>
+
+<script>
+  $(".textarea_box").jqte();
+</script>
+

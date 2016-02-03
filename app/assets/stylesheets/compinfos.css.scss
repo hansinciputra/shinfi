@@ -1,0 +1,32 @@
+// Place all the styles related to the compinfos controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#content_title input{
+	width: 720px;
+	height:30px;
+	font-size:20px;
+}
+#compinfo{
+	border:black solid 1px;
+	width: 750px;
+	min-height:1200px;
+	padding:15px;
+	margin:10px;
+	float:left;
+}
+#show_info{
+	border:black solid 1px;
+	width: 550px;
+	float:left;
+	margin: 10px;
+	padding:15px;
+}
+#display_info{
+	border:black solid 1px;
+	height:800px;
+	width: 900px;
+	overflow-y:scroll;
+	padding:25px;
+	margin:10px;
+}

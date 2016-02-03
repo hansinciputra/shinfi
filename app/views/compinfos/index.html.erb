@@ -1,0 +1,34 @@
+<div id = "Main_Container">
+<h1>Listing company information</h1>
+
+
+<div id = "admin_menu"><%= link_to 'New Info Page', new_compinfo_path %></div>
+<br>
+<table class="report_table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Type</th>
+      <th>Creator</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @compinfos.each do |compinfo| %>
+      <tr>
+        <td><%= compinfo.title %></td>
+        <td><%= truncate(compinfo.content.html_safe,:length => 500) %></td>
+        <td><%= compinfo.infotype %></td>
+        <td><%= compinfo.creator %></td>
+        <td><%= link_to 'Edit', edit_compinfo_path(compinfo) %></td>
+        <td><%= link_to 'Destroy', compinfo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>

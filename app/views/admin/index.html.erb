@@ -1,4 +1,4 @@
-        
+      <div id = "Main_container">  
         <ul>
           <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
           <li><%= link_to 'Home ' , root_path %></li>
@@ -16,6 +16,10 @@
                 </ul>
               </div>
           </li>
+          <li><%= link_to 'Company Information', compinfos_path %>
+
+          </li> 
           <li><%= link_to 'Customers', customers_path %></li> 
           <li><%= link_to 'Users', users_path %></li>
         </ul>
+    </div>

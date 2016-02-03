@@ -1,0 +1,15 @@
+<div id = "Main_Container">
+<div id = "display_info">
+	<% @compinfo.each do |x|%>
+<ul>
+  <br>
+  <li><h1 style="text-align:center;margin-bottom:30px;"><u><%= x.title %></u></h1></li>
+  <br>
+  <!--html_safe is a method that render any html from database from string to be able to be understood by the page-->
+  <li><%= x.content.html_safe %></li>
+  <br>  
+</ul>
+<%end%>
+</div>
+<%= link_to 'Back', compinfos_path %>
+</div>

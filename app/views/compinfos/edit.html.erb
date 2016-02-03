@@ -1,0 +1,20 @@
+<h1>Editing compinfo</h1>
+
+<%= render 'form' %>
+<div id = "show_info">
+<ul>
+  <li><strong>Type:</strong></li>
+  <li><%= @compinfo.infotype %></li>
+  <br>
+  <li><strong>Title:</strong></li>
+  <li><%= @compinfo.title %></li>
+  <br>
+  <li><strong>Content:</strong></li>
+  <!--html_safe is a method that render any html from database from string to be able to be understood by the page-->
+  <li><%= @compinfo.content.html_safe %></li>
+  <br>  
+  <li><strong>Creator:</strong></li>
+  <li><%= @user.name %></li>
+</ul>
+</div>
+
