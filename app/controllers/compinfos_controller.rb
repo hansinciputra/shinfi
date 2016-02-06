@@ -1,4 +1,5 @@
 class CompinfosController < ApplicationController
+  before_filter :authorize
   before_action :set_compinfo, only: [:edit, :update, :destroy]
 
   # GET /compinfos

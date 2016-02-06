@@ -1,0 +1,21 @@
+// Place all the styles related to the cart controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#admin_container{
+	width:80%;
+	height:500px;
+	border:black solid 1px;
+	margin: 20px auto 20px auto;
+	padding: 10px;
+}
+#admin_container ul{
+	list-style-type: square;
+	display: block;
+	position:absolute;
+	margin: 30px;
+}
+.notif{
+	color:red;
+	display:inline-block;
+}

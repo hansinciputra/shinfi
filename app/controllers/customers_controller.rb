@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:edit, :update, :destroy]
   before_filter :authorize, only: [:show, :edit, :update, :destroy]
   # GET /customers
   # GET /customers.json
@@ -14,6 +14,7 @@ class CustomersController < ApplicationController
     data_customer = Customer.where(:user_id => session[:user_id])
       data_customer.each do |data|
         session[:customer_id] = data.user_id
+        @customer = Customer.where(:user_id => session[:user_id])
       end
   end
 
@@ -31,7 +32,7 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if session[:user_id]
-    @user = User.find(session[:user_id])
+      @user = User.find(session[:user_id])
     end
     respond_to do |format|
       if @customer.save

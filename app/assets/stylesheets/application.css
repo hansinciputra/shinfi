@@ -349,13 +349,12 @@ footer #f_right{
 #category_helper{
 	width:100%;
 	height: 100px;
-	overflow: scroll;
 	border-bottom: gray solid 1px;
 }
 #color_helper{
 	width:100%;
 	height: 300px;
-	overflow: scroll;
+	overflow-y: auto;
 	border-bottom: gray solid 1px;
 }
 .warna_product{
@@ -433,4 +432,10 @@ footer #f_right{
 	border:black solid 1px;
 	float: left;
 	margin:10px;
+}
+.submit_button{
+	width: 250px;
+	height:40px;
+	margin-top:30px;
+	font-size:1.5em;
 }

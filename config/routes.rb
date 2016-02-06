@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :product_images
   resources :admin, :only => [:index]
+  resources :report, :only => [:index]
   resources :main_posters
   resources :banners
   resources :sub_posters

@@ -2,6 +2,7 @@
 	<%= render 'helpermenu' %>
 	<br>
 	<div id = "checkout_container">
+		<h2 style = "text-align:center;"><u>Ringkasan Order</u></h2>
 <ul>
 	<li><b>Nama : </b></li>
 	<li><%= @customer.name %></li>
@@ -16,7 +17,6 @@
 	<th>Harga</th>
 	<th>Quantity</th>
 	<th>Total</th>
-	<th class= "remove_item">Delete</th>
 
 	<%
 		session[:cart].each do |id , quantity|
@@ -48,9 +48,6 @@
 			<td>
 				<div id = "result_price"><%= number_to_currency(product.sellprice * quantity.to_i, :unit => "Rp. ") %></div>
 			</td>
-			<td class= "remove_item">
-				<p><%= link_to('Remove', cart_clear_path(:id => product.id)) %></p>
-			</td>
 		</tr>
 		
 <%end%>
@@ -64,6 +61,7 @@
 
 <%= form_for(@order) do |f| %>
 	<%= f.hidden_field :customer_id, :value => @customer.id %>
+	<%= f.hidden_field :order_status_id, :value => 1%>
 	<%if %>
 	<%= f.hidden_field :readyorpo, value: 'STOCKED' %>
 	<%end%>
@@ -73,7 +71,7 @@
               <%= qty.hidden_field :quantity,value: quantity, :step => 'any'%>
         <%end%>
 	<%end%>
-<%= submit_tag "Order Now!" %>
+		<%= submit_tag "Complete Checkout!", :class => "submit_button" %>
 <% end %>
 	</div>
 	<div class = "info" id = "info_bottom"%>

@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
         @order.inventory_orders.each do |x|
           x.reduce_from_inventories(x.quantity)
         end      
+        session[:cart] = nil
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -123,7 +124,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:ongkir,:discount,:readyorpo,:url_id ,:delvmethod, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
+      params.require(:order).permit(:ongkir,:discount,:order_status_id,:readyorpo,:url_id ,:delvmethod, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
       #specify [:id,:inventory_id, :quantity], otherwhise record when edit each record will be created again
     end
 end

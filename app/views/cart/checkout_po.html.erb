@@ -58,6 +58,7 @@
 <%= form_for(@order), :url => {:action =>'create'} do |f| %>
 	customer id = <%= @customer.id %>
 	<%= f.hidden_field :customer_id, :value => @customer.id %>
+	<%= f.hidden_field :order_status_id, :value => 1%>
 	<%if %>
 	<%= f.hidden_field :readyorpo, value: 'PO' %>
 	<%end%>

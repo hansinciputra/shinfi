@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   	user = User.check_login(params[:email],params[:password])
   	if user
   		session[:user_id] = user.id
+      session[:role] = user.role
   		redirect_to root_path, :notice =>"loged in!"
   	else
   		redirect_to root_path, :notice =>"Invalid Email or Password"
@@ -13,6 +14,7 @@ class SessionsController < ApplicationController
 
   def destroy
   	session[:user_id] = nil
+    session[:role] = nil
     session[:cart] = nil
     session[:customer_id] = nil
   	redirect_to root_path, :notice => "Logged Out!"

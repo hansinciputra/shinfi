@@ -7,16 +7,17 @@ class ApplicationController < ActionController::Base
   def index
     @mainposter = Poster.where(:type => "MainPoster")
     @subposter1 = Poster.where(:type => "SubPoster")
-   if session[:user_id]
-    data_customer = Customer.where(:user_id => session[:user_id])
-      data_customer.each do |data|
-        session[:customer_id] = data.user_id
-      end
-   end
+   #if session[:user_id]
+    #data_customer = Customer.where(:user_id => session[:user_id])
+     # data_customer.each do |data|
+      #  session[:customer_id] = data.user_id
+      #end
+   #end
   end
   def current_user
   	if session[:user_id]
-  		@current_user = User.find(session[:user_id])
+      #need to use find_by since we are using uuid
+  		@current_user = User.find_by(:id => session[:user_id])
   	end
   end
   def authorize
@@ -27,5 +28,14 @@ class ApplicationController < ActionController::Base
   	else
   		return true
   	end
+  end
+  def authorize_admin
+    unless session[:role] == 'Admin'
+      flash[:notice] = "Access Denied, Login first"
+      redirect_to root_path
+      return false
+    else
+      return true
+    end
   end
 end

@@ -45,6 +45,7 @@ class CartController < ApplicationController
 
 	cart = session[:cart]
 	#index disini sebagai penunjuk urutan array dari new_quantity
+  #key adalah id, index adalah 0,1,2,3,4
 	product_id.each_with_index do |key,index|
 		cart[key] = new_quantity[index]
 	end  
@@ -57,7 +58,7 @@ class CartController < ApplicationController
 
   		@total = []	
   		cart.each do |key , value|
-		sellprice = Inventory.select("id,sellprice").where(:id => key)
+		    sellprice = Inventory.select("id,sellprice").where(:id => key)
 			sellprice.each do |t|
 			sum = value.to_i * t.sellprice
 			@total << sum
@@ -66,8 +67,23 @@ class CartController < ApplicationController
   	else
   		@cart = {}
   	end
-  	@customer_id = params[:customer_id]
-  	@customer = Customer.find(params[:customer_id])
+    #jika checkout saat login dan sudah ada data customer
+    if session[:customer_id] == nil
+        data_customer = Customer.where(:user_id => session[:user_id])
+        data_customer.each do |data|
+          session[:customer_id] = data.user_id  
+        end
+      @customer_id = session[:customer_id]
+      @customer = Customer.where(:user_id => session[:customer_id])
+    else
+      @customer_id = session[:customer_id]
+      @customer = Customer.where(:user_id => session[:customer_id])
+    end
+    #jika checkout setelah membuat customer baru
+    if params[:customer_id]
+    	@customer_id = params[:customer_id]
+    	@customer = Customer.find(params[:customer_id])
+    end
   	@order = Order.new
   	@inventory_order = @order.inventory_orders.build
   end

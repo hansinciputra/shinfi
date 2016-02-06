@@ -5,18 +5,18 @@
 	<div id = "site_map">
 		<b>Kenal lebih dekat</b>
 		<ul class = "subcontent">
-			<li><a href ="#">Tentang Kami</a></li>
-			<li><a href ="#">Milestone</a></li>
-			<li><a href ="#">Join Us</a></li>
+			<li><%= link_to 'Tentang Kami', compinfo_path('Tentang Kami')%></li>
+			<li><%= link_to 'Milestone', compinfo_path('Milestone')%></li>
+			<li><%= link_to 'Join Us', compinfo_path('Join Us')%></li>
 		</ul>
 		<br>
 		<b>Pelayanan Pelanggan</b>
 		<ul class = "subcontent">
 			<li><%= link_to 'FAQ', compinfo_path('FAQ')%></li>
 			<li><%= link_to 'Contact Info', compinfo_path('Contact Info')%></li>
-			<li><a href ="#">Tata Cara Pembelian</a></li>
-			<li><a href ="#">Pengiriman</a></li>
-			<li><a href ="#">Tata Cara Pengembalian Barang</a></li>
+			<li><%= link_to 'Tata Cara Pembelian', compinfo_path('Tata Cara Pembelian')%></li>
+			<li><%= link_to 'Pengiriman', compinfo_path('Pengiriman')%></li>
+			<li><%= link_to 'Tata Cara Pengembalian', compinfo_path('Tata Cara Pengembalian')%></li>
 		</ul>
 	</div>
 </div>
@@ -25,7 +25,7 @@
 		<b>Eksplorasi</b>
 		<ul class = "subcontent">
 			<li><a href ="#">Brands</a></li>
-			<li><a href ="#">Fabrics</a></li>
+			<li><%= link_to 'Fabrics', fabrics_path%></li>
 			<li><a href ="#">Accessories</a></li>
 			<li><a href ="#">HandyCraft</a></li>
 		</ul>

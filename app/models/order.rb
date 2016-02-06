@@ -11,4 +11,15 @@ class Order < ActiveRecord::Base
 		self.url_id = "#{id}s#{SecureRandom.hex(3)}" 
 		save
 	end
+	def self.number_of_new_order(status)
+		Order.where(:readyorpo => "#{status}").where(:order_status_id => 1)
+	end
+	def self.top_customers(status)
+		Customer.joins(:orders).joins(:inventory_orders).joins(:inventories).select('orders.id,orders.payment,customers.name,,inventories.nameinventory_orders.quantity')
+		
+		Order.find_by_sql
+		('
+			SELECT customers.name,orders.id, SUM(orders.payment) FROM orders LEFT JOIN customers on orders.customer_id = customers.id GROUP BY customers
+		')
+	end
 end
