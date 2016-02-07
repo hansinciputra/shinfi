@@ -49,7 +49,7 @@
 }
 
 #banner_index{
-	width:1200px;
+	width:1300px;
 	margin:auto;
 	height: 160px;
 }
@@ -84,6 +84,7 @@
 }
 #head_menu{
 	width: 100%;
+	min-width: 1300px;
 	text-align: center;
 	border: black solid 2px;
 	margin: 40px auto 0 auto;
@@ -223,6 +224,7 @@ ul li:hover .dropdown-menu{
 footer{
 	display: inline-block;
 	width: 100%;
+	min-width: 1300px;
 	font-family: 'Amaranth', sans-serif;
 	border:solid black 1px;
 	height:150%;
