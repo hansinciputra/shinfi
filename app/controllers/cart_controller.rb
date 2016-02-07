@@ -1,9 +1,10 @@
 class CartController < ApplicationController
   def index
-  	#to prevent user from inserting another new customer on head menu
-  	data_customer = Customer.where(:user_id => session[:user_id])
-      data_customer.each do |data|
-        session[:customer_id] = data.user_id
+    #to check whether user has input personal detail
+  	@data_user = User.find_by(:id => session[:user_id])
+    if @data_user
+      #we store session phone so we can be sure that user has already insert the data, we check it on cart index page
+      session[:phone] = @data_user.phone
     end
   	if session[:cart]
   		cart = session[:cart]
@@ -52,7 +53,27 @@ class CartController < ApplicationController
   	redirect_to :action => :index
   end
 
-  def checkout
+  def checkout_member
+    if session[:cart]
+      cart = session[:cart]
+
+      @total = [] 
+      cart.each do |key , value|
+        sellprice = Inventory.select("id,sellprice").where(:id => key)
+      sellprice.each do |t|
+       sum = value.to_i * t.sellprice
+       @total << sum
+      end
+    end
+    else
+      @cart = {}
+    end
+    @user = User.find_by(:id => session[:user_id])
+    @order = Order.new
+    @inventory_order = @order.inventory_orders.build
+  end
+
+  def checkout_visitor
   	if session[:cart]
   		cart = session[:cart]
 
@@ -60,30 +81,15 @@ class CartController < ApplicationController
   		cart.each do |key , value|
 		    sellprice = Inventory.select("id,sellprice").where(:id => key)
 			sellprice.each do |t|
-			sum = value.to_i * t.sellprice
-			@total << sum
+			 sum = value.to_i * t.sellprice
+			 @total << sum
 			end
 		end
   	else
   		@cart = {}
   	end
-    #jika checkout saat login dan sudah ada data customer
-    if session[:customer_id] == nil
-        data_customer = Customer.where(:user_id => session[:user_id])
-        data_customer.each do |data|
-          session[:customer_id] = data.user_id  
-        end
-      @customer_id = session[:customer_id]
-      @customer = Customer.where(:user_id => session[:customer_id])
-    else
-      @customer_id = session[:customer_id]
-      @customer = Customer.where(:user_id => session[:customer_id])
-    end
-    #jika checkout setelah membuat customer baru
-    if params[:customer_id]
-    	@customer_id = params[:customer_id]
-    	@customer = Customer.find(params[:customer_id])
-    end
+    #checkout dengan data visitor tanpa signup menjadi member
+    @customer = Customer.find_by(:id => params[:customer_id])
   	@order = Order.new
   	@inventory_order = @order.inventory_orders.build
   end

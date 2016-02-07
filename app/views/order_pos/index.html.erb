@@ -38,7 +38,7 @@
         <td>2</td>
         <td>3</td>
       </tr>
-      <% @orders_index.each_with_index do |order, i| %>
+      <% @orders_index_user.each_with_index do |order, i| %>
         <tr>
           <td><%= i+1 %>.</td>
           <td class = "content"><%= order.id %></td>
@@ -58,6 +58,25 @@
           <td><%= link_to 'Destroy', order_po_path(order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
+      <% @orders_index_customer.each_with_index do |order, i| %>
+        <tr>
+          <td><%= i+1 %>.</td>
+          <td class = "content"><%= order.id %></td>
+          <td class = "content"><%= order.name%></td>
+          <td><%= number_to_currency(order.total_price , :unit => "Rp. ") %></td>
+          <td style = "color:#eb111f"><%= number_to_currency(order.outstanding , :unit => "Rp. ")%></td>
+          <%= form_for :order, :url => update_multiple_payment_orders_path, :html => { :method => :put } do |f| %>
+          <td><%= f.collection_select :order_status_id , @orderstatus, :id,:name ,{:selected=> order.status}%></td>
+          <td>
+              <%= f.hidden_field :id , value: order.id %>
+              <%= f.number_field :payment, value: order.payment %>      
+          </td>
+          <td><%= f.submit("Submit Payment") %></td>
+          <% end %>
+          <td><%= link_to 'Show', order %></td>
+          <td><%= link_to 'Edit', edit_order_path(order) %></td>
+          <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>  
     </tbody>
   </table>
   <hr/>

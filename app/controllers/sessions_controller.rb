@@ -17,6 +17,8 @@ class SessionsController < ApplicationController
     session[:role] = nil
     session[:cart] = nil
     session[:customer_id] = nil
+    #we store session phone to for condition purpose
+    session[:phone] = nil
   	redirect_to root_path, :notice => "Logged Out!"
   end
 end

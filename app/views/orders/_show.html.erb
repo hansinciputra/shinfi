@@ -16,6 +16,7 @@
 			</ul>
 		</div>
 		<div>
+			<% if @order.customer_id != nil  %>
 			<table id = "customer_detail">
 					<tr>
 						<td colspan = 2> <h4 id= "small_title">Customer Detail</h4></td>
@@ -33,6 +34,25 @@
 						<td class = "right_q"><%= @order.customer.address %></td>
 					</tr>
 			</table>
+			<% else %>
+			<table id = "customer_detail">
+					<tr>
+						<td colspan = 2> <h4 id= "small_title">Customer Detail</h4></td>
+					</tr>
+					<tr>
+						<td class = "left_q">Nama</td>
+						<td class = "right_q"><%= @user.name %></td>
+					</tr>
+					<tr>
+						<td class = "left_q">Nomor Tlp.</td>
+						<td class = "right_q"><%= @user.phone %></td>
+					</tr>
+					<tr>
+						<td class = "left_q">Alamat Pengiriman</td>
+						<td class = "right_q"><%= @user.address %></td>
+					</tr>
+			</table>
+			<%end%>
 		<table id = "payment_status">
 			<tr>
 				<td colspan = "6">STATUS ORDER IMAGE</td>

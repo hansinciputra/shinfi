@@ -1,0 +1,57 @@
+<div id = "Main_Container">
+  <h3 style = "text-align:center;">Customer Information</h3>
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customer.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="customer_form_container">
+    <ul>
+          <li><%= f.label "Nama*" %></li>
+          <li><%= f.text_field :name %></li>
+          <div class = "two_column">
+            <div class = "column1">
+            <li><%= f.label "Phone Number*" %></li>         
+            <li><%= f.text_field :phone%></li>
+          </div>
+          <div class = "column1">
+            <li ><%= f.label "Alternate Phone Number" %></li>
+            <li><%= f.text_field :phone2%></li>
+          </div>
+          </div>
+          <li><%= f.label "Alamat Pengiriman*" %></li>
+          <li><%= f.text_area :address, size: "42x5" %></li>
+          <li><%= f.label "Kota" %></li>
+          <li><%= f.text_field :kota, size:"44.8x5" %></li>
+          <div class = "two_column">
+            <div class = "column1">
+              <li><%= f.label "Provinsi" %></li>
+              <li><%= f.text_field :provinsi %></li>
+           </div>
+           <div class = "column1">
+            <li><%= f.label "Kode Pos" %></li>
+            <li><%= f.text_field :kodepos %></li>
+           </div>
+          </div>
+          <li><%= f.label "Email*" %></li>
+          <li><%= f.text_field :email %></li>
+          <% if session[:user_id] == nil %>
+            <%= f.hidden_field :signas, :value => 'Guest' %>
+          <% else %>
+            <%= f.hidden_field :user_id, :value => session[:user_id] %>
+          <%end%>
+    </ul>
+    <br>
+    <%= f.submit "Submit"%>
+    <%= link_to '|| Back', root_path %>
+  </div>
+<% end %>
+</div>

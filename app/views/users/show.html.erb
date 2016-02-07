@@ -1,1 +1,12 @@
-change my password!
+<div id = "customer_container">
+	<div id ="prof_pic">
+	</div>
+	<div id = "customer_info">
+		<h1><%= @user.name%></h1>
+	</div>
+<div id = "list_o">
+
+</div>
+<%= link_to 'Edit', user_detail_user_path(:id => session[:user_id]) %> |
+<%= link_to 'Back', customers_path %>
+	</div>

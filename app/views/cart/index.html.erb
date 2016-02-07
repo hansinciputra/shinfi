@@ -47,7 +47,7 @@
 			<td>
 				<div id="cart_quantity">
 					<%= hidden_field_tag 'product_id[]', product.id%>
-					<%= number_field_tag 'quantity[]',params[:quantity],:class => 'limit_quantity_input', min: 0,max: product.quantity, :value => quantity %><%= product.satuan%>
+					<%= number_field_tag 'quantity[]',params[:quantity],:class => 'limit_quantity_input', min: 0,max: product.quantity,:step => 0.5, :value => quantity %><%= product.satuan%>
 				</div>
 
 				
@@ -74,11 +74,12 @@
 
 	<div class ="checkout_button">
 		<!--1) if visitor is logged in to become user and has already insert customer details-->
-	<% if session[:customer_id]%>
-		<%= link_to 'Checkout' , cart_checkout_path %>
+	<% if session[:phone] #we store session phone to for condition purpose%>
+
+		<%= link_to 'Checkout' , cart_checkout_member_path %>
 		<!--2) if visitor is logged in but has not set customer data-->
 	<% elsif session[:user_id]%>
-		<%= link_to 'Checkout' , new_customer_path %>
+		<%= link_to 'Checkout' , user_detail_user_path(:id => session[:user_id]) %>
 	<%else%>
 	<!--3) if only as visitor-->
 		<%= link_to 'Checkout', login_users_path  %>

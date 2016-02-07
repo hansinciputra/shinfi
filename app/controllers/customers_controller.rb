@@ -38,17 +38,17 @@ class CustomersController < ApplicationController
       if @customer.save
         if @user && @user.role == 'Admin'
           format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
-        elsif @user && @user.role = 'Visitor'
+        elsif @user && @user.role == 'Member'
           if session[:cart]
             #jika data diri di input pada saat melakukan pembayaran
-            format.html { redirect_to cart_checkout_path(id = @customer), notice: 'Data anda berhasil di input.' }
+            format.html { redirect_to cart_checkout_member_path(id = @customer), notice: 'Data anda berhasil di input.' }
           else
             #jika pertama kali login dan memasukan data diri
             format.html { redirect_to customer_path(@customer), notice: 'Data anda berhasil di input.' }
           end
           #jika guest
         else
-          format.html { redirect_to cart_checkout_path(customer_id: @customer), notice: 'Silahkan lanjutkan proses Checkout' } 
+          format.html { redirect_to cart_checkout_visitor_path(customer_id: @customer), notice: 'Silahkan lanjutkan proses Checkout' } 
         end
         format.json { render :show, status: :created, location: @customer }
       else

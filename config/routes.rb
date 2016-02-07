@@ -6,8 +6,10 @@ Rails.application.routes.draw do
   get 'cart/index'
   post'cart/addquantity'
   get 'cart/add'
-  get 'cart/checkout'
-  get 'cart/checkout_po'
+  get 'cart/checkout_visitor'
+  get 'cart/checkout_member'
+  get 'cart/checkout_po_visitor'
+  get 'cart/checkout_po_member'
   get 'cart/clear'
 
   resources :product_images
@@ -28,6 +30,9 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :login
+    end
+    member do
+      get 'user_detail'
     end
   end
   resources :customers

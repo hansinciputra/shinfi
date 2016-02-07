@@ -24,16 +24,12 @@
         </ul>
       </div>
       <!--menu for loggeed in user that is not admin-->
-   <% elsif current_user && current_user.role = "Visitor" %>
+   <% elsif current_user && current_user.role = "Member" %>
         <div id="head_menu">      
         <ul>
           <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
           <li><%= link_to '| Home  ' , root_path %></li>
-          <% if session[:customer_id] %>
-          <li><%= link_to '| My Page  |' , customer_path(session[:customer_id])%></li>
-          <%else%>
-          <li><%= link_to '| Input Data  |' , new_customer_path%></li>
-          <%end%>
+          <li><%= link_to '| My Page ' , user_path(:id => session[:user_id]) %></li>
           <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
         </ul>
       </div>

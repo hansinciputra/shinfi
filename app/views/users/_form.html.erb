@@ -24,8 +24,10 @@
 			<%= f.password_field :password_confirmation %>
 			<br/>
 			<% if current_user && current_user.role == "Admin" %>
-			<%= f.label :role %>
-			<%= f.select :role , options_for_select(["Visitor","Admin"]) %>
+				<%= f.label :role %>
+				<%= f.select :role , options_for_select(["Member","VIP","Admin","SuperAdmin"]) %>
+			<% else %>
+				<%= f.hidden_field :role , :value => "Member"%>
 			<%end%>
 			<div id ="submit_button">
 		<%= f.submit%> || <%= link_to "Cancel", root_path %>

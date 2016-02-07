@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206162646) do
+ActiveRecord::Schema.define(version: 20160207081750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20160206162646) do
     t.decimal  "discount",        precision: 10, scale: 2
     t.string   "delvmethod"
     t.string   "url_id"
+    t.uuid     "user_id"
   end
 
   add_index "orders", ["customer_id"], name: "index_orders_on_customer_id", using: :btree
@@ -145,6 +146,14 @@ ActiveRecord::Schema.define(version: 20160206162646) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role"
+    t.string   "address"
+    t.string   "address2"
+    t.string   "phone"
+    t.string   "phone2"
+    t.string   "provinsi"
+    t.string   "kota"
+    t.string   "kodepos"
+    t.date     "dateofbirth"
   end
 
 end
