@@ -53,14 +53,57 @@
   <div id="banner_index"> 
     <div id="promo"></div>
     <div id="logo"><%= image_tag("LOGO.png") %></div>
-    <div id="cart">
+    <div class="cart">
       <div id="cart_image"><%= image_tag("cart.png") %></div>
       <br>
-      <%if session[:cart]%>
-      <%= link_to 'Keranjang Saya', cart_index_path  %>(<%= session[:cart].count %>)
-      <%else%>
-      Belanjaan anda (0)
+      <div id = "cart_link">
+        <%if session[:cart]%>
+           <%= link_to 'Keranjang Saya', cart_index_path  %>(<%= session[:cart].count %>)
+        <%else%>
+           Belanjaan anda (0)
+        <%end%>
+      </div>
+            <div id="cart_thumb_caller">|v </div>
+     
+      <!--beginning of cart_thumb-->
+      <% if session[:cart] && ((session[:cart_count] != session[:cart].count )||session[:cart].count == 1) %>
+      <% session[:cart_count] = session[:cart].count %>
+        <div id = "cart_thumb_content"><p style ="text-align:center;">Isi keranjang:</p>
+        <hr>
+      <%
+      session[:cart].each do |id , quantity|
+      product = Inventory.find_by(:id => id)
+      prod_img = ProductImage.find_by(:inventory_id => id)
+      %>
+          <div id = "cart_thumb_prod_detail_container">
+            <div id="cart_thumb_prod_pic"><%=image_tag(prod_img.prod_img_url(:medium_thumb).to_s)%></div>
+            <div id="cart_thumb_prod_info">
+              <ul>
+                <li><b style ="font-size:17px;"><i><%=product.name%></i></b></li>
+                <li><i><%= product.category %></i></li>
+                <li><%= product.meter %> <%=product.ukuran%></li>
+                <li><b><%= number_to_currency(product.sellprice, :unit => "Rp. ") %> / <%=product.satuan%></b></li>
+              </ul>
+            </div>
+          </div>
+            
+        <%end%>
+        <div class ="checkout_button">
+    <!--1) if visitor is logged in to become user and has already insert customer details-->
+          <% if session[:phone] #we store session phone to for condition purpose%>
+
+            <%= link_to 'Checkout' , cart_checkout_member_path %>
+            <!--2) if visitor is logged in but has not set customer data-->
+          <% elsif session[:user_id]%>
+            <%= link_to 'Checkout' , user_detail_user_path(:id => session[:user_id]) %>
+          <%else%>
+          <!--3) if only as visitor-->
+            <%= link_to 'Checkout', login_users_path  %>
+          <%end%>
+        </div>
+        </div>
       <%end%>
+        <!--end of cart_thumb-->
     </div>
   </div>
          <div id="head_menu">

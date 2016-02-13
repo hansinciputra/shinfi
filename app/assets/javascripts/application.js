@@ -60,3 +60,8 @@ jQuery(function(){
 		});
 		return false;
 	});
+
+$("#cart_thumb_caller").click(function(){
+	$("#cart_thumb_content").fadeToggle();
+});
+
