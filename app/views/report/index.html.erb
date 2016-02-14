@@ -1,3 +1,58 @@
 <div id="Main_Container">
-this is report page
+	<h1 style="width:100%;text-align:center;">Performance Report</h1>
+<!--list of top 10 best selling item-->
+<div class = "report_container">
+<h3>Top 10 Best Seller Product</h3>
+	<table class = "report_admin_table">
+		<tr>
+			<th>No.</th>
+			<th>Name</th>
+			<th>Quantity Sold</th>
+		</tr>
+		<% @top_product_sold.each_with_index do |data,index| %>
+	<tr>
+		<td><%= index + 1 %></td>
+		<td><%= data.name%></td>
+		<td><%= data.sum%></td>
+	</tr>
+		<%end%>
+	</table>
+</div>
+<div class = "report_container">
+<h3>Top 10 Member Transaction</h3>
+	<table class = "report_admin_table">
+		<tr>
+			<th>No.</th>
+			<th>Name</th>
+			<th>Amount</th>
+		</tr>
+		<% @top_user_purchase.each_with_index do |data,index| %>
+	<tr>
+		<td><%= index + 1 %></td>
+		<td><%= data.name%></td>
+		<td><%= number_to_currency(data.sum, :unit => "Rp. ") %></td>
+	</tr>
+		<%end%>
+	</table>
+</div>
+
+<!--list of top 10 guest based on name-->
+<div class = "report_container">
+<h3>Top 10 Guest Transaction</h3>
+	<table class = "report_admin_table">
+		<tr>
+			<th>No.</th>
+			<th>Name</th>
+			<th>Amount</th>
+		</tr>
+		<% @top_guest_purchase.each_with_index do |data,index| %>
+	<tr>
+		<td><%= index + 1 %></td>
+		<td><%= data.name%></td>
+		<td><%= number_to_currency(data.sum, :unit => "Rp. ") %></td>
+	</tr>
+		<%end%>
+	</table>
+</div>
+
 </div>
