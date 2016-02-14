@@ -1,5 +1,5 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:edit,:user_detail, :update, :destroy ,:show]
+  class UsersController < ApplicationController
+  before_action :set_user, only: [:edit,:user_detail,:change_password,:change_password_commit, :update, :destroy ,:show]
   before_filter :authorize, except: [:login,:new,:create]
   before_filter :authorize_admin, only: [:index]
   def set_user
@@ -29,7 +29,22 @@ class UsersController < ApplicationController
   		render "new", :notice => "Gagal,Coba lagi!"
   	end
   end
-  
+  def change_password
+  #display halaman change password dengan menyertakan email dan id
+  end
+  def change_password_commit
+    #cek apakah old password sesuai, jika ya, update password dengan password baru
+    user = User.check_password(params[:user][:email],params[:user][:oldpassword])
+    if user
+        if @user.update(check_password_params)
+          redirect_to change_password_user_path, :notice => "Password Telah diganti!" 
+        else
+          redirect_to change_password_user_path, :notice => "Password Gagal diganti!" 
+        end
+    else
+       redirect_to change_password_user_path, :notice => "Password lama anda salah!"
+    end
+  end
   def edit
     
   end
@@ -67,6 +82,9 @@ class UsersController < ApplicationController
 end
   
 
+def check_password_params
+  params.require(:user).permit(:email,:password,:password_confirmation)
+end
 
 def user_params
 	params.require(:user).permit(:name,:email,:role,:password,:password_confirmation,:phone,:phone2,:address,:address2,:provinsi,:kota,:kodepos)

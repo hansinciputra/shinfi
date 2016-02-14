@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :compinfos 
-
   resources :prodtypes
-
   get 'cart/index'
   post'cart/addquantity'
   get 'cart/add'
@@ -11,7 +9,6 @@ Rails.application.routes.draw do
   get 'cart/checkout_po_visitor'
   get 'cart/checkout_po_member'
   get 'cart/clear'
-
   resources :product_images
   resources :admin, :only => [:index]
   resources :report, :only => [:index]
@@ -33,6 +30,8 @@ Rails.application.routes.draw do
     end
     member do
       get 'user_detail'
+      get 'change_password'
+      patch 'change_password_commit'
     end
   end
   resources :customers

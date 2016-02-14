@@ -14,12 +14,17 @@ class Order < ActiveRecord::Base
 	def self.number_of_new_order(status)
 		Order.where(:readyorpo => "#{status}").where(:order_status_id => 1)
 	end
-	def self.top_customers(status)
-		Customer.joins(:orders).joins(:inventory_orders).joins(:inventories).select('orders.id,orders.payment,customers.name,,inventories.nameinventory_orders.quantity')
-		
-		Order.find_by_sql
-		('
-			SELECT customers.name,orders.id, SUM(orders.payment) FROM orders LEFT JOIN customers on orders.customer_id = customers.id GROUP BY customers
-		')
+	def self.top_customers
+		Customer.find_by_sql("select customers.name , 
+								sum (orders.payment) from customers join orders on customers.id = orders.customer_id group by customers.name order by sum DESC NULLS LAST LIMIT 10;");
+	end
+	def self.top_members
+		User.find_by_sql("select users.name , 
+							sum (orders.payment) from users join orders on users.id = orders.user_id group by users.name order by sum DESC NULLS LAST LIMIT 10;
+							");	
+	end
+	def self.best_seller_product
+		Inventory.find_by_sql("select inventories.name, sum(inventory_orders.quantity) from inventories join inventory_orders on inventories.id = inventory_orders.inventory_id group by inventories.name order by sum DESC NULLS LAST LIMIT 10;");
+
 	end
 end

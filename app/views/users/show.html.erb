@@ -7,6 +7,7 @@
 <div id = "list_o">
 
 </div>
+<%= link_to 'Change Password', change_password_user_path(:id => session[:user_id]) %>
 <%= link_to 'Edit', user_detail_user_path(:id => session[:user_id]) %> |
 <%= link_to 'Back', customers_path %>
 	</div>
