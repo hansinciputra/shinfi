@@ -42,7 +42,7 @@
            </div>
           </div>
           <li><%= f.label "Email*" %></li>
-          <li><%= f.text_field :email %></li>
+          <li><%= f.email_field :email %></li>
           <% if session[:user_id] == nil %>
             <%= f.hidden_field :signas, :value => 'Guest' %>
           <% else %>
