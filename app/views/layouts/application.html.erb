@@ -89,18 +89,8 @@
             
         <%end%>
         <div class ="checkout_button">
-    <!--1) if visitor is logged in to become user and has already insert customer details-->
-          <% if session[:phone] #we store session phone to for condition purpose%>
-
-            <%= link_to 'Checkout' , cart_checkout_member_path %>
-            <!--2) if visitor is logged in but has not set customer data-->
-          <% elsif session[:user_id]%>
-            <%= link_to 'Checkout' , user_detail_user_path(:id => session[:user_id]) %>
-          <%else%>
-          <!--3) if only as visitor-->
-            <%= link_to 'Checkout', login_users_path  %>
-          <%end%>
-        </div>
+            <%= link_to 'Checkout' , cart_index_path %>
+         </div>
         </div>
       <%end%>
         <!--end of cart_thumb-->

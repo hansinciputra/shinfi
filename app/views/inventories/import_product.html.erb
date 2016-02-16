@@ -1,8 +1,32 @@
 <div id ="Main_Container">
-<h1>Page for import product</h1>
-
+	<br>
+<h1>Halaman untuk mengimport produk dari Excel ke Database</h1>
+<br>
+<p style = "color:red;">*Perhatian*Saat melakukan Import inventory perhatikan bahwa nama barang harus unique untuk produk baru , jika tidak maka informasi produk akan terupdate dengan informasi yang terdapat di excel file.</p>
+<p>Untuk kriteria data yang bisa di import adalah sebagai berikut</p>
+<ul>
+	<li>Nama : <b>string</b> | e.g -> Sunshine Under The Sun</li>
+	<li>Quantity : <b>integer</b> | e.g -> 10</li>
+	<li>Meter : <b>string</b> | e.g -> Meter/Centimeter</li>
+	<li>Sellprice : <b>decimal</b> | e.g -> 100000.00</li>
+	<li>Category : <b>string</b> | e.g -> Cloud 9 (Category disini adalah brand)</li>
+	<li>Weight : <b>integer</b> | e.g -> 45</li>
+	<li>Berat : <b>string</b> | e.g -> gram</li>
+	<li>Material : <b>string</b> | e.g -> 10% Cotton 90% Polyester</li>
+	<li>fabrictype : <b>string</b> | e.g -> Cotton/Cotton Linen</li>
+	<li>prodtype : <b>string</b> | e.g -> Fabric / Accessories</li>
+	<li>satuan : <b>string</b> | e.g -> Yard</li>
+	<li>warna : <b>string</b> | e.g -> Merah / Biru /Hitam</li>
+	<li>link : <b>string</b> | e.g -> https://www.google.com *selalu gunakan 'htpps://' di awal</li>
+</ul>
+<br>
+<fieldset>
+	<legend>Pilih File</legend>
 	<%= form_tag import_inventories_path, multipart: true do %>
 		<%= file_field_tag :file %>
+		<br>
+		<br>
 		<%= submit_tag 'import'%>
 	<%end%>
+</fieldset>
 </div>
