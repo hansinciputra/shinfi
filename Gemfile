@@ -13,7 +13,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+#roo to handle import from xls or csv file
+gem 'roo'
+gem 'iconv', "~> 1.0.3"
 #gem for moving banners
 gem 'owlcarousel-rails'
 # Use jquery as the JavaScript library

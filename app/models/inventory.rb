@@ -18,4 +18,28 @@ class Inventory < ActiveRecord::Base
     self.quantity = self.quantity + qty
     save
   end
+
+  def self.import(file)
+    #call open_spreadsheet action
+    spreadsheet = open_spreadsheet(file)
+    header = spreadsheet.row(1)
+    #(2..spreadsheet.last_row) will loop each row from row 2 to last row
+    (2..spreadsheet.last_row).each do |i|
+      #we combine header and each row of spreadsheet as key=>value pair inside Hash
+      row = Hash[[header,spreadsheet.row(i)].transpose]
+
+      inventory = Inventory.find_by_name(row["name"]) || Inventory.new
+      parameters = ActionController::Parameters.new(row.to_hash)
+      inventory.update(parameters.permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :prodtype,:category,:satuan,:ukuran,:berat,:warna))  
+      inventory.save!
+    end
+  end
+  def self.open_spreadsheet(file)
+    case File.extname(file.original_filename)
+      when ".csv" then Roo::Csv.new(file.path,packed: nil, file_warning: :ignore)
+      when ".xls" then Roo::Excel.new(file.path,packed: nil,file_warning: :ignore)
+      when ".xlsx" then Roo::Excelx.new(file.path,packed: nil,file_warning: :ignore)
+      else raise "Unknown file type: #{file.original_filename}"
+    end      
+  end
 end

@@ -76,6 +76,15 @@ class InventoriesController < ApplicationController
       redirect_to edit_inventory_path(@inventory), :notice => "Gambar Gagal Dihapus"
     end
   end
+
+  def import_product
+  end
+
+  def import
+    Inventory.import(params[:file])
+    redirect_to inventories_path, :notice => "Inventories Berhasil Di import, Harap lakukan sample checking"
+  end
+
   def inventory_params
     params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :prodtype,:category,:satuan,:ukuran,:berat,:warna, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic])
   end

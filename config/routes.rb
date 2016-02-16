@@ -55,6 +55,10 @@ match "order_pos/:url_id" => "order_pos#show", :via=> [:get],:as => 'order_po_sh
     member do
       delete 'remove_photo'
     end
+    collection do
+      post 'import'
+      get 'import_product'
+    end
   end
   
   # The priority is based upon order of creation: first created -> highest priority.

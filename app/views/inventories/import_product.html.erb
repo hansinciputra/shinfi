@@ -1,0 +1,8 @@
+<div id ="Main_Container">
+<h1>Page for import product</h1>
+
+	<%= form_tag import_inventories_path, multipart: true do %>
+		<%= file_field_tag :file %>
+		<%= submit_tag 'import'%>
+	<%end%>
+</div>
