@@ -1,24 +1,63 @@
 <div id = "Main Container">
 	<div id = "home_container">
-		<div class = "main_poster">	
-			<div class="owl-carousel col-lg-12">
-				<%if @mainposter %>
-					<% @mainposter.each do |img|%>
-	  					<div class="item"><%=image_tag(img.mainposter_url(:display).to_s) %>	</div>
-	 				 <%end%>
- 				 <%end%>
- 			</div>
- 		</div>
- 		<div id = "second_poster">
-			<div class = "fabric_poster">
-				<%if @subposter1 %>
-					<% @subposter1.each do |img|%>
-						<%=image_tag(img.subposter_url(:display).to_s)%>
-					<%end%>
-				<%end%>
+		<div id ="home_first_section">
+			<div id = "shop_helper">
+				<div class = "shop_link_box">
+					Shop for Crafter
+				</div>
+				<div class = "shop_link_box">
+					Join open PO Now!
+				</div>
+				<div class = "shop_link_box">
+					Buy Handcraft!
+				</div>
+				<div class = "handcraft_result">
+					What we proud of~
+				</div>
 			</div>
-			<div class = "openpo_poster">
+			<div class = "main_poster">	
+				<div class="owl-carousel col-lg-12">
+					<%if @mainposter %>
+						<% @mainposter.each do |img|%>
+		  					<div class="item"><%=image_tag(img.mainposter_url(:display).to_s) %>	</div>
+		 				 <%end%>
+	 				 <%end%>
+	 			</div>
+	 		</div>
+		 		<div id = "top_seller_product_index_page">
+		 			<div id="title">
+		 				<h3 style = "color: white;text-align:center;">Best Seller Items!</h3>
+		 			</div>
+		 			<% @best_seller.each do |img| %>
+		 				<div class = "top_seller_image_index_page">
+		 				<%= link_to(image_tag(img.prod_img_url(:thumb).to_s),inventory_path(img.inventory_id))%> 
+		 				</div>
+		 			<%end%>
+				</div>
+	 		
+ 		</div> <!--for first section div-->
+ 		<div id = "brand_list_index">
+	 			Brand list
+	 	</div>
+ 		<div id = "promo_banner_index">
+	 			Promo Copywrite
+	 	</div>
+ 		<div id = "second_poster">
+ 			<div class = "sub_second_poster_container">
+ 				Belanja Koleksi kain-kain lucu sebelum kehabisan!
+				<div class = "fabric_poster">
+					<%if @subposter1 %>
+						<% @subposter1.each do |img|%>
+							<%=image_tag(img.subposter_url(:display).to_s)%>
+						<%end%>
+					<%end%>
+				</div>
+			</div>
+			<div class = "sub_second_poster_container">
+				Ikuti Open PO dari shinfithecraft untuk koleksi terlengkap segala kebutuhan craft kamu
+				<div class = "openpo_poster">
 
+				</div>
 			</div>
 		</div>
 		<hr>

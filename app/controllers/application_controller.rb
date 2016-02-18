@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def index
+    @best_seller = Order.best_seller_product_pic
     @mainposter = Poster.where(:type => "MainPoster")
     @subposter1 = Poster.where(:type => "SubPoster")
     @new_order = Order.number_of_new_order('STOCKED').count

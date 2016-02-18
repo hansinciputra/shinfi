@@ -25,6 +25,14 @@ class Order < ActiveRecord::Base
 	end
 	def self.best_seller_product
 		Inventory.find_by_sql("select inventories.name, sum(inventory_orders.quantity) from inventories join inventory_orders on inventories.id = inventory_orders.inventory_id group by inventories.name order by sum DESC NULLS LAST LIMIT 10;");
-
+	end
+	def self.best_seller_product_pic
+		inventory_id = Inventory.find_by_sql("select inventories.id, sum(inventory_orders.quantity) from inventories join inventory_orders on inventories.id = inventory_orders.inventory_id group by inventories.id order by sum DESC NULLS LAST LIMIT 10;");
+		product_image = []
+		inventory_id.each do |id|
+			temp = ProductImage.find_by :inventory_id => id
+			product_image << temp
+		end
+		return product_image
 	end
 end
