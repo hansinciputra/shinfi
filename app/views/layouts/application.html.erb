@@ -5,11 +5,11 @@
     <div id="head_menu">      
         <ul>
           <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
-          <li><%= link_to '| Home  |' , root_path %></li>
-          <li><%= link_to 'Admin Page |', admin_index_path %></li>
-          <li><%= link_to 'Orders ', orders_path %>(<%=@new_order%>)|</li>
-          <li><%= link_to 'Orders - PO ', order_pos_path %>(<%=@new_po_order%>)|</li>
-          <li><%= link_to 'Inventories |', inventories_path %>
+          <li><%= link_to ' Home ' , root_path %></li>
+          <li><%= link_to ' Admin Page', admin_index_path %></li>
+          <li><%= link_to ' Orders ', orders_path %>(<%=@new_order%>)|</li>
+          <li><%= link_to ' Orders - PO ', order_pos_path %>(<%=@new_po_order%>)|</li>
+          <li><%= link_to ' Inventories ', inventories_path %>
               <div class ="dropdown-menu">
                 <ul>
                   <li><%=link_to 'Category', categories_path%></li>
@@ -28,8 +28,8 @@
         <div id="head_menu">      
         <ul>
           <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
-          <li><%= link_to '| Home  ' , root_path %></li>
-          <li><%= link_to '| My Page ' , user_path(:id => session[:user_id]) %></li>
+          <li><%= link_to ' Home  ' , root_path %></li>
+          <li><%= link_to ' My Page ' , user_path(:id => session[:user_id]) %></li>
           <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
         </ul>
       </div>
@@ -50,7 +50,8 @@
   
   <link href='https://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
-  <div id="banner_index"> 
+  <div id="banner_index">
+  <div id="banner_inner_container"> 
     <div id="promo"></div>
     <div id="logo"><%= image_tag("LOGO.png") %></div>
     <div class="cart">
@@ -95,10 +96,11 @@
       <%end%>
         <!--end of cart_thumb-->
     </div>
+  </div><!--end for inner banner container-->
   </div>
          <div id="head_menu">
           <ul>
-            <li><%= link_to 'Fabrics |', fabrics_path%>
+            <li><%= link_to ' Fabrics ', fabrics_path%>
               <!--Menu harus diupdate secara manual?-->
               <div class = "dropdown-menu">
                   <ul>
@@ -110,7 +112,7 @@
                   </ul>
               </div>
             </li>
-            <li><a href ="#">Brands |</a>
+            <li><a href ="#">Brands </a>
               <div class = "dropdown-menu">
                 <div class = "dropdown-double">
                   <ul class = "submenu_container"> 
@@ -129,7 +131,7 @@
                 </div>
               </div>
             </li>
-            <li><a href ="#">Accessories |</a></li>
+            <li><a href ="#">Accessories </a></li>
           </ul>
         </div>
        

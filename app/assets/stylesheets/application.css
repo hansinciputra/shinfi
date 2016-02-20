@@ -25,7 +25,9 @@
 	font-family: 'Amaranth', sans-serif;
 	min-height: 1000px;
 }
-
+::-webkit-scrollbar { 
+    display: none; 
+}
 .pagination{
 	margin:10px;
 	width: 100%;
@@ -49,14 +51,19 @@
 }
 
 #banner_index{
-	width:1300px;
-	margin:auto;
+	width:100%;
+	padding:auto;
 	height: 160px;
+}
+#banner_inner_container{
+	width: 1200px;
+	margin: auto;
+	height:100%;
 }
 #logo{
 	margin:auto;
-	height:158px;
-	width:600px;
+	height:100%;
+	width:50%;
 	padding: 0 0 0 50px;
 	float:left;
 }
@@ -144,15 +151,33 @@
 }
 #head_menu{
 	width: 100%;
-	min-width: 1300px;
+	min-width: 1000px;
 	text-align: center;
 	border: black solid 2px;
-	margin: 40px auto 0 auto;
+	display: inline-block;
+	height: 40px;
+}
+#head_menu ul{
+	list-style-type: none;
+	background-color: #333;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#head_menu li{
+	display: inline-block;
+
+}
+#head_menu li a{
+	font-size: 1.5em;
+	color: white;
+	padding: 10px;
+	display: inline-block;
+}
+#head_menu li a:hover{
+	background-color: #111;
 }
 
-#head_menu ul li{
-	display: inline
-}
 .report_table{
 	margin : auto;
 	width: 980px;
@@ -215,8 +240,33 @@
 	color:#ff2994;
 }
 /*for drop down function*/
-#head_menu li{
-	padding:2px;
+#head_menu .dropdown-menu ul{
+	background-color: white;
+	table-layout: fixed;
+	z-index: 3;
+}
+#head_menu .dropdown-menu ul li{
+	height: 30px;
+	display: table-cell;
+	float: left;
+	white-space:nowrap;
+	width: 100%;
+	font-size: 0.7em;
+	line-height: 10px;
+}
+#head_menu .dropdown-menu ul li a{
+	color: black;
+	font-weight: italic;
+	height: 5px;
+	width: 80%;
+}
+#head_menu .dropdown-menu ul li a:hover{
+	background-color: #ffd2ff;
+	position: absolute;
+	text-align: left;
+	display: block;
+	margin: 0;
+	color: black;
 }
 .dropdown-menu
 {
@@ -225,53 +275,35 @@
 	float:left;
 	margin-top: -0.1px;
 	background-color: white;
-	
 }
 .dropdown-double
 {
-	width: 300px;
-	height: 120px;
+	width: 400px;
+	height: 220px;
 }
 .submenu_container{
 	float: left;
 	width: 45%;
 	margin: 2px;
 }
-.dropdown-menu ul{
-	table-layout: fixed;
-	z-index: 3;
-}
-.dropdown-menu ul li{
-	display: table-cell;
-	width: auto;
-	float: left;
-	white-space:nowrap;
-	width: 120px;
-	font-size: 0.9em;
-}
-.dropdown-menu ul li a {
-	text-align: left;
-	display: block;
-}
-.dropdown-menu ul li:hover{
-	background-color: #ffd2ff;
-}
+
+
 ul li{
 	position: relative;
 }
 ul li .title_menu{
-	font-style: bold;
+	font-style: bolder;
 	border-bottom: solid gray 1px;
-	margin-bottom: 2px;
+	line-height: 10px;
+
 }
 ul li:hover .dropdown-menu{
 	display:block;
 	position: absolute;
-	min-width:80px;
+	min-width:150px;
 	z-index: 100;
 	left:0;
 	text-align: left;
-	padding-left: 5px;
 	border:black solid 2px;
 	-webkit-transition: all 0.3s ease-out;
               -moz-transition: all 0.3s ease-out;
@@ -284,7 +316,7 @@ ul li:hover .dropdown-menu{
 footer{
 	display: inline-block;
 	width: 100%;
-	min-width: 1300px;
+	min-width: 1200px;
 	font-family: 'Amaranth', sans-serif;
 	border:solid black 1px;
 	height:150%;
@@ -372,8 +404,7 @@ footer #f_right{
 /* end of footer */
 #home_container
 {
-	
-	width: 1300px;
+	width: 1200px;
 	margin: auto;
 	margin-top: 20px;
 	min-height: 1000px;
@@ -395,14 +426,15 @@ footer #f_right{
 	margin-bottom: 10px;
 }
 #product_display_container{
-	width: 1030px;
+	width: 1000px;
+	min-height: 1000px;
 	height: 100%;
 	float:left;
 	padding:5px 0 0 10px;
 }
 
 #product_helper_container{
-	width:	180px;
+	width:	130px;
 	height: 500px;
 	float: left;
 	padding: 5px;
@@ -417,13 +449,13 @@ footer #f_right{
 }
 #color_helper{
 	width:100%;
-	height: 300px;
+	height: 200px;
 	overflow-y: auto;
 	border-bottom: gray solid 1px;
 }
 .warna_product{
-	width:35px;
-	height: 35px;
+	width:20px;
+	height: 20px;
 	border:solid gray 2px;
 	float: left;
 	margin:5px;
@@ -478,7 +510,6 @@ footer #f_right{
 #shop_helper{
 	width:200px;
 	height:500px;
-	border:black solid 1px;
 	display: inline-block;
 	float: left;
 	margin:0px 10px 10px 10px;
@@ -498,22 +529,15 @@ footer #f_right{
 .shop_link_box{
 	width: 150px;
 	height: 80px;
-	border:solid black 1px;
-	margin: 10px auto 0 auto;
+	margin: 0 auto 10px auto;
 }
 .handcraft_result{
 	width: 150px;
-	height: 200px;
+	height: 227px;
 	border:solid black 1px;
 	margin: 10px auto 0 auto;
 }
-.sub_second_poster_container{
-	width:500px;
-	height: 250px;
-	border:black solid 1px;
-	float: left;
-	margin:10px;
-}
+
 
 #promo_banner_index{
 	width: 1050px;
@@ -521,20 +545,33 @@ footer #f_right{
 	border:black solid 1px;
 	margin: 10px auto 10px auto;
 }
-#brand_list_index{
+#brand_list_container_index{
 	width: 1050px;
 	height: 120px;
-	border:black solid 1px;
+	border-top:black solid 1px;
+	border-bottom:black solid 1px;
 	margin: 10px auto 10px auto;
+	padding:20px 0 5px 0;
+}
+#brand_image_container{
+	margin: auto;
+	width:500px;
+}
+.brand_image{
+	width: 150px;
+	height: 100px;
+	float: left;
+	margin-left: 10%;
 }
 #top_seller_product_index_page{
 	width:200px;
 	height:500px;
-	border:black solid 1px;
+	
 	display: inline-block;
 	float: left;
 	margin:0px 0px 10px 10px;
 	overflow: auto;
+	padding-bottom: 10px;
 }
 #top_seller_product_index_page #title{
 	border:black solid 1px;
@@ -547,19 +584,35 @@ footer #f_right{
 	width: 170px;
 	height: 100px;
 	margin: 20px auto 0 auto;
-	
 }
+
 .top_seller_image_index_page img{
 	position: relative;
 	top: -30px;
 	left: -30px;
 	
 }
+.sub_second_poster_container{
+	width:500px;
+	height: 300px;
+	border:black solid 1px;
+	float: left;
+	margin:10px;
+	padding-top: 10px;
+}
 .fabric_poster{
-
+	width:450px;
+	height: 250px;
+	border:black solid 1px;
+	margin: auto;
+	
 }
 .openpo_poster{
-
+	width:450px;
+	height: 250px;
+	border:black solid 1px;
+	margin: auto;
+	
 }
 .submit_button{
 	width: 250px;

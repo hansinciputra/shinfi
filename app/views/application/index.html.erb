@@ -3,16 +3,17 @@
 		<div id ="home_first_section">
 			<div id = "shop_helper">
 				<div class = "shop_link_box">
-					Shop for Crafter
+					<%= image_tag("shop_crafter.jpg") %>
 				</div>
 				<div class = "shop_link_box">
-					Join open PO Now!
+					<%= image_tag("handcrafted.png") %>
+					
 				</div>
 				<div class = "shop_link_box">
-					Buy Handcraft!
+					<%= image_tag("openpo.png") %>
 				</div>
 				<div class = "handcraft_result">
-					What we proud of~
+					
 				</div>
 			</div>
 			<div class = "main_poster">	
@@ -26,7 +27,7 @@
 	 		</div>
 		 		<div id = "top_seller_product_index_page">
 		 			<div id="title">
-		 				<h3 style = "color: white;text-align:center;">Best Seller Items!</h3>
+		 				<h3 style = "color: white;text-align:center;">5 Best Seller Items!</h3>
 		 			</div>
 		 			<% @best_seller.each do |img| %>
 		 				<div class = "top_seller_image_index_page">
@@ -34,11 +35,19 @@
 		 				</div>
 		 			<%end%>
 				</div>
-	 		
  		</div> <!--for first section div-->
- 		<div id = "brand_list_index">
-	 			Brand list
+ 		<br>
+ 		<div id = "brand_list_container_index">
+ 			<div id ="brand_image_container">
+	 			<div class = "brand_image">
+	 				<%= image_tag("agf_logo_bw.png") %>
+	 			</div>
+	 			<div class = "brand_image">
+	 				<%= image_tag("mmf_logo.jpg") %>
+	 			</div>
+	 		</div>
 	 	</div>
+	 	<br>
  		<div id = "promo_banner_index">
 	 			Promo Copywrite
 	 	</div>
