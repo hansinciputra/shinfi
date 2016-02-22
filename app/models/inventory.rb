@@ -4,7 +4,7 @@ class Inventory < ActiveRecord::Base
   has_many :orders, through: :inventory_orders
   has_many :product_images, dependent: :destroy #if inventory is removed, the picture also removed
 
-  validates :name, :quantity, :sellprice, :presence => true
+  validates :name, :presence => true
   validates :name, :uniqueness => {:messages => "Nama Barang Sudah Ada"}
   validates :quantity,:weight,:sellprice, :numericality => true
    
