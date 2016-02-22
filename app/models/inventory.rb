@@ -6,7 +6,7 @@ class Inventory < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :name, :uniqueness => {:messages => "Nama Barang Sudah Ada"}
-  validates :quantity,:weight,:sellprice, :numericality => true
+
    
   accepts_nested_attributes_for :inventory_orders, :reject_if => lambda { |a| a[:quantity].blank?}
   accepts_nested_attributes_for :product_images, :allow_destroy => true #allow destroy of child in parent form
