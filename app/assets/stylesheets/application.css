@@ -85,16 +85,17 @@
 	float: left;
 }
 #cart_thumb_content{
-	width:300px;
+	width:280px;
 	min-height: 100px;
-	max-height: 300px;
-	border:dashed black 1px;
+	max-height: 280px;
+	border:solid black 1px;
 	padding: 10px;
 	position: absolute;
 	margin-top: 20px;
 	z-index: 99;
-	background-color: #E6E6E6;
+	background-color: #F2F2F2;
 	overflow: auto;
+	font-size: 0.8em;
 }
 #cart_link{
 	width: 300px;
@@ -115,7 +116,8 @@
 	margin-top: 10px;
 }
 #cart_thumb_prod_info{
-	width: 200px;
+	width: 70%;
+	min-height: 80px;
 	height:80px;
 	float: left;
 	display: inline-block;
@@ -127,8 +129,9 @@
 	border-bottom: #848484 solid 1px;
 	width:100%;
 	height: 100px;
-	margin-top: 20px;
+	margin-top: 10px;
 	margin-bottom: 20px;
+	font-size: 0.8em;
 }
 #cart_thumb_checkout{
 	width: 90%;
@@ -153,7 +156,6 @@
 	width: 100%;
 	min-width: 1000px;
 	text-align: center;
-	border: black solid 2px;
 	display: inline-block;
 	height: 40px;
 }
@@ -175,7 +177,8 @@
 	display: inline-block;
 }
 #head_menu li a:hover{
-	background-color: #111;
+	background-color: #F2F2F2;
+	color: black;
 }
 
 .report_table{
@@ -521,7 +524,7 @@ footer #f_right{
 }
 #second_poster{
 	width:1050px;
-	height: 500px;
+	height: 1000px;
 	border:black solid 1px;
 	margin:auto;
 	padding: auto;
@@ -537,19 +540,16 @@ footer #f_right{
 	border:solid black 1px;
 	margin: 10px auto 0 auto;
 }
-
-
 #promo_banner_index{
 	width: 1050px;
 	height: 80px;
 	border:black solid 1px;
 	margin: 10px auto 10px auto;
+	margin-bottom: 30px;
 }
 #brand_list_container_index{
 	width: 1050px;
 	height: 120px;
-	border-top:black solid 1px;
-	border-bottom:black solid 1px;
 	margin: 10px auto 10px auto;
 	padding:20px 0 5px 0;
 }
@@ -565,8 +565,8 @@ footer #f_right{
 }
 #top_seller_product_index_page{
 	width:200px;
-	height:500px;
-	
+	height:488px;
+	border-bottom: black solid 1px;
 	display: inline-block;
 	float: left;
 	margin:0px 0px 10px 10px;
@@ -594,20 +594,21 @@ footer #f_right{
 }
 .sub_second_poster_container{
 	width:500px;
-	height: 300px;
-	border:black solid 1px;
+	height: 380px;
+	
 	float: left;
 	margin:10px;
 	padding-top: 10px;
 }
-.fabric_poster{
-	width:450px;
-	height: 250px;
-	border:black solid 1px;
+.main_page_short_desc{
+	width: 80%;
 	margin: auto;
+	text-align: center;
 	
+	font-size: 0.8em;
+	padding: 10px;
 }
-.openpo_poster{
+.sub_poster{
 	width:450px;
 	height: 250px;
 	border:black solid 1px;

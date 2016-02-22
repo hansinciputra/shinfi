@@ -53,7 +53,7 @@
   <div id="banner_index">
   <div id="banner_inner_container"> 
     <div id="promo"></div>
-    <div id="logo"><%= image_tag("LOGO.png") %></div>
+    <div id="logo"><%= link_to(image_tag("LOGO.png"),root_path)%></div>
     <div class="cart">
       <div id="cart_image"><%= image_tag("cart.png") %></div>
       <br>
@@ -69,7 +69,7 @@
       <!--beginning of cart_thumb-->
       <% if session[:cart] && ((session[:cart_count] != session[:cart].count )||session[:cart].count == 1) %>
       <% session[:cart_count] = session[:cart].count %>
-        <div id = "cart_thumb_content"><p style ="text-align:center;">Isi keranjang:</p>
+        <div id = "cart_thumb_content"><h2 style ="text-align:center;"><b>~Your Craft Kit~</b></h2>
         <hr>
       <%
       session[:cart].each do |id , quantity|
@@ -80,7 +80,7 @@
             <div id="cart_thumb_prod_pic"><%=image_tag(prod_img.prod_img_url(:medium_thumb).to_s)%></div>
             <div id="cart_thumb_prod_info">
               <ul>
-                <li><b style ="font-size:17px;"><i><%=product.name%></i></b></li>
+                <li><b style ="font-size:1.2em;"><i><%=product.name%></i></b></li>
                 <li><i><%= product.category %></i></li>
                 <li><%= product.meter %> <%=product.ukuran%></li>
                 <li><b><%= number_to_currency(product.sellprice, :unit => "Rp. ") %> / <%=product.satuan%></b></li>

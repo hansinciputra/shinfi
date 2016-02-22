@@ -37,7 +37,56 @@
 				</div>
  		</div> <!--for first section div-->
  		<br>
- 		<div id = "brand_list_container_index">
+ 		
+ 		<div id = "promo_banner_index">
+	 			Promo Copywrite
+	 	</div>
+ 		<div id = "second_poster">
+ 			<div class = "sub_second_poster_container">
+ 				
+				<div class = "sub_poster">
+					<%if @subposter1 %>
+						<% @subposter1.each do |img|%>
+							<%=image_tag(img.subposter_url(:display).to_s)%>
+						<%end%>
+					<%end%>
+				</div>
+				<div class = "main_page_short_desc">
+					Cari inspirasi dan bahan untuk kerajinan tangan kamu ? Kami punya yang kamu butuhin~ Buruan Cek kain-kain lucu koleksi shinfithecraft, mulai dari brand import sampai brand lokal ada disini. Dijamin gemesin dan bikin nagih!
+				</div>
+			</div>
+			<div class = "sub_second_poster_container">
+				
+				<div class = "sub_poster">
+
+				</div>
+				<div class = "main_page_short_desc">
+					Buat kamu yang sabar dan butuh koleksi terlengkap untuk handycraft disini tempatnya. Join Open PO dari shinfithecraft dan nikmati lengkapnya pilihan material untuk semua kebutuhan kamu! mulai dari bahan craft impor sampai craft lokal dengan berbagai macam motif dan bentuk, semua deh ada disini!
+					<br>
+					Penutupan PO tanggal...
+					</br>
+				</div>
+			</div>
+			<div class = "sub_second_poster_container">
+				
+				<div class = "sub_poster">
+					beli handycraft
+				</div>
+				<div class = "main_page_short_desc">
+					Tertarik sama produk-produk asli kerajinan tangan anak bangsa? klik disini untuk cek produk2 lucu yang ga pasaran dan kualitas terbaik yang sudah terferifikasi tentunya 
+				</div>
+			</div>
+			<div class = "sub_second_poster_container">
+				
+				<div class = "sub_poster">
+
+				</div>
+				<div class = "main_page_short_desc">
+					Kamu crafter dan punya hobi bikin barang2 lucu kerajinan tangan? kenapa nggak coba jadi partner shinfithecraft dan pasarkan produk kamu di tempat kami? Gratis!
+				</div>
+			</div>
+		</div>
+		<div id = "brand_list_container_index">
  			<div id ="brand_image_container">
 	 			<div class = "brand_image">
 	 				<%= image_tag("agf_logo_bw.png") %>
@@ -48,27 +97,6 @@
 	 		</div>
 	 	</div>
 	 	<br>
- 		<div id = "promo_banner_index">
-	 			Promo Copywrite
-	 	</div>
- 		<div id = "second_poster">
- 			<div class = "sub_second_poster_container">
- 				Belanja Koleksi kain-kain lucu sebelum kehabisan!
-				<div class = "fabric_poster">
-					<%if @subposter1 %>
-						<% @subposter1.each do |img|%>
-							<%=image_tag(img.subposter_url(:display).to_s)%>
-						<%end%>
-					<%end%>
-				</div>
-			</div>
-			<div class = "sub_second_poster_container">
-				Ikuti Open PO dari shinfithecraft untuk koleksi terlengkap segala kebutuhan craft kamu
-				<div class = "openpo_poster">
-
-				</div>
-			</div>
-		</div>
 		<hr>
 		<br>
 	
