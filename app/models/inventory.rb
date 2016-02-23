@@ -42,4 +42,7 @@ class Inventory < ActiveRecord::Base
       else raise "Unknown file type: #{file.original_filename}"
     end      
   end
+  def self.list_all_po_items
+    ProductImage.joins(:inventory).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.category,inventories.fabrictype,inventories.quantity,inventories.satuan,inventories.sellprice').where(:displaypic => 1).where("inventories.category = 'KRCN Imported'")
+  end
 end

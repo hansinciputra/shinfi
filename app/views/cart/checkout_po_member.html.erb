@@ -1,8 +1,15 @@
+<div id ="Main_Container">
+	<%= render 'helpermenu' %>
+	<br>
+	<div id = "checkout_container">
+		<h2 style = "text-align:center;"><u>Ringkasan Order</u></h2>
 <ul>
-	<li>Nama : <%= @customer.name %></li>
-	<li>eMail : <%= @customer.email %></li>
-	<li>Alamat :<%= @customer.address %></li>
-	<li>Phone: <%= @customer.phone %></li>
+	<li><b>Nama : </b></li>
+	<li><%= @user.name %></li>
+	<li><b>Phone: </b></li>
+	<li><%= @user.phone %></li>
+	<li><b>Alamat Pengiriman :</b></li>
+	<li><%= @user.address %></li>
 </ul>
 <table id = "cart_table">
 	<th>Product</th>
@@ -12,7 +19,7 @@
 	<th class= "remove_item">Delete</th>
 
 	<%
-		session[:cart].each do |id , quantity|
+		session[:cart_po].each do |id , quantity|
 			product = Inventory.find_by(:id => id)
 			prod_img = ProductImage.find_by(:inventory_id => id)
 	%>
@@ -42,7 +49,7 @@
 				<div id = "result_price"><%= number_to_currency(product.sellprice * quantity.to_i, :unit => "Rp. ") %></div>
 			</td>
 			<td class= "remove_item">
-				<p><%= link_to('Remove', cart_clear_path(:id => product.id)) %></p>
+				<p><%= link_to('Remove', cart_clear_po_path(:id => product.id)) %></p>
 			</td>
 		</tr>
 		
@@ -54,19 +61,36 @@
 </table>
 
 
-
-<%= form_for(@order), :url => {:action =>'create'} do |f| %>
-	customer id = <%= @customer.id %>
-	<%= f.hidden_field :customer_id, :value => @customer.id %>
+<%= form_for @order, :url => {:controller => 'order_pos', :action =>'create'} do |f| %>
+	<%= f.hidden_field :user_id, :value => @user.id %>
 	<%= f.hidden_field :order_status_id, :value => 1%>
 	<%if %>
 	<%= f.hidden_field :readyorpo, value: 'PO' %>
 	<%end%>
-	<% session[:cart].each do |id , quantity| %>
+	<% session[:cart_po].each do |id , quantity| %>
 		<%= f.fields_for :inventory_orders do |qty| %>
               <%= qty.hidden_field :inventory_id, value: id %> <!--id of inventory--> 
               <%= qty.hidden_field :quantity,value: quantity, :step => 'any'%>
         <%end%>
 	<%end%>
-<%= submit_tag "Order Now!" %>
+		<%= submit_tag "Complete PO!", :class => "submit_button" %>
 <% end %>
+
+</div>
+	<div class = "info" id = "info_bottom"%>
+		<!--application .css -->
+		<p>Hi <%= @user.name %>!</p>
+		<p>Terima kasih telah berbelanja di Shinfithecraft ! :)
+		<br>
+		Mohon maaf nih, untuk sementara ini kami hanya memiliki rekening BCA jadi kami hanya menerima metode pembayaran dengan sistem transfer tunai baik melalui ATM , mBanking maupun eBanking.
+		<br>
+		jadi untuk transferan dari bank lain akan memakan waktu 1x24 jam sebelum bisa kami konfirmasi :(
+		<br>
+		Setelah proses checkout selesai <%= @user.name %> akan melihat halaman invoice, disana tertera detail nomor rekening kami.
+		<br>
+		Jika telah melakukan transfer, Dalam waktu 1x24 jam nanti akan ada CS yang menghubungi <%= @user.name %> untuk konfirmasi detail order dan perkiraan ongkir transaksi dengan menggunakan JNE.
+		<br>
+		Setelah konfirmasi berhasil dilakukan maka kami akan mulai proses pengiriman, dengan harapan barang cepat sampai di tempat <%= @user.name %> ya~
+	</p>
+	</div>
+</div>

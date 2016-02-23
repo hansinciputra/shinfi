@@ -23,8 +23,8 @@
 </div>
   <div id = "guest">
     <p>Lanjutkan Sebagai Tamu</p>
-    <% if session[:cart] %>
-    <%= link_to 'Lanjut', new_customer_path %>
+    <% if session[:cart] || session[:cart_po]%>
+    <%= link_to 'Lanjut', new_customer_path %>  
     <% else %>
     <%= link_to 'Lanjut', root_path %>
     <%end%>

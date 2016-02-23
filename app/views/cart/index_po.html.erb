@@ -1,0 +1,95 @@
+<div id = "Main_Container">
+<h1>Belanjaan Kamu~</h1>
+<%= render 'helpermenu' %>
+<% if session[:cart_po]%>
+<hr>
+<br>
+<h1 style="text-align:center;">1. Keranjang -> 2. Input Alamat -> 3. Konfirmasi</h1>
+<div id ="continue_shop">
+<%= link_to 'Lanjut Berbelanja',root_path%>
+</div>
+<div id ="notification">
+	<p style="color:red;">Klik tombol up/down untuk mengganti quantity</p>
+</div>
+</br>
+<%= form_tag(cart_addquantity_po_path) do %>
+<table id = "cart_table">
+	<th>Product</th>
+	<th>Harga</th>
+	<th>Tersedia</th>
+	<th>Quantity</th>
+	<th>Total</th>
+	<th class= "remove_item">Delete</th>
+
+	<%
+		session[:cart_po].each do |id , quantity|
+			product = Inventory.find_by(:id => id)
+			prod_img = ProductImage.find_by(:inventory_id => id)
+	%>
+		<tr>
+			<td>
+				<ul>
+					<li id ="cart_prod_image">
+					<%= link_to(image_tag(prod_img.prod_img_url(:medium_thumb).to_s),prod_img.prod_img.to_s, :class=>"fancybox")%>
+					</li>
+					<li class ="cart_prod_detail"><b><%= link_to product.name, inventory_path(product.id)%></b></li>
+					<li class ="cart_prod_detail"><i><%= product.category %></i></li>
+					<li class ="cart_prod_detail">Ukuran: <%= product.meter %> <%=product.ukuran%></li>
+					<li class ="cart_prod_detail">Material: <%= product.material %></li>
+				</ul>
+			</td>
+			<td>
+				<div id ="p"><%= number_to_currency(product.sellprice, :unit => "Rp. ") %></div>
+			</td>
+			<td>
+				<div id ="p"><%= product.quantity%> <%= product.satuan%></div>
+			</td>
+			<td>
+				<div id="cart_quantity">
+					<%= hidden_field_tag 'product_id[]', product.id%>
+					<%= number_field_tag 'quantity[]',params[:quantity],:class => 'limit_quantity_input', :value => quantity %><%= product.satuan%>
+				</div>
+
+				
+			</td>
+			<td>
+				<div id = "result_price"><%= number_to_currency(product.sellprice * quantity.to_i, :unit => "Rp. ") %></div>
+			</td>
+			<td class= "remove_item">
+				<p><%= link_to(image_tag("trash.png"), cart_clear_po_path(:id => product.id)) %></p>
+			</td>
+		</tr>
+		
+<%end%>
+		<tr colspan = "5" syle="border:solid 1px black;">
+			<td colspan = "4"><h2>Total Order</h2></td>
+			<td id ="total"><h2><%=number_to_currency(@total.inject(:+), :unit => "Rp. ")%></h2></td>
+		</tr>
+		<tr>
+		</tr>
+</table>
+	<%= submit_tag "Update Cart", :class => "submit_button"%>
+	*klik update cart apabila menambahkan quantity
+	<%end%>
+
+	<div class ="checkout_button">
+		<!--1) if visitor is logged in to become user and has already insert customer details-->
+	<% if session[:phone] #we store session phone to for condition purpose%>
+
+		<%= link_to 'Checkout' , cart_checkout_po_member_path %>
+		<!--2) if visitor is logged in but has not set customer data-->
+	<% elsif session[:user_id]%>
+		<%= link_to 'Checkout' , user_detail_user_path(:id => session[:user_id]) %>
+	<%else%>
+	<!--3) if only as visitor-->
+		<%= link_to 'Checkout', login_users_path  %>
+	<%end%>
+	</div>
+<br>
+<%else%>
+<p>Your Cart is Empty</p>
+
+<%end%>
+
+</div>
+

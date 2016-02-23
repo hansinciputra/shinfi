@@ -55,7 +55,7 @@
           <% end %>
           <td><%= link_to 'Show', order_po_path(order) %></td>
           <td><%= link_to 'Edit', edit_order_po_path(order) %></td>
-          <td><%= link_to 'Destroy', order_po_path(order), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Destroy', order_pos_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
       <% @orders_index_customer.each_with_index do |order, i| %>

@@ -1,6 +1,6 @@
 class OrderPosController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_filter :authorize, except: [:show]
+  before_filter :authorize, except: [:show,:po_shop,:create]
   # GET /orders
   # GET /orders.json
   def index
@@ -28,6 +28,15 @@ class OrderPosController < ApplicationController
    end
    @orderstatus = OrderStatus.all
   end 
+
+  #logic behind open PO module
+  def po_shop
+    @banner = Poster.where(:type => "Banner")
+    @image = Inventory.list_all_po_items.paginate(:page => params[:page],:per_page => 24)
+    @category = Category.all
+
+
+  end
   # GET /orders/1
   # GET /orders/1.json
   def show
@@ -37,7 +46,7 @@ class OrderPosController < ApplicationController
     else
       @id = Order.find(params[:id])
     end
-    @orders = Order.find(params[:id])
+    @user = User.find_by(:id=> @id.user_id)
     @inventory_ordered = Order.find_by_sql(["SELECT inventories.id,inventories.name, inventories.sellprice, inventory_orders.quantity , inventories.sellprice*inventory_orders.quantity as Total FROM inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id WHERE inventory_orders.order_id = ? ORDER BY inventories.name", @id.id]);
     @total_ordered = Order.find_by_sql(["select sum(inventories.sellprice*inventory_orders.quantity) as total_price from inventories left join inventory_orders on inventories.id = inventory_orders.inventory_id where inventory_orders.order_id = ?", @id.id])
     @down_payment_calculation = Order.find_by_sql(["SELECT orders.payment, sum(inventories.sellprice*inventory_orders.quantity) + COALESCE(orders.ongkir,0) - COALESCE(orders.discount,0) - COALESCE(orders.payment,0) as outstanding From inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id LEFT JOIN orders on inventory_orders.order_id = orders.id where order_id = ? GROUP BY orders.payment , orders.discount, orders.ongkir", @id.id]);
@@ -65,7 +74,8 @@ class OrderPosController < ApplicationController
     respond_to do |format|
       if @order.save
         @order.generate_unique_id(@order.id)
-        format.html { redirect_to order_po_path(@order), notice: 'Order was successfully created.' }
+        session[:cart_po] = nil
+        format.html { redirect_to order_po_path(@order), notice: 'PO Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -115,7 +125,7 @@ class OrderPosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:ongkir,:discount,:readyorpo,:delvmethod, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
+      params.require(:order).permit(:ongkir,:discount,:readyorpo,:delvmethod,:user_id, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
       #specify [:id,:inventory_id, :quantity], otherwhise record when edit each record will be created again
     end
 end

@@ -2,13 +2,17 @@ Rails.application.routes.draw do
   resources :compinfos 
   resources :prodtypes
   get 'cart/index'
+  get 'cart/index_po'
   post'cart/addquantity'
+  post'cart/addquantity_po'
   get 'cart/add'
+  get 'cart/add_po_item'
   get 'cart/checkout_visitor'
   get 'cart/checkout_member'
   get 'cart/checkout_po_visitor'
   get 'cart/checkout_po_member'
   get 'cart/clear'
+  get 'cart/clear_po'
   resources :product_images
   resources :admin, :only => [:index]
   resources :report, :only => [:index]
@@ -39,6 +43,7 @@ Rails.application.routes.draw do
   resources :order_pos do
    collection do 
     put 'update_multiple_payment'
+    get 'po_shop'
     end
   end
 

@@ -38,6 +38,11 @@
 			<%  session[:return_to] ||= request.referer %>
 			<%= link_to 'Add to Cart' , cart_add_path(:id=>@inventory.id)%>
 		</div>
+		<div id = "inventory_cart">
+			<!--store previous page to the session-->
+			<%  session[:return_to] ||= request.referer %>
+			<%= link_to 'PreOrder' , cart_add_po_item_path(:id=>@inventory.id)%>
+		</div>
 	</div>
 		<div id = "comments_box">
 			Diskusi Produk: 

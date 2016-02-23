@@ -1,0 +1,74 @@
+<div id = "Main Container">
+	<div id = "home_container">
+			
+		<div class = "banner">
+			<% @banner.each do |img|%>
+				<%=image_tag(img.banner_url(:display).to_s) %>
+			<%end%>
+		</div>
+		<hr>
+		<br>
+	<% if @image %>	
+	<div id = "middler">
+	<div id = "product_helper_menu">
+		<%if params[:type]%>
+	We Found <b><%= @image.count %></b> items! for <b><%= params[:type] %></b>
+	<%end%>
+	</div>
+		<div id = "product_helper_container">
+			<div id ="category_helper">
+				<p><b><i>Find By Brand</i></b></p>
+				<%= form_for :fabrics,:url =>fabrics_path,:html =>{:method =>:get} do |x|%>
+   				 <!--By pass the collection_select :option with empty {}-->
+   				 <%= x.hidden_field :type , :value => params[:type] %>
+  				<%= x.collection_select :category , @category,:name,:name,{include_blank: 'Pilih Brand'},{:style=>"width:100%;",:onchange =>"this.form.submit();"} %>
+    		<%end%>
+			</div>
+			<div id ="color_helper">
+				<p><b><i>Warna Dominan</i></b></p>
+				<%= link_to ' ',fabrics_path(:warna => 'Merah',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:red" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Hijau',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:green" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Biru',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:blue" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Putih',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:white" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Pink',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:pink" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Abu',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:grey" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Coklat',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:chocolate" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Oranye',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:orange" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Hitam',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:black" }%>
+			</div>
+		</div>
+		<div id = "product_display_container">
+			<% @image.each do |f|%>
+			<div id = "index_image_display_container">
+				<div id = "index_image_display"><%= link_to image_tag(f.prod_img_url(:thumb).to_s), inventory_path(:id => f.inventory_id)%></div>
+					<div id = "index_product_summary">
+						<b><%= f.name %></b>
+						<ul>
+							<li><%= f.fabrictype%></li>
+							<li><%= f.category%></li>
+							<li><b><%= number_to_currency(f.sellprice, :unit => "Rp. ")%>/<%=f.satuan%></b></li>	
+						</ul>
+					</div>
+				</div>
+			<%end%>
+				<div class = "pagination">
+					<%= will_paginate @image%>
+				</div>
+			</div>
+				<%else%>
+					<p> Product Not Found </p>
+				<%end%>
+			</div>
+		</div>
+</div>
+<script type="text/javascript">
+//to check owl-carousel properties: http://owlgraphic.com/owlcarousel/
+$(document).ready(function(){
+	$(".owl-carousel").owlCarousel({
+	    autoPlay: 3000, //Set AutoPlay to 3 seconds
+	    singleItem: true,
+	    itemsDesktop: [1199, 3],
+	    itemsDesktopSmall: [979, 3]
+  });
+});
+</script>
