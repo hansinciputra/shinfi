@@ -23,16 +23,7 @@
           <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
         </ul>
       </div>
-      <!--menu for loggeed in user that is not admin-->
-   <% elsif current_user && current_user.role = "Member" %>
-        <div id="head_menu">      
-        <ul>
-          <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
-          <li><%= link_to ' Home  ' , root_path %></li>
-          <li><%= link_to ' My Page ' , user_path(:id => session[:user_id]) %></li>
-          <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
-        </ul>
-      </div>
+ 
    <%end%>
   <title>Shinfi</title>
   <script>
@@ -52,7 +43,17 @@
   <%= csrf_meta_tags %>
   <div id="banner_index">
   <div id="banner_inner_container"> 
-    <div id="promo"></div>
+    <div id="promo">
+                <% if current_user && current_user.role = "Member" %>
+            <!--menu for loggeed in user that is not admin-->  
+            
+              <li><div id="user_name">Hi,<b><%= current_user.name %>!</b></div></li>
+              
+              <li><b><%= link_to ' My Page |' , user_path(:id => session[:user_id]) %></b></li>
+              <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
+            
+            <%end%>
+          </div>
     <div id="logo"><%= link_to(image_tag("LOGO.png"),root_path)%></div>
     <div class="cart">
       <div id="cart_image"><%= image_tag("cart.png") %></div>
@@ -111,8 +112,10 @@
     </div>
   </div><!--end for inner banner container-->
   </div>
+  <div id="head_menu_anchor"></div>
          <div id="head_menu">
           <ul>
+            <li><%= link_to ' Home  ' , root_path %></li>
             <li><%= link_to ' Fabrics ', fabrics_path%>
               <!--Menu harus diupdate secara manual?-->
               <div class = "dropdown-menu">
@@ -145,8 +148,23 @@
               </div>
             </li>
             <li><a href ="#">Accessories </a></li>
+            <% if current_user && current_user.role = "Member" %>
+            <div id="member_menu">
+                             <!--menu for loggeed in user that is not admin-->  
+                <li><div id="prof_icon"><%= link_to(image_tag("profile.png"),user_path(:id => session[:user_id]))%></div>
+                <div class = "dropdown-menu">
+                <ul>
+                  <li id ="mypage"><b><%= link_to "My Page", user_path(:id => session[:user_id]) %></b></li>
+                  <li><b><%= link_to "logout", log_out_path %></b></li>
+                </ul>
+                </div>
+              </li>
+              <li><%= link_to(image_tag("shopping_bag_icon.png"),cart_index_path)%><%if session[:cart]%>(<%=session[:cart].count %>)<%end%></li>
+              <li><%= link_to(image_tag("shopping_bag_po_icon.png"),cart_index_po_path)%><%if session[:cart_po]%>(<%= session[:cart_po].count %>)<%end%></li>
+            </div>
+            <%end%>
           </ul>
-        </div>
+        </div><!--end of head menu-->
        
 </head>
 <body>

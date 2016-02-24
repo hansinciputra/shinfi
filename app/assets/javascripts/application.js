@@ -65,3 +65,22 @@ $("#cart_thumb_caller").click(function(){
 	$("#cart_thumb_content").fadeToggle();
 });
 
+
+function sticky_relocate(){
+	var window_top = $(window).scrollTop();
+	var div_top = $('#head_menu_anchor').offset().top;
+
+	if(window_top > div_top){
+		$('#head_menu').addClass('stick')
+		$('#member_menu').show()
+	}
+	else
+	{
+		$('#head_menu').removeClass('stick')
+		$('#member_menu').hide()
+	}
+}
+$(function(){
+	$(window).scroll(sticky_relocate);
+	sticky_relocate();
+});

@@ -71,6 +71,14 @@
 	width:23%;
 	height: 158px;
 	float:left;
+	padding-top: 50px;
+}
+#promo li{
+	width: 80px;
+	list-style: none;
+	float: left;
+	margin-left: 3px;
+	text-align: center;
 }
 .cart{
 	width:21.5%;
@@ -152,12 +160,41 @@
 	border: black solid 1px;
 	text-align: center;
 }
+#member_menu{
+	width: 200px;
+	margin-left: 30px;
+	display: inline;
+	height: 40px;
+	overflow: none;
+	padding: 0;
+	border: black white 1px;
+}
+#member_menu li{
+margin-left: 10px;
+color: white;
+}
+#prof_icon{
+	height: 50px;
+	width: 40px;
+	
+}
 #head_menu{
 	width: 100%;
 	min-width: 1200px;
 	text-align: center;
 	display: inline-block;
 	height: 40px;
+}
+#head_menu.stick{
+	position: fixed;
+	top: 0;
+	z-index: 99;
+	width: 100%;
+	min-width: 1200px;
+	opacity: 0.9;
+	text-align: center;
+	height: 50px;
+	display: block;
 }
 #head_menu ul{
 	list-style-type: none;
@@ -168,7 +205,6 @@
 }
 #head_menu li{
 	display: inline-block;
-
 }
 #head_menu li a{
 	font-size: 1.5em;
@@ -247,6 +283,7 @@
 	background-color: white;
 	table-layout: fixed;
 	z-index: 3;
+	padding-left: 5px;
 }
 #head_menu .dropdown-menu ul li{
 	height: 30px;
@@ -307,7 +344,7 @@ ul li:hover .dropdown-menu{
 	z-index: 100;
 	left:0;
 	text-align: left;
-	border:black solid 2px;
+	background-color: #FAFAFA;
 	-webkit-transition: all 0.3s ease-out;
               -moz-transition: all 0.3s ease-out;
               -o-transition: all 0.3s ease-out;
@@ -572,12 +609,14 @@ footer #f_right{
 	margin:0px 0px 10px 10px;
 	overflow: auto;
 	padding-bottom: 10px;
+
 }
 #top_seller_product_index_page #title{
 	border:black solid 1px;
 	background-color: black;
 	height: 30px;
 	padding: 0px 0px 15px 0px;
+	border-radius: 0.5em 0.5em 0.5em 0.5em;
 }
 .top_seller_image_index_page{
 	overflow: hidden;

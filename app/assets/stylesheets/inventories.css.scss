@@ -231,3 +231,20 @@ table{
   background-color:black;
   color:white;
 }
+#inventory_po_cart a
+{
+  display:block;
+  margin-top: 30px;
+  padding-top:10px;
+  font-size:18px;
+  width: 200px;
+  height: 30px;
+  background-color:black;
+  text-align:center;
+  box-shadow: 5px 5px 5px #888888;
+}
+#inventory_po_cart a:hover
+{
+  background-color:#FAFAFA;
+  color:black;
+}
