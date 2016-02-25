@@ -167,14 +167,13 @@
 	height: 40px;
 	overflow: none;
 	padding: 0;
-	border: black white 1px;
 }
 #member_menu li{
 margin-left: 10px;
 color: white;
 }
 #prof_icon{
-	height: 50px;
+	height: 40px;
 	width: 40px;
 	
 }
@@ -193,8 +192,13 @@ color: white;
 	min-width: 1200px;
 	opacity: 0.9;
 	text-align: center;
-	height: 50px;
+	height: 40px;
 	display: block;
+	font-size: 0.5em;
+}
+#head_menu_aligner{
+	width:100%;
+	top:40px;
 }
 #head_menu ul{
 	list-style-type: none;
