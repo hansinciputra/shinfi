@@ -46,7 +46,8 @@ gem 'figaro','>= 1.0.0.rc1'
 # Use ActiveModel has_secure_password
 
 #to connect with facebook API
-gem 'omniauth-facebook'
+gem 'omniauth'
+gem 'omniauth-facebook','1.4.0'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt', :require => 'bcrypt'
 # Use unicorn as the app server
