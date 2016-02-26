@@ -575,11 +575,12 @@ footer #f_right{
 	height: 80px;
 	margin: 0 auto 10px auto;
 }
-.handcraft_result{
+.fb_follow{
 	width: 150px;
 	height: 227px;
-	border:solid black 1px;
 	margin: 10px auto 0 auto;
+	text-align: center;
+	padding: 5px;
 }
 #promo_banner_index{
 	width: 1050px;
