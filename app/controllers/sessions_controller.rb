@@ -2,8 +2,13 @@ class SessionsController < ApplicationController
   def new
   end
   def create
-  	user = User.check_login(params[:email],params[:password])
-  	if user
+    if params[:provider] == 'facebook'
+  	   user = User.from_omniauth(env["omniauth.auth"])
+    else
+        user = User.check_login(params[:email],params[:password])
+    end
+
+    if user
   		session[:user_id] = user.id
       session[:role] = user.role
   		redirect_to root_path, :notice =>"loged in!"
