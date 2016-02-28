@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 	#validates_confirmation_of the :password from view
 	validates_presence_of :password, :on => :create
 	validates_confirmation_of :password, :message => "password doesn't match"
-	validates_uniqueness_of :email, :message => "alamat email sudah terdaftar"
+	validates_uniqueness_of :name, :message => "Nama Sudah Terpakai, mohon mengunakan nama lain"
 
 def encrypt_password
 	if password.present?
