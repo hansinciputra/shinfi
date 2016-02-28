@@ -1,5 +1,6 @@
 <div id = "customer_container">
 	<div id ="prof_pic">
+		<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
 	</div>
 	<div id = "customer_info">
 		<h1><%= @user.name%></h1>

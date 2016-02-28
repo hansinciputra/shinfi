@@ -57,19 +57,13 @@
             <% if current_user %>
               Signed in as <strong><%= current_user.name %></strong>!
               <%= link_to "Sign out", signout_path, id: "sign_out" %>
+                  <li><b><%= link_to ' My Page |' , user_path(:id => session[:user_id]) %></b></li>
+              
             <% else %>
               <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
             <% end %>
           </div>
-                <% if current_user && current_user.role = "Member" %>
-            <!--menu for loggeed in user that is not admin-->  
-            
-              <li><div id="user_name">Hi,<b><%= current_user.name %>!</b></div></li>
-              
-              <li><b><%= link_to ' My Page |' , user_path(:id => session[:user_id]) %></b></li>
-              <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
-            
-            <%end%>
+                
           </div>
     <div id="logo"><%= link_to(image_tag("LOGO.png"),root_path)%></div>
     <div class="cart">
