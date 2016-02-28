@@ -11,3 +11,30 @@
 {
 	text-align:center;
 }
+#login_container
+{
+	border:black solid 1px;
+	width: 800px;
+	height: 300px;
+	padding:30px;
+	margin:auto;
+	margin-top:10px;
+}
+#login{
+	width: 420px;
+	float:left;
+	border-right:solid black 2px;
+	margin-right: 20px;
+	height:90%;
+}
+
+#guest{
+	width:350px;
+	float:left;
+	text-align:center;
+}
+.social_login{
+	width:330px;
+	margin:20px auto 20px auto;
+	height:60px;
+}

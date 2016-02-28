@@ -249,22 +249,7 @@ color: white;
 	background-color: #00ff00;
 	color:#ffffff;
 }
-#login_container
-{
-	border:black solid 1px;
-	width: 800px;
-	height: 300px;
-	padding:30px;
-	margin:auto;
-	margin-top:10px;
-}
-#login{
-	width: 420px;
-	float:left;
-	border-right:solid black 2px;
-	margin-right: 20px;
-	height:90%;
-}
+
 #authentification li
 {
 	display:inline;

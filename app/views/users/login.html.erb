@@ -1,5 +1,7 @@
  <div id="Main_Container">
+
 <div id ="login_container">
+
  <div id="login">
  	<p>Klik "Daftar Baru" untuk membuat account di shinfithecraft!</p>
  <%=form_tag sessions_path do %>
@@ -22,12 +24,17 @@
   </ul>
 </div>
   <div id = "guest">
-    <p>Lanjutkan Sebagai Tamu</p>
+  <div class ="social_login">
+    <%= link_to(image_tag("facebook_login.png"), "/auth/facebook", id: "sign_in") %>
+  </div>
+  <div class ="social_login">
     <% if session[:cart] || session[:cart_po]%>
-    <%= link_to 'Lanjut', new_customer_path %>  
+    <%= link_to(image_tag("guest_login.png"), new_customer_path) %>  
     <% else %>
-    <%= link_to 'Lanjut', root_path %>
+    <%= link_to(image_tag("guest_login.png"), root_path) %>
     <%end%>
+  </div>
+    
   </div>
 </div>
 </div>
