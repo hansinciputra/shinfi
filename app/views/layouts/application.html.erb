@@ -60,7 +60,7 @@
                   <li><b><%= link_to ' My Page |' , user_path(:id => session[:user_id]) %></b></li>
               
             <% else %>
-              <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+              <%= link_to "Sign in/register", login_users_path %>
             <% end %>
           </div>
                 
