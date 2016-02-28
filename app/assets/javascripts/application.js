@@ -61,9 +61,10 @@ jQuery(function(){
 		});
 		return false;
 	});
-
+jQuery(function(){
 $("#cart_thumb_caller").click(function(){
 	$("#cart_thumb_content").fadeToggle();
+});
 });
 
 
@@ -84,4 +85,10 @@ function sticky_relocate(){
 $(function(){
 	$(window).scroll(sticky_relocate);
 	sticky_relocate();
+});
+
+jQuery(function(){
+$("#fb_message_hide").click(function(){
+	$("#fb_message").css('height','370px');
+});
 });
