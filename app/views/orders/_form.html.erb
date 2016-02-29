@@ -31,7 +31,7 @@
                  <%= 
                  collection_select(:order,:customer_id,@customer,:id,:name) #(:class or object, :method or attribute inside that object that we want to store the info to, the collection of options, key, value)
                  %></h3>
-                    <h3><%= f.label :delvethod , 'metode pengiriman' %><%=f.text_field :delvmethod%></h3>
+                    <h3><%= f.label :delvethod , 'Metode Pengiriman' %><%=f.text_field :delvmethod%></h3>
                     <h3><%= f.label :ongkir %><%=f.number_field :ongkir%></h3>
                     <h3><%= f.label :discount %><%=f.number_field :discount%></h3>
                     <%= f.hidden_field :order_status_id, :value => 1%>

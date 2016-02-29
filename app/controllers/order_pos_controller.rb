@@ -56,7 +56,7 @@ class OrderPosController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
-    @customer = Customer.all
+    @customer = Customer.all.order("name")
     @inventories_list = Inventory.all.order(:id) #controller can call any model
     @inventory_order = @order.inventory_orders.build #to build instance of inventory order on the view page, otherwise the field_for will think that there is no inventory_order class and thus not showinf the field_for tag in the view
   end
