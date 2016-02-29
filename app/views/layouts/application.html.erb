@@ -87,6 +87,11 @@
       <div id="cart_image"><%= image_tag("cart.png") %></div>
        <br>
        <div id = "cart_link">
+        <%if session[:cart_po]%>
+           <%= link_to 'PreOrder Item', cart_index_po_path  %>(<%= session[:cart_po].count %>)
+        <%else%>
+           PreOrder Item (0)
+        <%end%>
       </div>
             <div id="cart_thumb_caller">|v </div>
             <!--OPEN PO CART SECTION ENDING-->
@@ -110,14 +115,7 @@
                 <li><b><%= number_to_currency(product.sellprice, :unit => "Rp. ") %> / <%=product.satuan%></b></li>
               </ul>
             </div>
-<!-- CART PO CART PO CART PO CART PO CART PO-->
-        <div id = "cart_link">
-          <%if session[:cart_po]%>
-             <%= link_to 'PreOrder Item', cart_index_po_path  %>(<%= session[:cart_po].count %>)
-          <%else%>
-             PreOrder Item (0)
-          <%end%>
-        </div>
+          </div>
             
         <%end%>
         <div class ="checkout_button">
