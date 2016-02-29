@@ -193,11 +193,12 @@ table{
 #remove_picture
 {
   position:relative;
-  //border:black solid 2px;
+  border:black solid 2px;
   top:-55px;
   margin-left:-15px;
   background-color:black;
   color:white;
+  z-index:999;
 }
 
 #product_container

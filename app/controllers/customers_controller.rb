@@ -44,7 +44,6 @@ class CustomersController < ApplicationController
             format.html { redirect_to customers_path, notice: 'Customer berhasil di tambahkan' } 
             format.json { render :show, status: :created, location: @customer }
           end
-        
       else
         format.html { render :new }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
