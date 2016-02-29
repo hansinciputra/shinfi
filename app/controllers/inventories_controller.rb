@@ -27,7 +27,12 @@ class InventoriesController < ApplicationController
     if @inventory.save
       redirect_to new_product_image_path(:id=>@inventory), :notice => "Berhasil Menginput Inventori"
     else
-      redirect_to new_inventory_path, :notice => "Gagal Menginput Inventory"
+      #need to reproduce all required file first
+      @productype = Prodtype.all
+      @categories = Category.all 
+      @type = TypeInventory.all
+      #use render new to show error
+      render :new
     end
   end
   

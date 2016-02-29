@@ -44,10 +44,13 @@ ul{
 }
 .measurement input {
   width:80px;
-  float:left;
+  display:inline-block;
+  height:20px;
+  //border:solid black 1px;
 }
 .inventory_value{
   float:left;
+    //border:solid blue 1px;
 }
 .inventory_value input{
   width:30px;
