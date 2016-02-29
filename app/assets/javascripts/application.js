@@ -61,9 +61,10 @@ jQuery(function(){
 		});
 		return false;
 	});
+
 jQuery(function(){
 $("#cart_thumb_caller").click(function(){
-	$("#cart_thumb_content").fadeToggle();
+	$("#cart_thumb_content").toggle();
 });
 });
 
