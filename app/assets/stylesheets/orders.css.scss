@@ -95,6 +95,16 @@
 	//border:solid black 1px;
 	width: 200px;
 	text-align:left;
+	float:left;
+}
+#additional_transaction select{
+	width: 200px;
+	text-align:left;
+}
+#additional_transaction input{
+	border:solid black 1px;
+	width: 200px;
+	display:inline-block;
 }
 #admin_menu_order{
 	//border: black solid 1px;
