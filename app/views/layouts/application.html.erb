@@ -96,8 +96,7 @@
             <div id="cart_thumb_caller">|v </div>
             <!--OPEN PO CART SECTION ENDING-->
       <!--beginning of cart_thumb-->
-      <% if session[:cart] && ((session[:cart_count] != session[:cart].count )||session[:cart].count == 1) %>
-      <% session[:cart_count] = session[:cart].count %>
+      
         <div id = "cart_thumb_content"><h2 style ="text-align:center;"><b>~Your Craft Kit~</b></h2>
         <hr>
       <%
@@ -109,9 +108,9 @@
             <div id="cart_thumb_prod_pic"><%=image_tag(prod_img.prod_img_url(:medium_thumb).to_s)%></div>
             <div id="cart_thumb_prod_info">
               <ul>
-                <li><b style ="font-size:1.2em;"><i><%=product.name%></i></b></li>
-                <li><i><%= product.category %></i></li>
-                <li><%= product.meter %> <%=product.ukuran%></li>
+                <li><b style ="font-size:1em;"><i><%=product.name%></i></b></li>
+                <li><b>Brand: </b><i><%= product.category %></i></li>
+                <li><b>Size: </b><%= product.meter %> <%=product.ukuran%></li>
                 <li><b><%= number_to_currency(product.sellprice, :unit => "Rp. ") %> / <%=product.satuan%></b></li>
               </ul>
             </div>
@@ -122,7 +121,7 @@
             <%= link_to 'Checkout' , cart_index_path %>
          </div>
         </div>
-      <%end%>
+      
         <!--end of cart_thumb-->
     </div>
   </div><!--end for inner banner container-->
