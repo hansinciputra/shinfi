@@ -36,13 +36,15 @@ class CustomersController < ApplicationController
     end
     respond_to do |format|
       if @customer.save
-       
           if session[:cart]
             format.html { redirect_to cart_checkout_visitor_path(customer_id: @customer), notice: 'Silahkan lanjutkan proses Checkout' } 
           elsif session[:cart_po]
             format.html { redirect_to cart_checkout_po_visitor_path(customer_id: @customer), notice: 'Silahkan lanjutkan proses Checkout' } 
-        end
-        format.json { render :show, status: :created, location: @customer }
+          else
+            format.html { redirect_to customers_path, notice: 'Customer berhasil di tambahkan' } 
+            format.json { render :show, status: :created, location: @customer }
+          end
+        
       else
         format.html { render :new }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
