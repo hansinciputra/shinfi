@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 	#validates_confirmation_of the :password from view
 	validates_presence_of :password, :on => :create
 	validates_confirmation_of :password, :message => "password doesn't match"
-	
+	validates_uniqueness_of :name, :message => "Nama Sudah Terpakai, mohon mengunakan nama lain"
 
 def encrypt_password
 	if password.present?
@@ -19,7 +19,7 @@ def encrypt_password
 end
 
 def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid, email:auth.info.email).first_or_initialize.tap do |user|
+    where(provider: auth.provider, uid: auth.uid, email:auth.info.email, name:auth.info.name).first_or_initialize.tap do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.name = auth.info.name
