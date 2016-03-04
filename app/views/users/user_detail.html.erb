@@ -15,8 +15,8 @@
 
   <div class="customer_form_container">
     <ul>
-          <li><%= f.label "Nama*" %></li>
-          <li><%= f.text_field :name %></li>
+          <li><%= f.label "Nama* (nama tidak dapat diganti)" %></li>
+          <li style="color:red;"><%= @user.name %></li>
           <div class = "two_column">
             <div class = "column1">
             <li><%= f.label "Phone Number*" %></li>         

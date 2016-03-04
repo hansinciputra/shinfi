@@ -1,6 +1,8 @@
 <div id = "customer_container">
 	<div id ="prof_pic">
+		<% if @user && @user.profpic %>
 		<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+		<%end%>
 	</div>
 	<div id = "customer_info">
 		<h1><%= @user.name%></h1>
