@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	has_many :orders, dependent: :destroy #dependent: :destroy - if customer is deleted , all of the customers order also deleted
 	
 	before_save :encrypt_password
-	validates :name, :presence =>true
+	
 	#validates_confirmation_of the :password from view
 	validates_presence_of :password, :on => :create
 	validates_confirmation_of :password, :message => "password doesn't match"

@@ -63,8 +63,13 @@ jQuery(function(){
 	});
 
 jQuery(function(){
-$("#cart_thumb_caller").click(function(){
+$(".cart_icon_container").click(function(){
 	$("#cart_thumb_content").toggle();
+	$("#cart_thumb_content_po").hide();
+});
+$(".cart_icon_container_po").click(function(){
+	$("#cart_thumb_content_po").toggle();
+	$("#cart_thumb_content").hide();
 });
 });
 

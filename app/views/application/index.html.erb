@@ -1,24 +1,9 @@
 <div id = "Main Container">
 	<div id = "home_container">
 		<div id ="home_first_section">
-			<div id = "shop_helper">
-				<div class = "shop_link_box">
-					<%= image_tag("shop_crafter.jpg") %>
-				</div>
-				<div class = "shop_link_box">
-					<%= image_tag("handcrafted.png") %>
-					
-				</div>
-				<div class = "shop_link_box">
-					<%= link_to(image_tag("openPO.png"),po_shop_order_pos_path )%>
-				</div>
-				<div class = "fb_follow">
-					<h3>We love facebook! we hope you love it too~ Follow us on facebook and we will be in touch!</h3>
-					<div class="fb-like" data-href="https://www.facebook.com/shinfithecrafts/?fref=ts" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>					
-				</div>
-			</div>
+			
 			<div class = "main_poster">	
-				<div class="owl-carousel col-lg-12">
+				<div id="main_poster" class="owl-carousel col-lg-12">
 					<%if @mainposter %>
 						<% @mainposter.each do |img|%>
 		  					<div class="item"><%=image_tag(img.mainposter_url(:display).to_s) %>	</div>
@@ -26,24 +11,30 @@
 	 				 <%end%>
 	 			</div>
 	 		</div>
-		 		<div id = "top_seller_product_index_page">
-		 			<div id="title">
-		 				<h3 style = "color: white;text-align:center;">5 Best Seller Items!</h3>
-		 			</div>
-		 			<% @best_seller.each do |img| %>
-		 				<div class = "top_seller_image_index_page">
-		 				<%= link_to(image_tag(img.prod_img_url(:thumb).to_s),inventory_path(img.inventory_id))%> 
-		 				</div>
-		 			<%end%>
-				</div>
+		 		
  		</div> <!--for first section div-->
+
+ 		<div id = "top_seller_product_index_page">
+		 			<div id="title">
+		 				<h3 style = "color: black;text-align:center;"> Top 10 Best Seller!</h3>
+		 			</div>
+		 			<div class="slider_button_left"><%= image_tag("btn_left.png") %></div>
+		 			<div id="top_seller_image_container">
+		 				
+			 				<div id="owl-top_seller" class ="owl-carousel col-lg-12" >
+				 			<% @best_seller.each do |img| %>
+				 				
+				 				<div class="item"><%= link_to(image_tag(img.prod_img_url(:thumb).to_s),inventory_path(img.inventory_id))%>
+				 				</div>
+				 				
+				 			<%end%>
+				 			
+			 				</div>
+		 			</div>
+		 			<div class="slider_button_right"><%= image_tag("btn_right.png") %></div>
+				</div>
  		<br>
- 		
- 		<div id = "promo_banner_index">
-	 			
-	 	</div>
  		<div id = "second_poster">
- 			<div class = "sub_second_poster_container">
  				
 				<div class = "sub_poster">
 					<%if @subposter1 %>
@@ -52,65 +43,41 @@
 						<%end%>
 					<%end%>
 				</div>
-				<div class = "main_page_short_desc">
-					Cari inspirasi dan bahan untuk kerajinan tangan kamu ? Kami punya yang kamu butuhin~ Buruan Cek kain-kain lucu koleksi shinfithecraft, mulai dari brand import sampai brand lokal ada disini. Dijamin gemesin dan bikin nagih!
-				</div>
-			</div>
-			<div class = "sub_second_poster_container">
 				
 				<div class = "sub_poster">
 
 				</div>
-				<div class = "main_page_short_desc">
-					Buat kamu yang sabar dan butuh koleksi terlengkap untuk handycraft disini tempatnya. Join Open PO dari shinfithecraft dan nikmati lengkapnya pilihan material untuk semua kebutuhan kamu! mulai dari bahan craft impor sampai craft lokal dengan berbagai macam motif dan bentuk, semua deh ada disini!
-					<br>
-					Penutupan PO tanggal...
-					</br>
-				</div>
-			</div>
-			<div class = "sub_second_poster_container">
 				
 				<div class = "sub_poster">
 					beli handycraft
 				</div>
-				<div class = "main_page_short_desc">
-					Tertarik sama produk-produk asli kerajinan tangan anak bangsa? klik disini untuk cek produk2 lucu yang ga pasaran dan kualitas terbaik yang sudah terferifikasi tentunya 
-				</div>
-			</div>
-			<div class = "sub_second_poster_container">
 				
 				<div class = "sub_poster">
 
 				</div>
-				<div class = "main_page_short_desc">
-					Kamu crafter dan punya hobi bikin barang2 lucu kerajinan tangan? kenapa nggak coba jadi partner shinfithecraft dan pasarkan produk kamu di tempat kami? Gratis!
-				</div>
-			</div>
 		</div>
-		<div id = "brand_list_container_index">
- 			<div id ="brand_image_container">
-	 			<div class = "brand_image">
-	 				<%= image_tag("agf_logo_bw.png") %>
-	 			</div>
-	 			<div class = "brand_image">
-	 				<%= image_tag("mmf_logo.jpg") %>
-	 			</div>
-	 		</div>
-	 	</div>
 	 	<br>
-		<hr>
-		<br>
-	
 	</div>
 </div>
 <script type="text/javascript">
 //to check owl-carousel properties: http://owlgraphic.com/owlcarousel/
 $(document).ready(function(){
-	$(".owl-carousel").owlCarousel({
+	$("#main_poster").owlCarousel({
 	    autoPlay: 3000, //Set AutoPlay to 3 seconds
 	    singleItem: true,
 	    itemsDesktop: [1199, 3],
 	    itemsDesktopSmall: [979, 3]
   });
+	$("#owl-top_seller").owlCarousel({
+	    items : 4,
+	    itemsDesktopSmall: [900, 3],
+	    pagination: false
+  });
+	$(".slider_button_left").click(function(){
+    	$("#owl-top_seller").trigger('owl.next');
+  	})
+  	$(".slider_button_right").click(function(){
+    	$("#owl-top_seller").trigger('owl.prev');
+  	})
 });
 </script>
