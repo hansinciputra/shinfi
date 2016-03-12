@@ -7,6 +7,9 @@ class InventoriesController < ApplicationController
   end
   def show #to display specified results
     @inventory = Inventory.find(params[:id])
+    if @inventory.brand_id
+      @brand = Brand.show_brand_on_id(@inventory.brand_id)
+    end
     @product_images = ProductImage.find_by inventory_id: @inventory.id
        respond_to do |format|
           format.html
@@ -18,6 +21,7 @@ class InventoriesController < ApplicationController
     @categories = Category.all 
     @type = TypeInventory.all
     @productype = Prodtype.all
+    @brands = Brand.all
     @product_images = @inventory.product_images.build
   end
 
@@ -41,6 +45,7 @@ class InventoriesController < ApplicationController
     @categories = Category.all 
     @type = TypeInventory.all
     @productype = Prodtype.all
+    @brands = Brand.all
     @product_images = @inventory.product_images.build
   end
   
@@ -91,6 +96,6 @@ class InventoriesController < ApplicationController
   end
 
   def inventory_params
-    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :prodtype,:category,:satuan,:ukuran,:berat,:warna, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic])
+    params.require(:inventory).permit(:name,:material,:fabrictype,:link, :quantity, :meter, :weight, :sellprice, :prodtype,:category,:brand_id,:satuan,:ukuran,:berat,:warna, :prod_img,:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic])
   end
 end

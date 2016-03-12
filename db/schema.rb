@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226170135) do
+ActiveRecord::Schema.define(version: 20160312045151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+
+  create_table "brands", force: true do |t|
+    t.string   "name"
+    t.string   "brand_pic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -65,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160226170135) do
     t.string   "berat"
     t.string   "warna"
     t.string   "prodtype"
+    t.integer  "brand_id"
   end
 
   create_table "inventory_orders", force: true do |t|

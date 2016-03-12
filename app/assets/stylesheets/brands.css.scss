@@ -1,0 +1,30 @@
+#index_image_display_container{
+	width:240px;
+	height:370px;
+	float:left;
+	margin:5px;
+	display:inline-block;
+}
+
+#index_logo_display{
+	width: 200px;
+	height: 200px;
+	overflow: hidden;
+	margin:auto;
+	cursor:pointer;
+	border:solid black 1px;
+	
+}
+#index_product_summary{
+	width:230px;
+	height:37px;
+	text-align:center;
+	margin:auto;
+}
+#new_brand_link{
+	border:solid black 1px;
+	width: 150px;
+	text-align:center;
+	top: 10px;
+	margin:auto;
+}

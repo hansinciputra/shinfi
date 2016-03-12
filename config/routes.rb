@@ -13,7 +13,8 @@ Rails.application.routes.draw do
   get 'cart/checkout_po_member'
   get 'cart/clear'
   get 'cart/clear_po'
-  resources :product_images
+  resources :brands 
+  resources :product_images 
   resources :admin, :only => [:index]
   resources :report, :only => [:index]
   resources :main_posters
@@ -25,7 +26,11 @@ Rails.application.routes.draw do
 
   get "sign_up" => 'users#new', :as =>"sign_up"
   get "log_out" => 'sessions#destroy', :as =>"log_out"
-  resources :fabrics, :only => [:index]
+  resources :fabrics, :only => [:index] do
+    member do
+      get 'brand_caller'
+    end
+  end
   resources :application, :only => [:index]
   resources :sessions
   resources :users do

@@ -1,0 +1,15 @@
+<div id = "Main_Container">
+	<div id = "universal_form">
+	<h1 style = "text-align:center;">Edit Brand Logo atau Brand Name</h1>
+	
+	<%= render 'form' %>
+
+	<button><%= link_to 'Finished', brands_path%></button>
+	</div>
+</div>
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress progress-striped"><div class="progress-bar" style="width: 0%"></div></div>
+</div>
+</script>

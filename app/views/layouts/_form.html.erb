@@ -42,6 +42,10 @@
 			<%= t.collection_select :category, @categories, :name, :name, :prompt=>true %>
 		</li>
 		<li>
+			<%= t.label :Brand %>
+			<%= t.collection_select :brand_id, @brands, :id, :name, :prompt=>true %>
+		</li>
+		<li>
 			<%= t.label :Type %>
 			<%= t.collection_select :fabrictype, @type, :name, :name, :prompt=>true %>
 		</li>

@@ -1,0 +1,17 @@
+<fieldset>
+<h3 style = "display:inline;">Upload Brand Logo</h3>    
+<p style= "color:red;"><b>*Perhatian*Agar Gambar tidak hancur dan layout tidak berantakan , ukuran file untuk Poster yang boleh di upload adalah sbb => "Lebar: 200px , Tinggi: 200px"</b></p>
+<fieldset>
+   <!--the UI javascript code for displaying upload image progress-->
+  <hr>
+  <%= form_for @brand do |each| %>                 
+   <!--Where we upload multiple picture using carrierwave-->
+    <ul>
+    <li><%=each.label 'Nama Brand :'%><%= each.text_field :name%><li>
+     <li><div id = "picture"><%= each.file_field :brand, multiple: true, name: "brand[brand_pic]" %></li>
+     </ul>
+     <%= each.submit %>
+  </div>
+    
+<%end %>
+
