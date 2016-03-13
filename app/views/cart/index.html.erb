@@ -68,23 +68,28 @@
 		<tr>
 		</tr>
 </table>
+	<div class ="customer_notes">
+		<h3>Catatan:</h3>
+		<%= text_area_tag 'cust_notes',@cust_notes,size:'35x8'%>
+	</div>
 	<%= submit_tag "Update Cart", :class => "submit_button"%>
-	*klik update cart apabila menambahkan quantity
+	*klik update cart apabila menambahkan quantity atau menuliskan pesan
 	<%end%>
 
 	<div class ="checkout_button">
 		<!--1) if visitor is logged in to become user and has already insert customer details-->
-	<% if session[:phone] #we store session phone to for condition purpose%>
+		<% if session[:phone] #we store session phone to for condition purpose%>
 
-		<%= link_to 'Checkout' , cart_checkout_member_path %>
-		<!--2) if visitor is logged in but has not set customer data-->
-	<% elsif session[:user_id]%>
-		<%= link_to 'Checkout' , user_detail_user_path(:id => session[:user_id]) %>
-	<%else%>
-	<!--3) if only as visitor-->
-		<%= link_to 'Checkout', login_users_path  %>
-	<%end%>
+			<%= link_to 'Checkout' , cart_checkout_member_path %>
+			<!--2) if visitor is logged in but has not set customer data-->
+		<% elsif session[:user_id]%>
+			<%= link_to 'Checkout' , user_detail_user_path(:id => session[:user_id]) %>
+		<%else%>
+		<!--3) if only as visitor-->
+			<%= link_to 'Checkout', login_users_path  %>
+		<%end%>
 	</div>
+
 <br>
 <%else%>
 <p>Your Cart is Empty</p>

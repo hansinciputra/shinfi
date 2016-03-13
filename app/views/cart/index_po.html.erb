@@ -68,6 +68,10 @@
 		<tr>
 		</tr>
 </table>
+	<div class ="customer_notes">
+		<h3>Catatan:</h3>
+		<%= text_area_tag 'cust_notes',@cust_notes,size:'35x8'%>
+	</div>
 	<%= submit_tag "Update Cart", :class => "submit_button"%>
 	*klik update cart apabila menambahkan quantity
 	<%end%>

@@ -6,6 +6,9 @@ class CartController < ApplicationController
       #we store session phone so we can be sure that user has already insert the data, we check it on cart index page
       session[:phone] = @data_user.phone
     end
+    if session[:cust_notes]
+      @cust_notes = session[:cust_notes]
+    end
   	if session[:cart]
   		cart = session[:cart]
 
@@ -28,6 +31,9 @@ class CartController < ApplicationController
     if @data_user
       #we store session phone so we can be sure that user has already insert the data, we check it on cart index page
       session[:phone] = @data_user.phone
+    end
+    if session[:cust_notes]
+      @cust_notes = session[:cust_notes]
     end
     if session[:cart_po]
       cart = session[:cart_po]
@@ -85,6 +91,9 @@ class CartController < ApplicationController
   new_quantity = params[:quantity] 
   product_id = params[:product_id]
 
+  #menyimpan customer notes
+  session[:cust_notes] = params[:cust_notes]
+
 	cart = session[:cart]
 	#index disini sebagai penunjuk urutan array dari new_quantity
   #key adalah id, index adalah 0,1,2,3,4
@@ -97,6 +106,8 @@ class CartController < ApplicationController
   def addquantity_po
   new_quantity = params[:quantity] 
   product_id = params[:product_id]
+  #menyimpan customer notes
+  session[:cust_notes] = params[:cust_notes]
 
   cart = session[:cart_po]
   #index disini sebagai penunjuk urutan array dari new_quantity
@@ -194,6 +205,7 @@ class CartController < ApplicationController
   	session[:cart].delete id
   	if session[:cart] == {}
   		session[:cart] = nil
+      session[:cust_notes] = nil
   	end
   	redirect_to :action => :index
   end

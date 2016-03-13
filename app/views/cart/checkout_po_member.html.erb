@@ -59,13 +59,17 @@
 			<td id ="total"><h2><%=number_to_currency(@total.inject(:+), :unit => "Rp. ")%></h2></td>
 		</tr>
 </table>
-
+	<div class ="customer_notes_display">
+		<h3>Catatan:</h3>
+		<%= session[:cust_notes]%>
+	</div>
 
 <%= form_for @order, :url => {:controller => 'order_pos', :action =>'create'} do |f| %>
 	<%= f.hidden_field :user_id, :value => @user.id %>
 	<%= f.hidden_field :order_status_id, :value => 1%>
 	<%if %>
 	<%= f.hidden_field :readyorpo, value: 'PO' %>
+	<%= f.hidden_field :cust_notes, value: session[:cust_notes] %>
 	<%end%>
 	<% session[:cart_po].each do |id , quantity| %>
 		<%= f.fields_for :inventory_orders do |qty| %>
