@@ -73,6 +73,7 @@ class OrdersController < ApplicationController
           x.reduce_from_inventories(x.quantity)
         end      
         session[:cart] = nil
+        session[:cust_notes] = nil
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else

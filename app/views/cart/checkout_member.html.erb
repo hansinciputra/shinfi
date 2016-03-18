@@ -2,65 +2,7 @@
 	<h1>Checkout</h1>
 	<%= render 'helpermenu' %>
 	<br>
-	<div id = "checkout_container">
-		<h2 style = "text-align:center;"><u>Ringkasan Order</u></h2>
-<ul>
-	<li><b>Nama : </b></li>
-	<li><%= @user.name %></li>
-	<li><b>Phone: </b></li>
-	<li><%= @user.phone %></li>
-	<li><b>Alamat Pengiriman :</b></li>
-	<li><%= @user.address %></li>
-
-</ul>
-<table id = "cart_table">
-	<th>Product</th>
-	<th>Harga</th>
-	<th>Quantity</th>
-	<th>Total</th>
-
-	<%
-		session[:cart].each do |id , quantity|
-			product = Inventory.find_by(:id => id)
-			prod_img = ProductImage.find_by(:inventory_id => id)
-	%>
-		<tr>
-			<td>
-				<ul>
-					<li id ="cart_prod_image">
-					<%= link_to(image_tag(prod_img.prod_img_url(:medium_thumb).to_s),prod_img.prod_img.to_s, :class=>"fancybox")%>
-					</li>
-					<li class ="cart_prod_detail"><b><%= link_to product.name, inventory_path(product.id)%></b></li>
-					<li class ="cart_prod_detail"><i><%= product.category %></i></li>
-					<li class ="cart_prod_detail">Ukuran: <%= product.meter %> <%=product.ukuran%></li>
-					<li class ="cart_prod_detail">Material: <%= product.material %></li>
-				</ul>
-			</td>
-			<td>
-				<div id ="p"><%= number_to_currency(product.sellprice, :unit => "Rp. ") %></div>
-			</td>
-			<td>
-				<div id="cart_quantity">
-					<%= quantity %>
-				</div>
-
-				
-			</td>
-			<td>
-				<div id = "result_price"><%= number_to_currency(product.sellprice * quantity.to_i, :unit => "Rp. ") %></div>
-			</td>
-		</tr>
-		
-<%end%>
-		<tr colspan = "5" syle="border:solid 1px black;">
-			<td colspan = "3"><h2>Total Order</h2></td>
-			<td id ="total"><h2><%=number_to_currency(@total.inject(:+), :unit => "Rp. ")%></h2></td>
-		</tr>
-</table>
-	<div class ="customer_notes_display">
-		<h3>Catatan:</h3>
-		<%= session[:cust_notes]%>
-	</div>
+	<%= render 'checkouthelper' %>
 
 
 <%= form_for(@order) do |f| %>
@@ -68,7 +10,7 @@
 	<%= f.hidden_field :order_status_id, :value => 1%>
 	<%if %>
 	<%= f.hidden_field :readyorpo, value: 'STOCKED' %>
-	<%= f.hidden_field :cust_notes, value: session[:cust_notes] %>
+	<%= f.hidden_field :cust_notes, value: @cust_notes %>
 	<%end%>
 	<% session[:cart].each do |id , quantity| %>
 		<%= f.fields_for :inventory_orders do |qty| %>
@@ -79,20 +21,5 @@
 		<%= submit_tag "Complete Checkout!", :class => "submit_button" %>
 <% end %>
 	</div>
-	<div class = "info" id = "info_bottom"%>
-		<!--application .css -->
-		<p>Hi <%= @user.name %>!</p>
-		<p>Terima kasih telah berbelanja di Shinfithecraft ! :)
-		<br>
-		Mohon maaf nih, untuk sementara ini kami hanya memiliki rekening BCA jadi kami hanya menerima metode pembayaran dengan sistem transfer tunai baik melalui ATM , mBanking maupun eBanking.
-		<br>
-		jadi untuk transferan dari bank lain akan memakan waktu 1x24 jam sebelum bisa kami konfirmasi :(
-		<br>
-		Setelah proses checkout selesai <%= @user.name %> akan melihat halaman invoice, disana tertera detail nomor rekening kami.
-		<br>
-		Jika telah melakukan transfer, Dalam waktu 1x24 jam nanti akan ada CS yang menghubungi <%= @user.name %> untuk konfirmasi detail order dan perkiraan ongkir transaksi dengan menggunakan JNE.
-		<br>
-		Setelah konfirmasi berhasil dilakukan maka kami akan mulai proses pengiriman, dengan harapan barang cepat sampai di tempat <%= @user.name %> ya~
-	</p>
-	</div>
+		<%= render 'checkoutmsg' %>
 </div>

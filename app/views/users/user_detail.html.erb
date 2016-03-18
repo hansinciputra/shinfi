@@ -27,10 +27,30 @@
             <li><%= f.text_field :phone2%></li>
           </div>
           </div>
+           <div class = "two_column">
+            <div class = "column1">
+              <li><%= f.label "Facebook" %></li>
+              <li><%= f.text_field :fb_contact %></li>
+           </div>
+           <div class = "column1">
+            <li><%= f.label "Instagram" %></li>
+            <li><%= f.text_field :insta_contact %></li>
+           </div>
+          </div>
           <li><%= f.label "Alamat Pengiriman*" %></li>
           <li><%= f.text_area :address, size: "42x5" %></li>
           <li><%= f.label "Kota" %></li>
           <li><%= f.text_field :kota, size:"44.8x5" %></li>
+          <div class = "two_column">
+            <div class = "column1">
+              <li><%= f.label "Kecamatan" %></li>
+              <li><%= f.text_field :kecamatan %></li>
+           </div>
+           <div class = "column1">
+            <li><%= f.label "Kelurahan" %></li>
+            <li><%= f.text_field :kelurahan %></li>
+           </div>
+          </div>
           <div class = "two_column">
             <div class = "column1">
               <li><%= f.label "Provinsi" %></li>

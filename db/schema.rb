@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313092804) do
+ActiveRecord::Schema.define(version: 20160315100416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,10 @@ ActiveRecord::Schema.define(version: 20160313092804) do
     t.string   "signas"
     t.string   "phone2"
     t.string   "address2"
+    t.string   "kecamatan"
+    t.string   "kelurahan"
+    t.string   "fb_contact"
+    t.string   "insta_contact"
   end
 
   create_table "inventories", force: true do |t|
@@ -168,6 +172,10 @@ ActiveRecord::Schema.define(version: 20160313092804) do
     t.datetime "oauth_expires_at"
     t.string   "profpic"
     t.string   "provider"
+    t.string   "kecamatan"
+    t.string   "kelurahan"
+    t.string   "fb_contact"
+    t.string   "insta_contact"
   end
 
 end

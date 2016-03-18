@@ -87,5 +87,5 @@ def check_password_params
 end
 
 def user_params
-	params.require(:user).permit(:name,:email,:role,:password,:password_confirmation,:phone,:phone2,:address,:address2,:provinsi,:kota,:kodepos)
+	params.require(:user).permit(:name,:email,:kecamatan,:kelurahan,:fb_contact,:insta_contact,:role,:password,:password_confirmation,:phone,:phone2,:address,:address2,:provinsi,:kota,:kodepos)
 end

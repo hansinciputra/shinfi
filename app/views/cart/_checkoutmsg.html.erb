@@ -1,0 +1,38 @@
+	<div class = "info" id = "info_bottom"%>
+		<!--application .css -->
+		<%if @user%>
+		<p>Hi <%= @user.name %>!</p>
+		<p>Terima kasih telah berbelanja di Shinfithecraft ! :)
+		<br>
+		Apabila pesanan sudah sesuai , <%= @user.name %> dapat langsung meng-klik tombol "konfirmasi".
+		<br>
+		Perlu diketahui bahwa Total Order diatas belum termasuk Ongkos Kirim ke alamat pengiriman kamu.
+		<br>
+		Dalam waktu max 2x24 jam, Admin kami akan menghubungi <%= @user.name %> melalui Telepon/Handphone untuk menginformasikan Ongkos Kirim, Jumlah Tagihan / Invoice yang harus dibayar,beserta Rekening Bank.
+		<br>
+		Mohon maaf nih, untuk sementara ini kami hanya memiliki rekening BCA jadi kami hanya menerima metode pembayaran dengan sistem transfer tunai baik melalui ATM , mBanking maupun eBanking.
+		<br>
+		jadi untuk transferan dari bank lain akan memakan waktu 1x24 jam sebelum bisa kami konfirmasi :(
+		<br>
+		Setelah konfirmasi berhasil dilakukan maka kami akan mulai proses pengiriman, dengan harapan barang cepat sampai di tempat <%= @user.name %> ya~
+		</p>
+		<%else%>
+		<p>Hi <%= @customer.name %>!</p>
+		<p>Terima kasih telah berbelanja di Shinfithecraft ! :)
+		<br>
+		Apabila pesanan sudah sesuai , <%= @customer.name %> dapat langsung meng-klik tombol "konfirmasi".
+		<br>
+		Perlu diketahui bahwa Total Order diatas belum termasuk Ongkos Kirim ke alamat pengiriman kamu.
+		<br>
+		Dalam waktu max 2x24 jam, Admin kami akan menghubungi <%= @customer.name %> melalui Telepon/Handphone untuk menginformasikan Ongkos Kirim, Jumlah Tagihan / Invoice yang harus dibayar,beserta Rekening Bank.
+		<br>
+		Mohon maaf nih, untuk sementara ini kami hanya memiliki rekening BCA jadi kami hanya menerima metode pembayaran dengan sistem transfer tunai baik melalui ATM , mBanking maupun eBanking.
+		<br>
+		jadi untuk transferan dari bank lain akan memakan waktu 1x24 jam sebelum bisa kami konfirmasi :(
+		<br>
+		Setelah konfirmasi berhasil dilakukan maka kami akan mulai proses pengiriman, dengan harapan barang cepat sampai di tempat <%= @customer.name %> ya~
+		</p>
+		<%end%>
+		
+	</div>
+

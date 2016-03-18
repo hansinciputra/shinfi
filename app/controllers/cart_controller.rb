@@ -136,6 +136,7 @@ class CartController < ApplicationController
     @user = User.find_by(:id => session[:user_id])
     @order = Order.new
     @inventory_order = @order.inventory_orders.build
+    @cust_notes = session[:cust_notes]
   end
 
   def checkout_po_member
@@ -156,6 +157,7 @@ class CartController < ApplicationController
     @user = User.find_by(:id => session[:user_id])
     @order = Order.new
     @inventory_order = @order.inventory_orders.build
+    @cust_notes = session[:cust_notes]
   end
 
   def checkout_visitor
@@ -177,6 +179,7 @@ class CartController < ApplicationController
     @customer = Customer.find_by(:id => params[:customer_id])
   	@order = Order.new
   	@inventory_order = @order.inventory_orders.build
+    @cust_notes = session[:cust_notes]
   end
 
   def checkout_po_visitor
@@ -198,6 +201,7 @@ class CartController < ApplicationController
     @customer = Customer.find_by(:id => params[:customer_id])
     @order = Order.new
     @inventory_order = @order.inventory_orders.build
+    @cust_notes = session[:cust_notes]
   end
 
   def clear
@@ -215,6 +219,7 @@ class CartController < ApplicationController
     session[:cart_po].delete id
     if session[:cart_po] == {}
       session[:cart_po] = nil
+      session[:cust_notes] = nil
     end
     redirect_to :action => :index_po
   end

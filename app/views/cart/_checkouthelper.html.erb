@@ -1,0 +1,107 @@
+<div id = "checkout_container">
+		<h2 style = "text-align:center;"><u>Ringkasan Order</u></h2>
+<div id = "left_checkout" class = "checkout_table">
+<% if @user %>
+<ul>
+	<li><b>Nama : </b></li>
+	<li><%= @user.name %></li>
+	<li><b>Phone: </b></li>
+	<li><%= @user.phone %>/ <%= @user.phone2%></li>
+
+	<li><b>Alamat Pengiriman :</b></li>
+	<div id="address_box">
+	<li><%= @user.address %> <br>
+		<b>Kota : </b><%=@user.kota%> <br>
+		<b>kecamatan : </b><%=@user.kecamatan%>, <br>
+		<b>kelurahan :</b><%=@user.kelurahan%>,<br>
+		<b>Provinsi : </b><%=@user.provinsi%> ,<b>Kode Pos:</b> <%=@user.kodepos%></li>
+	</div>
+</ul>
+</div>
+
+	<div id="right_checkout" class = "checkout_table">
+	<ul>
+		<li><b>facebook:</b></li>
+		<li><%= @user.fb_contact%></li>
+		<li><b>instagram:</b></li>
+		<li><%= @user.insta_contact%></li>
+		<li><b>Pesan:</b></li>
+			<div id = "address_box">
+				<li><%= @cust_notes%></li>
+			</div>	
+	</ul>
+	</div>
+<%else%>
+<ul>
+	<li><b>Nama : </b></li>
+	<li><%= @customer.name %></li>
+	<li><b>Phone: </b></li>
+	<li><%= @customer.phone %> / <%= @customer.phone2%></li>
+	<li><b>Alamat Pengiriman :</b></li>
+	<div id="address_box">
+	<li><%= @customer.address %> <br>
+		<b>Kota : </b><%=@customer.kota%> <br>
+		<b>kecamatan : </b><%=@customer.kecamatan%>, <br>
+		<b>kelurahan :</b><%=@customer.kelurahan%>,<br>
+		<b>Provinsi : </b><%=@customer.provinsi%> ,<b>Kode Pos:</b> <%=@customer.kodepos%></li>
+	</div>
+</ul>
+</div>
+
+	<div id="right_checkout" class = "checkout_table">
+	<ul>
+		<li><b>facebook:</b></li>
+		<li><%= @customer.fb_contact%></li>
+		<li><b>instagram:</b></li>
+		<li><%= @customer.insta_contact%></li>
+		<li><b>Pesan:</b></li>
+			<div id = "address_box">
+				<li><%= @cust_notes%></li>
+			</div>	
+	</ul>
+	</div>
+<%end%>
+<table id = "cart_table">
+	<th>Product</th>
+	<th>Harga</th>
+	<th>Quantity</th>
+	<th>Total</th>
+
+	<%
+		session[:cart].each do |id , quantity|
+			product = Inventory.find_by(:id => id)
+			prod_img = ProductImage.find_by(:inventory_id => id)
+	%>
+		<tr>
+			<td>
+				<ul>
+					<li id ="cart_prod_image">
+					<%= link_to(image_tag(prod_img.prod_img_url(:medium_thumb).to_s),prod_img.prod_img.to_s, :class=>"fancybox")%>
+					</li>
+					<li class ="cart_prod_detail"><b><%= link_to product.name, inventory_path(product.id)%></b></li>
+					<li class ="cart_prod_detail"><i><%= product.category %></i></li>
+					<li class ="cart_prod_detail">Ukuran: <%= product.meter %> <%=product.ukuran%></li>
+					<li class ="cart_prod_detail">Material: <%= product.material %></li>
+				</ul>
+			</td>
+			<td>
+				<div id ="p"><%= number_to_currency(product.sellprice, :unit => "Rp. ") %></div>
+			</td>
+			<td>
+				<div id="cart_quantity">
+					<%= quantity %>
+				</div>
+
+				
+			</td>
+			<td>
+				<div id = "result_price"><%= number_to_currency(product.sellprice * quantity.to_i, :unit => "Rp. ") %></div>
+			</td>
+		</tr>
+		
+<%end%>
+		<tr colspan = "5" syle="border:solid 1px black;">
+			<td colspan = "3"><h2>Total Order</h2></td>
+			<td id ="total"><h2><%=number_to_currency(@total.inject(:+), :unit => "Rp. ")%></h2></td>
+		</tr>
+</table>
