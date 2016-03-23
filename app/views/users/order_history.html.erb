@@ -1,0 +1,43 @@
+<div id = "user_container">
+	<div id ="prof_pic" class="user_page_left">
+		<% if @user && @user.profpic %>
+		<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+		<%end%>
+	</div>
+	<div id = "user_personal_menu" class= "user_page_right">
+		<ul>
+			<li class = "user_menu_button" ><%=link_to 'Profilku',user_path(:id => session[:user_id])%></li>
+			<li class = "user_menu_button" style="background-color:#58ACFA;color:black;border-bottom:none;"><%=link_to 'Order History', order_history_user_path(:id => session[:user_id])%></li>
+			<li class = "user_menu_button"><%= link_to 'My e-Stamp',e_stamp_user_path(:id => session[:user_id])%></li>
+		</ul>
+	</div>
+	
+	<div id = "user_content_container" class= "user_page_right">
+		<h2 style="text-align:left;">My Order Record</h2>
+		<div id = "report_container">
+		<table class = "user_order_table" border = "1">
+		<tr>
+				<th>No.</th>
+				<th>Nomor Pesanan</th>
+				<th>Tanggal Order</th>
+				<th>Terbayar</th>
+				<th>Status Order</th>
+		</tr>
+		
+			<% @user_order.each_with_index do |f,index|%>
+			<% index = index+1%>
+			<tr>
+				<td><%= index %></td>
+				<td><%= link_to f.url_id, order_show_path(f.url_id) %></td>
+				<td><%= f.created_at.strftime("%d-%m-%Y") %></td>
+				<td><%= number_to_currency(f.payment , :unit => "Rp. ")%></td>
+				<td><%= f.status %></td>
+			</tr>
+			<%end%>
+		
+		</table>
+		</div>
+		<i>Note: Click nomor pesanan untuk informasi lebih detil</i>
+	</div>
+
+	</div>

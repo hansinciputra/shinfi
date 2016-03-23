@@ -75,6 +75,7 @@ class OrderPosController < ApplicationController
       if @order.save
         @order.generate_unique_id(@order.id)
         session[:cart_po] = nil
+        session[:cust_notes] = nil
         format.html { redirect_to order_po_path(@order), notice: 'PO Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -125,7 +126,7 @@ class OrderPosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:ongkir,:discount,:readyorpo,:delvmethod,:user_id, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
+      params.require(:order).permit(:ongkir,:discount,:readyorpo,:order_status_id,:cust_notes,:delvmethod,:user_id, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
       #specify [:id,:inventory_id, :quantity], otherwhise record when edit each record will be created again
     end
 end

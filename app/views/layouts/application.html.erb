@@ -7,8 +7,8 @@
           <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
           <li><%= link_to ' Home ' , root_path %></li>
           <li><%= link_to ' Admin Page', admin_index_path %></li>
-          <li><%= link_to ' Orders ', orders_path %>(<%=@new_order%>)|</li>
-          <li><%= link_to ' Orders - PO ', order_pos_path %>(<%=@new_po_order%>)|</li>
+          <li><%= link_to ' Orders ', orders_path %><p style="float:right;color:red">(<%=@new_order%>)</p></li>
+          <li><%= link_to ' Orders - PO ', order_pos_path %><p style="float:right;color:red">(<%=@new_po_order%>)</p></li>
           <li><%= link_to ' Inventories ', inventories_path %>
               <div class ="dropdown-menu">
                 <ul>

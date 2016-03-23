@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       get 'user_detail'
       get 'change_password'
       patch 'change_password_commit'
+      get 'order_history'
+      get 'e_stamp'
     end
   end
   resources :customers

@@ -1,0 +1,1499 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: brands; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE brands (
+    id integer NOT NULL,
+    name character varying(255),
+    brand_pic character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: brands_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE brands_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: brands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE brands_id_seq OWNED BY brands.id;
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE categories (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
+
+
+--
+-- Name: compinfos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE compinfos (
+    id integer NOT NULL,
+    title character varying(255),
+    content text,
+    creator integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    infotype character varying(255)
+);
+
+
+--
+-- Name: compinfos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE compinfos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: compinfos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE compinfos_id_seq OWNED BY compinfos.id;
+
+
+--
+-- Name: customers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE customers (
+    id integer NOT NULL,
+    name character varying(255),
+    address character varying(255),
+    phone character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    provinsi character varying(255),
+    kota character varying(255),
+    kodepos character varying(255),
+    email character varying(255),
+    user_id integer,
+    signas character varying(255),
+    phone2 character varying(255),
+    address2 character varying(255),
+    kecamatan character varying(255),
+    kelurahan character varying(255),
+    fb_contact character varying(255),
+    insta_contact character varying(255)
+);
+
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE customers_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE customers_id_seq OWNED BY customers.id;
+
+
+--
+-- Name: inventories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE inventories (
+    id integer NOT NULL,
+    name character varying(255),
+    quantity numeric,
+    meter character varying(255),
+    sellprice numeric(10,2),
+    category character varying(255),
+    pic bytea,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    weight numeric(10,2),
+    material character varying(255),
+    link character varying(255),
+    fabrictype character varying(255),
+    prod_img character varying(255),
+    satuan character varying(255),
+    ukuran character varying(255),
+    berat character varying(255),
+    warna character varying(255),
+    prodtype character varying(255),
+    brand_id integer
+);
+
+
+--
+-- Name: inventories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE inventories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: inventories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE inventories_id_seq OWNED BY inventories.id;
+
+
+--
+-- Name: inventory_orders; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE inventory_orders (
+    order_id integer,
+    inventory_id integer,
+    quantity numeric,
+    id integer NOT NULL
+);
+
+
+--
+-- Name: inventory_orders_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE inventory_orders_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: inventory_orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE inventory_orders_id_seq OWNED BY inventory_orders.id;
+
+
+--
+-- Name: order_pos; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE order_pos (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: order_pos_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE order_pos_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: order_pos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE order_pos_id_seq OWNED BY order_pos.id;
+
+
+--
+-- Name: order_statuses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE order_statuses (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: order_statuses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE order_statuses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: order_statuses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE order_statuses_id_seq OWNED BY order_statuses.id;
+
+
+--
+-- Name: orders; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE orders (
+    id integer NOT NULL,
+    total_price numeric(10,2),
+    customer_id integer,
+    order_date timestamp without time zone,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    readyorpo character varying(255),
+    order_status_id integer,
+    payment numeric(10,2),
+    ongkir numeric(10,2),
+    discount numeric(10,2),
+    delvmethod character varying(255),
+    url_id character varying(255),
+    user_id uuid,
+    cust_notes text
+);
+
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE orders_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE orders_id_seq OWNED BY orders.id;
+
+
+--
+-- Name: posters; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE posters (
+    id integer NOT NULL,
+    name character varying(255),
+    display integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    type character varying(255),
+    mainposter character varying(255),
+    subposter character varying(255),
+    banner character varying(255),
+    squareposter character varying(255)
+);
+
+
+--
+-- Name: posters_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE posters_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: posters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE posters_id_seq OWNED BY posters.id;
+
+
+--
+-- Name: prodtypes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE prodtypes (
+    id integer NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    name character varying(255)
+);
+
+
+--
+-- Name: prodtypes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE prodtypes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: prodtypes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE prodtypes_id_seq OWNED BY prodtypes.id;
+
+
+--
+-- Name: product_images; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE product_images (
+    id integer NOT NULL,
+    name character varying(255),
+    inventory_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    prod_img character varying(255),
+    displaypic integer
+);
+
+
+--
+-- Name: product_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE product_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: product_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE product_images_id_seq OWNED BY product_images.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE schema_migrations (
+    version character varying(255) NOT NULL
+);
+
+
+--
+-- Name: type_inventories; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE type_inventories (
+    id integer NOT NULL,
+    name character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: type_inventories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE type_inventories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: type_inventories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE type_inventories_id_seq OWNED BY type_inventories.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE users (
+    name character varying(255),
+    email character varying(255),
+    password_hash character varying(255),
+    password_salt character varying(255),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    role character varying(255),
+    id uuid DEFAULT uuid_generate_v4() NOT NULL,
+    address character varying(255),
+    address2 character varying(255),
+    phone character varying(255),
+    phone2 character varying(255),
+    provinsi character varying(255),
+    kota character varying(255),
+    kodepos character varying(255),
+    dateofbirth date,
+    uid character varying(255),
+    oauth_token character varying(255),
+    oauth_expires_at timestamp without time zone,
+    profpic character varying(255),
+    provider character varying(255),
+    kecamatan character varying(255),
+    kelurahan character varying(255),
+    fb_contact character varying(255),
+    insta_contact character varying(255)
+);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY brands ALTER COLUMN id SET DEFAULT nextval('brands_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY categories ALTER COLUMN id SET DEFAULT nextval('categories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY compinfos ALTER COLUMN id SET DEFAULT nextval('compinfos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY customers ALTER COLUMN id SET DEFAULT nextval('customers_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY inventories ALTER COLUMN id SET DEFAULT nextval('inventories_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY inventory_orders ALTER COLUMN id SET DEFAULT nextval('inventory_orders_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY order_pos ALTER COLUMN id SET DEFAULT nextval('order_pos_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY order_statuses ALTER COLUMN id SET DEFAULT nextval('order_statuses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY orders ALTER COLUMN id SET DEFAULT nextval('orders_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY posters ALTER COLUMN id SET DEFAULT nextval('posters_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY prodtypes ALTER COLUMN id SET DEFAULT nextval('prodtypes_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY product_images ALTER COLUMN id SET DEFAULT nextval('product_images_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY type_inventories ALTER COLUMN id SET DEFAULT nextval('type_inventories_id_seq'::regclass);
+
+
+--
+-- Data for Name: brands; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY brands (id, name, brand_pic, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: brands_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('brands_id_seq', 1, false);
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY categories (id, name, created_at, updated_at) FROM stdin;
+6	Michael Miller Fabrics	2016-01-11 15:37:00.403226	2016-01-11 15:37:00.403226
+8	Cloud 9 Fabrics	2016-01-15 07:36:34.623148	2016-01-15 07:36:34.623148
+9	Art Gallery Fabrics	2016-01-15 07:39:12.194848	2016-01-15 07:39:12.194848
+10	KRCN Imported	2016-01-21 09:02:56.830207	2016-01-21 09:02:56.830207
+\.
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('categories_id_seq', 10, true);
+
+
+--
+-- Data for Name: compinfos; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY compinfos (id, title, content, creator, created_at, updated_at, infotype) FROM stdin;
+1	Pertanyaan Yang Sering Muncul 	<h2>Apakah Belanja di Shinfithecraft aman?</h2><p><br></p><p>Shinfithecraft telah lama melakukan proses jual-beli lewat platform lain seperti instagram dan facebook, crafterian dapat melakukan sekilas background check di account facebook shinfithecraft untuk melihat response dari para pembeli sebelumnya.</p><p>Selain itu, untuk sementara ini pembayaran shinfithecraft.com belum menggunakan kartu kredit, setiap transaksi melalui website akan dikonfirmasi secara personal via telephone ke pembeli untuk mencegah kesalahan input , memperlancar proses transfer , dan tentu saja sekalian berkenalan :) .</p>	2	2016-02-03 05:09:16.835161	2016-02-03 05:09:16.835161	FAQ
+2	Tentang Kami	Sebentar ya... belum diisi :(	2	2016-02-03 05:10:18.704373	2016-02-03 05:10:18.704373	Tentang Kami
+3	Untuk menghubungi shinfithecraft	<h3>Crafterian dapat menghubungi kami disini:</h3><p><br></p><p><br></p>	2	2016-02-03 05:13:32.84038	2016-02-03 05:14:43.485353	Contact Info
+\.
+
+
+--
+-- Name: compinfos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('compinfos_id_seq', 3, true);
+
+
+--
+-- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY customers (id, name, address, phone, created_at, updated_at, provinsi, kota, kodepos, email, user_id, signas, phone2, address2, kecamatan, kelurahan, fb_contact, insta_contact) FROM stdin;
+40	Vita Nur Fatmawati LINE	Jln. Sunan Prapen No. 40 RT. 1 RW. 1\r\nDs. Klangonan, Kec. Kebomas, Kab. Gresik\r\nJawa Timur 61161	0838 4999 7255	2016-03-14 02:42:56.008078	2016-03-14 02:42:56.008078					0	\N		\N	\N	\N	\N	\N
+4	Theresia Monoarfa (FB)	Jl. Karanggan. Perum. Taman Kenari 2A No. 12. Cibinong - Bogor	0813 1975 9797	2016-01-12 11:56:46.959833	2016-01-12 11:56:46.959833	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+8	Ditabocil (LINE)	To : Lidya Anindita\r\nJl. Kramat Pulo Dalam II / 19G \r\nRT. 010, RW. 005\r\nSenen, Jakarta Pusat 10450	0811 8075 809	2016-02-20 07:48:07.830858	2016-02-20 07:48:07.830858	DKI Jakarta Raya	Jakarta Pusat	10450		0	\N		\N	\N	\N	\N	\N
+15	Ranti beautyid (LINE)	Ranti F\r\nPerumahan Tanjung Barat Indah\r\nJl. Teratai III Blok B No. 4\r\nTanjungbarat, Jakarta Selatan	0813 9244 8855	2016-02-29 05:14:28.778262	2016-02-29 05:14:28.778262	DKI Jakarta Raya	Jakarta Selatan			0	\N		\N	\N	\N	\N	\N
+5	Ayay Sheikh (FB)	To : Yaya\r\nApartment Gading Mediterania\r\nResidence Unit CB/02/30 \r\nJl. Boulevard Bukit Gading Raya\r\nKelapa Gading, Jakarta Utara	0815 1344 2110	2016-01-21 07:34:26.614575	2016-02-29 07:27:43.374949					0	\N		\N	\N	\N	\N	\N
+16	Princess Hmade LINE	Siska Nck\r\nJl. Raya Garum No. 15 \r\nDepan Pasar Garum, "Perc. Garum"\r\nGarum, Blitar, Jawa Timur\r\n	0857 5582 8329	2016-02-29 07:28:29.133506	2016-02-29 07:28:29.133506	Jawa Timur	Garum, Blitar			0	\N		\N	\N	\N	\N	\N
+17	Erina Suryo LINE	Erina Suryo\r\nJl. Kuning Mas D4 No. 1 RT. 18 RW. 10\r\nKelapa Gading Timur\r\nJakarta Utara 14240	0812 9092 9264	2016-02-29 07:29:01.371645	2016-02-29 07:29:01.371645	DKI Jakarta Raya	Jakarta Utara			0	\N		\N	\N	\N	\N	\N
+18	Sofie WA	Jl. Kerja Bhakti No. 31 RT. 14 RW. 02\r\nKec. Makasar, Kel. Makasar\r\nJakarta Timur\r\n	0816 990 146	2016-02-29 07:29:30.192226	2016-02-29 07:29:30.192226	DKI Jakarta Raya	Jakarta Timur			0	\N		\N	\N	\N	\N	\N
+19	Emianty Zul FB	Jl. AW Syahrani\r\nGg. 54 RT. 24 No. 125\r\nSamarinda 75124 \r\n	0813 4711 4275	2016-02-29 07:30:05.352239	2016-02-29 07:30:05.352239		Samarinda	75124		0	\N		\N	\N	\N	\N	\N
+20	Diana Pratiwi FB	Diana Pratiwi\r\nKarya Indah Village I Blok B/2 RT04/RW03\r\nKel. Pondok Karya, Kec. Pondok Aren\r\nTangerang Selatan - 15225\r\n	0812 275 5251	2016-02-29 07:30:36.438692	2016-02-29 07:30:36.438692					0	\N		\N	\N	\N	\N	\N
+21	Melati WA	Jl. Pandega Marta X No. 4\r\nKaliurang Km. 5.8\r\nSleman, Yogyakarta - 55281	0878 3822 0333	2016-02-29 07:31:17.778525	2016-02-29 07:31:17.778525					0	\N	(0274) 551171	\N	\N	\N	\N	\N
+22	Caca WA	Jl. Raya Tengah No. 54L\r\nRaya Town House\r\nCondet, Jakarta Timur\r\n	085 8888 79147	2016-02-29 07:31:34.926988	2016-02-29 07:31:34.926988					0	\N		\N	\N	\N	\N	\N
+23	Irawatidian LINE	Dian\r\nJln. Abdul Halim 03/03 No. 50\r\nCigugur Tengah, Cimahi 40522\r\n	0817 2329 781	2016-02-29 07:31:51.098312	2016-02-29 07:31:51.098312					0	\N		\N	\N	\N	\N	\N
+24	Henny Nur Hastuti WA	d.a. KPP Pratama Kosambi\r\nJl. Perintis Kemerdekaan II\r\nCikokol, Tangerang 15118\r\n	0812 8100 1181	2016-02-29 07:32:12.077398	2016-02-29 07:32:12.077398					0	\N		\N	\N	\N	\N	\N
+25	Dhani Rahadian WA	Perumahan Oma Campus A5 - 08\r\nDAU, Malang\r\n	0856 5514 0457	2016-02-29 07:32:27.061142	2016-02-29 07:32:27.061142					0	\N		\N	\N	\N	\N	\N
+26	Ika Mustikawati WA	Jln. Dramaga Haji Abas\r\nKavling Caringin Mukti RT. 03 RW. 06 No. 19\r\nKel. Margajaya, Kec. Bogor Barat\r\nBogor\r\n	0852 8422 8292	2016-02-29 07:32:48.008582	2016-02-29 07:32:48.008582					0	\N		\N	\N	\N	\N	\N
+27	Tissa-KatunKatunBags LINE	To : Tissa\r\nJl. Binamarga 2 No. 23\r\nBaranangsiang, Bogor 16143	0857 8247 5179	2016-03-01 07:18:55.336341	2016-03-01 07:18:55.336341		Bogor	16143		0	\N		\N	\N	\N	\N	\N
+28	Rika WA	Jl. Bongas Blok E2 No. 12\r\nJatiwaringin Asri, Pondok Gede\r\nBekasi 17413\r\n	0817 9811 400	2016-03-01 07:19:24.600676	2016-03-01 07:19:24.600676		Bekasi	17413		0	\N		\N	\N	\N	\N	\N
+30	Ocha LINE	To : Rosa \r\nJl. Merak No. 3 \r\nKec. Semarang Utara, Kel. Tanjung Mas\r\nSemarang 50174 \r\nJawa Tengah \r\n	0877 3112 2871	2016-03-01 16:37:52.488599	2016-03-01 16:37:52.488599					0	\N		\N	\N	\N	\N	\N
+33	Nina Ridwan WA	Jln. HM. Alif 4 RT. 01/05 No. 15\r\nKukusan, Beji - Depok 16425\r\n	0877 8056 5527	2016-03-02 10:20:54.210772	2016-03-02 10:20:54.210772					0	\N		\N	\N	\N	\N	\N
+34	Sarah WA	Taman Cilegon indah \r\nBlock i 6 nomor 7 \r\nCilegon banten	0877 3112 2871	2016-03-07 13:59:31.262832	2016-03-07 13:59:31.262832					0	\N		\N	\N	\N	\N	\N
+35	Rina Winartha WA	Citra Grand Cibubur Blok O No. 6\r\n(Seberang Gerbang Cypress)\r\nJl. Alternatif Transyogie Cibubur\r\nBekasi 17435\r\n	 0877 7732 7121	2016-03-08 10:26:26.967122	2016-03-08 10:26:26.967122					0	\N		\N	\N	\N	\N	\N
+36	Diani Chandra LINE	Jl. Cijagra I\r\nGang IV, RT. 08, RW. 02\r\nBandung 40265	0856 2089 095	2016-03-11 06:59:18.591215	2016-03-11 06:59:18.591215					0	\N		\N	\N	\N	\N	\N
+37	Titiz Syam FB	To : Titiz\r\nJln. Parangkusumo No. 2\r\nLab. Pramita\r\nSurabaya 	0812 32666 702	2016-03-11 08:20:26.564656	2016-03-11 08:20:26.564656					0	\N		\N	\N	\N	\N	\N
+38	Lucy WA	Puri nirwana 1 blok s no 12a cibinong bogor	081234502661	2016-03-13 11:43:17.142755	2016-03-13 11:43:17.142755					0	\N		\N	\N	\N	\N	\N
+41	Iin Natalia LINE	Iin natalia \r\nJalan pluit selatan 7a no 6\r\nJkt utara 14450\r\n	081217699699	2016-03-15 17:27:22.533744	2016-03-15 17:27:22.533744					0	\N		\N	\N	\N	\N	\N
+\.
+
+
+--
+-- Name: customers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('customers_id_seq', 41, true);
+
+
+--
+-- Data for Name: inventories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY inventories (id, name, quantity, meter, sellprice, category, pic, created_at, updated_at, weight, material, link, fabrictype, prod_img, satuan, ukuran, berat, warna, prodtype, brand_id) FROM stdin;
+54	ACC-01	1.0		15000.00	KRCN Imported	\N	2016-02-01 04:59:50.653504	2016-02-29 05:18:01.750863	50.00	Wooden		Sewing Supplies	\N	set		gr		Accessories	\N
+111	ACC-115	1.0		5000.00	KRCN Imported	\N	2016-02-20 07:28:09.349094	2016-02-29 05:18:14.631079	5.00	Plastic		Sewing Supplies	\N	Pcs		gram		Accessories	\N
+114	ACC-120	5.0	L : 1.5, P : 90	13500.00	KRCN Imported	\N	2016-02-20 07:28:09.379871	2016-02-29 05:18:25.780666	15.00			Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+103	ACC-24	5.0		30000.00	KRCN Imported	\N	2016-02-03 09:28:51.864049	2016-02-29 05:24:06.337777	20.00			Sewing Supplies	\N	pcs		gr		Accessories	\N
+55	ACC-25	3.0	3	17500.00	KRCN Imported	\N	2016-02-01 05:06:04.864862	2016-02-29 05:24:17.205107	50.00	Synthetic Leather		Sewing Supplies	\N	pcs	cm (diameter)	gr		Accessories	\N
+100	ACC-72	3.0		30000.00	KRCN Imported	\N	2016-02-03 09:26:18.345398	2016-02-29 05:26:59.397976	20.00			Sewing Supplies	\N	pcs		gr		Accessories	\N
+101	ACC-78	2.0		30000.00	KRCN Imported	\N	2016-02-03 09:27:22.163163	2016-02-29 05:27:12.095263	20.00			Sewing Supplies	\N	pcs		gr		Accessories	\N
+102	ACC-80	2.0		30000.00	KRCN Imported	\N	2016-02-03 09:28:07.442172	2016-02-29 05:27:24.136376	20.00			Sewing Supplies	\N	pcs		gr		Accessories	\N
+41	Swedish Owl - Brown	12.5	115	185000.00	Michael Miller Fabrics	\N	2016-01-21 08:05:43.192211	2016-02-29 07:48:57.349503	150.00	100% Premium Cotton	http://	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+35	Tatami - Coral	14.0	140	199000.00	Michael Miller Fabrics	\N	2016-01-11 15:38:32.651442	2016-03-01 07:20:04.533674	150.00	100% Premium Cotton Canvas	http://www.michaelmillerfabrics.com/tatami-3.html	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+34	Swirl - Turquoise	14.0	140	199000.00	Michael Miller Fabrics	\N	2016-01-11 15:36:27.66917	2016-03-08 10:27:49.112968	150.00	100% Premium Cotton Canvas	http://www.michaelmillerfabrics.com/swirl-19.html	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+104	KL-58	2.0	145	95000.00	KRCN Imported	\N	2016-02-03 09:33:05.389415	2016-03-11 08:21:36.175812	200.00			Cotton Linen	\N	pcs	cm	gr		Fabric	\N
+38	Something's Fishy - Multi	13.0	115	185000.00	Michael Miller Fabrics	\N	2016-01-21 08:01:19.477871	2016-03-14 03:01:11.722344	150.00	100% Premium Cotton	http://	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+36	Flamingo Love - Red	14.0	115	185000.00	Michael Miller Fabrics	\N	2016-01-11 15:40:05.906551	2016-01-29 12:46:02.340208	150.00	100% Premium Cotton	http://www.michaelmillerfabrics.com/flamingo-love-1.html	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+124	ACC-207	2.0	21 x 29.5	35000.00	KRCN Imported	\N	2016-02-20 07:28:09.47833	2016-02-29 07:23:31.236891	5.00	Heat Transfer Paper		Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+123	ACC-203	1.0	21 x 29.5	35000.00	KRCN Imported	\N	2016-02-20 07:28:09.468925	2016-02-29 07:34:12.392732	5.00	Heat Transfer Paper		Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+45	CF-46	0.0	160	65000.00	KRCN Imported	\N	2016-01-21 09:07:37.555822	2016-02-29 07:34:12.400278	150.00	100% Cotton	http://	Cotton	\N	pcs	cm	gr		Fabric	\N
+27	Happily Ever After	12.4	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:26:58.322749	2016-03-07 16:10:09.653784	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=4&Category=145&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+33	Wingspan Melon	13.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:30:51.727132	2016-02-29 07:38:48.48862	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=1&Category=106&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+9	Agave Field	14.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:07:50.602082	2016-03-08 10:27:49.067211	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=4&Category=101&v=1	Cotton	\N	Yard	cm	gr		Fabric	\N
+44	LF-34	0.0	50 x 70	70000.00	KRCN Imported	\N	2016-01-21 09:04:55.628794	2016-03-01 07:24:45.922439	200.00	Canvas Laminating	http://	Laminating	\N	pcs	cm	gr		Fabric	\N
+21	Cacti Field Festival	13.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:22:32.368819	2016-03-08 10:27:49.076727	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=3&Category=127&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+17	Buck Forest Night	12.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:19:22.064786	2016-03-01 16:40:35.320844	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=15&Category=122&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+22	Cacti Field Fun	12.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:23:14.413821	2016-03-11 07:01:47.424746	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=13&Category=127&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+48	CF-23.2	9.0	160	70000.00	KRCN Imported	\N	2016-01-21 09:11:43.508845	2016-03-11 07:01:47.552379	150.00	100% Cotton	http://	Cotton	\N	pcs	cm	gr		Fabric	\N
+49	LF-105	1.0	50 x 70	75000.00	KRCN Imported	\N	2016-01-21 09:12:34.331552	2016-02-29 07:43:33.244741	200.00	Canvas Laminating	http://	Laminating	\N	pcs	cm	gr		Fabric	\N
+7	Let It Be Beauty	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:03:10.325512	2016-03-13 15:22:35.846262	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=14&Category=131&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+50	LF-89	0.0	50 x 70	75000.00	KRCN Imported	\N	2016-01-21 09:13:34.494168	2016-02-29 07:44:06.607124	200.00	Canvas Laminating	http://	Laminating	\N	pcs	cm	gr		Fabric	\N
+51	LF-90	4.0	50 x 70	75000.00	KRCN Imported	\N	2016-01-21 09:14:30.080998	2016-02-29 07:44:56.486517	200.00	Canvas Laminating	http://	Laminating	\N	pcs	cm	gr		Fabric	\N
+20	Summer Grove by Day	11.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:21:45.424778	2016-03-14 03:01:11.727664	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=1&Category=93&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+46	KL-22	3.0	145	90000.00	KRCN Imported	\N	2016-01-21 09:08:46.943652	2016-02-01 04:57:10.591439	200.00	Cotton Linen	http://	Cotton Linen	\N	pcs	cm	gr		Fabric	\N
+28	Stamped	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:27:34.474797	2016-01-29 12:46:02.296521	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=11&Category=145&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+37	Glitz Garden - Coin	13.5	115	185000.00	Michael Miller Fabrics	\N	2016-01-11 15:40:52.442464	2016-03-14 03:01:11.716805	150.00	100% Premium Cotton	http://www.michaelmillerfabrics.com/glitz-garden.html	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+70	ZP-09	1.0	20	20000.00	KRCN Imported	\N	2016-02-02 09:24:59.507443	2016-02-29 07:21:09.317304	10.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+105	KL-96	0.0	140	95000.00	KRCN Imported	\N	2016-02-20 07:20:22.534101	2016-02-29 07:39:26.373274	200.00	\N	\N	Cotton Linen	\N	Pcs	cm	gram	\N	Fabric	\N
+106	PVC-40	7.0	140	75000.00	KRCN Imported	\N	2016-02-20 07:28:09.301157	2016-02-29 07:41:35.679738	200.00	Waterproof Fabric	\N	Laminating	\N	Pcs	cm	gram	\N	Fabric	\N
+32	Fletching Chant	13.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:30:11.381776	2016-02-29 07:42:18.38371	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=8&Category=118&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+107	PVC-41	1.0	140	75000.00	KRCN Imported	\N	2016-02-20 07:28:09.312203	2016-02-29 07:47:22.836339	200.00	Waterproof Fabric	\N	Laminating	\N	Pcs	cm	gram	\N	Fabric	\N
+155	test	2.0	20	20000.00		\N	2016-02-29 16:27:54.449272	2016-02-29 16:27:54.449272	260.00				\N	yard	m	b		Fabric	\N
+19	Floral Frolic Apricot	11.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:20:58.060437	2016-03-08 10:27:49.104107	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=13&Category=92&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+10	Triangle Tokens	14.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:08:44.193806	2016-03-08 10:27:49.132015	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=5&Category=101&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+25	Sweetish Seafoam	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:25:19.638392	2016-01-29 12:46:02.260562	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=635&Category=99&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+40	Bespoke Scotties - Jewel	15.0	115	185000.00	Michael Miller Fabrics	\N	2016-01-21 08:04:44.252633	2016-01-29 12:46:02.273701	150.00	100% Premium Cotton	http://	Cotton	\N	Yard	cm	gr		Fabric	\N
+31	Crochetting Crops	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:29:31.384236	2016-01-29 12:46:02.27865	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=15&Category=126&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+15	Oh, Hello Fog	13.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:13:19.893489	2016-01-29 12:46:02.282876	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=1&Category=122&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+30	Greenhouse Lucent	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:28:54.168988	2016-01-29 12:46:02.28729	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=18&Category=136&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+24	Wildflowers Blaze	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:24:40.783164	2016-01-29 12:46:02.362175	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=633&Category=99&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+12	Decoupage Couleur	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:10:24.587844	2016-01-29 12:46:02.376888	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=41&Category=107&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+47	KL-03	2.0	140	90000.00	KRCN Imported	\N	2016-01-21 09:09:53.751966	2016-02-01 04:56:58.999773	200.00	Cotton Linen	http://	Cotton Linen	\N	pcs	cm	gr		Fabric	\N
+29	Orchard Blossom Autumn	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:28:15.391897	2016-01-29 12:46:02.308718	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=11&Category=91&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+43	Scottie Toss - Passion	14.0	115	185000.00	Michael Miller Fabrics	\N	2016-01-21 08:43:06.400499	2016-01-29 12:46:02.312788	150.00	100% Premium Cotton	http://	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+58	ACC-14	6.0		22000.00	KRCN Imported	\N	2016-02-01 05:11:02.763375	2016-02-29 05:20:37.534757	100.00	Stainless		Sewing Supplies	\N	pcs		gr		Accessories	\N
+59	ACC-15	2.0		19000.00	KRCN Imported	\N	2016-02-01 05:11:50.516781	2016-02-29 05:22:11.787012	100.00	Stainless		Sewing Supplies	\N	pcs		gr		Accessories	\N
+60	ACC-16	4.0		20000.00	KRCN Imported	\N	2016-02-01 05:12:37.428716	2016-02-29 05:22:57.682849	100.00	Stainless		Sewing Supplies	\N	pcs		gr		Accessories	\N
+56	ACC-27	1.0	3	17500.00	KRCN Imported	\N	2016-02-01 05:07:25.339432	2016-02-29 05:24:28.511205	50.00	Synthetic Leather		Sewing Supplies	\N	pcs	cm (diameter)	gr		Accessories	\N
+57	ACC-35	2.0	115	65000.00	KRCN Imported	\N	2016-02-01 05:08:59.722055	2016-02-29 05:24:39.951925	100.00	Synthetic Leather		Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+61	ACC-40	4.0	60 x 50	8000.00	KRCN Imported	\N	2016-02-01 05:14:19.946159	2016-02-29 05:24:51.966882	20.00	Stainless		Sewing Supplies	\N	pcs	mm	gr		Accessories	\N
+62	ACC-41	3.0	35 x 20	7500.00	KRCN Imported	\N	2016-02-01 05:16:27.638732	2016-02-29 05:25:03.636429	20.00	Stainless		Sewing Supplies	\N	pcs	mm	gr		Accessories	\N
+63	ACC-42	5.0	25 x 20	7000.00	KRCN Imported	\N	2016-02-01 05:17:56.160844	2016-02-29 05:25:15.373456	20.00	Stainless		Sewing Supplies	\N	pcs	mm	gr		Accessories	\N
+64	ACC-43	5.0	28 x 24	7000.00	KRCN Imported	\N	2016-02-01 05:18:51.738791	2016-02-29 05:25:26.28595	20.00	Stainless		Sewing Supplies	\N	pcs	mm	gr		Accessories	\N
+65	ACC-44	4.0	40 x 30	7500.00	KRCN Imported	\N	2016-02-01 05:19:56.266569	2016-02-29 05:25:36.120942	20.00	Stainless		Sewing Supplies	\N	pcs	mm	gr		Accessories	\N
+66	ACC-45	4.0	60 x 25	8000.00	KRCN Imported	\N	2016-02-01 05:20:48.73636	2016-02-29 05:25:48.924103	20.00	Stainless		Sewing Supplies	\N	pcs	mm	gr		Accessories	\N
+67	ACC-46	5.0	25 x 20	7000.00	KRCN Imported	\N	2016-02-01 05:21:46.560602	2016-02-29 05:26:00.037079	20.00	Stainless		Sewing Supplies	\N	pcs	mm	gr		Accessories	\N
+68	ACC-47	3.0		18000.00	KRCN Imported	\N	2016-02-01 05:23:19.835932	2016-02-29 05:26:09.974754	20.00	Stainless		Sewing Supplies	\N	pcs		gr		Accessories	\N
+69	ACC-49	1.0	10 x 7.2	20000.00	KRCN Imported	\N	2016-02-01 05:24:41.639481	2016-02-29 05:26:21.76139	50.00	Plastic		Sewing Supplies	\N	pcs	cm (10 lembar)	gr		Accessories	\N
+18	Woodland Pine	10.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:20:11.218064	2016-02-29 07:38:48.494648	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=21&Category=79&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+23	Mojave Aloe	13.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:24:01.780557	2016-02-29 07:37:52.773871	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=16&Category=127&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+26	Nib and Pluck Zinnia	14.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:26:12.519146	2016-02-29 07:40:23.799086	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=11&Category=120&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+6	Tribal Study Aura	14.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 14:53:16.5189	2016-03-14 03:01:11.733037	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=13&Category=131&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+52	LF-93	0.0	50 x 70	75000.00	KRCN Imported	\N	2016-01-21 09:15:09.721473	2016-02-29 07:47:22.828516	200.00	Canvas Laminating	http://	Laminating	\N	pcs	cm	gr		Fabric	\N
+8	Bunny Binkies Funk	13.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:06:16.471243	2016-03-15 17:28:37.218551	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=16&Category=131&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+13	Radical Blooms Blush	15.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:11:22.359588	2016-03-01 07:39:56.353361	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=609&Category=99&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+16	Buck Forest Mint	7.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:18:21.276846	2016-03-01 16:40:35.311465	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=47&Category=122&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+39	Pegs A Planty - Multi	12.5	115	185000.00	Michael Miller Fabrics	\N	2016-01-21 08:03:42.143684	2016-03-14 03:01:11.739805	150.00	100% Premium Cotton	http://www.michaelmillerfabrics.com/pegs-a-plenty.html	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+11	Crystal Arrowheads	14.5	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:09:34.624769	2016-03-08 10:27:49.094573	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=6&Category=101&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+14	Table Flowers Rainbow	14.0	115	170000.00	Art Gallery Fabrics	\N	2016-01-11 15:12:07.644862	2016-03-08 10:27:49.122733	150.00	100% Premium Cotton	http://www.artgalleryfabrics.com/cgi-bin/fabricshop/gallery.cgi?func=show&file=1&Category=132&v=1	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+81	PANEL-61	2.0	20 x 20 	30000.00	KRCN Imported	\N	2016-02-02 10:22:11.397323	2016-02-02 10:22:11.397323	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+79	PANEL-59	5.0	15 x 20	30000.00	KRCN Imported	\N	2016-02-02 10:20:22.77811	2016-02-02 10:23:15.831905	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+82	PANEL-87	3.0	20 x 20	30000.00	KRCN Imported	\N	2016-02-02 10:32:09.688581	2016-02-02 10:32:09.688581	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+83	PANEL-88	2.0	20 x 20	30000.00	KRCN Imported	\N	2016-02-02 10:33:08.708397	2016-02-02 10:33:08.708397	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+84	PANEL-64	6.0	20 x 20	30000.00	KRCN Imported	\N	2016-02-02 10:34:13.828202	2016-02-02 10:34:13.828202	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+87	PANEL-76	1.0	20 x 20	25000.00	KRCN Imported	\N	2016-02-02 10:37:04.542315	2016-02-02 10:37:04.542315	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+88	PANEL-98	2.0	20 x 30 	35000.00	KRCN Imported	\N	2016-02-02 10:40:03.665264	2016-02-02 10:40:03.665264	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+89	PANEL-102	1.0	20 x 20	30000.00	KRCN Imported	\N	2016-02-02 10:41:03.570764	2016-02-02 10:41:03.570764	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+90	PANEL-104	1.0	20 x 20	30000.00	KRCN Imported	\N	2016-02-02 10:41:48.473711	2016-02-02 10:41:48.473711	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+91	PANEL-105	1.0	20 x 20	30000.00	KRCN Imported	\N	2016-02-02 10:42:33.08889	2016-02-02 10:42:33.08889	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+92	PANEL-107	3.0	20 x 30	50000.00	KRCN Imported	\N	2016-02-02 10:51:41.313398	2016-02-02 10:51:41.313398	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+93	CF-21	2.0	160	70000.00	KRCN Imported	\N	2016-02-02 10:54:49.052842	2016-02-02 10:54:49.052842	150.00			Cotton	\N	pcs	cm	gr		Fabric	\N
+94	OP-52 (BLUE)	2.0	160	70000.00	KRCN Imported	\N	2016-02-03 09:17:59.724232	2016-02-03 09:17:59.724232	150.00			Cotton	\N	pcs	cm	gr		Fabric	\N
+95	OP-52 (PINK)	2.0	160	70000.00	KRCN Imported	\N	2016-02-03 09:19:45.371152	2016-02-03 09:19:45.371152	150.00			Cotton	\N	pcs	cm	gr		Fabric	\N
+96	KL-107	1.0	145	95000.00	KRCN Imported	\N	2016-02-03 09:20:37.056695	2016-02-03 09:20:37.056695	200.00			Cotton Linen	\N	pcs	cm	gr		Fabric	\N
+97	CF-127	1.0	140	95000.00	KRCN Imported	\N	2016-02-03 09:22:35.342748	2016-02-03 09:22:35.342748	150.00			Cotton	\N	pcs	cm	gr		Fabric	\N
+42	Turtle Parade - Coral	11.0	115	185000.00	Michael Miller Fabrics	\N	2016-01-21 08:08:08.4654	2016-02-20 07:45:03.652961	150.00	100% Premium Cotton	http://	Cotton	\N	Yard	cm	gr	\N	Fabric	\N
+109	CF-221	1.0	160	70000.00	KRCN Imported	\N	2016-02-20 07:28:09.330552	2016-02-20 07:28:09.330552	150.00	\N	\N	Cotton	\N	Pcs	cm	gram	\N	Fabric	\N
+110	CF-246	1.0	160	70000.00	KRCN Imported	\N	2016-02-20 07:28:09.339782	2016-02-20 07:28:09.339782	150.00	\N	\N	Cotton	\N	Pcs	cm	gram	\N	Fabric	\N
+112	KL-261	3.0	145	80000.00	KRCN Imported	\N	2016-02-20 07:28:09.361471	2016-02-20 07:28:09.361471	200.00	\N	\N	Cotton Linen	\N	Pcs	cm	gram	\N	Fabric	\N
+113	KL-262	1.0	145	80000.00	KRCN Imported	\N	2016-02-20 07:28:09.370641	2016-02-20 07:28:09.370641	200.00	\N	\N	Cotton Linen	\N	Pcs	cm	gram	\N	Fabric	\N
+119	LF-288	2.0	50 x 70	75000.00	KRCN Imported	\N	2016-02-20 07:28:09.427577	2016-02-20 07:28:09.427577	200.00	Waterproof Fabric	\N	Laminating	\N	Pcs	cm	gram	\N	Fabric	\N
+125	PANEL-175	2.0	20 X 30	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.528904	2016-02-20 07:35:38.528904	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+126	PANEL-176	2.0	20 X 30	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.550694	2016-02-20 07:35:38.550694	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+127	PANEL-192	1.0	20 X 20	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.566628	2016-02-20 07:35:38.566628	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+128	PANEL-200	2.0	20 X 20	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.584465	2016-02-20 07:35:38.584465	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+129	PANEL-221	1.0	20 X 20	40000.00	KRCN Imported	\N	2016-02-20 07:35:38.610428	2016-02-20 07:35:38.610428	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+130	PANEL-222	1.0	20 X 20	40000.00	KRCN Imported	\N	2016-02-20 07:35:38.628475	2016-02-20 07:35:38.628475	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+132	PANEL-224	1.0	20 X 20	40000.00	KRCN Imported	\N	2016-02-20 07:35:38.65813	2016-02-20 07:35:38.65813	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+133	PANEL-225	1.0	20 X 20	40000.00	KRCN Imported	\N	2016-02-20 07:35:38.674292	2016-02-20 07:35:38.674292	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+134	PANEL-246	1.0	20 X 20	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.686698	2016-02-20 07:35:38.686698	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+98	ACC-52	1.0		30000.00	KRCN Imported	\N	2016-02-03 09:24:18.873948	2016-02-29 05:26:34.765804	5.00			Sewing Supplies	\N	pcs		gr		Accessories	\N
+99	ACC-66	2.0		30000.00	KRCN Imported	\N	2016-02-03 09:25:34.546287	2016-02-29 05:26:46.420109	20.00			Sewing Supplies	\N	pcs		gr		Accessories	\N
+120	ACC-148	3.0	14	15000.00	KRCN Imported	\N	2016-02-20 07:28:09.43695	2016-02-29 05:39:32.243072	5.00			Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+77	ZP-06 (45 BROWN)	1.0	45	20000.00	KRCN Imported	\N	2016-02-02 10:12:08.068121	2016-02-29 07:41:35.695281	40.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+122	ACC-150	2.0	21 x 29.5	35000.00	KRCN Imported	\N	2016-02-20 07:28:09.459021	2016-02-29 05:39:56.857711	5.00	Heat Transfer Paper		Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+78	ZP-07 (45 KHAKI)	1.0	45	20000.00	KRCN Imported	\N	2016-02-02 10:12:57.101219	2016-02-29 07:41:35.703462	40.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+131	PANEL-223	1.0	20 X 20	40000.00	KRCN Imported	\N	2016-02-20 07:35:38.641008	2016-02-29 06:58:44.361967	20.00			Panel	\N	Pcs	cm	gram		Fabric	\N
+73	ZP-01 (15 BROWN)	2.0	15	12000.00	KRCN Imported	\N	2016-02-02 10:07:46.373449	2016-02-29 07:19:47.356918	20.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+74	ZP-02 (15 PINK)	1.0	15	12000.00	KRCN Imported	\N	2016-02-02 10:08:38.62628	2016-02-29 07:20:02.226403	20.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+75	ZP-04 (30 KHAKI)	3.0	30	17000.00	KRCN Imported	\N	2016-02-02 10:09:41.397811	2016-02-29 07:20:16.183573	30.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+76	ZP-05 (30 BROWN)	5.0	30	17000.00	KRCN Imported	\N	2016-02-02 10:11:20.176438	2016-02-29 07:20:29.149497	30.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+118	LF-284	1.0	50 x 70	75000.00	KRCN Imported	\N	2016-02-20 07:28:09.417572	2016-02-29 07:43:04.485745	200.00	Waterproof Fabric	\N	Laminating	\N	Pcs	cm	gram	\N	Fabric	\N
+86	PANEL-109	3.0	20 x 20	25000.00	KRCN Imported	\N	2016-02-02 10:36:00.526683	2016-03-02 10:21:55.260164	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+71	ZP-11	1.0	20	20000.00	KRCN Imported	\N	2016-02-02 10:05:47.110466	2016-02-29 07:21:21.100505	10.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+72	ZP-12	2.0	20	20000.00	KRCN Imported	\N	2016-02-02 10:06:34.049236	2016-02-29 07:21:33.485444	10.00			Sewing Supplies	\N	pcs	cm (length)	gr		Accessories	\N
+115	ACC-133	1.0	25	15000.00	KRCN Imported	\N	2016-02-20 07:28:09.389336	2016-02-29 07:22:31.380361	25.00			Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+116	ACC-135	1.0	25	15000.00	KRCN Imported	\N	2016-02-20 07:28:09.398618	2016-02-29 07:23:02.270091	25.00			Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+117	ACC-138	1.0	25	15000.00	KRCN Imported	\N	2016-02-20 07:28:09.408035	2016-02-29 07:23:13.410045	25.00			Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+121	ACC-149	0.0	21 x 29.5	35000.00	KRCN Imported	\N	2016-02-20 07:28:09.448221	2016-02-29 07:34:12.384357	5.00	Heat Transfer Paper		Sewing Supplies	\N	Pcs	cm	gram		Accessories	\N
+108	LF-92	1.0	50 x 70	75000.00	KRCN Imported	\N	2016-02-20 07:28:09.321511	2016-02-29 07:47:22.81837	200.00	Waterproof Fabric	\N	Laminating	\N	Pcs	cm	gram	\N	Fabric	\N
+135	PANEL-247	1.0	20 X 30	50000.00	KRCN Imported	\N	2016-02-20 07:35:38.699241	2016-03-02 10:21:55.268445	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+80	PANEL-60	0.0	20 x 20 	30000.00	KRCN Imported	\N	2016-02-02 10:21:23.953056	2016-03-03 08:08:59.90677	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+85	PANEL-68	2.0	20 x 20	25000.00	KRCN Imported	\N	2016-02-02 10:35:05.817509	2016-03-03 08:08:59.915629	15.00			Panel	\N	pcs	cm	gr		Fabric	\N
+136	PANEL-103	3.0	20 X 20	30000.00	KRCN Imported	\N	2016-02-20 07:35:38.721736	2016-02-20 07:35:38.721736	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+137	PANEL-72	5.0	20 X 30	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.731793	2016-02-20 07:35:38.731793	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+138	PANEL-83	2.0	20 x 20	25000.00	KRCN Imported	\N	2016-02-20 07:35:38.744878	2016-02-20 07:35:38.744878	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+139	PANEL-90	4.0	20 X 30	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.758109	2016-02-20 07:35:38.758109	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+140	PANEL-93	3.0	20 X 20	30000.00	KRCN Imported	\N	2016-02-20 07:35:38.772739	2016-02-20 07:35:38.772739	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+141	PANEL-67	4.0	20 X 20	25000.00	KRCN Imported	\N	2016-02-20 07:35:38.785152	2016-02-20 07:35:38.785152	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+142	PANEL-99	2.0	20 X 30	50000.00	KRCN Imported	\N	2016-02-20 07:35:38.797786	2016-02-20 07:35:38.797786	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+143	PANEL-100	2.0	20 X 30	50000.00	KRCN Imported	\N	2016-02-20 07:35:38.816708	2016-02-20 07:35:38.816708	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+144	PANEL-248	2.0	20 X 20	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.83331	2016-02-20 07:35:38.83331	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+145	PANEL-250	3.0	20 X 20	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.847506	2016-02-20 07:35:38.847506	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+146	PANEL-251	2.0	20 X 20	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.863185	2016-02-20 07:35:38.863185	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+147	PANEL-252	2.0	20 X 20	35000.00	KRCN Imported	\N	2016-02-20 07:35:38.874347	2016-02-20 07:35:38.874347	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+151	CF-321	1.0	160	70000.00	KRCN Imported	\N	2016-02-20 07:38:50.258044	2016-02-29 07:41:35.657652	150.00	\N	\N	Cotton	\N	Pcs	cm	gram	\N	Fabric	\N
+149	CF-375	0.0	160	70000.00	KRCN Imported	\N	2016-02-20 07:38:50.236594	2016-02-29 07:41:35.664458	150.00	\N	\N	Cotton	\N	Pcs	cm	gram	\N	Fabric	\N
+150	CF-377	0.0	160	75000.00	KRCN Imported	\N	2016-02-20 07:38:50.247303	2016-02-29 07:47:22.810216	150.00	\N	\N	Cotton	\N	Pcs	cm	gram	\N	Fabric	\N
+152	PANEL-249	4.0	20 X 20	35000.00	KRCN Imported	\N	2016-02-20 07:38:50.275385	2016-03-03 08:08:59.900217	20.00	\N	\N	Panel	\N	Pcs	cm	gram	\N	Fabric	\N
+148	CF-310	3.0	160	75000.00	KRCN Imported	\N	2016-02-20 07:38:50.224529	2016-03-13 11:44:54.430109	150.00			Cotton	\N	Pcs	cm	gram		Fabric	\N
+\.
+
+
+--
+-- Name: inventories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('inventories_id_seq', 155, true);
+
+
+--
+-- Data for Name: inventory_orders; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY inventory_orders (order_id, inventory_id, quantity, id) FROM stdin;
+5	22	0.5	8
+5	19	0.5	9
+5	23	0.5	10
+5	18	0.5	11
+7	37	0.5	13
+7	42	0.5	14
+8	22	0.5	15
+10	121	1.0	19
+10	123	1.0	20
+10	45	2.0	21
+10	27	0.5	22
+10	18	0.5	23
+11	16	1.0	24
+11	21	1.0	25
+11	32	1.0	26
+11	19	1.0	27
+11	27	1.0	28
+11	23	1.0	29
+11	20	1.0	30
+11	33	1.0	31
+11	18	2.0	32
+12	19	1.0	33
+12	20	1.0	34
+12	33	1.0	35
+12	18	1.0	36
+13	149	1.0	37
+13	150	1.0	38
+13	105	1.0	39
+14	19	0.5	40
+14	26	0.5	41
+14	20	0.5	42
+14	14	0.5	43
+15	16	0.5	44
+15	151	1.0	45
+15	149	1.0	46
+15	19	0.5	47
+15	106	1.0	48
+15	107	1.0	49
+15	77	1.0	50
+15	78	1.0	51
+16	16	1.0	52
+16	22	0.5	53
+16	32	1.0	54
+17	118	1.0	55
+17	50	1.0	56
+17	108	1.0	57
+17	52	1.0	58
+18	17	0.5	59
+19	150	4.0	60
+19	108	2.0	61
+19	52	1.0	62
+19	107	1.0	63
+20	39	0.5	64
+20	20	0.5	65
+22	41	1.0	68
+23	35	0.5	69
+24	44	3.0	70
+27	16	1.0	74
+27	17	1.0	75
+27	8	1.0	76
+27	38	1.0	77
+31	86	1.0	84
+31	135	1.0	85
+32	152	1.0	86
+32	80	1.0	87
+32	85	1.0	88
+33	27	1.1	89
+34	9	0.5	90
+34	21	0.5	91
+34	22	0.5	92
+34	11	0.5	93
+34	19	0.5	94
+34	34	0.5	95
+34	14	0.5	96
+34	10	0.5	97
+35	22	0.5	98
+35	48	1.0	99
+36	104	4.0	100
+37	148	1.0	101
+39	37	0.5	103
+39	38	0.5	104
+39	20	0.5	105
+39	6	0.5	106
+39	39	0.5	107
+40	8	0.5	108
+\.
+
+
+--
+-- Name: inventory_orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('inventory_orders_id_seq', 108, true);
+
+
+--
+-- Data for Name: order_pos; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY order_pos (id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: order_pos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('order_pos_id_seq', 1, false);
+
+
+--
+-- Data for Name: order_statuses; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY order_statuses (id, name, created_at, updated_at) FROM stdin;
+1	DownPayment	2016-01-22 10:18:21.428336	2016-01-22 10:18:21.428336
+2	Full Payment	2016-01-22 10:18:21.437937	2016-01-22 10:18:21.437937
+3	Completed	2016-01-22 10:18:21.444172	2016-01-22 10:18:21.444172
+\.
+
+
+--
+-- Name: order_statuses_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('order_statuses_id_seq', 1, false);
+
+
+--
+-- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY orders (id, total_price, customer_id, order_date, created_at, updated_at, readyorpo, order_status_id, payment, ongkir, discount, delvmethod, url_id, user_id, cust_notes) FROM stdin;
+40	\N	41	\N	2016-03-15 17:28:37.108677	2016-03-16 16:12:17.25716	STOCKED	3	101000.00	16000.00	\N	JNE OKE	40s2604ab	\N	\N
+5	\N	4	\N	2016-01-12 12:17:09.445162	2016-01-22 10:18:34.054742	STOCKED	3	356000.00	16000.00	\N	JNE OKE	5se0f847	\N	\N
+7	\N	5	\N	2016-02-20 07:44:59.714288	2016-02-20 07:46:39.629813	STOCKED	3	198000.00	13000.00	\N	JNE OKE	7s763936	\N	\N
+8	\N	8	\N	2016-02-20 07:48:38.867021	2016-02-20 07:48:59.618873	STOCKED	3	98000.00	13000.00	\N	JNE OKE	8s19e679	\N	\N
+23	\N	27	\N	2016-03-01 07:20:04.495559	2016-03-02 07:07:38.565438	STOCKED	3	115500.00	16000.00	\N	JNE OKE	23sc6b4c7	\N	\N
+31	\N	33	\N	2016-03-02 10:21:55.238003	2016-03-03 08:28:45.108031	STOCKED	3	91000.00	16000.00	\N	JNE OKE	31s2a97a5	\N	\N
+32	\N	30	\N	2016-03-03 08:08:59.875827	2016-03-04 04:05:18.600596	STOCKED	3	90000.00	\N	\N	JNE OKE (FREE)	32sd4b785	\N	\N
+27	\N	30	\N	2016-03-01 16:40:35.277498	2016-03-04 07:27:16.198588	STOCKED	3	695000.00	\N	\N	JNE OKE (FREE)	27sc00147	\N	\N
+24	\N	28	\N	2016-03-01 07:24:26.849511	2016-03-07 16:10:56.142979	STOCKED	3	226000.00	16000.00	\N	JNE OKE	24s51f6d6	\N	\N
+33	\N	34	\N	2016-03-07 14:02:41.339382	2016-03-10 04:23:15.182381	STOCKED	3	204000.00	17000.00	\N	JNE OKE	33s2ede4b	\N	\N
+10	\N	15	\N	2016-02-29 07:34:12.358566	2016-02-29 07:49:35.676231	STOCKED	3	383000.00	13000.00	\N	JNE OKE	10s24281d	\N	\N
+11	\N	16	\N	2016-02-29 07:36:27.091841	2016-02-29 07:49:53.329107	STOCKED	3	1615000.00	0.00	85000.00	JNE OKE (FREE)	11s257950	\N	\N
+12	\N	17	\N	2016-02-29 07:38:48.453743	2016-02-29 07:50:11.365849	STOCKED	3	706000.00	26000.00	\N	JNE YES	12s06bbd4	\N	\N
+13	\N	18	\N	2016-02-29 07:39:26.341037	2016-02-29 07:50:24.100223	STOCKED	3	253000.00	13000.00	\N	JNE OKE	13s367fa4	\N	\N
+14	\N	19	\N	2016-02-29 07:40:23.776084	2016-02-29 07:50:53.899901	STOCKED	3	371000.00	31000.00	\N	JNE OKE	14s681aeb	\N	\N
+15	\N	20	\N	2016-02-29 07:41:35.627568	2016-02-29 07:55:03.096767	STOCKED	3	516000.00	16000.00	\N	JNE OKE	15s3f72a3	\N	\N
+16	\N	21	\N	2016-02-29 07:42:18.346098	2016-02-29 07:55:14.46524	STOCKED	3	437000.00	12000.00	\N	JNE OKE	16saa118d	\N	\N
+34	\N	35	\N	2016-03-08 10:27:49.024623	2016-03-10 04:23:20.40113	STOCKED	3	710500.00	16000.00	\N	JNE OKE	34s41d3e0	\N	\N
+17	\N	22	\N	2016-02-29 07:43:04.464399	2016-02-29 07:55:39.275699	STOCKED	3	326000.00	26000.00	\N	JNE YES	17s901c43	\N	\N
+18	\N	23	\N	2016-02-29 07:46:27.224167	2016-02-29 07:55:51.110246	STOCKED	3	102000.00	17000.00	\N	JNE OKE	18s4bc1f6	\N	\N
+19	\N	24	\N	2016-02-29 07:47:22.78498	2016-02-29 07:56:02.517054	STOCKED	3	616000.00	16000.00	\N	JNE OKE	19s45cb8c	\N	\N
+20	\N	25	\N	2016-02-29 07:48:23.87188	2016-02-29 07:56:15.846641	STOCKED	3	186500.00	9000.00	\N	JNE REG	20sa6d968	\N	\N
+22	\N	26	\N	2016-02-29 07:48:57.334052	2016-02-29 07:57:28.719636	STOCKED	3	201000.00	16000.00	\N	JNE OKE	22sc0c007	\N	\N
+35	\N	36	\N	2016-03-11 07:01:47.280738	2016-03-12 08:07:03.900776	STOCKED	3	172000.00	17000.00	\N	JNE OKE	35sdc08b7	\N	\N
+36	\N	37	\N	2016-03-11 08:21:36.145293	2016-03-12 08:07:09.390107	STOCKED	3	386000.00	6000.00	\N	JNE OKE	36s564f41	\N	\N
+37	\N	38	\N	2016-03-13 11:44:54.396862	2016-03-16 06:43:54.837105	STOCKED	3	91000.00	16000.00	\N	JNE OKE	37s047bf4	\N	\N
+39	\N	40	\N	2016-03-14 02:44:07.698359	2016-03-16 16:12:11.363516	STOCKED	3	463500.00	16000.00	\N	JNE CTCYES	39s32d19f	\N	\N
+\.
+
+
+--
+-- Name: orders_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('orders_id_seq', 40, true);
+
+
+--
+-- Data for Name: posters; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY posters (id, name, display, created_at, updated_at, type, mainposter, subposter, banner, squareposter) FROM stdin;
+1	\N	\N	2016-02-22 15:35:43.344731	2016-02-22 15:35:43.344731	MainPoster	Find_Us_on_Instagram.jpg	\N	\N	\N
+5	\N	\N	2016-02-29 16:58:53.873603	2016-02-29 16:58:53.873603	Banner	\N	\N	Free_Shipping.jpg	\N
+\.
+
+
+--
+-- Name: posters_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('posters_id_seq', 7, true);
+
+
+--
+-- Data for Name: prodtypes; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY prodtypes (id, created_at, updated_at, name) FROM stdin;
+2	2016-01-29 14:47:05.891553	2016-01-29 14:47:05.891553	Fabric
+3	2016-02-29 05:17:21.719644	2016-02-29 05:17:21.719644	Accessories
+\.
+
+
+--
+-- Name: prodtypes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('prodtypes_id_seq', 3, true);
+
+
+--
+-- Data for Name: product_images; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY product_images (id, name, inventory_id, created_at, updated_at, prod_img, displaypic) FROM stdin;
+8	\N	6	2016-01-11 14:53:42.659281	2016-01-11 14:53:42.659281	ANE-87502-Tribal-Study-Aura-500px.jpg	1
+10	\N	7	2016-01-11 15:03:17.818051	2016-01-11 15:03:17.818051	ANE-87503-Let-It-Be-Beauty-500px.jpg	1
+11	\N	8	2016-01-11 15:06:22.712763	2016-01-11 15:06:22.712763	ANE-87505-Bunny-Binkies-Funk-500px.jpg	1
+12	\N	9	2016-01-11 15:07:56.962948	2016-01-11 15:07:56.962948	ARZ-553-Agave-Field-500px.jpg	1
+13	\N	10	2016-01-11 15:08:48.846911	2016-01-11 15:08:48.846911	ARZ-554-Triangle-Tokens-500px.jpg	1
+14	\N	11	2016-01-11 15:09:42.797158	2016-01-11 15:09:42.797158	ARZ-555-Crystal-Arrowheads-500px.jpg	1
+15	\N	12	2016-01-11 15:10:38.885876	2016-01-11 15:10:38.885876	CHE-9811-Decoupage-Couleur-500px.jpg	1
+16	\N	13	2016-01-11 15:11:28.431109	2016-01-11 15:11:28.431109	GBL-2430-Radical-Blooms-Blush-500px.jpg	1
+17	\N	14	2016-01-11 15:12:16.584057	2016-01-11 15:12:16.584057	HAH-14400-Table-Flowers-Rainbow-500px.jpg	1
+18	\N	15	2016-01-11 15:13:33.165949	2016-01-11 15:13:33.165949	HBR-4430-Oh_-Hello-Fog-500pxFULL2.jpg	1
+19	\N	16	2016-01-11 15:18:26.695523	2016-01-11 15:18:26.695523	HBR-4434-1-Buck-Forest-Mint_500px.jpg	1
+20	\N	17	2016-01-11 15:19:27.121667	2016-01-11 15:19:27.121667	HBR-5434-Buck-Forest-Night-500px.jpg	1
+21	\N	18	2016-01-11 15:20:16.920915	2016-01-11 15:20:16.920915	IS-50010-Woodland-PineRP500px.jpg	1
+22	\N	19	2016-01-11 15:21:04.287021	2016-01-11 15:21:04.287021	LT-20032-Floral-Frolic-Apricot-500px.jpg	1
+23	\N	20	2016-01-11 15:21:51.585301	2016-01-11 15:21:51.585301	MW-70020-Summer-Grove-by-Day-500px.jpg	1
+24	\N	21	2016-01-11 15:22:38.939583	2016-01-11 15:22:38.939583	MWK-1112-Cacti-Field-Festival-500px.jpg	1
+25	\N	22	2016-01-11 15:23:19.973328	2016-01-11 15:23:19.973328	MWK-2112-Cacti-Field-Fun-500px.jpg	1
+26	\N	23	2016-01-11 15:24:08.089459	2016-01-11 15:24:08.089459	MWK-2116-Mojave-Aloe-500px.jpg	1
+27	\N	24	2016-01-11 15:24:46.358509	2016-01-11 15:24:46.358509	NOR-8606-Wildflowers-Blaze-500px.jpg	1
+28	\N	25	2016-01-11 15:25:25.912044	2016-01-11 15:25:25.912044	NOR-8608-Sweetish-Seafoam-500px.jpg	1
+29	\N	26	2016-01-11 15:26:19.18467	2016-01-11 15:26:19.18467	PEP-68200-Nib-and-Pluck-Zinnia-500px.jpg	1
+30	\N	27	2016-01-11 15:27:03.812213	2016-01-11 15:27:03.812213	PPE-340-Happily-Ever-After_500px.jpg	1
+31	\N	28	2016-01-11 15:27:39.565394	2016-01-11 15:27:39.565394	PPE-347-Stamped_500px.jpg	1
+32	\N	29	2016-01-11 15:28:22.185845	2016-01-11 15:28:22.185845	SAH-2600-Orchard-Blossom-Autumn-500px.jpg	1
+33	\N	30	2016-01-11 15:29:00.403303	2016-01-11 15:29:00.403303	SCC-98608-Greenhouse-Lucent-500px.jpg	1
+34	\N	31	2016-01-11 15:29:36.58158	2016-01-11 15:29:36.58158	WAN-23304-Crochetting-Crops-500px.jpg	1
+35	\N	32	2016-01-11 15:30:16.712333	2016-01-11 15:30:16.712333	WFR-147-Fletching-Chant-500px.jpg	1
+36	\N	33	2016-01-11 15:30:57.333278	2016-01-11 15:30:57.333278	WNG-1020-Wingspan-Melon-500px.jpg	1
+37	\N	34	2016-01-11 15:36:39.073316	2016-01-11 15:36:39.073316	SWIRL_-_ws5726_turquoise.jpg	1
+38	\N	35	2016-01-11 15:38:38.28635	2016-01-11 15:38:38.28635	TATAMI_-_ws5722_coral_3.jpg	1
+39	\N	36	2016-01-11 15:40:12.29698	2016-01-11 15:40:12.29698	FLAMINGO_LOVE_-_pc6744_red.jpg	1
+40	\N	37	2016-01-11 15:40:57.460592	2016-01-11 15:40:57.460592	GLITZ_GARDEN_-_mc6932_coin_1.jpg	1
+41	\N	38	2016-01-21 08:01:46.044466	2016-01-21 08:01:46.044466	SOMETHING_FISHY_-_pc6298-mult.jpg	1
+42	\N	39	2016-01-21 08:03:47.353418	2016-01-21 08:03:47.353418	PEGS_A_PLANTY_-_pc6314_multi_1_2.jpg	1
+43	\N	40	2016-01-21 08:04:51.480797	2016-01-21 08:04:51.480797	BESPOKE_SCOTTIES_-_cx6361_jewel.jpg	1
+44	\N	41	2016-01-21 08:05:49.63716	2016-01-21 08:05:49.63716	SWEDISH_OWL_-_cx5439_brown_3.jpg	1
+45	\N	42	2016-01-21 08:08:16.538995	2016-01-21 08:08:16.538995	TURTLE_PARADE_-_ps5798_coral.jpg	1
+46	\N	43	2016-01-21 08:43:14.11963	2016-01-21 08:43:14.11963	SCOTTIE_TOSS_-_cx6362_passion.jpg	1
+47	\N	44	2016-01-21 09:05:16.088925	2016-01-21 09:05:16.088925	LF-34.jpg	1
+48	\N	45	2016-01-21 09:07:45.040771	2016-01-21 09:07:45.040771	CF-46.jpg	1
+49	\N	46	2016-01-21 09:08:59.566265	2016-01-21 09:08:59.566265	KL-22.jpg	1
+50	\N	47	2016-01-21 09:10:03.762022	2016-01-21 09:10:03.762022	KL-03.jpg	1
+51	\N	48	2016-01-21 09:11:52.719837	2016-01-21 09:11:52.719837	CF-23.2.jpg	1
+52	\N	49	2016-01-21 09:12:49.166535	2016-01-21 09:12:49.166535	LF-105.jpg	1
+53	\N	50	2016-01-21 09:13:47.563072	2016-01-21 09:13:47.563072	LF-89.jpg	1
+54	\N	51	2016-01-21 09:14:37.295162	2016-01-21 09:14:37.295162	LF-90.jpg	1
+55	\N	52	2016-01-21 09:15:16.649432	2016-01-21 09:15:16.649432	LF-93.jpg	1
+56	\N	9	2016-01-22 14:59:18.942396	2016-01-22 14:59:18.942396	IMG_3754.jpg	\N
+57	\N	54	2016-02-01 05:00:08.636385	2016-02-01 05:00:08.636385	ACC-01.jpg	1
+58	\N	55	2016-02-01 05:06:25.988109	2016-02-01 05:06:25.988109	ACC-25_26_27.jpg	1
+59	\N	56	2016-02-01 05:07:37.157017	2016-02-01 05:07:37.157017	ACC-25_26_27.jpg	1
+60	\N	57	2016-02-01 05:09:07.559016	2016-02-01 05:09:07.559016	ACC-35_36.jpg	1
+61	\N	58	2016-02-01 05:11:08.926728	2016-02-01 05:11:08.926728	ACC-14.jpg	1
+62	\N	59	2016-02-01 05:11:57.889978	2016-02-01 05:11:57.889978	ACC-15.jpg	1
+63	\N	60	2016-02-01 05:12:43.678738	2016-02-01 05:12:43.678738	ACC-16.jpg	1
+64	\N	61	2016-02-01 05:14:33.837338	2016-02-01 05:14:33.837338	ACC-40_s.d_46.jpg	1
+65	\N	62	2016-02-01 05:16:43.15391	2016-02-01 05:16:43.15391	ACC-40_s.d_46.jpg	1
+66	\N	63	2016-02-01 05:18:08.208125	2016-02-01 05:18:08.208125	ACC-40_s.d_46.jpg	1
+67	\N	64	2016-02-01 05:19:12.817764	2016-02-01 05:19:12.817764	ACC-40_s.d_46.jpg	1
+68	\N	65	2016-02-01 05:20:07.345888	2016-02-01 05:20:07.345888	ACC-40_s.d_46.jpg	1
+69	\N	66	2016-02-01 05:21:00.031596	2016-02-01 05:21:00.031596	ACC-40_s.d_46.jpg	1
+70	\N	67	2016-02-01 05:21:57.469593	2016-02-01 05:21:57.469593	ACC-40_s.d_46.jpg	1
+71	\N	68	2016-02-01 05:23:32.005956	2016-02-01 05:23:32.005956	ACC-47.jpg	1
+72	\N	69	2016-02-01 05:24:50.346853	2016-02-01 05:24:50.346853	ACC-49.jpg	1
+73	\N	70	2016-02-02 09:57:20.236244	2016-02-02 09:57:20.236244	zp-09_10_11.jpg	1
+74	\N	71	2016-02-02 10:05:59.592753	2016-02-02 10:05:59.592753	zp-09_10_11.jpg	1
+75	\N	72	2016-02-02 10:06:43.554424	2016-02-02 10:06:43.554424	ZP-12.jpg	1
+76	\N	73	2016-02-02 10:07:54.870997	2016-02-02 10:07:54.870997	ZP-01_S.D_ZP-07.jpg	1
+77	\N	74	2016-02-02 10:08:48.525278	2016-02-02 10:08:48.525278	ZP-01_S.D_ZP-07.jpg	1
+78	\N	75	2016-02-02 10:09:47.677978	2016-02-02 10:09:47.677978	ZP-01_S.D_ZP-07.jpg	1
+79	\N	76	2016-02-02 10:11:27.309953	2016-02-02 10:11:27.309953	ZP-01_S.D_ZP-07.jpg	1
+80	\N	77	2016-02-02 10:12:14.567352	2016-02-02 10:12:14.567352	ZP-01_S.D_ZP-07.jpg	1
+81	\N	78	2016-02-02 10:13:03.662189	2016-02-02 10:13:03.662189	ZP-01_S.D_ZP-07.jpg	1
+82	\N	79	2016-02-02 10:20:43.561237	2016-02-02 10:20:43.561237	PANEL-59.jpg	1
+83	\N	80	2016-02-02 10:21:30.829598	2016-02-02 10:21:30.829598	PANEL-60.jpg	1
+85	\N	81	2016-02-02 10:22:53.360728	2016-02-02 10:22:53.360728	PANEL-61.jpg	1
+86	\N	82	2016-02-02 10:32:30.718876	2016-02-02 10:32:30.718876	PANEL-87.jpg	1
+87	\N	83	2016-02-02 10:33:17.581387	2016-02-02 10:33:17.581387	PANEL-88.jpg	1
+88	\N	84	2016-02-02 10:34:22.331485	2016-02-02 10:34:22.331485	PANEL-64.jpg	1
+89	\N	85	2016-02-02 10:35:13.503219	2016-02-02 10:35:13.503219	PANEL-68.jpg	1
+90	\N	86	2016-02-02 10:36:12.327465	2016-02-02 10:36:12.327465	PANEL-109.jpg	1
+91	\N	87	2016-02-02 10:37:13.563871	2016-02-02 10:37:13.563871	PANEL-76.jpg	1
+92	\N	88	2016-02-02 10:40:11.084945	2016-02-02 10:40:11.084945	PANEL-98.jpg	1
+93	\N	89	2016-02-02 10:41:10.503526	2016-02-02 10:41:10.503526	PANEL-102.jpg	1
+94	\N	90	2016-02-02 10:41:55.30354	2016-02-02 10:41:55.30354	PANEL-104.jpg	1
+95	\N	91	2016-02-02 10:42:50.634043	2016-02-02 10:42:50.634043	PANEL-101_S.D_105.jpg	1
+96	\N	92	2016-02-02 10:51:57.424483	2016-02-02 10:51:57.424483	PANEL-107.jpg	1
+97	\N	93	2016-02-02 10:55:01.942278	2016-02-02 10:55:01.942278	CF-21.jpg	1
+98	\N	94	2016-02-03 09:18:56.676034	2016-02-03 09:18:56.676034	OP-52.jpg	1
+99	\N	95	2016-02-03 09:19:57.090939	2016-02-03 09:19:57.090939	OP-52.jpg	1
+100	\N	96	2016-02-03 09:21:00.492713	2016-02-03 09:21:00.492713	KL-107.JPG	1
+101	\N	96	2016-02-03 09:21:23.271749	2016-02-03 09:21:23.271749	KL-107.1.jpg	\N
+102	\N	96	2016-02-03 09:21:40.911779	2016-02-03 09:21:40.911779	KL-107.2.jpg	\N
+103	\N	97	2016-02-03 09:22:47.935145	2016-02-03 09:22:47.935145	CF-126._127.jpg	1
+104	\N	98	2016-02-03 09:24:28.444056	2016-02-03 09:24:28.444056	ACC-52.jpg	1
+105	\N	99	2016-02-03 09:25:43.076373	2016-02-03 09:25:43.076373	ACC-66.jpg	1
+106	\N	100	2016-02-03 09:26:25.589229	2016-02-03 09:26:25.589229	ACC-72.jpg	1
+107	\N	101	2016-02-03 09:27:31.838325	2016-02-03 09:27:31.838325	ACC-78.jpg	1
+108	\N	102	2016-02-03 09:28:16.795234	2016-02-03 09:28:16.795234	ACC-80.jpg	1
+109	\N	103	2016-02-03 09:29:05.055446	2016-02-03 09:29:05.055446	ACC-24.jpg	1
+110	\N	104	2016-02-03 09:33:12.975751	2016-02-03 09:33:12.975751	KL-58.jpg	1
+111	\N	111	2016-02-29 05:16:22.704114	2016-02-29 05:16:22.704114	ACC-115.jpg	1
+112	\N	114	2016-02-29 05:18:36.407247	2016-02-29 05:18:36.407247	ACC-120.jpg	1
+113	\N	115	2016-02-29 05:19:06.503454	2016-02-29 05:19:06.503454	ACC-133.jpg	1
+114	\N	116	2016-02-29 05:19:36.390723	2016-02-29 05:19:36.390723	ACC-135.jpg	1
+115	\N	117	2016-02-29 05:20:08.025953	2016-02-29 05:20:08.025953	ACC-138.jpg	1
+116	\N	120	2016-02-29 05:21:22.058547	2016-02-29 05:21:22.058547	ACC-148.jpg	1
+117	\N	121	2016-02-29 05:21:47.190038	2016-02-29 05:21:47.190038	ACC-149.jpg	1
+118	\N	122	2016-02-29 05:22:30.328584	2016-02-29 05:22:30.328584	ACC-150.jpg	1
+119	\N	123	2016-02-29 05:23:14.10258	2016-02-29 05:23:14.10258	ACC-203.jpg	1
+120	\N	124	2016-02-29 05:23:45.845715	2016-02-29 05:23:45.845715	ACC-207.jpg	1
+121	\N	109	2016-02-29 05:28:35.858989	2016-02-29 05:28:35.858989	CF-221.jpg	1
+122	\N	110	2016-02-29 05:29:10.659058	2016-02-29 05:29:10.659058	CF-246.jpg	1
+123	\N	148	2016-02-29 05:30:03.117849	2016-02-29 05:30:03.117849	CF-310.jpg	1
+124	\N	151	2016-02-29 05:30:42.750091	2016-02-29 05:30:42.750091	CF-321.jpg	1
+125	\N	149	2016-02-29 05:31:19.448989	2016-02-29 05:31:19.448989	CF-375.jpg	1
+126	\N	150	2016-02-29 05:32:10.522748	2016-02-29 05:32:10.522748	CF-377.jpg	1
+129	\N	112	2016-02-29 06:41:39.678104	2016-02-29 06:41:39.678104	KL-261.jpg	1
+130	\N	113	2016-02-29 06:43:10.14187	2016-02-29 06:43:10.14187	KL-262.jpg	1
+131	\N	105	2016-02-29 06:43:52.844493	2016-02-29 06:43:52.844493	KL-96.jpg	1
+132	\N	118	2016-02-29 06:45:13.501437	2016-02-29 06:45:13.501437	LF-284.jpg	1
+133	\N	119	2016-02-29 06:46:14.918851	2016-02-29 06:46:14.918851	LF-288.jpg	1
+134	\N	44	2016-02-29 06:47:16.357673	2016-02-29 06:47:16.357673	LF-34.jpg	\N
+135	\N	108	2016-02-29 06:49:10.739779	2016-02-29 06:49:10.739779	LF-92.jpg	1
+136	\N	143	2016-02-29 06:50:29.17461	2016-02-29 06:50:29.17461	PANEL-100.jpg	1
+137	\N	136	2016-02-29 06:51:14.050655	2016-02-29 06:51:14.050655	PANEL-103.jpg	1
+138	\N	125	2016-02-29 06:52:23.899112	2016-02-29 06:52:23.899112	PANEL-175.jpg	1
+139	\N	126	2016-02-29 06:53:01.276265	2016-02-29 06:53:01.276265	PANEL-176.jpg	1
+140	\N	127	2016-02-29 06:53:58.175438	2016-02-29 06:53:58.175438	PANEL-192.jpg	1
+141	\N	128	2016-02-29 06:55:06.999322	2016-02-29 06:55:06.999322	PANEL-200.jpg	1
+142	\N	129	2016-02-29 06:56:00.51305	2016-02-29 06:56:00.51305	PANEL-221.jpg	1
+143	\N	130	2016-02-29 06:57:13.099176	2016-02-29 06:57:13.099176	PANEL-222.jpg	1
+144	\N	131	2016-02-29 06:59:24.650098	2016-02-29 06:59:24.650098	PANEL-223.jpg	1
+145	\N	132	2016-02-29 07:01:05.653168	2016-02-29 07:01:05.653168	PANEL-224.jpg	1
+146	\N	133	2016-02-29 07:01:52.545236	2016-02-29 07:01:52.545236	PANEL-225.jpg	1
+147	\N	134	2016-02-29 07:02:31.906746	2016-02-29 07:02:31.906746	PANEL-246.jpg	1
+148	\N	135	2016-02-29 07:03:34.70488	2016-02-29 07:03:34.70488	PANEL-247.jpg	1
+149	\N	144	2016-02-29 07:05:19.893213	2016-02-29 07:05:19.893213	PANEL-248.png	1
+150	\N	152	2016-02-29 07:06:26.689689	2016-02-29 07:06:26.689689	PANEL-249.png	1
+151	\N	145	2016-02-29 07:07:16.953936	2016-02-29 07:07:16.953936	PANEL-250.png	1
+152	\N	146	2016-02-29 07:08:10.453557	2016-02-29 07:08:10.453557	PANEL-251.png	1
+153	\N	147	2016-02-29 07:10:41.801065	2016-02-29 07:10:41.801065	PANEL-252.png	1
+154	\N	141	2016-02-29 07:11:30.042029	2016-02-29 07:11:30.042029	PANEL-67.jpg	1
+155	\N	137	2016-02-29 07:12:06.966664	2016-02-29 07:12:06.966664	PANEL-72.jpg	1
+156	\N	138	2016-02-29 07:12:47.645985	2016-02-29 07:12:47.645985	PANEL-83.jpg	1
+157	\N	139	2016-02-29 07:13:40.82041	2016-02-29 07:13:40.82041	PANEL-90.jpg	1
+158	\N	140	2016-02-29 07:15:51.0877	2016-02-29 07:15:51.0877	PANEL-93.jpg	1
+159	\N	142	2016-02-29 07:16:45.512132	2016-02-29 07:16:45.512132	PANEL-99.jpg	1
+160	\N	106	2016-02-29 07:17:42.346374	2016-02-29 07:17:42.346374	PVC-40.jpg	1
+161	\N	107	2016-02-29 07:18:28.566368	2016-02-29 07:18:28.566368	PVC-41.jpg	1
+\.
+
+
+--
+-- Name: product_images_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('product_images_id_seq', 163, true);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY schema_migrations (version) FROM stdin;
+20150802134246
+20151001150335
+20151001150337
+20151002073540
+20151002095408
+20151004174009
+20151006035431
+20151006035432
+20151006060258
+20151015063436
+20151017134832
+20151022080833
+20151023081546
+20151023091136
+20151113091810
+20151113110758
+20151114093019
+20151123112047
+20151123144930
+20151124035625
+20151124104047
+20151126065059
+20151126071104
+20151126152434
+20151126165307
+20151126172251
+20151211104333
+20151212134353
+20151212141601
+20151220142418
+20151227091959
+20160111150526
+20160122025051
+20160127040735
+20160129072917
+20160129073139
+20160129074457
+20160201063831
+20160201065714
+20160201082448
+20160202092830
+20160202103518
+20160206162646
+20160207063548
+20160207081750
+20160226081519
+20160226170135
+20160308110944
+20160312045151
+20160313092804
+20160315100416
+\.
+
+
+--
+-- Data for Name: type_inventories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY type_inventories (id, name, created_at, updated_at) FROM stdin;
+2	Cotton Linen	2015-12-31 05:41:11.230616	2015-12-31 05:41:11.230616
+3	Cotton	2015-12-31 05:41:21.457421	2015-12-31 05:41:21.457421
+5	Canvas	2015-12-31 05:41:37.825767	2015-12-31 05:41:37.825767
+6	Panel	2015-12-31 05:41:43.04748	2015-12-31 05:41:43.04748
+7	Laminating	2016-01-21 09:03:10.013666	2016-01-21 09:03:10.013666
+8	Sewing Supplies	2016-01-21 09:03:28.619849	2016-01-21 09:03:28.619849
+\.
+
+
+--
+-- Name: type_inventories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('type_inventories_id_seq', 8, true);
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY users (name, email, password_hash, password_salt, created_at, updated_at, role, id, address, address2, phone, phone2, provinsi, kota, kodepos, dateofbirth, uid, oauth_token, oauth_expires_at, profpic, provider, kecamatan, kelurahan, fb_contact, insta_contact) FROM stdin;
+shinfi	shinfiadmin	$2a$10$D1daMdsKng5u4MI47MfcMe/jZqMiWSdFYJzpk2VZTb1sOSz.s4J8K	$2a$10$D1daMdsKng5u4MI47MfcMe	2015-12-30 12:28:07.350204	2015-12-30 12:28:07.350204	Admin	da361c96-e3a0-41c9-9b5f-31ce56a83203	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+susin	shinfi.teja@gmail.com	$2a$10$RrHZqYoQy//i2Bz4YNnov.Vpn3n6FIMFsf/ElbPcnVUKywAuJcgFW	$2a$10$RrHZqYoQy//i2Bz4YNnov.	2016-03-02 04:59:40.813488	2016-03-02 04:59:40.813488	Member	ab68132d-ed3c-4590-bb07-93203c2ea9f3	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+Hansin Ciputra	hansinfb	$2a$10$M0Ks30wovO5t/ciCfALjGuM19JoMY4CjoRbCMcFUHDZSToxEH.7qO	$2a$10$M0Ks30wovO5t/ciCfALjGu	2016-03-04 09:11:36.660214	2016-03-04 10:06:24.304293	Member	4a48566b-a8ee-4180-8de9-8f68cc7928da	ini test 	\N	0918309123					\N	1692394887685903	CAAP4MaXDw4EBACXPJPsWgUAoJ3ZCXzgWIE6CbZBth7cFeyotx2Fy7FDiNkUeqMSxjboUMZBeoFZBi96ebkW4VMqjmNljJOiRAd3WCjDlKN10tqSZBDZAOLQ0fZCZAxAWZCwWJ2CMGEnlDIdaiRcn2EZBZCIHGufxbUyDdCogsnzTpECykDmwtygbRLyOGZCOSUd4vEEZD	2016-05-03 04:19:27	http://graph.facebook.com/1692394887685903/picture?type=large	facebook	\N	\N	\N	\N
+hansin	hansinadmin	$2a$10$qkUVmOn5VRb3Avil6GytEuF3fYNNQb1TNiveBWf8fb44Xcta9H5ce	$2a$10$qkUVmOn5VRb3Avil6GytEu	2015-12-30 11:57:32.349663	2016-03-04 08:33:24.223911	Admin	4bce3c9c-ca2c-4292-a32b-1186b3a6b57c	ini mengubah informasi users	\N	001231					\N	\N	\N	\N	\N	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- Name: brands_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY brands
+    ADD CONSTRAINT brands_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: compinfos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY compinfos
+    ADD CONSTRAINT compinfos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: customers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inventories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY inventories
+    ADD CONSTRAINT inventories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: inventory_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY inventory_orders
+    ADD CONSTRAINT inventory_orders_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: order_pos_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY order_pos
+    ADD CONSTRAINT order_pos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: order_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY order_statuses
+    ADD CONSTRAINT order_statuses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY orders
+    ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: posters_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY posters
+    ADD CONSTRAINT posters_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: prodtypes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY prodtypes
+    ADD CONSTRAINT prodtypes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: product_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY product_images
+    ADD CONSTRAINT product_images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: type_inventories_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY type_inventories
+    ADD CONSTRAINT type_inventories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_inventory_orders_on_inventory_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_inventory_orders_on_inventory_id ON inventory_orders USING btree (inventory_id);
+
+
+--
+-- Name: index_inventory_orders_on_order_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_inventory_orders_on_order_id ON inventory_orders USING btree (order_id);
+
+
+--
+-- Name: index_orders_on_customer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_orders_on_customer_id ON orders USING btree (customer_id);
+
+
+--
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

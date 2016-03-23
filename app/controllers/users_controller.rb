@@ -1,5 +1,5 @@
   class UsersController < ApplicationController
-  before_action :set_user, only: [:edit,:user_detail,:change_password,:change_password_commit, :update, :destroy ,:show]
+  before_action :set_user, only: [:edit,:user_detail,:change_password,:e_stamp,:change_password_commit, :update, :destroy ,:show]
   before_filter :authorize, except: [:login,:new,:create]
   before_filter :authorize_admin, only: [:index]
   def set_user
@@ -44,6 +44,11 @@
     else
        redirect_to change_password_user_path, :notice => "Password lama anda salah!"
     end
+  end
+  def order_history
+    @user_order = Order.joins(:order_status).select('order_statuses.name as status,orders.url_id,orders.created_at,orders.payment').where(:user_id => params[:id])
+  end
+  def e_stamp
   end
   def edit
     

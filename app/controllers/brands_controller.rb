@@ -1,6 +1,6 @@
 class BrandsController < ApplicationController
 	before_action :set_image, :only => [:edit,:update,:destroy]
-	before_filter :authorize
+	before_filter :authorize, :except =>[:index]
 	def set_image
 		@image = Brand.find(params[:id])
 	end

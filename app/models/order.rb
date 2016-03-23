@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
 	belongs_to :customer
 	belongs_to :user
-	has_many :order_status
+	belongs_to :order_status
 	has_many :inventory_orders, :inverse_of => :order, :dependent => :destroy
 	has_many :inventories, through: :inventory_orders
 
@@ -34,5 +34,9 @@ class Order < ActiveRecord::Base
 			product_image << temp
 		end
 		return product_image
+	end
+	def self.total_user_spending(params)
+		Order.find_by_sql("SELECT orders.url_id,orders.user_id, inventory_orders.quantity,inventories.sellprice FROM orders LEFT JOIN inventory_orders ON orders.id = inventory_orders.order_id LEFT JOIN inventories ON inventory_orders.inventory_id = inventories.id WHERE orders.user_id = '#{params}'
+		;");
 	end
 end

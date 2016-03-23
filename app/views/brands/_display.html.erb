@@ -10,7 +10,7 @@
 		<br>
 	<% if @image %>	
 			<div id ="new_brand_link">
-				<%if session[:role] == 'Admin'%>
+				<%if current_user && current_user.role == "Admin"%>
 				<%= link_to 'Input New Brand', new_brand_path %>
 				<%end%>
 		</div>
@@ -45,7 +45,7 @@
 					<div id = "index_product_summary">
 						<b><%= f.name %></b>
 						<br>
-						<% if session[:role] = 'Admin'%>
+						<%if current_user && current_user.role == "Admin"%>
 						<%=link_to 'Edit', edit_brand_path(f) %>
 						<%end%>
 					</div>

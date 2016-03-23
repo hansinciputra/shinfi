@@ -47,7 +47,7 @@
 			<td>
 				<div id="cart_quantity">
 					<%= hidden_field_tag 'product_id[]', product.id%>
-					<%= number_field_tag 'quantity[]',params[:quantity],:class => 'limit_quantity_input', :value => quantity %><%= product.satuan%>
+					<%= number_field_tag 'quantity[]',params[:quantity],:class => 'limit_quantity_input', :step => 0.5, :value => quantity %><%= product.satuan%>
 				</div>
 
 				

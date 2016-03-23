@@ -1,16 +1,50 @@
-<div id = "customer_container">
-	<div id ="prof_pic">
+<div id = "user_container">
+	<div id ="prof_pic" class="user_page_left">
 		<% if @user && @user.profpic %>
 		<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
 		<%end%>
 	</div>
-	<div id = "customer_info">
-		<h1><%= @user.name%></h1>
+	<div id = "user_personal_menu" class= "user_page_right">
+		<ul>
+			<li class = "user_menu_button" style="background-color:#58ACFA;color:black;border-bottom:none;"><%=link_to 'Profilku',user_path(:id => session[:user_id])%></li>
+			<li class = "user_menu_button"><%=link_to 'Order History', order_history_user_path(:id => session[:user_id])%></li>
+			<li class = "user_menu_button"><%= link_to 'My e-Stamp',e_stamp_user_path(:id => session[:user_id])%></li>
+		</ul>
+	</div>
+	
+	<div id = "user_content_container" class= "user_page_right">
+		<fieldset>
+			<legend>Member's Profile</legend>
+		<ul>
+			<li class = "desc_left">Nama:</li>
+			<li class = "answer_right"><%= @user.name%></li>
+			<li class = "desc_left">Telepon:</li>
+			<li class = "answer_right"><%= @user.phone%></li>
+			<li class = "desc_left">Telepon2:</li>
+			<li class = "answer_right"><%= @user.phone2%></li>
+			<li class = "desc_left">Email:</li>
+			<li class = "answer_right"><%= @user.email%></li>
+			<li class = "desc_left">Facebook:</li>
+			<li class = "answer_right"><%= @user.fb_contact%></li>
+			<li class = "desc_left">Instagram:</li>
+			<li class = "answer_right"><%= @user.insta_contact%></li>
+			<li class = "desc_address"><b>Alamat Pengiriman:</b></li>
+			<li class = "answer_address">
+				<% if @user.address %>
+				<%= @user.address%>, <b>Kota</b> <%=@user.kota%>,<b>Provinsi:</b> <%=@user.provinsi%>, <b>Kecamatan:</b> <%=@user.kecamatan%>, <b>Kelurahan:</b> <%=@user.kelurahan%>. <br><b>Kode Pos :</b> <%=@user.kodepos%>
+				<%else%>
+				<p>Kamu belum memasukan alamat pengiriman</p>
+				<%end%>
+			</li>
+		</ul>
+		</fieldset>
+		<div id = "user_page_menu">
+			<div class = "universal_button" id = "edit_button"><%= link_to 'Edit Data', 	user_detail_user_path(:id => session[:user_id]) %></div>
+			<div class = "universal_button" id = "change_password_button"><%= link_to 'Ubah Password', change_password_user_path(:id => session[:user_id]) %></div>
+		</div>
 	</div>
 <div id = "list_o">
 
 </div>
-<%= link_to 'Change Password', change_password_user_path(:id => session[:user_id]) %> |
-<%= link_to 'Edit', user_detail_user_path(:id => session[:user_id]) %> |
-<%= link_to 'Back', customers_path %>
+
 	</div>
