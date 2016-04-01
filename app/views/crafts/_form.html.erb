@@ -1,0 +1,53 @@
+<%= form_for(@craft) do |f| %>
+  <% if @craft.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@craft.errors.count, "error") %> prohibited this craft from being saved:</h2>
+
+      <ul>
+      <% @craft.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :PriceDet_id %><br>
+    <%= f.number_field :PriceDet_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :price_determinant %><br>
+    <%= f.text_field :price_determinant %>
+  </div>
+  <div class="field">
+    <%= f.label :prod_desc %><br>
+    <%= f.text_area :prod_desc %>
+  </div>
+  <div class="field">
+    <%= f.label :brand_id %><br>
+    <%= f.number_field :brand_id %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br>
+    <%= f.text_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :availability %><br>
+    <%= f.text_field :availability %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

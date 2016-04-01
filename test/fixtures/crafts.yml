@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  PriceDet_id: 1
+  user_id: 1
+  category: MyString
+  price_determinant: MyString
+  prod_desc: MyText
+  brand_id: 1
+  quantity: 9.99
+  availability: MyString
+
+two:
+  name: MyString
+  PriceDet_id: 1
+  user_id: 1
+  category: MyString
+  price_determinant: MyString
+  prod_desc: MyText
+  brand_id: 1
+  quantity: 9.99
+  availability: MyString

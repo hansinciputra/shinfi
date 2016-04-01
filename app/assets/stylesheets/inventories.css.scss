@@ -50,12 +50,13 @@ ul{
 }
 .inventory_value{
   float:left;
+  z-index:999;
     //border:solid blue 1px;
 }
 .inventory_value input{
   width:30px;
   margin-right:5px;
-  display:inline-block;
+  float:left;
 }
 #inventory_form_container label{
   width: 5em;
@@ -256,4 +257,7 @@ table{
 {
   background-color:#FAFAFA;
   color:black;
+}
+#submit_button{
+  margin-top:10px;
 }

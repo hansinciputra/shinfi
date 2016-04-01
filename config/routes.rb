@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :crafts
+
   resources :compinfos 
   resources :prodtypes
   get 'cart/index'

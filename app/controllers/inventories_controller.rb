@@ -35,6 +35,7 @@ class InventoriesController < ApplicationController
       @productype = Prodtype.all
       @categories = Category.all 
       @type = TypeInventory.all
+      @brands = Brand.all
       #use render new to show error
       render :new
     end
