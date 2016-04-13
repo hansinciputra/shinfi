@@ -1,41 +1,67 @@
-<h1>Listing crafts</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Pricedet</th>
-      <th>User</th>
-      <th>Category</th>
-      <th>Price determinant</th>
-      <th>Prod desc</th>
-      <th>Brand</th>
-      <th>Quantity</th>
-      <th>Availability</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div id = "page_title">
+  <h1>All Crafts</h1>
+</div>
+<div id="sitemap_category">
+ini sitemap
+</div>
+<div id="category_content_container">
+  <div class = "craft_category_container">
+    <div class = "craft_category_title">
+      Ini adalah title
+    </div>
+    <div class = "pic_craft_category_container">
+    </div>
+    <div class = "subcategory_container">
+      List:
+      <br>
+      <ul>
+        <li>Sub Category1</li>
+        <li>Sub Category2</li>
+        <li>Sub Category3</li>
+      </ul>
+    </div>
+  </div><!--close craft category container-->
+  <div class = "craft_category_container">
+    <div class = "craft_category_title">
+      Ini adalah title
+    </div>
+    <div class = "pic_craft_category_container">
+    </div>
+    <div class = "subcategory_container">
+      List:
+      <br>
+      <ul>
+        <li>Sub Category1</li>
+        <li>Sub Category2</li>
+        <li>Sub Category3</li>
+      </ul>
+    </div>
+  </div><!--close craft category container-->
+  <div class = "craft_category_container">
+    <div class = "craft_category_title">
+      Ini adalah title
+    </div>
+    <div class = "pic_craft_category_container">
+    </div>
+    <div class = "subcategory_container">
+      List:
+      <br>
+      <ul>
+        <li>Sub Category1</li>
+        <li>Sub Category2</li>
+        <li>Sub Category3</li>
+      </ul>
+    </div>
+  </div><!--close craft category container-->
+ </div><!--close craft left side--> 
+  <div id = "craft_product_recomendation_side">
+    <div id = "craft_recomendation_container">
+      <div id="craft_recomendation_product_pic">
 
-  <tbody>
-    <% @crafts.each do |craft| %>
-      <tr>
-        <td><%= craft.name %></td>
-        <td><%= craft.PriceDet_id %></td>
-        <td><%= craft.user_id %></td>
-        <td><%= craft.category %></td>
-        <td><%= craft.price_determinant %></td>
-        <td><%= craft.prod_desc %></td>
-        <td><%= craft.brand_id %></td>
-        <td><%= craft.quantity %></td>
-        <td><%= craft.availability %></td>
-        <td><%= link_to 'Show', craft %></td>
-        <td><%= link_to 'Edit', edit_craft_path(craft) %></td>
-        <td><%= link_to 'Destroy', craft, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </div>
+      <div id = "craft_recomendation_product_details">
+      </div>
+    </div>
+  </div>
 
-<br>
-
-<%= link_to 'New Craft', new_craft_path %>

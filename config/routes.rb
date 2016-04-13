@@ -23,7 +23,14 @@ Rails.application.routes.draw do
   resources :banners
   resources :sub_posters
   resources :prodtypes, :only => [:index,:new,:create,:destroy]
-  resources :categories, :only => [:index,:new,:create,:destroy]
+  resources :categories, :only => [:index,:new,:create,:destroy] do
+    collection do 
+      post 'sub_categories_create'
+    end
+    member do
+      delete 'sub_categories_destroy'
+    end
+  end
   resources :type_inventories, :only => [:index,:new,:create,:destroy]
 
   get "sign_up" => 'users#new', :as =>"sign_up"
