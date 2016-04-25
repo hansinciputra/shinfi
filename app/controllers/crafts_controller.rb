@@ -4,36 +4,56 @@ class CraftsController < ApplicationController
   # GET /crafts
   # GET /crafts.json
   def index
-    @crafts = Craft.all
+    @craft = Craft.all
+    
   end
 
+  def craft_product
+    @craft = Craft.joins(:price_dets).select('crafts.name,crafts.id,crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets.subject,price_dets.price').paginate(:page => params[:page],:per_page => 24)
+    @brand = Brand.all 
+    @banner = Poster.where(:type => "Banner")
+  end
   # GET /crafts/1
   # GET /crafts/1.json
   def show
+    
   end
 
   # GET /crafts/new
   def new
     @craft = Craft.new
+    @categories = Category.all
+    @subcategories = Subcategory.all
+    @user = User.all
+    @brand = Brand.all
+
+    @price_dets = @craft.price_dets.build
   end
 
   # GET /crafts/1/edit
   def edit
+    @categories = Category.all
+    @subcategories = Subcategory.all
+    @user = User.all
+    @brand = Brand.all
+    @displaypic = ProductImage.find_by(:craft_id => params[:id])
+    @price_dets = @craft.price_dets.build
   end
 
   # POST /crafts
   # POST /crafts.json
   def create
     @craft = Craft.new(craft_params)
-
-    respond_to do |format|
-      if @craft.save
-        format.html { redirect_to @craft, notice: 'Craft was successfully created.' }
-        format.json { render :show, status: :created, location: @craft }
-      else
-        format.html { render :new }
-        format.json { render json: @craft.errors, status: :unprocessable_entity }
-      end
+    if @craft.save
+      redirect_to new_product_image_path(:id=>@craft), :notice => "Berhasil Menginput Craft Baru"
+    else
+      #need to reproduce all required file first
+    @categories = Category.all
+    @subcategories = Subcategory.all
+    @user = User.all
+    @brand = Brand.all
+      #use render new to show error
+      render :new
     end
   end
 
@@ -69,6 +89,6 @@ class CraftsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def craft_params
-      params.require(:craft).permit(:name, :PriceDet_id, :user_id, :category, :price_determinant, :prod_desc, :brand_id, :quantity, :availability)
+      params.require(:craft).permit(:name, :PriceDet_id, :user_id, :category, :price_determinant,:subcategory, :prod_desc, :brand_id, :quantity, :active, :price_dets_attributes => [:id,:subject,:price,:availablity,:_destroy],:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic])
     end
 end

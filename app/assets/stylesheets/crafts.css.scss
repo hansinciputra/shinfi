@@ -5,14 +5,20 @@
 
 #sitemap_category{
 	width: 200px;
-	height:500px;
+	min-height:500px;
 	border:solid white 1px;
 	margin: 0 20px 0 20px;
 	float:left;
 	border-radius: 0.7em 0.7em 0.7em 0.7em;
 	background-color:#EFEEED;
 }
-
+.craft_pic{
+	width:250px;
+	height:250px;
+	border:solid black 1px;
+	border-radius: 0.7em 0.7em 0.7em 0.7em;
+	overflow:hidden;
+}
 .craft_category_container{
 	width:350px;
 	min-height:150px;
@@ -74,4 +80,38 @@
 	height:25px;
 	border:solid red 1px;
 	margin:auto;
+}
+#new_craft_form{
+	background-color: white;
+	width:700px;
+	min-height:1200px;
+	margin:auto;
+	padding:10px;
+}
+#remove{
+	width:10px;
+	height:10px;
+	border:solid black 1px;
+	font-weight: bold;
+	color:red;
+	float:right;
+	display:inline-block;
+	cursor:pointer;
+}
+#more{
+	float:left;
+	cursor:pointer;
+	margin:10px 10px 10px;
+	display:inline-block;
+	width:100%;
+	height:20px;
+	border:solid black 1px;
+}
+
+#craft_pic_container{
+  width: 95%;
+  margin:auto;
+  height:80%;
+  border:solid black 1px;
+  border-radius :0.5em 0.5em 0.5em 0.5em;
 }

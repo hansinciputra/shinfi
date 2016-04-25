@@ -1,7 +1,7 @@
 
 <h3 style = "display:inline;">Upload More Picture</h3>    
 
-
+<p> Notes: klik pada gambar untuk mengganti display picture </p>
 <script id="template-upload" type="text/x-tmpl">
 <div class="upload">
   {%=o.name%}
@@ -11,36 +11,50 @@
 
 
    <!--the UI javascript code for displaying upload image progress-->
-        
 
   <hr>
   <%= form_for @product_images do |each| %>                 
    <!--Where we upload multiple picture using carrierwave-->
    <div id = "picture"><%= each.file_field :prod_img, multiple: true, name: "product_image[prod_img]" %>
+     <%if @inventory%>
       <%= each.hidden_field :inventory_id, value: @inventory.id %>
-     
+     <%else%>
+     <%= each.hidden_field :craft_id, value: @craft.id %>
+     <%end%>
   <!--If no picture yet then set the first picture as the displayed picture , displaypic with value of 1-->
       <% if !@check_image  %>
       <h3 style ="color:red">Penting!! </h3>
         <h3 style ="color:#f000f0"> Harap Masukan Hanya Satu Gambar pertama yang akan dijadikan Display Picture, Lalu refresh halaman</h3>
-      <% i = 1 %>
-      <%= each.hidden_field :displaypic, value: i %>
       <%end%>
   </div>
 
-<div class="progress progress-striped" style = "width:300px;border:black solid 1px;margin-left:5px;"><div class="progress-bar" style="width: 0%; height: 20px;border:black solid 1px;background-color:blue;"></div></div>
+<div class="progress progress-striped" style = "width:300px;border:black solid 1px;margin-left:5px;border-radius: 0.5em 0.5em 0.5em 0.5em;"><div class="progress-bar" style="width: 0%; height: 20px;border:black solid 1px;background-color:blue;border-radius: 0.5em 0.5em 0.5em 0.5em;"></div></div>
   <hr>
-<%end %>
+  <%end %>
 <br>
       <div id ="list_pic_container">
-         <% @inventory.product_images.each do |f|%>
+        <%if @inventory%>
+          <% @inventory.product_images.each do |f|%>
             <% if f.id != nil %>
             <div id ="list_pic">
-             <%= image_tag(f.prod_img_url(:medium_thumb).to_s)%>
+              <%= link_to image_tag(f.prod_img_url(:medium_thumb).to_s) , set_display_picture_inventory_product_image_path(@inventory, :prod_id=>f.id), :confirm => "Set Sebagai Display Picture?", :method=> :post , :class => (f.displaypic ==1? 'selected_dp' : 'not_selected')
+              %>
              <%= link_to 'x', remove_photo_inventory_path(@inventory, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete, :id=> 'remove_picture' %>
             <%end%>
            </div>
-         <%end %>
+          <%end %>
+         <%else%>
+          <% @craft.product_images.each do |f|%>
+            <% if f.id != nil %>
+            <div id ="list_pic">
+             <%= link_to image_tag(f.prod_img_url(:medium_thumb).to_s) , set_display_picture_craft_product_image_path(@craft, :prod_id=>f.id), :confirm => "Set Sebagai Display Picture?", :method=> :post , :class => (f.displaypic ==1? 'selected_dp' : 'not_selected')
+              %>
+             <%= link_to 'x', remove_photo_inventory_path(@craft, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete, :id=> 'remove_picture' %>
+
+            <%end%>
+           </div>
+          <%end %>
+         <%end%>
       </div>  
 <br>
 

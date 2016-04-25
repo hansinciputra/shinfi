@@ -98,3 +98,20 @@ $("#fb_message_hide").click(function(){
 	$("#fb_message").css('height','370px');
 });
 });
+
+jQuery(function(){
+ $('form').on('click','.remove_fields',function(event){
+ 	//set the value of input type that is hidden to 1 -> means destroy is trigerred
+ 	$(this).prev('input[type=hidden]').val('1');
+ 	$(this).closest('#price_determinant_container').hide();
+ 	event.preventDefault();
+ })
+ $('form').on('click','.add_fields',function(event){
+ 	//set the value of input type that is hidden to 1 -> means destroy is trigerred
+ 	time = new Date().getTime()
+ 	regexp = new RegExp($(this).data('id'),"g")
+ 	$(this).before($(this).data('fields').replace(regexp, time))
+ 	event.preventDefault();
+ })
+});
+

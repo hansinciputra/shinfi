@@ -1,10 +1,18 @@
 <div id = "Main_Container">
 	<div id = "universal_form">
-	<h1 style = "text-align:center;">Insert Image for Product <%=@inventory.name%></h1>
-	<h2 style = "text-align:center;">Product ID : <%= @inventory.id %></h2>
+	<%if @inventory%>
+		<h1 style = "text-align:center;">Insert Image for Product <%=@inventory.name%></h1>
+		<h2 style = "text-align:center;">Product ID : <%= @inventory.id %></h2>
+	<%else%>
+		<h1 style = "text-align:center;">Insert Image for <%=@craft.name%></h1>
+		<h2 style = "text-align:center;">Craft ID : <%= @craft.id %></h2>
+	<%end%>
 	<%= render 'form' %>
-
+	<%if @inventory%>
 	<button><%= link_to 'Finished', inventory_path(@inventory.id)%></button>
+	<%else%>
+	<button><%= link_to 'Finished', craft_path(@craft.id)%></button>
+	<%end%>
 	</div>
 </div>
 <script id="template-upload" type="text/x-tmpl">

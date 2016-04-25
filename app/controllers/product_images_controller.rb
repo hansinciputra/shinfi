@@ -21,6 +21,7 @@ class ProductImagesController < ApplicationController
     #action new is called when uploading product when creating new Inventory
     @product_images = ProductImage.new
     @inventory = Inventory.find_by(:id => params[:id])
+    @craft = Craft.find_by(:id => params[:id])
     @check_image = ProductImage.find_by(:inventory_id => params[:id])
   end
 
@@ -62,6 +63,21 @@ class ProductImagesController < ApplicationController
     end
   end
 
+  def set_display_picture_craft
+    @craft = Craft.find(params[:id])
+    @product_image = ProductImage.setDisplayPic(params[:prod_id],params[:id],2)
+
+    redirect_to edit_craft_path(@craft), :notice => "Berhasil di set sebagai Display Picture"
+  end
+
+  def set_display_picture_inventory
+    @inventory = Inventory.find(params[:id])
+
+    @product_image = ProductImage.setDisplayPic(params[:prod_id],params[:id],1)
+
+    redirect_to edit_inventory_path(@inventory), :notice => "Berhasil di set sebagai Display Picture"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product_image
@@ -70,6 +86,6 @@ class ProductImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_image_params
-      params.require(:product_image).permit(:name, :inventory_id, :displaypic, :prod_img)
+      params.require(:product_image).permit(:name, :inventory_id, :displaypic, :prod_img,:craft_id)
     end
 end

@@ -1,0 +1,78 @@
+<div id = "Main Container">
+	<div id = "home_container">
+			
+		<div class = "banner">
+			<% @banner.each do |img|%>
+				<%=image_tag(img.banner_url(:display).to_s) %>
+			<%end%>
+		</div>
+		<hr>
+		<br>
+	<% if @craft %>	
+	<div id = "middler">
+	<div id = "product_helper_menu">
+		<%if params[:type]%>
+	We Found <b><%= @craft.count %></b> items! for <b><%= params[:type] %></b>
+	<%end%>
+	</div>
+		<div id = "product_helper_container">
+			<div id ="category_helper">
+				<p><b><i>Find By Brand</i></b></p>
+				<%= form_for :crafts,:url =>craft_product_crafts_path,:html =>{:method =>:get} do |x|%>
+   				 <!--By pass the collection_select :option with empty {}-->
+   				 <%= x.hidden_field :type , :value => params[:type] %>
+  				<%= x.collection_select :brand , @brand,:id,:name,{include_blank: 'Pilih Brand'},{:style=>"width:100%;",:onchange =>"this.form.submit();"} %>
+    		<%end%>
+			</div>
+			<div id ="color_helper">
+				<p><b><i>Warna Dominan</i></b></p>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Merah',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:red" }%>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Hijau',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:green" }%>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Biru',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:blue" }%>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Putih',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:white" }%>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Pink',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:pink" }%>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Abu',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:grey" }%>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Coklat',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:chocolate" }%>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Oranye',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:orange" }%>
+				<%= link_to ' ',craft_product_crafts_path(:warna => 'Hitam',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:black" }%>
+			</div>
+		</div>
+		<div id = "product_display_container">
+			<% @craft.each do |f|%>
+			<div id = "index_image_display_container">
+				
+					<div id = "index_product_summary">
+						<b><%= link_to f.name,craft_path(:id=>f.id) %></b>
+						<ul>
+							<li><%= f.subcategory%></li>
+							<% if f.brand_id
+							@brand = Brand.find(f.brand_id)
+							%>
+							<li><%= @brand.name%></li>
+							<%end%>	
+							<li><%=f.subject%> : <%= f.price%></li>
+						</ul>
+					</div>
+				</div>
+			<%end%>
+				<div class = "pagination">
+					<%= will_paginate @craft%>
+				</div>
+			</div>
+				<%else%>
+					<p> Product Not Found </p>
+				<%end%>
+			</div>
+		</div>
+</div>
+<script type="text/javascript">
+//to check owl-carousel properties: http://owlgraphic.com/owlcarousel/
+$(document).ready(function(){
+	$(".owl-carousel").owlCarousel({
+	    autoPlay: 3000, //Set AutoPlay to 3 seconds
+	    singleItem: true,
+	    itemsDesktop: [1199, 3],
+	    itemsDesktopSmall: [979, 3]
+  });
+});
+</script>

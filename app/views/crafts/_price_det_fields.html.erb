@@ -1,0 +1,10 @@
+    <div id = "price_determinant_container">   
+        <%=t.label 'Keterangan'%><%= t.text_field :subject %>
+        <%=t.label 'Pricing'%><%= t.number_field :price %>
+        <%=t.label 'Availability'%><%= t.select :availablity , options_for_select(["Available","Not Available"])%>
+        <!--we destroy the record using hidden field that is trigered using javascript on click-->
+
+        <%=t.hidden_field :_destroy %>
+        <%=link_to("x","#",class: 'remove_fields')%>
+      
+    </div>

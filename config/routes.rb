@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :crafts
+  resources :crafts do
+    collection do
+      get 'craft_product'
+    end
+  end
 
   resources :compinfos 
   resources :prodtypes
@@ -16,7 +20,12 @@ Rails.application.routes.draw do
   get 'cart/clear'
   get 'cart/clear_po'
   resources :brands 
-  resources :product_images 
+  resources :product_images do
+    member do
+      post 'set_display_picture_craft'
+      post 'set_display_picture_inventory'
+    end
+  end
   resources :admin, :only => [:index]
   resources :report, :only => [:index]
   resources :main_posters

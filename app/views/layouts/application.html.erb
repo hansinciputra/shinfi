@@ -36,7 +36,11 @@
     <meta property="og:url"           content="<%=request.url%>" />
     <meta property="og:image"         content="<%= @product_images.prod_img%>" />
     <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="<%= @inventory.name%>" />
+    <% if @inventory %>
+      <meta property="og:title"         content="<%= @inventory.name%>" />
+    <%else%>
+      <meta property="og:title"         content="<%= @craft.name%>" />
+    <%end%>
     <meta property="og:description"   content="Cari material handycraft yang lucu2 dan ngegemesin? disini tempatnya, ayu kunjungi website kita di www.shinfithecraft.com dan temukan kebutuhan craft kamu!" />
   <%end%>
   <script>
@@ -200,6 +204,13 @@
               </div>
             </li>
             <li><a href ="#">Sewing Supplies </a></li>
+            <li><%= link_to 'Craft', crafts_path%>
+              <div class = "dropdown-menu">
+                  <ul>
+                    <li class ="title_menu"><b><%= link_to 'All Fabrics', craft_product_crafts_path%></b></li>
+                  </ul>
+              </div>
+            </li>
             <% if current_user && current_user.role = "Member" %>
             <div id="member_menu">
                              <!--menu for loggeed in user that is not admin-->  
