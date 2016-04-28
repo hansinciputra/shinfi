@@ -92,8 +92,6 @@
 					<%= hidden_field_tag 'product_id_craft[]', product.id%>
 					<%= number_field_tag 'quantity_craft[]',params[:quantity],:class => 'limit_quantity_input', min: 0,max: 10,:step => 1, :value => quantity %>pcs
 				</div>
-
-				
 			</td>
 			<td>
 				<div id = "result_price"><%= number_to_currency(product.price * quantity.to_i, :unit => "Rp. ") %></div>

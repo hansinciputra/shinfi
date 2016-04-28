@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <%  session[:return_to] = request.referer %>
   <% if current_user && current_user.role == "Admin" %>
     <div id="head_menu">      
         <ul>
