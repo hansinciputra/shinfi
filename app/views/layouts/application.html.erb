@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%  session[:return_to] = request.referer %>
-  Session cart :<%=session[:cart]%><br>
-  Session cart_craft :<%=session[:cart_craft]%><br>
-  Session return to :<%=session[:return_to]%><br>
   <% if current_user && current_user.role == "Admin" %>
     <div id="head_menu">      
         <ul>
