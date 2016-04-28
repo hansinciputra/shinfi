@@ -17,6 +17,12 @@
               <%= qty.hidden_field :quantity,value: quantity, :step => 'any'%>
         <%end%>
 	<%end%>
+	<% session[:cart_craft].each do |id , quantity| %>
+		<%= f.fields_for :craft_orders do |qty| %>
+              <%= qty.hidden_field :craft_id, value: id %> <!--id of inventory--> 
+              <%= qty.hidden_field :quantity,value: quantity, :step => 'any'%>
+        <%end%>
+	<%end%>
 		<%= submit_tag "Complete Checkout!", :class => "submit_button" %>
 <% end %>
 	</div>

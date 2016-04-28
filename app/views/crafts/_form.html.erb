@@ -16,10 +16,12 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+  <% if @displaypic %>
   <% if @displaypic.displaypic == 1 %>
     <div class="craft_pic">
       <%= image_tag @displaypic.prod_img_url(:thumb).to_s %>
     </div>  
+  <%end%>
   <%end%>
   <div class="field">
     <%= f.label :user_id %><br>

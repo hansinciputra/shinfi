@@ -39,13 +39,13 @@
 		<% if @inventory.quantity > 0%>
 		<div id = "inventory_cart">
 			<!--store previous page to the session-->
-			<%  session[:return_to] ||= request.referer %>
+			
 			<%= link_to 'Add to Cart' , cart_add_path(:id=>@inventory.id)%>
 		</div>
 		<%else%>
 		<div id = "inventory_po_cart">
 			<!--store previous page to the session-->
-			<%  session[:return_to] ||= request.referer %>
+			
 			<%= link_to 'PreOrder' , cart_add_po_item_path(:id=>@inventory.id)%>
 		</div>
 		<%end%>

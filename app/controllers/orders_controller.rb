@@ -41,9 +41,12 @@ class OrdersController < ApplicationController
     end
     @user = User.find_by(:id=> @id.user_id)
     @inventory_ordered = Order.find_by_sql(["SELECT inventories.id, inventories.name, inventories.sellprice, inventory_orders.quantity , inventories.sellprice*inventory_orders.quantity as Total FROM inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id WHERE inventory_orders.order_id = ? ORDER BY inventories.name", @id.id]);
-    @total_ordered = Order.find_by_sql(["select sum(inventories.sellprice*inventory_orders.quantity) as total_price from inventories left join inventory_orders on inventories.id = inventory_orders.inventory_id where inventory_orders.order_id = ?", @id.id])
+    @craft_ordered = Order.find_by_sql(["SELECT craft_orders.order_id,craft_orders.craft_id as price_dets_id,craft_orders.quantity,craftproduct.thecraft_id,craftproduct.name, craftproduct.price_determinant, craftproduct.brand_id, craftproduct.subcategory, craftproduct.craft_id, craftproduct.subject, craftproduct.price,craft_orders.quantity*craftproduct.price as Total FROM (SELECT 
+crafts.id as thecraft_id, crafts.name, crafts.price_determinant, crafts.brand_id,crafts.subcategory, price_dets.craft_id,price_dets.id,price_dets.subject,price_dets.price  FROM crafts LEFT JOIN price_dets ON crafts.id = price_dets.craft_id )craftproduct
+ LEFT JOIN craft_orders on craftproduct.id = craft_orders.craft_id WHERE craft_orders.order_id = ? ORDER BY craftproduct.name", @id.id]);
+    #@total_ordered = Order.find_by_sql(["select sum(inventories.sellprice*inventory_orders.quantity) as total_price from inventories left join inventory_orders on inventories.id = inventory_orders.inventory_id where inventory_orders.order_id = ?", @id.id])
     @down_payment_calculation = Order.find_by_sql(["SELECT orders.payment, sum(inventories.sellprice*inventory_orders.quantity) + COALESCE(orders.ongkir,0) - COALESCE(orders.discount,0) - COALESCE(orders.payment,0) as outstanding From inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id LEFT JOIN orders on inventory_orders.order_id = orders.id where order_id = ? GROUP BY orders.payment, orders.ongkir, orders.discount", @id.id]);
-    @total_amount = Order.find_by_sql(["select sum(inventories.sellprice*inventory_orders.quantity) + COALESCE(orders.ongkir,0) - COALESCE(orders.discount,0) as total_amount FROM inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id LEFT JOIN orders on inventory_orders.order_id = orders.id where order_id = ? GROUP BY orders.payment, orders.ongkir,orders.discount", @id.id]);
+    #@total_amount = Order.find_by_sql(["select sum(inventories.sellprice*inventory_orders.quantity) + COALESCE(orders.ongkir,0) - COALESCE(orders.discount,0) as total_amount FROM inventories LEFT JOIN inventory_orders on inventories.id = inventory_orders.inventory_id LEFT JOIN orders on inventory_orders.order_id = orders.id where order_id = ? GROUP BY orders.payment, orders.ongkir,orders.discount", @id.id]);
   end
 
   # GET /orders/new
@@ -52,6 +55,7 @@ class OrdersController < ApplicationController
     @customer = Customer.all.order("name")
     @inventories_list = Inventory.where("quantity >'0'").order("name") #controller can call any model
     @inventory_order = @order.inventory_orders.build #to build instance of inventory order on the view page, otherwise the field_for will think that there is no inventory_order class and thus not showinf the field_for tag in the view
+    @inventory_order = @order.craft_orders.build#to build instance of craft order on the view page, otherwise the field_for will think that there is no inventory_order class and thus not showinf the field_for tag in the view
   end
 
   # GET /orders/1/edit
@@ -59,6 +63,11 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @customer = Customer.all
     @edt_inv = Order.find_by_sql(["select inventories.id as inventory_id, inventories.name, inventories.meter, inventories.sellprice, inventories.quantity as stock_left, temp.id as id, temp.quantity FROM inventories LEFT OUTER JOIN (select * from inventory_orders where inventory_orders.order_id = ?)temp on inventories.id = temp.inventory_id WHERE inventories.quantity > '0' OR temp.quantity > '0' ORDER BY inventories.name" , params[:id]])
+    @edt_craft = Order.find_by_sql(['SELECT crafts.name,crafts.id as craft_id,price_dets.availablity,price_dets.id as price_dets_id,price_dets.subject,price_dets.price, craftorder.id as craftorder_id,craftorder
+.quantity FROM price_dets INNER JOIN crafts ON price_dets.craft_id = crafts.id LEFT OUTER JOIN
+(select * from craft_orders where craft_orders.order_id = ?)craftorder ON price_dets.id = craftorder.craft_id ORDER BY crafts.name;
+',params[:id]])
+   
   end
 
   # POST /orders
@@ -73,6 +82,7 @@ class OrdersController < ApplicationController
           x.reduce_from_inventories(x.quantity)
         end      
         session[:cart] = nil
+        session[:cart_craft] = nil
         session[:cust_notes] = nil
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
@@ -137,7 +147,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:ongkir,:discount,:order_status_id,:readyorpo,:url_id ,:cust_notes,:delvmethod,:user_id, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ])
+      params.require(:order).permit(:ongkir,:discount,:order_status_id,:readyorpo,:url_id ,:cust_notes,:delvmethod,:user_id, :customer_id, :order_ids => [],:inventory_orders_attributes => [:id, :quantity, :inventory_id ],:craft_orders_attributes => [:id, :quantity, :craft_id ])
       #specify [:id,:inventory_id, :quantity], otherwhise record when edit each record will be created again
     end
 end

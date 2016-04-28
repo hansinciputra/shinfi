@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   get 'cart/checkout_po_visitor'
   get 'cart/checkout_po_member'
   get 'cart/clear'
+  get 'cart/clear_craft'
   get 'cart/clear_po'
+  post 'cart/add_craft'
   resources :brands 
   resources :product_images do
     member do

@@ -1,14 +1,48 @@
+<div id = "Main_Container">
+<div id = "craft_container">
 <p id="notice"><%= notice %></p>
+<div id = "craft_container_top">
+  <div class="craft_pic_show">
+    <%= link_to image_tag(@craft_image.prod_img_url(:thumb).to_s)%>
+  </div>
+  <div class = "craft_review">
+    <p>What people think about this product</p>
+  </div>
+  <div class = "craft_add_to_cart">
+  <strong>Price determinant:</strong>
 
-<p>
-  <strong>Name:</strong>
-  <%= @craft.name %>
-</p>
+  <%= form_tag(:controller=>'cart',:action =>'add_craft') do %>
+  <%= @craft.price_determinant %>
+  <ul>
+    <li><%= collection_select(:cart,:selected,@price_dets,:id,:combine_subject_price)%></li>
+    <li>Quantity</li>
+    <li><%= select_tag "quantity",options_for_select((1..10).step(1))%></li>
+  </ul>
+  
+  <%= submit_tag 'Add To Cart'%>
+  <%end%>
+ 
+  <br>
 
+  <strong>Quantity:</strong>
+  <%= @craft.quantity %>
+  </div>
+</div>
+<div id = "craft_container_middle">
+  <div id = "craft_product_description">
 <p>
-  <strong>User:</strong>
-  <%= @craft.user_id %>
+  <strong><h2><%= @craft.name %></h2></strong>
+  <br>
+  <strong>Prod desc:</strong>
+  <%= @craft.prod_desc %>
 </p>
+  </div>
+  <div id = "craft_seller_detail">
+    <strong>User:</strong><%= @craft.user_id %>
+    <br>
+    <strong>Brand:</strong><%= @craft.brand_id %>
+  </div>
+</div>
 
 <p>
   <strong>Category:</strong>
@@ -16,23 +50,12 @@
 </p>
 
 <p>
-  <strong>Price determinant:</strong>
-  <%= @craft.price_determinant %>
+
 </p>
 
 <p>
-  <strong>Prod desc:</strong>
-  <%= @craft.prod_desc %>
-</p>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @craft.brand_id %>
-</p>
 
-<p>
-  <strong>Quantity:</strong>
-  <%= @craft.quantity %>
 </p>
 
 <p>
@@ -42,3 +65,5 @@
 
 <%= link_to 'Edit', edit_craft_path(@craft) %> |
 <%= link_to 'Back', crafts_path %>
+</div>
+</div>

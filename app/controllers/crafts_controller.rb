@@ -9,14 +9,18 @@ class CraftsController < ApplicationController
   end
 
   def craft_product
-    @craft = Craft.joins(:price_dets).select('crafts.name,crafts.id,crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets.subject,price_dets.price').paginate(:page => params[:page],:per_page => 24)
+    @craft = Craft.joins(:price_dets).joins(:product_images).select('crafts.name,crafts.id,crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets.subject,price_dets.price,product_images.prod_img,product_images.displaypic,product_images.craft_id').where('product_images.displaypic = 1').paginate(:page => params[:page],:per_page => 24)
+    #@craft = ProductImage.joins(:craft).join(:price_dets).select('crafts.name,crafts.id,crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets.subject,price_dets.price,product_images.prod_img,product_images.displaypic,product_images.craft_id').where('product_images.displaypic = 1').paginate(:page => params[:page],:per_page => 24)
     @brand = Brand.all 
     @banner = Poster.where(:type => "Banner")
   end
   # GET /crafts/1
   # GET /crafts/1.json
   def show
-    
+    @craft_image = ProductImage.find_by(:craft_id => params[:id])
+    @price_dets = PriceDet.where(:craft_id => params[:id])
+  
+
   end
 
   # GET /crafts/new
@@ -26,7 +30,6 @@ class CraftsController < ApplicationController
     @subcategories = Subcategory.all
     @user = User.all
     @brand = Brand.all
-
     @price_dets = @craft.price_dets.build
   end
 

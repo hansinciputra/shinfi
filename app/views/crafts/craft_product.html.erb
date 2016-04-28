@@ -40,7 +40,12 @@
 		<div id = "product_display_container">
 			<% @craft.each do |f|%>
 			<div id = "index_image_display_container">
-				
+				<div id = "index_image_display">
+					<%
+					 @image_craft = ProductImage.find_by(:craft_id=>f.id)
+					%>
+					<%= link_to image_tag(@image_craft.prod_img_url(:thumb).to_s), craft_path(:id => f.craft_id)%>
+				</div>
 					<div id = "index_product_summary">
 						<b><%= link_to f.name,craft_path(:id=>f.id) %></b>
 						<ul>
@@ -50,7 +55,7 @@
 							%>
 							<li><%= @brand.name%></li>
 							<%end%>	
-							<li><%=f.subject%> : <%= f.price%></li>
+							<li><%=f.subject%> : <%= number_to_currency(f.price, :unit => "Rp. ")%></li>
 						</ul>
 					</div>
 				</div>

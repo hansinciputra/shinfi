@@ -31,13 +31,18 @@
 					</tr>
 					<tr>
 						<td class = "left_q">Alamat Pengiriman</td>
-						<td class = "right_q"><%= @order.customer.address %></td>
+						<td class = "right_q"><%= @order.customer.address %>
+							<b>Kota : </b><%=@order.customer.kota%> <br>
+							<b>kecamatan : </b><%=@order.customer.kecamatan%>, <br>
+							<b>kelurahan :</b><%=@order.customer.kelurahan%>,<br>
+							<b>Provinsi : </b><%=@order.customer.provinsi%> ,<b>Kode Pos:</b> <%=@order.customer.kodepos%>
+						</td>
 					</tr>
 			</table>
 			<% else %>
 			<table id = "customer_detail">
 					<tr>
-						<td colspan = 2> <h4 id= "small_title">Customer Detail</h4></td>
+						<td colspan = 2> <h4 id= "small_title">Member Detail</h4></td>
 					</tr>
 					<tr>
 						<td class = "left_q">Nama</td>
@@ -49,7 +54,12 @@
 					</tr>
 					<tr>
 						<td class = "left_q">Alamat Pengiriman</td>
-						<td class = "right_q"><%= @user.address %></td>
+						<td class = "right_q"><%= @user.address %> 
+							<b>Kota : </b><%=@user.kota%> <br>
+							<b>kecamatan : </b><%=@user.kecamatan%>, <br>
+							<b>kelurahan :</b><%=@user.kelurahan%>,<br>
+							<b>Provinsi : </b><%=@user.provinsi%> ,<b>Kode Pos:</b> <%=@user.kodepos%>
+						</td>
 					</tr>
 			</table>
 			<%end%>
@@ -90,10 +100,34 @@
 				<td class= "currency_large"><%= number_to_currency(inventory.total, :unit => "Rp. ") %></td>
 			</tr>
 			<% end %>
+			<% @craft_ordered.each_with_index do |craft, i| %>
+
+			<tr>
+				<td><%= @inventory_ordered.count + 1 + i %>.</td>
+				<td><%= link_to("#{craft.name}[#{craft.subject}]", product_image_path(craft.craft_id), :class => 'iframe') %></td>
+				
+				<td class= "currency_small"><%= number_to_currency(craft.price, :unit => "Rp.") %></td>
+				<td> x </td>
+				<td><%= craft.quantity %></td>
+				<td>=</td>
+				<td class= "currency_large"><%= number_to_currency(craft.total, :unit => "Rp. ") %></td>
+			</tr>
+			<% end %>
 			<tr>
 				<div id = "total_order">
+					<%
+					@total = []
+					@inventory_ordered.each do |total_inventory|
+						calc= total_inventory.sellprice * total_inventory.quantity
+						@total <<calc
+					end
+					@craft_ordered.each do |total_craft|
+						calc=total_craft.price * total_craft.quantity
+						@total << calc
+					end
+					%>
 					<td colspan = 6 class= "c_title" style="padding-top:25px;"><h3>Total Order</h3></td>
-					<td class= "currency_large">	<div id="c_line"> + </div><h3><%= number_to_currency(@total_ordered.first.total_price, :unit => "Rp. ") %></h3></td>
+					<td class= "currency_large">	<div id="c_line"> + </div><h3><%=number_to_currency(@total.inject(:+), :unit => "Rp. ") %></h3></td>
 				</div>
 			</tr>
 			<tr>
@@ -115,7 +149,12 @@
 			<tr>
 				<td colspan = 6 class= "c_title" style="padding-top:-100px;"><h3>Total Amount</h3></td>
 				<td class= "currency_large">
-					<h3><%= number_to_currency(@total_amount.first.total_amount, :unit => "Rp. ") %></h3>
+					<%
+						#the calculation of total invoice before DP
+						@final_calculation = @total.inject(:+) + @orders.ongkir.to_i - @orders.discount.to_i
+					%>
+					
+					<h3><%= number_to_currency(@final_calculation, :unit => "Rp. ") %></h3>
 				</td>
 			</tr>
 			<tr>
@@ -129,8 +168,11 @@
 				<td colspan = 7><div id="c_line" style="margin-left:525px; margin-top:-23px;"> - </div></td>
 			</tr>
 			<tr>
+				<%
+						@final_calculation_after_dp = @final_calculation.to_i - @down_payment_calculation.first.payment.to_i
+				%>
 				<td colspan = 6 class= "c_title"><h3>Outstanding Amount</h3></td>
-				<td class= "currency_large"><h3><%= number_to_currency(@down_payment_calculation.first.outstanding, :unit => "Rp. ") %></h3></td>
+				<td class= "currency_large"><h3><%= number_to_currency(@final_calculation_after_dp, :unit => "Rp. ") %></h3></td>
 			</tr>
 		</table>
 		<br/>

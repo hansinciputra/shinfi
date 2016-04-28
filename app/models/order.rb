@@ -8,6 +8,8 @@ class Order < ActiveRecord::Base
 	has_many :crafts, through: :craft_orders
 
 	accepts_nested_attributes_for :inventory_orders, :reject_if => lambda { |a| a[:quantity].blank?}, :allow_destroy => true
+	accepts_nested_attributes_for :craft_orders, :reject_if => lambda { |a| a[:quantity].blank?}, :allow_destroy => true
+
 	#accepts_nested_attributes_for :customers
 	def generate_unique_id(id)
 		self.url_id = "#{id}s#{SecureRandom.hex(3)}" 

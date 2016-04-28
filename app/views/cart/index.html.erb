@@ -1,7 +1,8 @@
 <div id = "Main_Container">
+
 <h1>Belanjaan Kamu~</h1>
 <%= render 'helpermenu' %>
-<% if session[:cart]%>
+<% if session[:cart] || session[:cart_craft]%>
 <hr>
 <br>
 <h1 style="text-align:center;">1. Keranjang -> 2. Input Alamat -> 3. Konfirmasi</h1>
@@ -22,6 +23,7 @@
 	<th class= "remove_item">Delete</th>
 
 	<%
+	if session[:cart]
 		session[:cart].each do |id , quantity|
 			product = Inventory.find_by(:id => id)
 			prod_img = ProductImage.find_by(:inventory_id => id)
@@ -61,6 +63,48 @@
 		</tr>
 		
 <%end%>
+<%end#end for 'is there any session[:craft]?%>
+<%
+		if session[:cart_craft]
+		session[:cart_craft].each do |id , quantity|
+			product = PriceDet.find_by(:id => id)
+			craft_img = ProductImage.find_by(:craft_id => product.craft.id)
+	%>
+		<tr>
+			<td>
+				<ul>
+					<li id ="cart_prod_image">
+					<%= link_to(image_tag(craft_img.prod_img_url(:medium_thumb).to_s),craft_img.prod_img.to_s, :class=>"fancybox")%>
+					</li>
+					<li class ="cart_prod_detail"><b><%= link_to product.craft.name, craft_path(product.craft.id)%></b></li>
+					<li class ="cart_prod_detail">Ukuran: <%= product.subject %></li>
+					<li class ="cart_prod_detail"><i><%= product.craft.subcategory %></i></li>
+				</ul>
+			</td>
+			<td>
+				<div id ="p"><%= number_to_currency(product.price, :unit => "Rp. ") %></div>
+			</td>
+			<td>
+				<div id ="p">By Request</div>
+			</td>
+			<td>
+				<div id="cart_quantity">
+					<%= hidden_field_tag 'product_id_craft[]', product.id%>
+					<%= number_field_tag 'quantity_craft[]',params[:quantity],:class => 'limit_quantity_input', min: 0,max: 10,:step => 1, :value => quantity %>pcs
+				</div>
+
+				
+			</td>
+			<td>
+				<div id = "result_price"><%= number_to_currency(product.price * quantity.to_i, :unit => "Rp. ") %></div>
+			</td>
+			<td class= "remove_item">
+				<p><%= link_to(image_tag("trash.png"), cart_clear_craft_path(:id => product.id)) %></p>
+			</td>
+		</tr>
+		
+<%end%>
+<%end#end for if there any session[cart_craft]?%>
 		<tr colspan = "5" syle="border:solid 1px black;">
 			<td colspan = "4"><h2>Total Order</h2></td>
 			<td id ="total"><h2><%=number_to_currency(@total.inject(:+), :unit => "Rp. ")%></h2></td>

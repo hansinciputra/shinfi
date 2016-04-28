@@ -42,8 +42,26 @@
           <td><%= i+1 %>.</td>
           <td class = "content"><%= order.id %></td>
           <td class = "content"><%= order.name%></td>
-          <td><%= number_to_currency(order.total_price , :unit => "Rp. ") %></td>
-          <td style = "color:#eb111f"><%= number_to_currency(order.outstanding , :unit => "Rp. ")%></td>
+          <%
+            craft_price = CraftOrder.where(:order_id => order.id)
+            @temp_outstanding = []
+            if craft_price != nil
+              craft_price.each do |craft_price|
+                price_dets = PriceDet.find_by(:id => craft_price.craft_id)
+                calc = price_dets.price * craft_price.quantity 
+                @temp_outstanding << calc
+              end
+              outstanding_craft = @temp_outstanding.inject(:+)
+              outstanding_total = outstanding_craft.to_i + order.outstanding
+              final_price = order.total_price + outstanding_craft.to_i
+            else
+              final_price = order.total_price
+              outstanding_craft = order.outstanding + outstanding_craft.to_i 
+              outstanding_total = order.outstanding
+            end
+          %>
+          <td><%= number_to_currency(final_price , :unit => "Rp. ") %></td>
+          <td style = "color:#eb111f"><%= number_to_currency(outstanding_total , :unit => "Rp. ")%></td>
           <%= form_for :order, :url => update_multiple_payment_orders_path, :html => { :method => :put } do |f| %>
           <td><%= f.collection_select :order_status_id , @orderstatus, :id,:name ,{:selected=> order.status}%></td>
           <td>
@@ -59,11 +77,29 @@
     <%end #for form_for%>
     <% @orders_index_customer.each_with_index do |order, i| %>
         <tr>
-          <td><%= i+1 %>.</td>
+          <td><%= (@orders_index_user.count.to_i+1)+i %>.</td>
           <td class = "content"><%= order.id %></td>
           <td class = "content"><%= order.name%></td>
-          <td><%= number_to_currency(order.total_price , :unit => "Rp. ") %></td>
-          <td style = "color:#eb111f"><%= number_to_currency(order.outstanding , :unit => "Rp. ")%></td>
+          <%
+            craft_price = CraftOrder.where(:order_id => order.id)
+            @temp_outstanding = []
+            if craft_price != nil
+              craft_price.each do |craft_price|
+                price_dets = PriceDet.find_by(:id => craft_price.craft_id)
+                calc = price_dets.price * craft_price.quantity 
+                @temp_outstanding << calc
+              end
+              outstanding_craft = @temp_outstanding.inject(:+)
+              outstanding_total = outstanding_craft.to_i + order.outstanding
+              final_price = order.total_price + outstanding_craft.to_i
+            else
+              final_price = order.total_price
+              outstanding_craft = order.outstanding + outstanding_craft.to_i 
+              outstanding_total = order.outstanding
+            end
+          %>
+          <td><%= number_to_currency(final_price , :unit => "Rp. ") %></td>
+          <td style = "color:#eb111f"><%= number_to_currency(outstanding_total , :unit => "Rp. ")%></td>
           <%= form_for :order, :url => update_multiple_payment_orders_path, :html => { :method => :put } do |f| %>
           <td><%= f.collection_select :order_status_id , @orderstatus, :id,:name ,{:selected=> order.status}%></td>
           <td>
