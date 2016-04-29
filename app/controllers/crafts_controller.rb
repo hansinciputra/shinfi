@@ -9,7 +9,15 @@ class CraftsController < ApplicationController
   end
 
   def craft_product
-    @craft = Craft.joins(:price_dets).joins(:product_images).select('crafts.name,crafts.id,crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets.subject,price_dets.price,product_images.prod_img,product_images.displaypic,product_images.craft_id').where('product_images.displaypic = 1').paginate(:page => params[:page],:per_page => 24)
+    sql = "SELECT crafts.name,crafts.id,price_dets_temp.craft_id, crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets_temp.subject,price_dets_temp.pd_price_row,price_dets_temp.price,product_images.prod_img,product_images.displaypic,product_images.craft_id 
+          FROM crafts INNER JOIN(
+                SELECT price_dets.craft_id,
+                price_dets.subject, 
+                price_dets.price,
+                row_number() over(partition by price_dets.craft_id )as pd_price_row from price_dets 
+                GROUP BY price_dets.craft_id,price_dets.subject,price_dets.price)price_dets_temp ON crafts.id = price_dets_temp.craft_id 
+                AND price_dets_temp.pd_price_row = 1 INNER JOIN product_images ON price_dets_temp.craft_id = product_images.craft_id AND product_images.displaypic = 1"
+    @craft = Craft.paginate_by_sql(sql,:page => params[:page],:per_page => 24)
     #@craft = ProductImage.joins(:craft).join(:price_dets).select('crafts.name,crafts.id,crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets.subject,price_dets.price,product_images.prod_img,product_images.displaypic,product_images.craft_id').where('product_images.displaypic = 1').paginate(:page => params[:page],:per_page => 24)
     @brand = Brand.all 
     @banner = Poster.where(:type => "Banner")
