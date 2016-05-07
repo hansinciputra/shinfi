@@ -1,0 +1,127 @@
+
+      <!--cart icon for PO cart-->
+          <div class="cart_icon_container_po">
+              <div id="cart_image"><%= image_tag("cart.png") %></div>
+               <br>
+               <div id = "cart_link">
+                <%if session[:cart_po]%>
+                   <%= link_to 'PreOrder', cart_index_po_path  %>(<%= session[:cart_po].count %>)
+                <%else%>
+                   PreOrder(0)
+                <%end%>
+              </div>
+          </div><!--cart icon container ENDING-->
+
+        <!--cart icon for original cart-->
+          <div class="cart_icon_container">
+        <!--cart icon for image cart-->
+              <div id="cart_image"><%= image_tag("cart.png") %></div>
+              <br>
+              <div id = "cart_link">
+             
+                   
+                    <% if session[:cart] && session[:cart_craft] %>
+                    <%= link_to 'Order Cart', cart_index_path ,:id=> "cart_thumb_caller"%>
+                    (<%=  session[:cart].count + session[:cart_craft].count %>)
+                    <%end%>
+                    <% if session[:cart] && !session[:cart_craft]%>
+                    <%= link_to 'Order Cart', cart_index_path ,:id=> "cart_thumb_caller"%>
+                    (<%= session[:cart].count%>)
+                    <%end%>
+                    <% if session[:cart_craft] && !session[:cart]%>
+                    <%= link_to 'Order Cart', cart_index_path ,:id=> "cart_thumb_caller"%> 
+                    (<%= session[:cart_craft].count  %>)
+                    <%end%> 
+                    <%if !session[:cart] && !session[:cart_craft]%>
+                   Order Cart (0)
+                <%end%>
+              </div>
+            </div>
+            <br>
+            <br>
+      <!--beginning of cart_thumb-->
+      <% if session[:cart] || session[:cart_craft] %>
+      
+        <div id = "cart_thumb_content"><h2 style ="text-align:center;">Cart</h2>
+        <hr>
+      <%
+      if session[:cart]
+      session[:cart].each do |id , quantity|
+      product = Inventory.find_by(:id => id)
+      prod_img = ProductImage.find_by(:inventory_id => id)
+      
+      %>
+          <div id = "cart_thumb_prod_detail_container">
+            <div id="cart_thumb_prod_pic"><%=image_tag(prod_img.prod_img_url(:medium_thumb).to_s)%></div>
+            <div id="cart_thumb_prod_info">
+              <ul>
+                <li><b style ="font-size:1em;"><i><%=product.name%></i></b></li>
+                <li><b>Brand: </b><i><%= product.brand.name %></i></li>
+                <li><b>Size: </b><%= product.meter %> <%=product.ukuran%></li>
+                <li><b><%= number_to_currency(product.sellprice, :unit => "Rp. ") %> / <%=product.satuan%></b></li>
+              </ul>
+            </div>
+          </div>           
+        <%end%>
+        <%end #end for if%>
+        <!-- Section for craft in cart-->
+                <%
+                if session[:cart_craft]
+                 session[:cart_craft].each do |id , quantity|
+                  #craft varibale is based on pricedeterminant for ease of use
+                 craft = PriceDet.find_by(:id => id)
+                 craft_img = ProductImage.find_by(:craft_id => craft.craft.id)
+                 brand = Brand.find_by(:id => craft.craft.brand_id)
+                %>
+         <div id = "cart_thumb_prod_detail_container">
+            <div id="cart_thumb_prod_pic"><%=image_tag(craft_img.prod_img_url(:medium_thumb).to_s)%></div>
+            <div id="cart_thumb_prod_info">
+              <ul>
+                <li><b style ="font-size:1em;"><i><%=craft.craft.name%>[<%=craft.subject%>]</i></b></li>
+                <li><i><%=craft.craft.subcategory%></i></li>
+                <li><b>Brand: </b><i><%=brand.name%></i></li>
+                <li><b><%= number_to_currency(craft.price , :unit => "Rp. ") %> / Pcs</b></li>
+              </ul>
+            </div>
+          </div>           
+        <%end%>
+        <%end #end for if%>
+        <div class ="checkout_button">
+            <%= link_to 'Checkout' , cart_index_path %>
+         </div>
+        </div>
+      <%end%>
+        <!--end of cart_thumb-->
+        <!--OPEN PO CART SECTION-->
+
+      <!--beginning of cart_thumb_po-->
+      <% if session[:cart_po] %>
+      
+        <div id = "cart_thumb_content_po"><h2 style ="text-align:center;">Pre Order</h2>
+        <hr>
+      <%
+      session[:cart_po].each do |id , quantity|
+      product = Inventory.find_by(:id => id)
+      prod_img = ProductImage.find_by(:inventory_id => id)
+      %>
+          <div id = "cart_thumb_prod_detail_container">
+            <div id="cart_thumb_prod_pic"><%=image_tag(prod_img.prod_img_url(:medium_thumb).to_s)%></div>
+            <div id="cart_thumb_prod_info">
+              <ul>
+                <li><b style ="font-size:1em;"><i><%=product.name%></i></b></li>
+                <li><b>Brand: </b><i><%= product.category %></i></li>
+                <li><b>Size: </b><%= product.meter %> <%=product.ukuran%></li>
+                <li><b><%= number_to_currency(product.sellprice, :unit => "Rp. ") %> / <%=product.satuan%></b></li>
+              </ul>
+            </div>
+          </div>
+            
+        <%end%>
+        <div class ="checkout_button">
+            <%= link_to 'Checkout' , cart_index_po_path %>
+         </div>
+        </div>
+      <%end%>
+        <!--end of cart_thumb-->
+
+      <!--OPEN PO CART SECTION ENDING-->

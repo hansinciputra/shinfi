@@ -1,9 +1,35 @@
 <div id = "Main_Container">
 <div id = "craft_container">
+  <% if current_user && current_user.role == 'Admin' %>
+<%= link_to 'Edit', edit_craft_path(@craft) %> |
+<%= link_to 'Back', crafts_path %>
+<%end%>
 <p id="notice"><%= notice %></p>
 <div id = "craft_container_top">
-  <div class="craft_pic_show">
-    <%= link_to image_tag(@craft_image.prod_img_url(:thumb).to_s)%>
+  <div class="craft_pic_container">
+    <div id = "craft_pic_show">
+    <div id = "craft_dp">
+      <div id="owl-craft_dp" class ="owl-carousel col-lg-12" >
+      <% @craft_image.each do |img|%>  
+        
+          <div class="item"><%= image_tag(img.prod_img_url(:thumb).to_s,:id => 'craft_dp_selector')%></div>
+        
+      <% end %>
+      </div>
+    </div>
+    <div id = "slider_button">
+      <div class="slider_button_left_craft"><%= image_tag("btn_left.png") %></div>
+      <div class="slider_button_right_craft"><%= image_tag("btn_right.png") %></div>
+    </div>  
+      </div>
+    <div id = "thumb_craft_pic_container">
+      <% @craft_image.each do |img|%>
+      <div class="thumb_craft_pic">
+        <%= image_tag(img.prod_img_url(:medium_thumb).to_s,:class=> 'thumb_pic')%>
+      </div>
+      <%end%>
+    </div>
+
   </div>
   <div class = "craft_review">
     <p>What people think about this product</p>
@@ -16,10 +42,14 @@
   <ul>
     <li><%= collection_select(:cart,:selected,@price_dets,:id,:combine_subject_price)%></li>
     <li>Quantity</li>
-    <li><%= select_tag "quantity",options_for_select((1..10).step(1))%></li>
+    <% if @craft.quantity == nil %>
+    <li><%= select_tag "quantity",options_for_select((1..5).step(1))%></li>
+    <%else%>
+    <li><%= select_tag "quantity",options_for_select((1..@craft.quantity).step(1))%></li>
+    <%end%>
   </ul>
   
-  <%= submit_tag 'Add To Cart'%>
+  <%= submit_tag 'Add To Cart', :class => "submit_button"%>
   <%end%>
  
   <br>
@@ -34,7 +64,7 @@
   <strong><h2><%= @craft.name %></h2></strong>
   <br>
   <strong>Prod desc:</strong>
-  <%= @craft.prod_desc %>
+  <%= @craft.prod_desc.html_safe %>
 </p>
   </div>
   <div id = "craft_seller_detail">
@@ -63,7 +93,35 @@
   <%= @craft.active %>
 </p>
 
-<%= link_to 'Edit', edit_craft_path(@craft) %> |
-<%= link_to 'Back', crafts_path %>
 </div>
 </div>
+<script>
+$(document).ready(function(){
+
+  $("#owl-craft_dp").owlCarousel({
+      items : <%= @craft_image.count %>,
+      autoPlay: false,
+      singleItem: true,
+      itemsDesktopSmall: [900, 3],
+      pagination: false
+      });
+    $(".slider_button_left_craft").click(function(){
+      $("#owl-craft_dp").trigger('owl.prev');
+    });
+    $(".slider_button_right_craft").click(function(){
+      $("#owl-craft_dp").trigger('owl.next');
+    });
+});
+
+//jquery for click thumb and display on DP
+$(document).ready(function(){
+      
+      $('.thumb_pic').click(function(){
+        var index = $(this).parent().index();
+        // .trigger is orl carrousel method, goTo is one of carousel function
+          $('#owl-craft_dp').trigger('owl.goTo',index)
+         
+      });
+});
+    
+  </script>

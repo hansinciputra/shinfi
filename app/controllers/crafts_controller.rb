@@ -25,7 +25,7 @@ class CraftsController < ApplicationController
   # GET /crafts/1
   # GET /crafts/1.json
   def show
-    @craft_image = ProductImage.find_by(:craft_id => params[:id])
+    @craft_image = ProductImage.where(:craft_id => params[:id])
     @price_dets = PriceDet.where(:craft_id => params[:id])
   
 

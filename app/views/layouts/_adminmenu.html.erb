@@ -1,0 +1,22 @@
+    <div id="head_menu">      
+        <ul>
+          <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
+          <li><%= link_to ' Home ' , root_path %></li>
+          <li><%= link_to ' Admin Page', admin_index_path %></li>
+          <li><%= link_to ' Orders ', orders_path %><p style="float:right;color:red">(<%=@new_order%>)</p></li>
+          <li><%= link_to ' Orders - PO ', order_pos_path %><p style="float:right;color:red">(<%=@new_po_order%>)</p></li>
+          <li><%= link_to ' Inventories ', inventories_path %>
+              <div class ="dropdown-menu">
+                <ul>
+                  <li><%=link_to 'Category', categories_path%></li>
+                  <li><%=link_to 'Product Type', prodtypes_path%></li>
+                  <li><%=link_to 'Fabric Type', type_inventories_path%></li>     
+                </ul>
+              </div>
+          </li>
+          <li><%= link_to 'Customers |', customers_path %></li> 
+          <li><%= link_to 'Users |', users_path %></li>
+          <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
+        </ul>
+      </div>
+ 

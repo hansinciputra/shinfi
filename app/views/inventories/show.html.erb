@@ -6,19 +6,35 @@
 		<div id = "le_picture">
 			<!--to prevent error if no picture uploaded-->
 			<% if @product_images %>
-			<%= image_tag(@inventory.product_images.first.prod_img_url(:standard).to_s, :class=>"open_fancybox") %>
+			<%= image_tag(@inventory.product_images[0].prod_img_url(:standard).to_s, :class=>"open_fancybox", :id=>"display_pic_inventory") %>
 			<%end%>
 		</div>
 		<div id = "le_small_picture_container">
 		<% if @product_images %>	
 			<% @inventory.product_images.each do |img|%>
-			<div id= "le_small_picture">
-				<%= link_to(image_tag(img.prod_img_url(:thumb_small).to_s),img.prod_img.to_s, :class=>"fancybox")%> 
+			<div class= "le_small_picture">
+				<!--link_to(image_tag(img.prod_img_url(:thumb_small).to_s),img.prod_img.to_s, :class=>"fancybox") -->
+				<%= image_tag(img.prod_img_url(:thumb_small).to_s,:class=>"thumb_pic",:id=>"source_img")%> 
 				</div>
 			<%end%>
 		<%end%>
 		</div>
 	</div>
+	<script>
+		$(document).ready(function(){
+			//when we click on the thumb...
+			$('.thumb_pic').click(function(){
+				//it will get the src of the thumb pic
+				var source = $(this).attr("src");
+				//we change it from thumb to standard, to get the larger image
+				var new_dp_pic = source.replace('thumb_small_','standard_');
+				//we replace the id of the display pic container with the src we have changed  in the previous step
+				$("#display_pic_inventory").attr('src',new_dp_pic);			
+			});
+
+		});
+		
+	</script>
 	<div id = "prod_detail">
 
 		<% if current_user && current_user.role == 'Admin' %>

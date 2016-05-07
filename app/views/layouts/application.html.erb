@@ -1,277 +1,33 @@
 <!DOCTYPE html>
 <html>
+<div id="background_color">
 <head>
   <%  session[:return_to] = request.referer %>
   <% if current_user && current_user.role == "Admin" %>
-    <div id="head_menu">      
-        <ul>
-          <li id="user_name">Welcome,<b><%= current_user.name %>!</b></li>
-          <li><%= link_to ' Home ' , root_path %></li>
-          <li><%= link_to ' Admin Page', admin_index_path %></li>
-          <li><%= link_to ' Orders ', orders_path %><p style="float:right;color:red">(<%=@new_order%>)</p></li>
-          <li><%= link_to ' Orders - PO ', order_pos_path %><p style="float:right;color:red">(<%=@new_po_order%>)</p></li>
-          <li><%= link_to ' Inventories ', inventories_path %>
-              <div class ="dropdown-menu">
-                <ul>
-                  <li><%=link_to 'Category', categories_path%></li>
-                  <li><%=link_to 'Product Type', prodtypes_path%></li>
-                  <li><%=link_to 'Fabric Type', type_inventories_path%></li>     
-                </ul>
-              </div>
-          </li>
-          <li><%= link_to 'Customers |', customers_path %></li> 
-          <li><%= link_to 'Users |', users_path %></li>
-          <li id ="logout"><b><%= link_to "logout!", log_out_path %></b></li>
-        </ul>
-      </div>
- 
-   <%end%>
+      <%= render 'layouts/adminmenu'%>
+  <%end%>
   <title>Shinfi</title>
   <!--fb comment manage-->  
-  <meta property="fb:app_id" content="1117317048288129" /> 
-  <meta property="fb:admins" content="633293240" />  
-  <meta property="fb:admins" content="100007462233821" />    
-   
-  <% if @product_images %>
+  <%= render 'layouts/fbhelper'%>
 
-    <meta property="og:url"           content="<%=request.url%>" />
-    <meta property="og:image"         content="<%= @product_images.prod_img%>" />
-    <meta property="og:type"          content="website" />
-    <% if @inventory %>
-      <meta property="og:title"         content="<%= @inventory.name%>" />
-    <%else%>
-      <meta property="og:title"         content="<%= @craft.name%>" />
-    <%end%>
-    <meta property="og:description"   content="Cari material handycraft yang lucu2 dan ngegemesin? disini tempatnya, ayu kunjungi website kita di www.shinfithecraft.com dan temukan kebutuhan craft kamu!" />
-  <%end%>
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-72550183-1', 'auto');
-  ga('send', 'pageview');
-
-  </script>
   <%= stylesheet_link_tag 'application' , :media => 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   
   <link href='https://fonts.googleapis.com/css?family=Amaranth' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tags %>
   <div id="banner_index">
-  <div id="banner_inner_container"> 
-    <div id="login_index">
-          <div id="user_nav">
-            <% if current_user %>
-              Signed in as <strong><%= current_user.name %></strong>!
-              <br>
-              <%= link_to "Sign out", signout_path, id: "sign_out" %>
-                  <li><b><%= link_to ' My Page |' , user_path(:id => session[:user_id]) %></b></li>
-              
-            <% else %>
-            <div id = "sign_in">
-              <%= link_to "Log In/Daftar", login_users_path %>
-            </div>
-            <% end %>
-          </div>
-                
-          </div>
-    <div id="logo"><%= link_to(image_tag("LOGO.png"),root_path)%></div>
-    <div class="cart">
-      <div class="cart_icon_container">
-        <div id="cart_image"><%= image_tag("cart.png") %></div>
-        <br>
-        <div id = "cart_link">
-       
-             
-              <% if session[:cart] && session[:cart_craft] %>
-              <%= link_to 'Order Cart', cart_index_path ,:id=> "cart_thumb_caller"%>
-              (<%=  session[:cart].count + session[:cart_craft].count %>)
-              <%end%>
-              <% if session[:cart] && !session[:cart_craft]%>
-              <%= link_to 'Order Cart', cart_index_path ,:id=> "cart_thumb_caller"%>
-              (<%= session[:cart].count%>)
-              <%end%>
-              <% if session[:cart_craft] && !session[:cart]%>
-              <%= link_to 'Order Cart', cart_index_path ,:id=> "cart_thumb_caller"%> 
-              (<%= session[:cart_craft].count  %>)
-              <%end%> 
-              <%if !session[:cart] && !session[:cart_craft]%>
-             Order Cart (0)
-          <%end%>
-        </div>
-      </div>
-            <br>
-            <br>
-      <!--beginning of cart_thumb-->
-      <% if session[:cart] || session[:cart_craft] %>
-      
-        <div id = "cart_thumb_content"><h2 style ="text-align:center;">Ready Stock</h2>
-        <hr>
-      <%
-      if session[:cart]
-      session[:cart].each do |id , quantity|
-      product = Inventory.find_by(:id => id)
-      prod_img = ProductImage.find_by(:inventory_id => id)
-      
-      %>
-          <div id = "cart_thumb_prod_detail_container">
-            <div id="cart_thumb_prod_pic"><%=image_tag(prod_img.prod_img_url(:medium_thumb).to_s)%></div>
-            <div id="cart_thumb_prod_info">
-              <ul>
-                <li><b style ="font-size:1em;"><i><%=product.name%></i></b></li>
-                <li><b>Brand: </b><i><%= product.brand.name %></i></li>
-                <li><b>Size: </b><%= product.meter %> <%=product.ukuran%></li>
-                <li><b><%= number_to_currency(product.sellprice, :unit => "Rp. ") %> / <%=product.satuan%></b></li>
-              </ul>
-            </div>
-          </div>           
-        <%end%>
-        <%end #end for if%>
-        <!-- Section for craft in cart-->
-                <%
-                if session[:cart_craft]
-                 session[:cart_craft].each do |id , quantity|
-                  #craft varibale is based on pricedeterminant for ease of use
-                 craft = PriceDet.find_by(:id => id)
-                 craft_img = ProductImage.find_by(:craft_id => craft.craft.id)
-                 brand = Brand.find_by(:id => craft.craft.brand_id)
-                %>
-         <div id = "cart_thumb_prod_detail_container">
-            <div id="cart_thumb_prod_pic"><%=image_tag(craft_img.prod_img_url(:medium_thumb).to_s)%></div>
-            <div id="cart_thumb_prod_info">
-              <ul>
-                <li><b style ="font-size:1em;"><i><%=craft.craft.name%>[<%=craft.subject%>]</i></b></li>
-                <li><i><%=craft.craft.subcategory%></i></li>
-                <li><b>Brand: </b><i><%=brand.name%></i></li>
-                <li><b><%= number_to_currency(craft.price , :unit => "Rp. ") %> / Pcs</b></li>
-              </ul>
-            </div>
-          </div>           
-        <%end%>
-        <%end #end for if%>
-        <div class ="checkout_button">
-            <%= link_to 'Checkout' , cart_index_path %>
-         </div>
-        </div>
-      <%end%>
-        <!--end of cart_thumb-->
-        <!--OPEN PO CART SECTION-->
-    <div class="cart_icon_container_po">
-      <div id="cart_image"><%= image_tag("cart.png") %></div>
-       <br>
-       <div id = "cart_link">
-        <%if session[:cart_po]%>
-           <%= link_to 'PreOrder', cart_index_po_path  %>(<%= session[:cart_po].count %>)
-        <%else%>
-           PreOrder(0)
-        <%end%>
-      </div>
-      </div><!--cart icon container ENDING-->
-
-      <!--beginning of cart_thumb_po-->
-      <% if session[:cart_po] %>
-      
-        <div id = "cart_thumb_content_po"><h2 style ="text-align:center;">Pre Order</h2>
-        <hr>
-      <%
-      session[:cart_po].each do |id , quantity|
-      product = Inventory.find_by(:id => id)
-      prod_img = ProductImage.find_by(:inventory_id => id)
-      %>
-          <div id = "cart_thumb_prod_detail_container">
-            <div id="cart_thumb_prod_pic"><%=image_tag(prod_img.prod_img_url(:medium_thumb).to_s)%></div>
-            <div id="cart_thumb_prod_info">
-              <ul>
-                <li><b style ="font-size:1em;"><i><%=product.name%></i></b></li>
-                <li><b>Brand: </b><i><%= product.category %></i></li>
-                <li><b>Size: </b><%= product.meter %> <%=product.ukuran%></li>
-                <li><b><%= number_to_currency(product.sellprice, :unit => "Rp. ") %> / <%=product.satuan%></b></li>
-              </ul>
-            </div>
-          </div>
-            
-        <%end%>
-        <div class ="checkout_button">
-            <%= link_to 'Checkout' , cart_index_po_path %>
-         </div>
-        </div>
-      <%end%>
-        <!--end of cart_thumb-->
-
-      <!--OPEN PO CART SECTION ENDING-->
-    </div><!--cart ending-->
-  </div><!--end for inner banner container-->
+    <%= render 'layouts/banner'%>
   </div>
   <div id="head_menu_anchor"></div>
-         <div id="head_menu">
-          <div id = "head_menu_aligner">
-          <ul>
-            <li><%= link_to ' Home  ' , root_path %></li>
-            <li><%= link_to ' Fabrics ', fabrics_path%>
-              <!--Menu harus diupdate secara manual?-->
-              <div class = "dropdown-menu">
-                  <ul>
-                    <li class ="title_menu"><b><%= link_to 'All Fabrics', fabrics_path%></b></li>
-                    <li><%= link_to 'Cotton', fabrics_path(:type => "Cotton")%></li>
-                    <li><%= link_to 'Cotton Linen', fabrics_path(:type => "Cotton Linen")%></li>
-                    <li><%= link_to 'Canvas', fabrics_path(:type => "Canvas")%></li>
-                    <li><%= link_to 'Panel', fabrics_path(:type => "Panel")%></li> 
-                  </ul>
-              </div>
-            </li>
-            <li><%= link_to 'Manufacturers', brands_path%>
-              <div class = "dropdown-menu">
-                <div class = "dropdown-double">
-                  <ul class = "submenu_container"> 
-                    <li class = "title_menu"><b><a href ="#">U.S Premium Fabric</a></b></li>
-                    <li><%= link_to 'Michael Millers', fabrics_path(:brand => "1")%></li>
-                    <li><%= link_to 'Art Gallery Fabrics', fabrics_path(:brand => "2")%></li>
-                    <li><%= link_to 'Cloud 9', fabrics_path(:brand => "Cloud 9")%></li>
-                    <li class = "title_menu"><b><a href ="#">Our Private Brand</a></b></li>
-                    <li><a href ="#">Shinfi's</a></li>
-                    <li><%= link_to 'KRCN Imported', fabrics_path(:brand => "3")%></li>
-                  </ul>
-                  <ul class = "submenu_container">
-                    <li class = "title_menu"><b><a href ="#">Local Brand</a></b></li>
-                    <li><a href ="#">Local Brand</a></li> 
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li><a href ="#">Sewing Supplies </a></li>
-            <li><%= link_to 'Craft', crafts_path%>
-              <div class = "dropdown-menu">
-                  <ul>
-                    <li class ="title_menu"><b><%= link_to 'All Fabrics', craft_product_crafts_path%></b></li>
-                  </ul>
-              </div>
-            </li>
-            <% if current_user && current_user.role = "Member" %>
-            <div id="member_menu">
-                             <!--menu for loggeed in user that is not admin-->  
-                <li><div id="prof_icon"><%= link_to(image_tag("profile.png"),user_path(:id => session[:user_id]))%></div>
-                <div class = "dropdown-menu">
-                <ul>
-                  <li id ="mypage"><b><%= link_to "My Page", user_path(:id => session[:user_id]) %></b></li>
-                  <li><b><%= link_to "logout", log_out_path %></b></li>
-                </ul>
-                </div>
-              </li>
-              <li><%= link_to(image_tag("shopping_bag_icon.png"),cart_index_path)%><%if session[:cart]%>(<%=session[:cart].count %>)<%end%></li>
-              <li><%= link_to(image_tag("shopping_bag_po_icon.png"),cart_index_po_path)%><%if session[:cart_po]%>(<%= session[:cart_po].count %>)<%end%></li>
-            </div>
-            <%end%>
-          </ul>
-        </div>
-        </div><!--end of head menu-->
+  <div id="head_menu">
+     <%= render 'layouts/headmenu'%>
+  </div><!--end of head menu-->
      
 </head>
 <body>
-  <div id="background_color">
+  
   <!--facebook like plugin-->
-        <div id="fb-root"></div>
+  <div id="fb-root"></div>
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -296,12 +52,12 @@
     <% end %>
   </div>
 <%= yield %>
-<div id="fb_message">
-  <div id="fb_message_hide"><b>Hubungi kami disini!</b></div>
-  <div id ="msg_box">
-<div class="fb-page" data-href="https://www.facebook.com/shinfithecrafts" data-tabs="messages" data-width="250" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/shinfithecrafts"><a href="https://www.facebook.com/shinfithecrafts">Shinfithecraft</a></blockquote></div></div>
-</div>
-</div>
+  <div id="fb_message">
+    <div id="fb_message_hide"><b>Hubungi kami disini!</b></div>
+    <div id ="msg_box">
+      <div class="fb-page" data-href="https://www.facebook.com/shinfithecrafts" data-tabs="messages" data-width="250" data-height="350" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/shinfithecrafts"><a href="https://www.facebook.com/shinfithecrafts">Shinfithecraft</a></blockquote></div></div>
+    </div>
+  </div>
 </div>
 </body>
 <footer>

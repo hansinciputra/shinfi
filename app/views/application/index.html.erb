@@ -1,5 +1,5 @@
-<div id = "Main Container">
-	<div id = "home_container">
+<div id = "Main_Container">
+	
 		<div id ="home_first_section">
 			
 			<div class = "main_poster">	
@@ -30,6 +30,7 @@
 				 			<%end%>
 				 			
 			 				</div>
+			 			
 		 			</div>
 		 			<div class="slider_button_right"><%= image_tag("btn_right.png") %></div>
 				</div>
@@ -57,11 +58,13 @@
 				</div>
 		</div>
 	 	<br>
-	</div>
+	
 </div>
 <script type="text/javascript">
+
 //to check owl-carousel properties: http://owlgraphic.com/owlcarousel/
 $(document).ready(function(){
+
 	$("#main_poster").owlCarousel({
 	    autoPlay: 3000, //Set AutoPlay to 3 seconds
 	    singleItem: true,
@@ -70,14 +73,16 @@ $(document).ready(function(){
   });
 	$("#owl-top_seller").owlCarousel({
 	    items : 4,
-	    itemsDesktopSmall: [900, 3],
 	    pagination: false
   });
 	$(".slider_button_left").click(function(){
     	$("#owl-top_seller").trigger('owl.next');
-  	})
+    	alert('weird');
+  	});
   	$(".slider_button_right").click(function(){
     	$("#owl-top_seller").trigger('owl.prev');
-  	})
+  	});
+
 });
+
 </script>

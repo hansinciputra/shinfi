@@ -19,14 +19,40 @@
 	border-radius: 0.7em 0.7em 0.7em 0.7em;
 	overflow:hidden;
 }
-.craft_pic_show{
+.craft_pic_container{
 	width:510px;
 	height:510px;
-	border:solid black 1px;
+	border:solid #F2F2F2 4px;
+	border-radius: 0.9em;
 	background-color:white;
 	overflow:hidden;
 	padding:10px;
 	float:left;
+}
+#craft_pic_show{
+	
+	width:100%;
+}
+#craft_dp{
+	width:510px;
+	height:430px;
+	
+}
+#thumb_craft_pic_container{
+	width:100%;
+	height:80px;
+	background-color: #F2F2F2;
+	border: solid #F2F2F2 3px;
+}
+.thumb_craft_pic{
+	width:70px;
+	height:70px;
+	border:solid black 1px;
+	border-radius: 0.9em;
+	overflow:hidden;
+	margin: 2px 0px 0px 5px;
+	float:left;
+	cursor:pointer;
 }
 #craft_container{
 	background-color:white;
@@ -36,41 +62,51 @@
 	padding: 20px 15px 20px 15px;
 }
 #craft_container_top{
-	border:solid black 1px;
+	
 	width:100%;
 	height:540px;
 }
 #craft_container_middle{
-	border:solid black 1px;
-	width:100%;
+	
+	width:99%;
 	min-height:500px;
+	overflow:auto;
+	background-color:#F7F5F2;
+	margin-top:10px;
+	padding:10px;
 }
 #craft_product_description{
 	padding:10px;
 	width: 65%;
 	min-height:450px;
-	border:solid black 1px;
+	border:solid #E0ECF8 4px;
+	background-color:white;
 	float:left;
+	border-radius: 0.9em;
 }
 #craft_seller_detail{
 	width:25%;
 	min-height:450px;
 	padding:10px;
 	float:right;
-	border:solid black 1px;
+	border:solid black 4px;
+	background-color:white;
+	border-radius:0.9em;
 }
 .craft_review{
 	width: 400px;
 	height:310px;
 	padding:10px;
-	border:solid black 1px;
+	border-top:solid #E3F6CE 4px;
+	border-left:solid #E3F6CE 4px;
+	border-right:solid #E3F6CE 4px;
 	float:right;
 }
 .craft_add_to_cart{
 	width:400px;
 	height:180px;
 	padding:10px;
-	border:solid black 1px;
+	border:solid #E3F6CE 4px;
 	float:right;
 }
 .craft_category_container{
@@ -132,7 +168,7 @@
 #craft_recomendation_product_details{
 	width:120px;
 	height:25px;
-	border:solid red 1px;
+	
 	margin:auto;
 }
 #new_craft_form{
@@ -168,4 +204,27 @@
   height:80%;
   border:solid black 1px;
   border-radius :0.5em 0.5em 0.5em 0.5em;
+}
+.slider_button_left_craft{
+	cursor: pointer;
+	float:left;
+	opacity:0.2;
+	width:35px;
+}
+.slider_button_right_craft{
+	cursor: pointer;
+	top:450px;
+	float:right;
+	opacity:0.2;
+	width:35px;
+}
+.slider_button_left_craft :hover , .slider_button_right_craft :hover{
+	opacity:0.5;
+}
+#slider_button{
+	width:510px;
+	height:80px;
+	position:absolute;
+	top:450px;
+
 }

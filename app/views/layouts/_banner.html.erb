@@ -1,0 +1,23 @@
+<div id="banner_inner_container"> 
+    <div id="logo"><%= link_to(image_tag("LOGO.png",size: "270x80"),root_path)%></div>
+    <div id="login_index">
+          <div id="user_nav">
+            <% if current_user %>
+              Signed in as <strong><%= current_user.name %></strong>!
+              <br>
+              <%= link_to "Sign out", signout_path, id: "sign_out" %>
+                  <li><b><%= link_to ' My Page |' , user_path(:id => session[:user_id]) %></b></li>
+              
+            <% else %>
+            <div id = "sign_in_home">
+              <%= link_to "Sign In", login_users_path %>
+            </div>
+            <% end %>
+          </div>
+                
+      </div>
+    
+    <div class="cart">
+      <%= render 'layouts/cart'%>
+    </div><!--cart ending-->
+  </div><!--end for inner banner container-->

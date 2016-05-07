@@ -1,0 +1,59 @@
+ <div id = "head_menu_aligner">
+          <ul>
+            <li><%= link_to ' Home  ' , root_path , :"data-no-turbolink" => true%></li>
+            <li><%= link_to ' Fabrics ', fabrics_path%>
+              <!--Menu harus diupdate secara manual?-->
+              <div class = "dropdown-menu">
+                  <ul>
+                    <li class ="title_menu"><b><%= link_to 'All Fabrics', fabrics_path%></b></li>
+                    <li><%= link_to 'Cotton', fabrics_path(:type => "Cotton")%></li>
+                    <li><%= link_to 'Cotton Linen', fabrics_path(:type => "Cotton Linen")%></li>
+                    <li><%= link_to 'Canvas', fabrics_path(:type => "Canvas")%></li>
+                    <li><%= link_to 'Panel', fabrics_path(:type => "Panel")%></li> 
+                  </ul>
+              </div>
+            </li>
+            <li><%= link_to 'Manufacturers', brands_path%>
+              <div class = "dropdown-menu">
+                <div class = "dropdown-double">
+                  <ul class = "submenu_container"> 
+                    <li class = "title_menu"><b><a href ="#">U.S Premium Fabric</a></b></li>
+                    <li><%= link_to 'Michael Millers', fabrics_path(:brand => "1")%></li>
+                    <li><%= link_to 'Art Gallery Fabrics', fabrics_path(:brand => "2")%></li>
+                    <li><%= link_to 'Cloud 9', fabrics_path(:brand => "Cloud 9")%></li>
+                    <li class = "title_menu"><b><a href ="#">Our Private Brand</a></b></li>
+                    <li><a href ="#">Shinfi's</a></li>
+                    <li><%= link_to 'KRCN Imported', fabrics_path(:brand => "3")%></li>
+                  </ul>
+                  <ul class = "submenu_container">
+                    <li class = "title_menu"><b><a href ="#">Local Brand</a></b></li>
+                    <li><a href ="#">Local Brand</a></li> 
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li><a href ="#">Sewing Supplies </a></li>
+            <li><%= link_to 'Craft', crafts_path%>
+              <div class = "dropdown-menu">
+                  <ul>
+                    <li class ="title_menu"><b><%= link_to 'All Crafts', craft_product_crafts_path%></b></li>
+                  </ul>
+              </div>
+            </li>
+            <% if current_user && current_user.role = "Member" %>
+            <div id="member_menu">
+                             <!--menu for loggeed in user that is not admin-->  
+                <li><div id="prof_icon"><%= link_to(image_tag("profile.png"),user_path(:id => session[:user_id]))%></div>
+                <div class = "dropdown-menu">
+                <ul>
+                  <li id ="mypage"><b><%= link_to "My Page", user_path(:id => session[:user_id]) %></b></li>
+                  <li><b><%= link_to "logout", log_out_path %></b></li>
+                </ul>
+                </div>
+              </li>
+              <li><%= link_to(image_tag("shopping_bag_icon.png"),cart_index_path)%><%if session[:cart]%>(<%=session[:cart].count %>)<%end%></li>
+              <li><%= link_to(image_tag("shopping_bag_po_icon.png"),cart_index_po_path)%><%if session[:cart_po]%>(<%= session[:cart_po].count %>)<%end%></li>
+            </div>
+            <%end%>
+          </ul>
+        </div>
