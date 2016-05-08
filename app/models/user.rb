@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 	#attr_accessor enable us to read and write the password method of user. It also create the password method
 	attr_accessor :password
 	has_many :orders, dependent: :destroy #dependent: :destroy - if customer is deleted , all of the customers order also deleted
-	
+	has_many :crafts
 	before_save :encrypt_password
 	validates :name, :presence =>true
 	#validates_confirmation_of the :password from view

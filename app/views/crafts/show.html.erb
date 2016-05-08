@@ -32,7 +32,7 @@
 
   </div>
   <div class = "craft_review">
-    <p>What people think about this product</p>
+    <h3 style= 'text-align:center;'><strong>Review - Comming Soon</strong></h3>
   </div>
   <div class = "craft_add_to_cart">
   <strong>Price determinant:</strong>
@@ -54,8 +54,6 @@
  
   <br>
 
-  <strong>Quantity:</strong>
-  <%= @craft.quantity %>
   </div>
 </div>
 <div id = "craft_container_middle">
@@ -68,15 +66,22 @@
 </p>
   </div>
   <div id = "craft_seller_detail">
-    <strong>User:</strong><%= @craft.user_id %>
+    <%if @user %>
+    <strong>Crafter:</strong><br><%= @user.name%>
     <br>
-    <strong>Brand:</strong><%= @craft.brand_id %>
+    <%= image_tag @user.profpic%>
+    
+    <br>
+    <%end%>
+    <strong>Brand:</strong><br><%= @brand.name %>
+     <div id = "brand_pic_craft"><%= image_tag(@brand.brand_pic_url.to_s)%></div>
   </div>
 </div>
 
 <p>
   <strong>Category:</strong>
-  <%= @craft.category %>
+  <!--category_button at application.css-->
+<div class = "category_button"><%= @craft.category %></div>
 </p>
 
 <p>
@@ -87,12 +92,12 @@
 
 
 </p>
-
+ <% if current_user && current_user.role == 'Admin' %>
 <p>
   <strong>Availability:</strong>
   <%= @craft.active %>
 </p>
-
+<%end%>
 </div>
 </div>
 <script>

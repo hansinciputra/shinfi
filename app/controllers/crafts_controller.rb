@@ -27,8 +27,8 @@ class CraftsController < ApplicationController
   def show
     @craft_image = ProductImage.where(:craft_id => params[:id])
     @price_dets = PriceDet.where(:craft_id => params[:id])
-  
-
+    @brand = Brand.joins(:crafts).select('brands.id,brands.name,brands.brand_pic,crafts.id as craft_id').find_by('crafts.id' => params[:id])
+    @user = User.joins(:crafts).select('users.id,users.name,users.profpic').find_by('crafts.id' => params[:id])
   end
 
   # GET /crafts/new

@@ -3,6 +3,8 @@ class Craft < ActiveRecord::Base
 	has_many :orders , :through => :craft_orders
 	has_many :price_dets
 	has_many :product_images, dependent: :destroy #if craft is removed, the picture also removed
+	belongs_to :brand
+	belongs_to :user
 	validates_uniqueness_of :name, :message => "Nama Sudah Terpakai, bisakah mengunakan nama lain?"
 	
 

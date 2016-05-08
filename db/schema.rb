@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420044522) do
+ActiveRecord::Schema.define(version: 20160508084805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20160420044522) do
 
   create_table "crafts", force: true do |t|
     t.string   "name"
-    t.integer  "user_id"
     t.string   "category"
     t.string   "price_determinant"
     t.text     "prod_desc"
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160420044522) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "subcategory"
+    t.uuid     "user_id"
   end
 
   create_table "customers", force: true do |t|
