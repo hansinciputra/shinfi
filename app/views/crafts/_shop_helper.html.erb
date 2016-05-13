@@ -59,8 +59,8 @@
   			<%end%>
  <script>
  //here we set the range based on user previous input, it should be stored in the params, if the user has never input anything we will set the value to the lowest and highest price of all product
- minimalrange = <%= params[:crafts] && params[:crafts][:min]!= "" ? params[:crafts][:min] : @lowestprice %>;
- maximalrange = <%= params[:crafts] && params[:crafts][:max]!= "" ? params[:crafts][:max]: @highestprice %>;
+ minimalrange = <%= params[:crafts] && params[:crafts][:min] && params[:crafts][:min]!= "" ? params[:crafts][:min] : @lowestprice %>;
+ maximalrange = <%= params[:crafts] && params[:crafts][:max] && params[:crafts][:max]!= "" ? params[:crafts][:max]: @highestprice %>;
     $(document).ready(function() {
      $( "#slider-range" ).slider({
       range: true,
