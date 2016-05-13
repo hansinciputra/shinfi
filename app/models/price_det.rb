@@ -3,4 +3,5 @@ class PriceDet < ActiveRecord::Base
 	def combine_subject_price
 		"#{subject}[Rp #{price}]"
 	end
+
 end

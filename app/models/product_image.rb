@@ -26,4 +26,5 @@ class ProductImage < ActiveRecord::Base
 		@product_images.update_attribute(:displaypic,1)
 			
 	end
+	scope :get_displaypicture, -> { where("displaypic = 1")}
 end

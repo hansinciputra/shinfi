@@ -114,4 +114,15 @@ jQuery(function(){
  	event.preventDefault();
  })
 });
-
+//jquery for checkbox on shop helper
+	jQuery(function(){
+		$('.checkbox_shop').on('click',function(){
+				$('#fabric_shop').submit();
+				$('#craft_shop').submit();
+		});
+		$('.reload').on('click',function(){
+				url = window.location.pathname.split('?')[0];
+				
+				window.location = url;
+		});
+	});

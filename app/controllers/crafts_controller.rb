@@ -9,18 +9,18 @@ class CraftsController < ApplicationController
   end
 
   def craft_product
-    sql = "SELECT crafts.name,crafts.id,price_dets_temp.craft_id, crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets_temp.subject,price_dets_temp.pd_price_row,price_dets_temp.price,product_images.prod_img,product_images.displaypic,product_images.craft_id 
-          FROM crafts INNER JOIN(
-                SELECT price_dets.craft_id,
-                price_dets.subject, 
-                price_dets.price,
-                row_number() over(partition by price_dets.craft_id )as pd_price_row from price_dets 
-                GROUP BY price_dets.craft_id,price_dets.subject,price_dets.price)price_dets_temp ON crafts.id = price_dets_temp.craft_id 
-                AND price_dets_temp.pd_price_row = 1 INNER JOIN product_images ON price_dets_temp.craft_id = product_images.craft_id AND product_images.displaypic = 1"
-    @craft = Craft.paginate_by_sql(sql,:page => params[:page],:per_page => 24)
-    #@craft = ProductImage.joins(:craft).join(:price_dets).select('crafts.name,crafts.id,crafts.category,crafts.subcategory,crafts.user_id,crafts.brand_id,price_dets.subject,price_dets.price,product_images.prod_img,product_images.displaypic,product_images.craft_id').where('product_images.displaypic = 1').paginate(:page => params[:page],:per_page => 24)
+    
+    @craft = Craft.get_craft.paginate(:page => params[:page],:per_page => 24)
+    @craft = @craft.brand(params[:crafts][:brand]) if params[:crafts] && params[:crafts][:brand].present?
+    @craft = @craft.minprice(params[:crafts][:min]) if params[:crafts] && params[:crafts][:min].present?
+    @craft = @craft.maxprice(params[:crafts][:max]) if params[:crafts] && params[:crafts][:max].present?
+            @craft = @craft.category(params[:category]) if params[:category].present?
+
+    @category = Craft.select('DISTINCT category as category');   
     @brand = Brand.all 
     @banner = Poster.where(:type => "Banner")
+    @lowestprice = PriceDet.minimum('price')
+    @highestprice = PriceDet.maximum('price')
   end
   # GET /crafts/1
   # GET /crafts/1.json

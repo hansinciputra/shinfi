@@ -16,26 +16,7 @@
 	<%end%>
 	</div>
 		<div id = "product_helper_container">
-			<div id ="category_helper">
-				<p><b><i>Find By Brand</i></b></p>
-				<%= form_for :crafts,:url =>craft_product_crafts_path,:html =>{:method =>:get} do |x|%>
-   				 <!--By pass the collection_select :option with empty {}-->
-   				 <%= x.hidden_field :type , :value => params[:type] %>
-  				<%= x.collection_select :brand , @brand,:id,:name,{include_blank: 'Pilih Brand'},{:style=>"width:100%;",:onchange =>"this.form.submit();"} %>
-    		<%end%>
-			</div>
-			<div id ="color_helper">
-				<p><b><i>Warna Dominan</i></b></p>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Merah',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:red" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Hijau',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:green" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Biru',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:blue" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Putih',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:white" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Pink',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:pink" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Abu',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:grey" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Coklat',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:chocolate" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Oranye',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:orange" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Hitam',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:black" }%>
-			</div>
+			<%= render 'shop_helper'%>
 		</div>
 		<div id = "product_display_container">
 			<% @craft.each do |f|%>

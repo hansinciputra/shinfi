@@ -46,4 +46,10 @@ class Inventory < ActiveRecord::Base
   def self.list_all_po_items
     ProductImage.joins(:inventory).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.category,inventories.fabrictype,inventories.quantity,inventories.satuan,inventories.sellprice').where(:displaypic => 1).where("inventories.category = 'KRCN Imported'")
   end
+  scope :get_fabric,->{joins(:product_images).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.category,inventories.brand_id,inventories.fabrictype,inventories.quantity,inventories.satuan,inventories.sellprice').where('product_images.displaypic' => 1).where("inventories.prodtype = 'Fabric'").where("inventories.quantity > ?", 0)}
+  scope :brand,->(brand){where('brand_id=?',brand)}
+  scope :fabrictype,->(fabrictype){where('fabrictype=?',fabrictype)}
+  scope :category, ->(category){where.not('category=?',category)}
+  scope :minprice, ->(min){where('sellprice >= ?',min)}
+  scope :maxprice, ->(max){where('sellprice <= ?',max)}
 end

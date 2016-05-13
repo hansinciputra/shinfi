@@ -1,0 +1,100 @@
+<div id ="category_helper">
+				<p><b><i>Find By Brand</i></b></p>
+				<%= form_for :fabrics,:url =>fabrics_path,:html =>{:id=>'fabric_shop',:method =>:get} do |x|%>
+   				 <!--By pass the collection_select :option with empty {}-->
+   				 <%= x.hidden_field :type , :value => params[:type] %>
+  				<%= x.collection_select :brand , @brand,:id,:name,{include_blank: 'Pilih Brand'},{:style=>"width:100%;",:onchange =>"this.form.submit();"} %>
+
+
+			</div>
+			<div id = "type_helper">
+				<p><b><i>Remove Category</i></b></p>	
+				<div class = "type_checkbox_helper">
+          <%= radio_button_tag 'reload','reload',checked = false,class: 'reload' %>
+          <%= label_tag('Refresh')%>
+					<% @category.each do |check| %>
+					<!--.include? will check in array whether an obect exist inside the array-->
+					<%= check_box_tag 'category[]',check.name, params[:category]&&params[:category].include?(check.name) ? checked = true : checked = false ,class: 'checkbox_shop'%>
+					
+					<%= label_tag(check.name)%>
+    				<%end%>
+    			</div>
+    		
+    		</div>
+			<div id ="color_helper">
+				<p><b><i>Warna Dominan</i></b></p>
+				<%= link_to ' ',fabrics_path(:warna => 'Merah',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:red" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Hijau',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:green" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Biru',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:blue" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Putih',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:white" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Pink',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:pink" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Abu',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:grey" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Coklat',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:chocolate" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Oranye',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:orange" }%>
+				<%= link_to ' ',fabrics_path(:warna => 'Hitam',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:black" }%>
+			</div>
+	<label for="amount">Price range:</label>
+	   <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">
+	  </p>
+	  <div id="slider-range"></div>
+	  <div id = "min-range"></div>
+	  <div id = "max-range"></div>
+	  <%= x.hidden_field :min , :id=>'amount1'%>
+	  <%= x.hidden_field :max , :id=>'amount2'%>
+  <%end%>			
+ <script>
+ //here we set the range based on user previous input, it should be stored in the params, if the user has never input anything we will set the value to the lowest and highest price of all product
+ minimalrange = <%= params[:fabrics] && params[:fabrics][:min]!= "" ? params[:fabrics][:min] : @lowestprice %>;
+ maximalrange = <%= params[:fabrics] && params[:fabrics][:max]!= "" ? params[:fabrics][:max] : @highestprice %>;
+    $(document).ready(function() {
+     $( "#slider-range" ).slider({
+      range: true,
+      min: <%= @lowestprice %>,
+      max: <%= @highestprice%>,
+      step: 1,
+      values: [minimalrange,maximalrange],
+      //slide: is what happened when we slide
+      slide: function( event, ui ) {
+    		var delay = function() {
+            var handleIndex = $(ui.handle).data('index.uiSliderHandle');
+            var label = handleIndex == 0 ? '#min-range' : '#max-range';
+            $(label).html('Rp' + ui.value).position({
+                my: 'center top',
+                at: 'center bottom',
+                of: ui.handle,
+                offset: "0, 10"
+            });
+        };
+        
+        // wait for the ui.handle to set its position
+        setTimeout(delay, 5);
+   		},
+   		//change is whate happen when something change on the slider, we submit on change
+      change: function(event, ui) {
+      	$( "#amount" ).html( "Rp" + ui.values[ 0 ] + " - Rp" + ui.values[ 1 ] );
+    	$( "#amount1" ).val(ui.values[ 0 ]);
+    	$( "#amount2" ).val(ui.values[ 1 ]);
+   		
+        $('#fabric_shop').submit();
+		},
+		stop: function(event, ui) {
+			ui.values[0] = ("#amount1").val;
+			ui.values[1] = ("#amount2").val;
+			values: [("#amount1").val,("#amount2").val]
+   		
+		}
+    });
+	//this is what will be displayed 
+    $( "#amount" ).val( "Rp." + $( "#slider-range" ).slider( "values", 0 ) +
+     " - Rp." + $( "#slider-range" ).slider( "values", 1 ) );
+    //we set the position of small price that display when user slides the slider
+  $('#amount1').html('$' + $('#slider-range').slider('values', 0)).position({
+    my: 'center top',
+    at: 'center bottom',
+    of: $('#slider a:eq(0)'),
+    offset: "0, 10"
+	});
+
+  });
+
+  </script> 
