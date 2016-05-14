@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     @subposter1 = Poster.where(:type => "SubPoster")
     @new_order = Order.number_of_new_order('STOCKED').count
     @new_po_order = Order.number_of_new_order('PO').count
+  
   end
   def current_user
   	if session[:user_id]

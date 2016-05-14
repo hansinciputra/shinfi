@@ -496,6 +496,7 @@ footer p , a{
 	min-height: 1300px;
 	padding-top: 30px;
 	background-color: #F7F5F2;
+	overflow: auto;
 }
 .banner{
 	width: 980px;
@@ -556,14 +557,15 @@ footer p , a{
 	border-bottom: gray solid 1px;
 }
 .warna_product{
-	width:20px;
+	width:30px;
 	height: 20px;
-	border:solid gray 2px;
+	border:solid gray 1px;
 	float: left;
-	margin:5px;
+	margin:1px;
 }
 .warna_product:hover{
-	border:solid black 2px;
+	border:solid black 1px;
+	opacity: 0.7;
 }
 #index_image_display_container{
 	width:240px;
@@ -619,7 +621,7 @@ footer p , a{
 	margin: auto;
 	overflow: hidden;
 	border-radius: 0.9em;
-	z-index: 999;
+	
 }
 #shop_helper{
 	width:200px;
@@ -629,7 +631,7 @@ footer p , a{
 	margin:0px 10px 10px 10px;
 }
 #home_first_section{
-	height:500px;
+	height:410px;
 	margin: 10px auto 35px auto;
 }
 #second_poster{
@@ -690,7 +692,8 @@ footer p , a{
 	height: 100px;
 	float: left;
 	margin: 10px 5px 0px 10px;
-	border:black solid 1px;
+	border:solid white 2px;
+	border-radius: 0.9em;
 }
 .top_seller_image_index_page img{
 	position: relative;
@@ -717,9 +720,14 @@ footer p , a{
 .sub_poster{
 	width:480px;
 	height: 250px;
-	border:black solid 2px;
+	border:solid white 2px;
 	float: left;
 	margin: 10px;
+	cursor: pointer;
+}
+.sub_poster:hover{
+	border:solid black 2px;
+	opacity: 0.7;
 }
 .submit_button{
 	width: 250px;

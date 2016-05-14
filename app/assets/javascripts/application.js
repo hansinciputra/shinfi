@@ -120,9 +120,14 @@ jQuery(function(){
 				$('#fabric_shop').submit();
 				$('#craft_shop').submit();
 		});
+		$('.warna_submit').on('click',function(){
+				$('#fabric_shop').submit();
+				$('#craft_shop').submit();
+		});
 		$('.reload').on('click',function(){
 				url = window.location.pathname.split('?')[0];
 				
 				window.location = url;
 		});
+
 	});

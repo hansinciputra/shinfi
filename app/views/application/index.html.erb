@@ -16,7 +16,7 @@
 
  		<div id = "top_seller_product_index_page">
 		 			<div id="title">
-		 				<h3 style = "color: black;text-align:center;"> Top 10 Best Seller!</h3>
+		 				<h3 style = "color: black;text-align:center;line-height:80px;"> Top 5 Best Seller!</h3>
 		 			</div>
 		 			<div class="slider_button_left"><%= image_tag("btn_left.png") %></div>
 		 			<div id="top_seller_image_container">
@@ -77,7 +77,6 @@ $(document).ready(function(){
   });
 	$(".slider_button_left").click(function(){
     	$("#owl-top_seller").trigger('owl.next');
-    	alert('weird');
   	});
   	$(".slider_button_right").click(function(){
     	$("#owl-top_seller").trigger('owl.prev');

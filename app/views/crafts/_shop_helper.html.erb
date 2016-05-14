@@ -36,17 +36,16 @@
     			</div>
     		</div>
 			<div id ="color_helper">
-				<p><b><i>Warna Dominan</i></b></p>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Merah',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:red" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Hijau',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:green" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Biru',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:blue" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Putih',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:white" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Pink',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:pink" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Abu',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:grey" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Coklat',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:chocolate" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Oranye',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:orange" }%>
-				<%= link_to ' ',craft_product_crafts_path(:warna => 'Hitam',:type =>params[:type]),{:class=>"warna_product",:style=>"background-color:black" }%>
-			</div>
+        <!--we might not going to use color as helper because each product has many colors, we havent set the @color in the controller-->
+        <p><b><i>Warna Dominan</i></b></p>
+        <% if @color%>
+          <% @color.each do |t|%> 
+                        <label>
+                          <input type="radio" name='warna' value = '<%=t.warna%>' class="warna_submit">
+                          <div class = "warna_product", style="background-color:<%=t.warna%>;"></div>
+          <%end%>
+        <%end%>
+      </div>
 		
   <label for="amount">Price range:</label>
    <input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;">

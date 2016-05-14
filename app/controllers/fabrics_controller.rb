@@ -5,7 +5,7 @@ class FabricsController < ApplicationController
     @image = @image.brand(params[:fabrics][:brand]) if params[:fabrics] && params[:fabrics][:brand].present?
     @image = @image.fabrictype(params[:fabrictype]) if params[:fabrictype].present?
     @image = @image.fabrictype(params[:fabrics][:type]) if params[:fabrics] && params[:fabrics][:type].present?
-    
+    @image = @image.warna(params[:warna]) if params[:warna].present?
     @image = @image.minprice(params[:fabrics][:min]) if params[:fabrics] && params[:fabrics][:min].present?
     @image = @image.maxprice(params[:fabrics][:max]) if params[:fabrics] && params[:fabrics][:max].present?
     if params[:category]
@@ -18,6 +18,7 @@ class FabricsController < ApplicationController
     @brand = Brand.all
     @lowestprice = Inventory.minimum('sellprice')
     @highestprice = Inventory.maximum('sellprice')
+    @color = Inventory.select('DISTINCT warna as warna').where("warna !=''")
 	end
 
     def brand_caller

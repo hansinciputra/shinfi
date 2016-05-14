@@ -52,4 +52,5 @@ class Inventory < ActiveRecord::Base
   scope :category, ->(category){where.not('category=?',category.join(","))}
   scope :minprice, ->(min){where('sellprice >= ?',min)}
   scope :maxprice, ->(max){where('sellprice <= ?',max)}
+  scope :warna,->(warna){where('warna =?',warna)}
 end
