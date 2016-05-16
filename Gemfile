@@ -45,6 +45,8 @@ gem 'fancybox2-rails', '~>0.2.8'
 gem 'figaro','>= 1.0.0.rc1'
 # Use ActiveModel has_secure_password
 
+#for generating sitemap with ease
+gem 'sitemap_generator'
 #to connect with facebook API
 gem 'omniauth'
 gem 'omniauth-facebook','1.4.0'
