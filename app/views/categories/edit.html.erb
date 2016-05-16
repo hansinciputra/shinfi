@@ -1,2 +1,16 @@
 <h1>Categories#edit</h1>
-<p>Find me in app/views/categories/edit.html.erb</p>
+<div id = "Main_Container">
+
+	
+		<div id = "category_left">
+			<h2 style="text-align:center;">Categories</h2>
+
+			<%= form_for @category, :url => categories_path, :html => {:method => :post} do |f| %>
+					<%= f.label 'Add Category' %>
+					<%= f.text_field :name %>
+					<%= f.collection_select :productype, @producttype, :name, :name, :prompt=>true %>
+				<%= f.submit %>
+			<%end%>
+
+		</div>
+	</div>

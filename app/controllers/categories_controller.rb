@@ -2,11 +2,17 @@ class CategoriesController < ApplicationController
   def index
   	@categories = Category.all
     @subcategory = Subcategory.all
+    @category = Category.new
+    @producttype = Prodtype.all
   end
   def new
   	@categories = Category.new
   end
-
+  def edit
+    @category = Category.find(params[:id])
+    @subcategory = Subcategory.all
+    @producttype = Prodtype.all
+  end
   def create
   	@categories= Category.new(category_params)
   	respond_to do |format|
@@ -49,7 +55,7 @@ class CategoriesController < ApplicationController
   end
 
   def category_params
-  	params.require(:categories).permit(:name)
+  	params.require(:category).permit(:name,:productype)
   end
   def subcategory_params
     params.require(:subcategories).permit(:name, :category_id)

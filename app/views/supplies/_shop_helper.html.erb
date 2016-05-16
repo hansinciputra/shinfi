@@ -1,18 +1,16 @@
 <div id ="category_helper">
 				<p><b><i>Find By Brand</i></b></p>
-				<%= form_for :fabrics,:url =>fabrics_path,:html =>{:id=>'fabric_shop',:method =>:get} do |x|%>
+				<%= form_for :fabrics,:url =>supplies_path,:html =>{:id=>'fabric_shop',:method =>:get} do |x|%>
    				 <!--By pass the collection_select :option with empty {}-->
-
-
-          <div class = "type_checkbox_helper">
-          <%= radio_button_tag 'reload','reload',checked = false,class: 'reload' %>
-          <%= label_tag('Refresh')%>
-          <% @brand.each do |check| %>
-            <%= radio_button_tag 'brand',check.id, check.id.to_i == params[:brand].to_i ? checked = true : checked = false ,class: 'checkbox_shop'%>
-          
-            <%= label_tag(check.name)%>
-            <%end%>
-          </div>
+   				 <div class = "type_checkbox_helper">
+			          <%= radio_button_tag 'reload','reload',checked = false,class: 'reload' %>
+			          <%= label_tag('Refresh')%>
+			          <% @brand.each do |check| %>
+			            <%= radio_button_tag 'brand',check.id, check.id.to_i == params[:brand].to_i ? checked = true : checked = false ,class: 'checkbox_shop'%>
+			          
+			            <%= label_tag(check.name)%>
+			            <%end%>
+			     </div>
 			</div>
 			<div id = "type_helper">
 				<p><b><i>Select Category</i></b></p>	
@@ -20,10 +18,9 @@
           <%= radio_button_tag 'reload','reload',checked = false,class: 'reload' %>
           <%= label_tag('Refresh')%>
 					<% @category.each do |check| %>
-				
+					
           <%= radio_button_tag 'category',check.name, params[:category] == check.name ? checked = true : checked = false ,class: 'checkbox_shop'%>
-
-
+				
 					<%= label_tag(check.name)%>
     				<%end%>
     			</div>

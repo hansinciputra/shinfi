@@ -2,9 +2,15 @@
 				<p><b><i>Find By Brand</i></b></p>
 				<%= form_for :crafts,:url =>craft_product_crafts_path,:html =>{:method =>:get,:id=>'craft_shop'} do |x|%>
    				 <!--By pass the collection_select :option with empty {}-->
-   				 <%= x.hidden_field :type , :value => params[:type] %>
-  				<%= x.collection_select :brand , @brand,:id,:name,{include_blank: 'Pilih Brand'},{:style=>"width:100%;",:onchange =>"this.form.submit();"} %>
-    	
+   				<div class = "type_checkbox_helper">
+          <%= radio_button_tag 'reload','reload',checked = false,class: 'reload' %>
+          <%= label_tag('Refresh')%>
+          <% @brand.each do |check| %>
+            <%= radio_button_tag 'brand',check.id, check.id.to_i == params[:brand].to_i ? checked = true : checked = false ,class: 'checkbox_shop'%>
+          
+            <%= label_tag(check.name)%>
+            <%end%>
+          </div>
 			</div>
 			<div id = "type_helper">
 				<p><b><i>Select Category</i></b></p>	

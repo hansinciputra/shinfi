@@ -34,7 +34,7 @@ Rails.application.routes.draw do
   resources :banners
   resources :sub_posters
   resources :prodtypes, :only => [:index,:new,:create,:destroy]
-  resources :categories, :only => [:index,:new,:create,:destroy] do
+  resources :categories, :only => [:index,:new,:create,:edit,:destroy] do
     collection do 
       post 'sub_categories_create'
     end
@@ -47,6 +47,11 @@ Rails.application.routes.draw do
   get "sign_up" => 'users#new', :as =>"sign_up"
   get "log_out" => 'sessions#destroy', :as =>"log_out"
   resources :fabrics, :only => [:index] do
+    member do
+      get 'brand_caller'
+    end
+  end
+  resources :supplies, :only => [:index] do
     member do
       get 'brand_caller'
     end
