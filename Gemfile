@@ -44,7 +44,8 @@ gem 'fancybox2-rails', '~>0.2.8'
 #figaro for ensuring security credential, preventing AWS key from being exposed to public
 gem 'figaro','>= 1.0.0.rc1'
 # Use ActiveModel has_secure_password
-
+# friendlyId gem for readable URL
+gem 'friendly_id', '~> 5.1.0'
 #for generating sitemap with ease
 gem 'sitemap_generator'
 #to connect with facebook API

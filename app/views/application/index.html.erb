@@ -40,9 +40,13 @@
 				
 					<%if @subposter1 %>
 						<% @subposter1.each do |img|%>
-						<div class = "sub_poster">
-							<%=image_tag(img.subposter_url(:display).to_s)%>
-						</div>
+						
+							<div class = "sub_poster">
+								<div class = "subposter_info"><h1><%= link_to ' CLICK! ', fabrics_path%></h1></div>
+
+								<%=image_tag img.subposter_url(:display).to_s%>			
+							</div>
+						
 						<%end%>
 					<%end%>
 				

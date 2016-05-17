@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160516093839) do
+ActiveRecord::Schema.define(version: 20160517081930) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,7 +100,10 @@ ActiveRecord::Schema.define(version: 20160516093839) do
     t.string   "warna"
     t.string   "prodtype"
     t.integer  "brand_id"
+    t.string   "slug"
   end
+
+  add_index "inventories", ["slug"], name: "index_inventories_on_slug", using: :btree
 
   create_table "inventory_orders", force: true do |t|
     t.integer "order_id"

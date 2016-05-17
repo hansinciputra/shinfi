@@ -717,16 +717,48 @@ footer p , a{
 	font-size: 0.8em;
 	padding: 10px;
 }
-.sub_poster{
+.sub_poster img{
 	width:480px;
 	height: 250px;
 	border:solid white 2px;
 	float: left;
-	margin: 10px;
 	cursor: pointer;
+	z-index: 5;
 }
+
 .sub_poster:hover{
-	opacity: 0.7;
+	opacity: 0.5;
+	width:480px;
+	height: 250px;
+	position: absolute;
+	background-color: black;
+	z-index: 20;
+}
+.subposter_info{
+	cursor: pointer;
+	display: none;
+}
+.sub_poster:hover > div{
+	display: block;
+	position: absolute;
+	border:solid white 2px;
+	font-size: 1.3em;
+	color:white;
+	background-color: black;
+	opacity: 0.6;
+	text-align: center;
+	line-height: 200px;
+	width:480px;
+	height: 250px;
+}
+.subposter_info a{
+	color:white;
+	font-size: 3em;
+	border:solid red 2px;
+}
+.subposter_info a:hover{
+	color:white;
+	font-size: 3em;
 }
 .submit_button{
 	width: 250px;

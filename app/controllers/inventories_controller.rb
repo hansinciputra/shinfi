@@ -1,12 +1,11 @@
 class InventoriesController < ApplicationController
   before_filter :authorize, :except => [:show]
-  
+  before_action :set_id, only: [:show, :edit, :update, :destroy]
   def index #to display all results
     @inventories = Inventory.all.order(:name)
 
   end
   def show #to display specified results
-    @inventory = Inventory.find(params[:id])
     if @inventory.brand_id
       @brand = Brand.show_brand_on_id(@inventory.brand_id)
     end
@@ -42,17 +41,19 @@ class InventoriesController < ApplicationController
   end
   
   def edit #to display the edit form
-    @inventory = Inventory.find(params[:id])
+   
     @categories = Category.all 
     @type = TypeInventory.all
     @productype = Prodtype.all
     @brands = Brand.all
     @product_images = @inventory.product_images.build
   end
-  
-  def update #no view, only process the form in edit actions
-    @inventory = Inventory.find(params[:id]) #this to find the post that we wanted to update, the id is from parameters when submit button is pressed
-    
+
+  def set_id
+     @inventory = Inventory.friendly.find(params[:id])
+  end
+
+  def update #no view, only process the form in edit actions   
     #get the inventory parameters from user input , we get the data from from_for @inventory in edit view
     if @inventory.update_attributes(inventory_params)
       redirect_to edit_inventory_path(@inventory) , :notice => "Inventori Berhasil Terupdate"
@@ -61,7 +62,6 @@ class InventoriesController < ApplicationController
     end
   end
   def destroy #no view, only process 
-    @inventory = Inventory.find(params[:id])
     @image = ProductImage.where(:inventory_id => params[:id])
     #simply use .destroy method to delete inventory 
     if @inventory.destroy

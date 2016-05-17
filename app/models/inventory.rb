@@ -1,4 +1,6 @@
 class Inventory < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: [:slugged, :finders]
   #check ruby guides for full validates helper
   has_many :inventory_orders, :inverse_of => :inventory
   has_many :orders, through: :inventory_orders
@@ -11,6 +13,9 @@ class Inventory < ActiveRecord::Base
    
   accepts_nested_attributes_for :inventory_orders, :reject_if => lambda { |a| a[:quantity].blank?}
   accepts_nested_attributes_for :product_images, :allow_destroy => true #allow destroy of child in parent form
+  
+
+
   def reduce_inventory(qty)
     self.quantity = quantity - qty
     save
@@ -46,8 +51,8 @@ class Inventory < ActiveRecord::Base
   def self.list_all_po_items
     ProductImage.joins(:inventory).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.category,inventories.fabrictype,inventories.quantity,inventories.satuan,inventories.sellprice').where(:displaypic => 1).where("inventories.category = 'KRCN Imported'")
   end
-  scope :get_fabric,->{joins(:product_images).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.category,inventories.brand_id,inventories.fabrictype,inventories.quantity,inventories.satuan,inventories.sellprice').where('product_images.displaypic' => 1).where("inventories.prodtype = 'Fabric'").where("inventories.quantity > ?", 0)}
-  scope :get_supply,->{joins(:product_images).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.category,inventories.brand_id,inventories.fabrictype,inventories.quantity,inventories.satuan,inventories.sellprice').where('product_images.displaypic' => 1).where("inventories.prodtype = 'Accessories'").where("inventories.quantity > ?", 0)}
+  scope :get_fabric,->{joins(:product_images).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.slug,inventories.category,inventories.brand_id,inventories.fabrictype,inventories.quantity,inventories.satuan,inventories.sellprice').where('product_images.displaypic' => 1).where("inventories.prodtype = 'Fabric'").where("inventories.quantity > ?", 0)}
+  scope :get_supply,->{joins(:product_images).select('product_images.prod_img,product_images.id,product_images.inventory_id,inventories.name,inventories.slug,inventories.category,inventories.brand_id,inventories.fabrictype,inventories.quantity,inventories.satuan,inventories.sellprice').where('product_images.displaypic' => 1).where("inventories.prodtype = 'Accessories'").where("inventories.quantity > ?", 0)}
   scope :brand,->(brand){where('brand_id=?',brand)}
   scope :fabrictype,->(fabrictype){where('fabrictype=?',fabrictype)}
   scope :category, ->(category){where('category=?',category)}

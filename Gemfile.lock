@@ -162,6 +162,8 @@ GEM
       fog-core
       nokogiri (~> 1.5, >= 1.5.11)
     formatador (0.2.5)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     hashie (3.4.3)
     hike (1.2.3)
     httpauth (0.2.1)
@@ -293,6 +295,7 @@ DEPENDENCIES
   fancybox2-rails (~> 0.2.8)
   figaro (>= 1.0.0.rc1)
   fog
+  friendly_id (~> 5.1.0)
   iconv (~> 1.0.3)
   jbuilder (~> 2.0)
   jquery-fileupload-rails
