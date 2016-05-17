@@ -26,10 +26,10 @@
 					 @image_craft = ProductImage.find_by(:craft_id=>f.id)
 					%>
 					<!--we set data-no-turbolink to true because owlcarousel behave weird with turbolink, it seems to get the properties from another script from another page-->
-					<%= link_to image_tag(@image_craft.prod_img_url(:thumb).to_s), craft_path(:id => f.craft_id), :"data-no-turbolink" => true%>
+					<%= link_to image_tag(@image_craft.prod_img_url(:thumb).to_s), craft_path(f.slug), :"data-no-turbolink" => true%>
 				</div>
 					<div id = "index_product_summary">
-						<b><%= link_to f.name,craft_path(:id=>f.id) %></b>
+						<b><%= link_to f.name,craft_path(f.slug) %></b>
 						<ul>
 							<li><%= f.subcategory%></li>
 							<% if f.brand_id

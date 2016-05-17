@@ -27,8 +27,8 @@ class CraftsController < ApplicationController
   def show
     @craft_image = ProductImage.where(:craft_id => params[:id])
     @price_dets = PriceDet.where(:craft_id => params[:id])
-    @brand = Brand.joins(:crafts).select('brands.id,brands.name,brands.brand_pic,crafts.id as craft_id').find_by('crafts.id' => params[:id])
-    @user = User.joins(:crafts).select('users.id,users.name,users.profpic').find_by('crafts.id' => params[:id])
+    @brand = Brand.joins(:crafts).select('brands.id,brands.name,brands.brand_pic,crafts.id as craft_id').find_by('crafts.slug' => params[:id])
+    @user = User.joins(:crafts).select('users.id,users.name,users.profpic').find_by('crafts.slug' => params[:id])
   end
 
   # GET /crafts/new
@@ -95,7 +95,7 @@ class CraftsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_craft
-      @craft = Craft.find(params[:id])
+      @craft = Craft.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
