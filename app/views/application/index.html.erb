@@ -39,15 +39,29 @@
  				
 				
 					<%if @subposter1 %>
-						<% @subposter1.each do |img|%>
+						
 						
 							<div class = "sub_poster">
-								<div class = "subposter_info"><h1><%= link_to ' CLICK! ', fabrics_path%></h1></div>
+								<div class = "subposter_pic">
+								<h1><%= link_to ' Fabrics ', fabrics_path%></h1>
 
-								<%=image_tag img.subposter_url(:display).to_s%>			
+								<%=image_tag @subposter1.first.subposter_url(:display).to_s%>	
+								</div>
+								<div class = "subposter_info">
+									<h1 style='font-size:0.9em;'><i>Cari kain lucu, katun jepang, kain import, dan kain motif terlengkap untuk hobby kamu disini!</i></h1>
+								</div>
+							</div>
+							<div class = "sub_poster">
+								<div class = "subposter_pic">
+								<h1><%= link_to ' Crafts ', crafts_path%></h1>
+
+								<%=image_tag @subposter1.second.subposter_url(:display).to_s%>
+								</div>	
+								<div class = "subposter_info">	
+									<h1 style='font-size:0.9em;'><i>Mau beli hasil handmade seperti sepatu bayi, gelang, dan tas dari sesama crafter? barangnya unik2!</i></h1>
+								</div>
 							</div>
 						
-						<%end%>
 					<%end%>
 				
 		</div>

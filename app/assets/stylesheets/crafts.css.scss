@@ -3,15 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-#sitemap_category{
-	width: 200px;
-	min-height:500px;
-	border:solid white 1px;
-	margin: 0 20px 0 20px;
-	float:left;
-	border-radius: 0.7em 0.7em 0.7em 0.7em;
-	background-color:#EFEEED;
-}
+
 .craft_pic{
 	width:250px;
 	height:250px;
@@ -110,37 +102,7 @@
 	border:solid #E3F6CE 4px;
 	float:right;
 }
-.craft_category_container{
-	width:350px;
-	min-height:150px;
-	max-height:200px;
-	padding:10px;
-	background-color:white;
-	border-radius: 0.7em 0.7em 0.7em 0.7em;
-	border: solid #DBDAD9 1px;
-	float:left;
-	margin: 0px 20px 20px 0px;
-}
-.craft_category_title{
-	width:350px;
-}
-.pic_craft_category_container{
-	width:200px;
-	height:120px;
-	border: solid black 1px;
-	float:left;
-}
-.subcategory_container{
-	width:135px;
-	height:110px;
-	border:solid blue 1px;
-	float:left;
-	display:inline-block;
-	padding:5px;
-}
-.subcategory_container ul li{
-	font-size: 0.8em;
-}
+
 #craft_product_recomendation_side{
 	width: 150px;
 	height:500px;
@@ -149,11 +111,7 @@
 	border-radius: 0.7em 0.7em 0.7em 0.7em;
 	float:left;
 }
-#category_content_container{
-	float:left;
-	width: 800px;
-	min-height:100px;
-}
+
 #craft_recomendation_container{
 	width: 150px;
 	height: 150px;

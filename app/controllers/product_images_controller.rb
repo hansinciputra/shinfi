@@ -20,8 +20,8 @@ class ProductImagesController < ApplicationController
   def new
     #action new is called when uploading product when creating new Inventory
     @product_images = ProductImage.new
-    @inventory = Inventory.find_by(:id => params[:id])
-    @craft = Craft.find_by(:id => params[:id])
+    @inventory = Inventory.find_by(:slug => params[:id])
+    @craft = Craft.find_by(:slug => params[:id])
     @check_image = ProductImage.find_by(:inventory_id => params[:id])
   end
 

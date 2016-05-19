@@ -712,20 +712,53 @@ footer p , a{
 .main_page_short_desc{
 	width: 80%;
 	margin: auto;
-	text-align: center;
-	
+	text-align: center;	
 	font-size: 0.8em;
 	padding: 10px;
+}
+
+.sub_poster{
+	width:480px;
+	height: 380px;
+	float: left;
+	display: inline-block;
+	cursor: pointer;
+	margin: 5px;		
+}
+.sub_poster a{
+	display: none;
+	position: absolute;
+	text-align: center;
+	width:480px;
+	line-height: 250px;
+	background-color: black;
+	font-size: 1.3em;
+	z-index: 10;
+}
+.sub_poster a:hover{
+	color: white;
+	border:solid white 2px;
 }
 .sub_poster img{
 	width:480px;
 	height: 250px;
 	border:solid white 2px;
-	float: left;
 	cursor: pointer;
+	position: absolute;
 	z-index: 5;
 }
-
+.subposter_pic{
+	width: 480px;
+	height:250px;
+}
+.subposter_info{
+	width:460px;
+	height:50px;
+	display: block;
+	text-align: center;
+	padding:10px;
+}
+/*
 .sub_poster:hover{
 	opacity: 0.5;
 	width:480px;
@@ -738,7 +771,7 @@ footer p , a{
 	cursor: pointer;
 	display: none;
 }
-.sub_poster:hover > div{
+.sub_poster_info:hover > img{
 	display: block;
 	position: absolute;
 	border:solid white 2px;
@@ -759,7 +792,8 @@ footer p , a{
 .subposter_info a:hover{
 	color:white;
 	font-size: 3em;
-}
+}*/
+
 .submit_button{
 	width: 250px;
 	height:40px;
@@ -783,4 +817,16 @@ footer p , a{
 	height: 25px;
 	margin-left: 5px;
 
+}
+#about_us_footer{
+	width:100%;
+	background-color: #F3F781;
+	height:50px;
+	text-align: center;
+}
+#about_us_footer h1{
+	width:650px;
+	margin:auto;
+	text-align: center;
+	font-size: 2.5em;
 }

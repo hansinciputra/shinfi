@@ -131,3 +131,12 @@ jQuery(function(){
 		});
 
 	});
+jQuery(function(){
+	$('.sub_poster').hover(function(){
+		$(this).find('img').fadeTo(500,0.5);
+		$(this).find('a').fadeTo(200,0.6);
+	},function(){
+		$(this).find('img').fadeTo(500,1);
+		$(this).find('a').hide();
+	});
+});

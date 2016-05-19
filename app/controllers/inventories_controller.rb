@@ -50,7 +50,7 @@ class InventoriesController < ApplicationController
   end
 
   def set_id
-     @inventory = Inventory.friendly.find(params[:id])
+   @inventory = Inventory.friendly.find(params[:id])
   end
 
   def update #no view, only process the form in edit actions   
