@@ -4,6 +4,7 @@ class FabricsController < ApplicationController
     @image = @image.brand(params[:brand]) if params[:brand].present?
     @image = @image.fabrictype(params[:fabrictype]) if params[:fabrictype].present?
     @image = @image.fabrictype(params[:fabrics][:type]) if params[:fabrics] && params[:fabrics][:type].present?
+    @image = @image.fabrictype(params[:type]) if params[:type].present?
     @image = @image.warna(params[:warna]) if params[:warna].present?
     @image = @image.minprice(params[:fabrics][:min]) if params[:fabrics] && params[:fabrics][:min].present?
     @image = @image.maxprice(params[:fabrics][:max]) if params[:fabrics] && params[:fabrics][:max].present?
