@@ -25,8 +25,9 @@ class CraftsController < ApplicationController
   # GET /crafts/1
   # GET /crafts/1.json
   def show
-    @craft_image = ProductImage.where(:craft_id => params[:id])
-    @price_dets = PriceDet.where(:craft_id => params[:id])
+    craftid = Craft.where(:slug=>params[:id])
+    @craft_image = ProductImage.where(:craft_id => craftid[0].id)
+    @price_dets = PriceDet.where(:craft_id => craftid[0].id)
     @brand = Brand.joins(:crafts).select('brands.id,brands.name,brands.brand_pic,crafts.id as craft_id').find_by('crafts.slug' => params[:id])
     @user = User.joins(:crafts).select('users.id,users.name,users.profpic').find_by('crafts.slug' => params[:id])
   end
