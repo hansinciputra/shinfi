@@ -73,8 +73,11 @@
     
     <br>
     <%end%>
+    <% if @brand && @brand.name %>
     <strong>Brand:</strong><br><%= @brand.name %>
+    
      <div id = "brand_pic_craft"><%= image_tag(@brand.brand_pic_url.to_s)%></div>
+    <%end%>
   </div>
 </div>
 

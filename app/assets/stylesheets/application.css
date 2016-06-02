@@ -24,6 +24,7 @@
  #background_color{
  	height: 100%;
  	width: 100%;
+ 	min-width: 1200px;
  	min-height:1000px;
  	width: 100%;
 	background-color: #F7F5F2;
