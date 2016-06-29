@@ -1,5 +1,5 @@
   class UsersController < ApplicationController
-  before_action :set_user, only: [:edit,:user_detail,:change_password,:e_stamp,:change_password_commit, :update, :destroy ,:show]
+  before_action :set_user, only: [:edit,:user_detail,:change_password,:workshop,:order_history,:e_stamp,:user_profile,:change_password_commit, :update, :destroy ,:show]
   before_filter :authorize, except: [:login,:new,:create]
   before_filter :authorize_admin, only: [:index]
   def set_user
@@ -50,10 +50,13 @@
   end
   def e_stamp
   end
+  def user_profile
+  end
   def edit
     
   end
-
+  def workshop
+  end
   def user_detail
 
   end

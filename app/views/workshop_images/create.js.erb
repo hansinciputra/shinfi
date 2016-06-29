@@ -1,0 +1,5 @@
+<% if @workshop_images.new_record? %>
+	alert("Failed");
+<%else%>
+	$("#list_pic_container").append("<img src = <%= @workshop_images.craft_image_url(:medium_thumb).to_s %>/>");
+<%end%>

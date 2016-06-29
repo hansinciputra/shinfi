@@ -40,6 +40,7 @@
 	font-family: 'Amaranth', sans-serif;
 	min-height: 1000px;
 	background-color: #F7F5F2;
+	overflow: auto;
 }
 
 ::-webkit-scrollbar { 

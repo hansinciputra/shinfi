@@ -1,0 +1,61 @@
+
+<%= form_for(@workshop) do |f| %>
+  <% if @workshop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@workshop.errors.count, "error") %> prohibited this workshop from being saved:</h2>
+
+      <ul>
+      <% @workshop.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+    <div id = "form_workshop_container">
+      <div class="field">
+        <%= f.label 'What is it called?' %><br>
+        <%= f.text_field :title, :size => "50%x20", :class=>'title_box' %>
+      </div>
+      <div class="field">
+        <%= f.label 'Tell us your story' %><br>
+        <%= f.text_area :description, :size => "100x500", :class=>'textarea_box' %>
+      </div>
+      <div class="field">
+        <%= f.label 'Let others review your work, publish now!' %><br>
+  
+      </div>
+        <!--hidden_info-->
+        <%= f.hidden_field :connector, value: @connector %>
+        <%= f.hidden_field :user_id , :value => @user.id %>
+        <!--hidden info end-->
+      <div class="actions">
+        <%= f.submit 'Submit',:class=>'workshop_button',:id => 'submit_workshop', :value => 'Publish Now!'%>
+        <%= f.submit 'Save and Quit',:class=>'workshop_button',:id => 'save_workshop', :value => 'Save & Publish Later'%>
+      </div>
+    </div>
+    <div id = "upload_pic_box">
+      <!--dif approach begin-->
+      <h3>Klik disini untuk upload gambar</h3>
+      <%= link_to('Upload', new_workshop_image_path(:connector=>@connector), :class => 'iframe') %>
+      <br>       
+          <%= link_to('refresh',get_thumb_pic_workshops_path(:connector => @connector), :remote=>true)%>
+         <!--Calling the ajax file for display image-->
+          <div id = "uploaded_workshop_pic_box"></div>
+      <!--dif approach end-->
+    </div>
+    
+    
+        
+<% end %>
+<script>
+  $(".textarea_box").jqte({
+    underline: false,
+    source: false,
+    remove: false,
+    sub:false,
+    sup:false,
+    fsize:false
+  });
+</script>

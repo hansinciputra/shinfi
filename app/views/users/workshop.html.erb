@@ -1,0 +1,27 @@
+<div id = "user_container">
+	<div class="user_page_left">
+		<div id ="prof_pic" class="user_page_left">
+			<% if @user && @user.profpic %>
+			<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+			<%end%>
+		</div>
+		<div id = "user_personal_menu_container">
+			<%= render 'usermenuhelper' %>
+		</div>
+	</div>
+	<div id = "user_personal_menu" class= "user_page_right">
+		<ul>
+			<li class = "user_menu_button" style="background-color:#58ACFA;color:black;border-bottom:none;"><%=link_to 'Workshop',workshop_user_path(:id => session[:user_id])%></li>
+			
+		</ul>
+	</div>
+	
+	<div id = "user_content_container" class= "user_page_right">
+		<p>Upload Your Project!</p>
+		<p>Upload hasil craft apa buat table baru khusus untuk hasil craft yang nggak dijual ya? nanti kalau si crafter memutuskan untuk dijual kita buatkan tombol yang nyambung ke craft table?</p>
+	</div>
+<div id = "list_o">
+
+</div>
+
+	</div>

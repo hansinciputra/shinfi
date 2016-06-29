@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	attr_accessor :password
 	has_many :orders, dependent: :destroy #dependent: :destroy - if customer is deleted , all of the customers order also deleted
 	has_many :crafts
+  has_many :workshops, dependent: :destroy #if user is removed, the workshop also removed
 	before_save :encrypt_password
 	validates :name, :presence =>true
 	#validates_confirmation_of the :password from view

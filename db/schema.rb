@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160517160346) do
+ActiveRecord::Schema.define(version: 20160613091748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -223,6 +223,26 @@ ActiveRecord::Schema.define(version: 20160517160346) do
     t.string   "kelurahan"
     t.string   "fb_contact"
     t.string   "insta_contact"
+  end
+
+  create_table "workshop_images", force: true do |t|
+    t.string   "craft_image"
+    t.string   "connector"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "workshop_id"
+    t.string   "display_pic"
+  end
+
+  create_table "workshops", force: true do |t|
+    t.string   "craft_image"
+    t.string   "title"
+    t.text     "description"
+    t.uuid     "user_id"
+    t.string   "publish_status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "connector"
   end
 
 end

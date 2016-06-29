@@ -41,9 +41,12 @@
 #user_container{
 	width: 1000px;
 	min-height: 900px;
-	border:solid black 1px;
+	border:solid black 2px;
+	border-radius:5px;
 	padding:50px;
-	margin:auto;
+	margin:30px auto 10px auto;
+	background-color:white;
+	overflow:auto;
 }
 #user_personal_menu{
 	width: 720px;
@@ -57,6 +60,35 @@
 }
 .user_page_right{
 	float:left;
+}
+.user_page_left{
+	float:left;
+	width:250px;
+}
+#user_personal_menu_container{
+	float:left;
+	width:200px;
+	height:200px;
+}
+.user_personal_menu{
+	width:150px;
+	height:20px;
+	text-align:center;
+	border:solid black 1px;
+	color:white;
+	margin:5px auto 0 auto;
+}
+.user_personal_menu a{
+	display:block;
+	height:100%;
+	background-color:black;
+	color:white;
+}
+.user_personal_menu a:hover{
+	display:block;
+	height:100%;
+	background-color:white;
+	color:black;
 }
 .user_menu_button{
 	height:50px;
@@ -82,6 +114,9 @@
 	border:black solid 2px;
 	float:left;
 	margin-right: 20px;
+	margin-bottom:10px;
+	border-radius:100%;
+	overflow:hidden;
 }
 .desc_left{
 	text-align:right;
@@ -156,4 +191,18 @@
 #e_stamp_table th,td{
 
 	text-align:center;
+}
+#user_img_thumb{
+	width:70px;
+	height:70px;
+	border:solid black 1px;
+	border-radius:100%;
+	overflow:hidden;
+	float:left;
+}
+#user_thumb_detail{
+	width:150px;
+	height:60px;
+	float:left;
+	margin-left:5px;
 }

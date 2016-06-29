@@ -14,7 +14,7 @@ class CraftsController < ApplicationController
     @craft = @craft.brand(params[:crafts][:brand]) if params[:crafts] && params[:crafts][:brand].present?
     @craft = @craft.minprice(params[:crafts][:min]) if params[:crafts] && params[:crafts][:min].present?
     @craft = @craft.maxprice(params[:crafts][:max]) if params[:crafts] && params[:crafts][:max].present?
-            @craft = @craft.category(params[:category]) if params[:category].present?
+     @craft = @craft.category(params[:category]) if params[:category].present?
 
     @category = Craft.select('DISTINCT category as category');   
     @brand = Brand.all 

@@ -1,0 +1,4 @@
+<!--This is the AJAX file that will be called, we use partial to call the ajax file-->
+<% @img.each do|x| %>
+	<div id="workshop_thmb_pic"><%= link_to image_tag x.craft_image_url(:medium_thumb).to_s%></div>
+<%end%>

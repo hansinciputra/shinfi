@@ -1,0 +1,28 @@
+<div id = "user_container">
+	<div class="user_page_left">
+		<div id ="prof_pic" class="user_page_left">
+			<% if @user && @user.profpic %>
+			<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+			<%end%>
+		</div>
+		<div id = "user_personal_menu_container">
+			<%= render :template => 'users/_usermenuhelper' %>
+		</div>
+	</div>
+	<div id = "user_personal_menu" class= "user_page_right">
+		<ul>
+			
+			
+		</ul>
+	</div>
+	<p>Upload Your Project!</p>
+	<div id = "user_content_container" class= "user_page_right">
+		
+		
+		<%= render 'form'%>
+	</div>
+<div id = "list_o">
+
+</div>
+
+	</div>

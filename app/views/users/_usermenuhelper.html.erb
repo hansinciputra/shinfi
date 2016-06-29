@@ -1,8 +1,15 @@
-	<!-- should be using this code but not because i need to color each tab differently when clicked-->
-	<div id = "user_personal_menu" class= "user_page_right">
-		<ul>
-			<li class = "user_menu_button" style="background-color:#58ACFA;color:black;border-bottom:none;"><%=link_to 'Profilku',user_path(:id => session[:user_id])%></li>
-			<li class = "user_menu_button"><%=link_to 'Order History', order_history_user_path(:id => session[:user_id])%></li>
-			<li class = "user_menu_button"><%= link_to 'My e-Stamp',e_stamp_user_path(:id => session[:user_id])%></li>
-		</ul>
-	</div>
+			<ul>
+				<% if current_user && current_user.role == "Admin" || @user.id == session[:user_id] %>
+				<li class="user_personal_menu"><%=link_to 'News Feed',user_path(:id => session[:user_id])%></li>
+				<%end%>
+				<!--menu hanya untuk user yang bersangkutan tersebut dan admin-->
+				<li class="user_personal_menu"><%=link_to 'Workshop',workshops_path(:user_id => session[:user_id])%></li>
+
+				<% if current_user && current_user.role == "Admin" || @user.id == session[:user_id] %>
+				<li class="user_personal_menu"><%=link_to 'My Materials',user_path(:id => session[:user_id])%></li>
+				<li class="user_personal_menu"><%=link_to 'Profilku',user_profile_user_path(:id => session[:user_id])%></li>
+				<li class="user_personal_menu"><%=link_to 'Order History', order_history_user_path(:id => session[:user_id])%></li>
+				<li class="user_personal_menu"><%= link_to 'My e-Stamp',e_stamp_user_path(:id => session[:user_id])%></li>
+
+				<%end%>
+			</ul>

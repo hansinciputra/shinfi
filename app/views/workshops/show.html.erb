@@ -1,0 +1,43 @@
+<div id = "Main_Container">
+	  <% @user = User.find_by(:id=>@workshop.user_id ) %>
+	  	<div id ="workshop_user">
+		  	<div id="user_img_thumb">
+		  		<% if @user && @user.profpic %>
+		  			<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+		  		<%end%>
+		  	</div>
+		  	<div id ="user_thumb_detail">
+		  	<%= @user.name %>
+		  	</div>
+	  	</div>
+<p id="notice"><%= notice %></p>
+<div id = "workshop_show_container" class ="workshop_left">
+
+<h1 style="text-align:center;"><strong><%= @workshop.title %></strong></h1>
+<div id= "workshop_image">
+  <%= image_tag @displayimage[0].craft_image_url(:standard)%>
+</div>
+<div id = "workshop_image_thumb">
+<% @allimage.each do |img|%>
+  	<%= image_tag img.craft_image_url(:medium_thumb) %>
+  <%end%>
+</div>
+<p>
+  <strong>Description:</strong>
+  <%= @workshop.description.html_safe %>
+</p>
+
+<p>
+  <strong>Publish status:</strong>
+  <%= @workshop.publish_status %>
+</p>
+
+<%= link_to 'Edit', edit_workshop_path(@workshop, :user_id => @workshop.user_id) %> |
+<%= link_to 'Back', workshops_path %>
+	</div>
+	<div id = "workshop_reactions" class ="workshop_right">
+	</div>
+	<div id = "workshop_comments" class ="workshop_left">
+	</div>
+
+</div>

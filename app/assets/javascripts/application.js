@@ -140,3 +140,4 @@ jQuery(function(){
 		$(this).find('a').hide();
 	});
 });
+

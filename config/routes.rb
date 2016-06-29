@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  resources :workshops do
+    collection do
+      get 'get_thumb_pic'
+    end
+  end
+
+  resources :workshop_images
   resources :crafts do
     collection do
       get 'craft_product'
@@ -67,6 +74,8 @@ Rails.application.routes.draw do
       get 'change_password'
       patch 'change_password_commit'
       get 'order_history'
+      get 'user_profile'
+      get 'workshop'
       get 'e_stamp'
     end
   end
