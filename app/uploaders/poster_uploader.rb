@@ -7,8 +7,11 @@ class PosterUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :fog
-  #storage :file
+  if Rails.env.production?
+    storage :fog
+  else
+    storage :file
+  end
 
   include CarrierWave::MimeTypes
   process :set_content_type

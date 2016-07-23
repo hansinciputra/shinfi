@@ -20,7 +20,7 @@
       </div>
       <div class="field">
         <%= f.label 'Tell us your story' %><br>
-        <%= f.text_area :description, :size => "100x500", :class=>'textarea_box' %>
+        <%= f.cktext_area :description,:ckeditor=>{:toolbar=>'mini',:height => '800'}, :size => "100x500", :class=>'textarea_box' %>
       </div>
       <div class="field">
         <%= f.label 'Let others review your work, publish now!' %><br>
@@ -49,13 +49,3 @@
     
         
 <% end %>
-<script>
-  $(".textarea_box").jqte({
-    underline: false,
-    source: false,
-    remove: false,
-    sub:false,
-    sup:false,
-    fsize:false
-  });
-</script>

@@ -19,6 +19,7 @@
 //= require owl.carousel
 //= require fancybox 
 //= require social.js
+//= require ckeditor/init
 //= require turbolinks
 //= require jquery-te-1.4.0.min.js
 //= require_tree .

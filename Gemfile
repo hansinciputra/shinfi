@@ -31,6 +31,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 #carrierwave gem for uploading image
 gem 'carrierwave'
+gem 'mini_magick'
+#ckeditor for WYSIWYG
+gem 'ckeditor', github: 'galetahub/ckeditor'
 #rmagick gem for carrierwave resize capability
 gem 'rmagick'
 #UI for upload many file
