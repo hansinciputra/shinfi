@@ -58,7 +58,9 @@ $(document).on('page:load', ready);
 
 jQuery(function(){
 		$(".iframe").fancybox({
-			type: 'iframe'
+			type: 'iframe',
+			width: 500,
+			height: 500
 		});
 		return false;
 	});

@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :workshop_images
+  resources :workshop_images do
+    member do
+      post 'set_dp'
+    end
+  end
   resources :crafts do
     collection do
       get 'craft_product'

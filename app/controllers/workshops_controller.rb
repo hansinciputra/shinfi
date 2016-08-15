@@ -41,6 +41,7 @@ class WorkshopsController < ApplicationController
 
   def get_thumb_pic
     @img = WorkshopImage.where(:connector => params[:connector])
+    @check_workshop = Workshop.find_by(:connector => params[:connector])
   end
   # POST /workshops
   # POST /workshops.json

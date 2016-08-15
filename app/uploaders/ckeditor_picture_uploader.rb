@@ -3,7 +3,7 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   include Ckeditor::Backend::CarrierWave
 
   # Include RMagick or ImageScience support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   include CarrierWave::MiniMagick
   # include CarrierWave::ImageScience
 
@@ -16,6 +16,9 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
+    #we need to somehow get the user_id
+    #uploader only has model method...
+    #model method point to 
     "uploads/ckeditor/pictures/#{model.id}"
   end
 
@@ -25,21 +28,18 @@ class CkeditorPictureUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+   #process :scale => [500, 500]
+   process :resize_to_fit => [400, 400]
   #
   # def scale(width, height)
   #   # do something
   # end
 
-  #process :read_dimensions
+  #process :read_dimensionsp
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill => [118, 100]
-  end
-
-  version :content do
-    process :resize_to_limit => [800, 800]
+    process :resize_to_fill => [50, 50]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

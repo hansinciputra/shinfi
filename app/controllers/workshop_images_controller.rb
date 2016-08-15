@@ -28,15 +28,19 @@ class WorkshopImagesController < ApplicationController
   def update
 
   end
+  def set_dp
+    #i don;t know why connector become format in this case
+    WorkshopImage.setDisplayPic(params[:id],params[:format])
+    redirect_to :back, :notice => 'Display Pic sudah diubah, Click Publish atau Save untuk menyimpan perubahan'
+  end
 
   # DELETE /product_images/1
   # DELETE /product_images/1.json
   def destroy
-    @product_image.destroy
-    respond_to do |format|
-      format.html { redirect_to workshops_path(:user_id=>params[:user_id]), notice: 'Product image was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @workshop_images = WorkshopImage.find(params[:id])
+    @workshop_images.destroy
+    #back to previouse page with the same parameter
+    redirect_to :back
   end
 
     # Never trust parameters from the scary internet, only allow the white list through.

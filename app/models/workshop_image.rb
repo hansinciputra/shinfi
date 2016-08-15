@@ -10,4 +10,17 @@ class WorkshopImage < ActiveRecord::Base
 			save
 		end
 	end
+	def self.setDisplayPic(id,connector)
+		#get all picture of the specified product id
+			@workshopimage = WorkshopImage.where(:connector => connector)
+		#set all picture display pic to 0, unset all previously choosen display pic
+		@workshopimage.each do |t|
+			t.update_attribute(:display_pic,nil)
+		end
+		#get the selected product image wanted to be the display pic
+		@set_dp_images = WorkshopImage.find(id)
+		#in model need to use sql command to CRUD attributes
+		@set_dp_images.update_attribute(:display_pic,'DP')
+			
+	end
 end

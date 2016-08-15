@@ -41,7 +41,7 @@
       </div>
       <div class="field">
         <%= f.label 'Tell us your story' %><br>
-        <%= f.text_area :description, :size => "100x500", :class=>'textarea_box' %>
+        <%= f.cktext_area :description,:ckeditor=>{:toolbar=>'mini',:height => '800'}, :size => "100x500", :class=>'textarea_box' %>
       </div>
       <div class="field">
         <%= f.label 'Let others review your work, publish now!' %><br>
@@ -56,33 +56,40 @@
         <%= f.submit 'Save and Quit',:class=>'workshop_button',:id => 'save_workshop', :value => 'Save & Publish Later'%>
       </div>
     </div>
+
     <div id = "upload_pic_box">
       <!--dif approach begin-->
-      <h3>Klik disini untuk upload gambar</h3>
-      <%= link_to('Upload', new_workshop_image_path(:connector=>@workshop.connector), :class => 'iframe') %>
-      <br>       
-          <%= link_to('refresh',get_thumb_pic_workshops_path(:connector => @workshop.connector), :remote=>true)%>
+       <h3>Upload Gambar Product</h3>
+      <div id ="upload_img_workshop_thumb" class ="thumb_workshop_button">
+        <%= link_to('Upload', new_workshop_image_path(:connector=>@workshop.connector), :class => 'iframe') %>
+      </div>
+      <div id ="refresh_img_workshop_thumb" class ="thumb_workshop_button">       
+          <%= link_to('Refresh',get_thumb_pic_workshops_path(:connector => @workshop.connector), :remote=>true)%>
          <!--Calling the ajax file for display image-->
+       </div>
           <div id = "uploaded_workshop_pic_box"></div>
-      <!--dif approach end-->
+          <div id = "popupinfo_workshop">
+            Hit refresh if the uploaded picture is not showing
+          </div>
     </div>
     
     
         
 <% end %>
-<script>
-  $(".textarea_box").jqte({
-    underline: false,
-    source: false,
-    remove: false,
-    sub:false,
-    sup:false,
-    fsize:false
-  });
-</script>
 	</div>
 <div id = "list_o">
 
 </div>
 
-	</div>
+</div>
+<script>
+$(document).ready(function(){
+   $("#refresh_img_workshop_thumb").mouseenter(function(){
+      $("#popupinfo_workshop").show();
+  });
+   $("#refresh_img_workshop_thumb").mouseleave(function(){
+      $("#popupinfo_workshop").hide();
+  });
+});
+ 
+</script>

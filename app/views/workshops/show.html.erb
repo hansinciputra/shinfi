@@ -11,7 +11,7 @@
 		  	</div>
 	  	</div>
 <p id="notice"><%= notice %></p>
-<div id = "workshop_show_container" class ="workshop_left">
+<div id = "workshop_show_container" >
 
 <h1 style="text-align:center;"><strong><%= @workshop.title %></strong></h1>
 <%if @displayimage.count > 0 %>
@@ -24,6 +24,14 @@
   <%end%>
 </div>
 <%end%>
+</div>
+<!--Reaction Section-->
+<!--we will do it later-->
+	<!--<div id = "workshop_reactions" class ="workshop_right">
+	</div>-->
+
+<!-- Content Section-->
+<div id ="workshop_show_description">
 <p>
   <strong>Description:</strong>
   <%= @workshop.description.html_safe %>
@@ -34,12 +42,10 @@
   <%= @workshop.publish_status %>
 </p>
 
-<%= link_to 'Edit', edit_workshop_path(@workshop, :user_id => @workshop.user_id) %> |
+<%= link_to 'Edit', edit_workshop_path(@workshop, :user_id => @workshop.user_id),:"data-no-turbolink" => true %> |
 <%= link_to 'Back', workshops_path %>
+</div>
+<!--comment section-->
+	<div id = "workshop_comments">
 	</div>
-	<div id = "workshop_reactions" class ="workshop_right">
-	</div>
-	<div id = "workshop_comments" class ="workshop_left">
-	</div>
-
 </div>

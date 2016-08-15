@@ -21,6 +21,7 @@
  body{
  	background-color: #F7F5F2;
  }
+
  #background_color{
  	height: 100%;
  	width: 100%;
@@ -37,7 +38,7 @@
 #Main_Container{
 	margin: 50px auto 0 auto;
 	width: 989px;
-	font-family: 'Amaranth', sans-serif;
+	font-family: 'Morningtype';
 	min-height: 1000px;
 	background-color: #F7F5F2;
 	overflow: auto;
@@ -246,7 +247,7 @@
 	height: 40px;
 	color:black;
 	text-decoration: none;
-	
+	font-family:'Morningtype'; 	
 }
 #head_menu.stick{
 	position: fixed;
@@ -431,7 +432,7 @@ footer{
 	display: inline-block;
 	width: 100%;
 	min-width: 1200px;
-	font-family: Calibri;
+	font-family: 'Morningtype';
 	font-style: normal;
 	font-variant: normal;
 	font-weight: bold;
@@ -612,7 +613,7 @@ footer p , a{
 }
 .info p{
 	font-size: 1em;
-	font-family: 'Amaranth', sans-serif;
+	font-family: 'Morningtype';
 	text-align: justify;
 }
 

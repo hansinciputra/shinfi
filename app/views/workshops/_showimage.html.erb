@@ -1,4 +1,12 @@
 <!--This is the AJAX file that will be called, we use partial to call the ajax file-->
 <% @img.each do|x| %>
 	<div id="workshop_thmb_pic"><%= link_to image_tag x.craft_image_url(:medium_thumb).to_s%></div>
+	<div id ="remove_button_prodimg_container">
+		<!--@img.count > 1 untuk mencegah user mengganti DP sebelum workshop object dibuat-->
+		<% if @check_workshop %>
+		<%= link_to 'SET DP' , set_dp_workshop_image_path(x.id,x.connector),:method=> :post ,:id=>'set_dp_prodimg', :class => (x.display_pic ==1? 'selected_dp' : 'not_selected') %>
+		<%end%>
+		<%= link_to 'remove' , x, method: :delete, :id=>'remove_button_prodimg' %>
+		
+	</div>
 <%end%>

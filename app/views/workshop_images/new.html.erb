@@ -20,7 +20,7 @@
   <div class="progress progress-striped"><div id="progress-bar" style="width: 0%"></div></div>
 </div>
 </script>
-<p style= "color:red;"><b>*Perhatian*Agar Gambar tidak hancur dan layout tidak berantakan , ukuran file untuk Poster yang dapat di upload adalah sbb => "Lebar: 510px , Tinggi: 430px"</b></p>
+<p><b>Ukuran file untuk gambar yang dapat di upload adalah sbb => "Lebar: 510px , Tinggi: 430px"</b></p>
 <fieldset>
    <!--the UI javascript code for displaying upload image progress-->
   <hr>
@@ -28,7 +28,7 @@
    <!--Where we upload multiple picture using carrierwave-->
    <%= form_for @workshop_image do |m|%>
    <div id = "picture"><%= m.file_field :craft_image, multiple: true, name: 'workshop_image[craft_image]' %>
-      <%= m.text_field :connector, value: params[:connector] %>
+      <%= m.hidden_field :connector, value: params[:connector] %>
   </div>
 
 <div class="progress progress-striped" style = "width:300px;border:black solid 1px;margin-left:5px;"><div class="progress-bar" style="width: 0%; height: 20px;border:black solid 1px;background-color:green;"></div></div>

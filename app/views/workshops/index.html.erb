@@ -18,9 +18,9 @@
   
   <div id = "user_content_container" class= "user_page_right">
     <p>Upload Your Project!</p>
-    <p>Upload hasil craft apa buat table baru khusus untuk hasil craft yang nggak dijual ya? nanti kalau si crafter memutuskan untuk dijual kita buatkan tombol yang nyambung ke craft table?</p>
-    <%= link_to 'New Workshop', new_workshop_path(:user_id => @user.id) %>
-    <h1>Listing workshops</h1>
+    <p>Workshop adalah tempat crafter bisa menaruh dan Publish project individual craft terbaru atau tutorial crafting, Karya yang di Publish akan muncul di newsfeed dan dapat di review oleh crafter lain </p>
+    <%= link_to 'New Workshop', new_workshop_path(:user_id => @user.id),:"data-no-turbolink" => true, :class=>'workshop_button_new' %>
+    <h1>Published Workshops</h1>
     <% if @workshops == nil %>
           Belum ada craft
       <%else%>
@@ -41,44 +41,30 @@
           <%end%>
         <%end%>
       </div>
+      <!--Pending Workshop Session-->
+      <!--this code below to prevent users from looking other users unpublished workshop-->
+      <% if @workshops_no_publish.count > 0 %>
+        <% if params[:user_id] == @workshops_no_publish[0].user_id %>
+        <h1>Pending Workshops</h1>
       <div id ="list_workshop_container">
-        <% if @workshops_no_publish %>
+        
           <% @workshops_no_publish.each do |workshop| %>
           <% @image = WorkshopImage.where(:display_pic => 'DP').find_by(:workshop_id => workshop.id)%>
-          <%if @image %>
-            <%= @image.craft_image%>
-          <%end%>
-            <%= workshop.id %>
-            <%=workshop.title%>
+
+          <div id = "workshop_item_container">
+              <%if @image %>
+                  <%= link_to image_tag(@image.craft_image_url(:medium_thumb).to_s),workshop_path(workshop.id) %>
+               <%else%>
+                  <div id ="no_workshop_pic">No Picture Yet!</div>         
+              <%end%>
+              <div id = "workshop_item_details">
+            <%= link_to workshop.title, workshop_path(workshop.id)%>
+              </div>
+          </div>
           <%end%>
         <%end%>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Craft image</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>User</th>
-            <th>Publish status</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @workshops.each do |workshop| %>
-            <tr>
-              <td><%= workshop.craft_image %></td>
-              <td><%= workshop.title %></td>
-              <td><%= workshop.description %></td>
-              <td><%= workshop.user_id %></td>
-              <td><%= workshop.publish_status %></td>
-              <td><%= link_to 'Show', workshop %></td>
-              <td><%= link_to 'Edit', edit_workshop_path(workshop) %></td>
-              <td><%= link_to 'Destroy', workshop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
+      <%end%>
       </table>
     <%end%>
   </div>
