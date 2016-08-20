@@ -1,0 +1,121 @@
+// Place all the styles related to the Materials controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#tips_1{
+	width:250px;
+	float:right;
+	color:#BDBDBD;
+}
+#insert_materials_container{
+	width:90%;
+	min-height:200px;
+	border:solid black 1px;
+	padding:20px;
+	margin:auto;
+}
+.material_submit{
+	width: 200px;
+	height: 30px;
+	border:solid black 1px;
+	background-color:black;
+	color:white;
+	cursor:pointer;
+	margin-top:20px;
+}
+.material_submit:hover{
+
+	border:solid black 1px;
+	background-color:white;
+	color:black;
+}
+#insert_materials_container li{
+	list-style:none;
+}
+#insert_materials_container li label{
+	float:left;
+	display:inline;
+	width:10em;
+	margin-right:0.5px;
+}
+#insert_materials_container li input[type=radio]{
+	float:left;
+	border:solid black 1px;
+}
+.material_thumb_pic{
+	width:50px;
+	height:50px;
+	border:solid black 1px;
+	margin:auto;
+}
+#material_table{
+	width:100%;
+}
+#material_table a{
+
+	font-size:1.2em;
+}
+
+#material_table th, td{
+	border-bottom: solid #E6E6E6 1px;
+	padding:5px;
+}
+.material_image_column{
+	width:70px;
+}
+.material_name_column{
+	min-width:120px;
+	max-width: 150px;
+	overflow:auto;
+	text-align:left;	
+}
+.material_name_column a{
+	color:black;	
+}
+
+.config_material_button{
+	border:solid black 1px;
+	border-radius:0.9em;
+}
+.material_config_column{
+	width:10px;
+}
+.material_config_column a {
+	width:20px;
+	padding:5px;
+	border-radius:0.2em;
+	border:solid black 1px;
+	background-color:black;
+	color:white;
+}
+.material_config_column a:hover {
+	border:solid #E6E6E6 1px;
+	background-color:white;
+	color:black;
+}
+#material_table tr:nth-child(even){
+	background-color: #F6CEF5; 
+}
+#upload_preview{
+	width: 150px;
+	height:150px;
+	border:solid black 1px;
+	background-color:#E6E6E6;
+}
+#material_kategory{
+	color:#6E6E6E;
+}
+.price_material{
+	color:white;
+	
+}
+.price_material p{
+	margin:auto;
+	min-width:110px;
+	max-width: 130px;
+	height:25px;
+	background-color:#31B404;
+	color:white;
+	line-height:22px;
+	font-size:1.2em;
+}

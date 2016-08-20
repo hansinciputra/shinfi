@@ -1,0 +1,58 @@
+<div id = "user_container">
+  <div class="user_page_left">
+    <div id ="prof_pic" class="user_page_left">
+      <% if @user && @user.profpic %>
+      <%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+      <%end%>
+    </div>
+    <div id = "user_personal_menu_container">
+      <%= render 'users/usermenuhelper' %>
+    </div>
+  </div>
+  <div id = "user_personal_menu" class= "user_page_right">
+    <ul>
+      <li class = "user_menu_button" style="background-color:#58ACFA;color:black;border-bottom:none;"><%=link_to 'Workshop',workshop_user_path(:id => session[:user_id])%></li>
+      
+    </ul>
+  </div>
+  
+  <div id = "user_content_container" class= "user_page_right">
+    <div id = "insert_materials_container">
+      <h1> Add Materials</h1>
+      <%= render 'form' %>
+    </div>
+    <!--list materials based on their purpose-->
+    <h1>List of my Craft materials</h1>
+    <!--first display the purpose-->
+    <% @purpose.each do |purpose|%>
+      <h2 id="material_kategory">Kategori : <%= purpose.purpose %></h2>
+      <!--then display the materials for each purpose -->
+        <% @lists = Material.where(:purpose => purpose.purpose).where(:user_id=>params[:user_id])%>
+        <table id ="material_table">
+          <thead>
+            <tr>
+              <th class = "material_image_column">Image</th>
+              <th class= "material_name_column">Name</th>
+              <th>Price</th>
+              <th colspan="2"></th>
+            </tr>
+          </thead>
+          <tbody>
+          <% @lists.each do |list|%>
+            <tr>
+              <td class = "material_image_column">
+                    <div class ="material_thumb_pic"><%=image_tag(list.picture_url(:thumb_small).to_s) %></div>
+              </td>
+              <td class = "material_name_column"><%= link_to list.name, list%></td>
+              <td class = "price_material"><p><%= number_to_currency(list.price, :unit => "Rp. ") %></p></td>
+             
+              <td class = "material_config_column"><%= link_to 'Edit', edit_material_path(list,:user_id=>params[:user_id])%></td>
+              <td class = "material_config_column"><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>    
+          <%end%>
+          </tbody>
+        </table>
+    <%end%>
+
+
+

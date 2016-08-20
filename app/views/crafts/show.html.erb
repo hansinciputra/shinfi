@@ -43,9 +43,9 @@
     <li><%= collection_select(:cart,:selected,@price_dets,:id,:combine_subject_price)%></li>
     <li>Quantity</li>
     <% if @craft.quantity == nil %>
-    <li><%= select_tag "quantity",options_for_select((1..5).step(1))%></li>
+      <li><%= select_tag "quantity",options_for_select((1..5).step(1))%></li>
     <%else%>
-    <li><%= select_tag "quantity",options_for_select((1..@craft.quantity).step(1))%></li>
+      <li><%= select_tag "quantity",options_for_select((1..@craft.quantity).step(1))%></li>
     <%end%>
   </ul>
   

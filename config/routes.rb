@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :materials
+
   mount Ckeditor::Engine => '/ckeditor'
   resources :workshops do
     collection do

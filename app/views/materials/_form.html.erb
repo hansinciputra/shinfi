@@ -1,0 +1,75 @@
+
+      <%= form_for @material do |x| %>
+        <li>
+          <%= x.label 'Nama' %>
+          <%= x.text_field :name %>
+        </li>
+        <li>
+          <%= x.label 'Harga Acuan' %>
+          <%= x.text_field :price %>
+        </li>
+        <fieldset>
+          <legend>Kategori Material</legend>
+          <p id="tips_1">Input kategori dari material yang akan di upload, 'new kategori' kan otomatis di tersimpan baru, jika menggunakan kategori yang sudah pernah di input sebelumnya dapat memilih 'Gunakan Kategori terdaftar'</p>
+        <li>
+          <%= radio_button_tag :radio,"purpose" ,:checked=>true%>
+           <%= x.label 'Masukan Kategori Baru' %>
+           <%= x.text_field :purpose, :id=>"new_purpose_textbox" %>
+        </li>
+        <li>
+          <%= radio_button_tag :radio, "existing_purpose" %>
+          <%= x.label 'Gunakan Kategori terdaftar' %>
+          <!--Options for select-->
+          <%= x.collection_select :purpose, @purpose,:purpose,:purpose%>
+        </li>
+      </fieldset>
+        <script>
+          $(document).ready(function(){
+            $("#material_purpose").attr("disabled",true);
+
+            $("#radio_purpose").click(function(){
+              $("#material_purpose").attr("disabled",true);
+              $("#new_purpose_textbox").attr("disabled",false);
+            });
+            $("#radio_existing_purpose").click(function(){
+              $("#material_purpose").attr("disabled",false);
+              $("#new_purpose_textbox").attr("disabled",true);
+          });
+        });
+        </script>
+        <!-- upload picture section-->
+
+        <li>
+          <%= x.label 'Upload Picture' %>
+          <%= x.file_field :picture, :onchange =>'previewFile()' %>
+        </li>
+        
+        <div id = "upload_preview">
+          <% unless @material.picture.blank? %>
+            <%=image_tag(@material.picture_url(:thumb).to_s, :id=>"material_image",:size=>'150' )%>
+          <%else%>
+            <img src ="" height="150" width= "150" alt="Image Preview..." id="material_image">
+          <%end%>
+        </div>
+
+        <script>
+            function previewFile(){
+               {
+                  var preview = document.getElementById('material_image');
+                  var file    = document.querySelector('input[type=file]').files[0];
+                  var reader  = new FileReader();
+
+                  reader.addEventListener("load", function () {
+                    preview.src = reader.result;
+                  }, false);
+
+                  if (file) {
+                    reader.readAsDataURL(file);
+                  }
+                }
+              }  
+        </script>
+
+        <%= x.hidden_field :user_id, :value => params[:user_id]%>
+        <%= x.submit 'Submit' ,:class=>'material_submit'%>
+      <%end%>
