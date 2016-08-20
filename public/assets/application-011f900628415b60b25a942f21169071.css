@@ -1,0 +1,3908 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+
+
+
+
+
+ */
+
+ body{
+ 	background-color: #F7F5F2;
+ }
+
+ #background_color{
+ 	height: 100%;
+ 	width: 100%;
+ 	min-width: 1200px;
+ 	min-height:1000px;
+ 	width: 100%;
+	background-color: #F7F5F2;
+}
+#page_title{
+	width: 100%;
+	border:solid black 1px;
+	margin: 20px 0 20px 0px
+}
+#Main_Container{
+	margin: 50px auto 0 auto;
+	width: 989px;
+	font-family: 'Morningtype';
+	min-height: 1000px;
+	background-color: #F7F5F2;
+	overflow: auto;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+.pagination{
+	margin:10px;
+	width: 100%;
+	float:left;
+	display: block;
+}
+.universal_button{
+	text-align: center;
+}
+#universal_form{
+	margin:auto;
+	margin-top:10px;
+	width: 600px;
+	height:800px;
+	
+}
+#universal_form label{
+	display:inline-block;
+	width:200px;
+	text-align: right;
+}
+.unversal_form_title{
+	text-align:center;
+}
+
+#banner_index{
+	width:100%;
+	padding-top:50px;
+	height: 100px;
+}
+#banner_inner_container{
+	width: 989px;
+	margin: 0 auto 0 auto;
+	height:100%;	
+}
+#logo{
+	margin:auto;
+	height:100%;
+	width:280px;
+	float:left;
+
+}
+#login_index{
+	width:400px;
+	float:left;
+	margin-left: 50px;
+	padding-top: 25px;
+}
+#login_index li{
+	width: 80px;
+	list-style: none;
+	float: left;
+	margin-left: 3px;
+	text-align: center;
+}
+#user_nav{
+	
+}
+#user_nav a{
+	font-size: 0.8em;
+}
+#sign_in_home{
+	border:solid black 2px;
+	width: 80px;
+	height: 30px;
+	padding-top: 10px;
+}
+#sign_in_home a{
+	font-size: 1.1em;
+	margin:0 0 0 15px;
+}
+.cart{
+	width:180px;
+	float:right;
+	text-align: left;
+}
+#cart_image{
+	width:40px;
+	margin: auto;
+	
+}
+#cart_thumb_content{
+	width:220px;
+	min-height: 100px;
+	max-height: 280px;
+	border:solid #c0c0c0 1px;
+	padding: 10px;
+	position: absolute;
+	margin-top: 50px;
+	margin-left: 0px;
+	z-index: 99;
+	background-color: #f8f8f8;
+	overflow: auto;
+	font-size: 0.8em;
+	display: none;
+}
+ #cart_thumb_content_po{
+	width:220px;
+	min-height: 100px;
+	max-height: 280px;
+	border:solid #c0c0c0 1px;
+	padding: 10px;
+	position: absolute;
+	margin-top: -40px;
+	margin-left: -155px;
+	z-index: 99;
+	background-color: #f8f8f8;
+	overflow: auto;
+	font-size: 0.8em;
+	display: none;
+}
+.cart_icon_container ,.cart_icon_container_po {
+	width: 80px;
+	height: 80px;
+	border-radius: 0.7em 0.7em 0.7em 0.7em;
+	border: solid black 2px;
+	cursor: pointer;
+	float:left;
+	margin-left: 5px;
+}
+#cart_link{
+	width: 80px;
+	height: 20px;
+	margin-top: -20px;
+	font-size: 0.8em;
+	text-align: center;
+}
+
+#cart_thumb_prod_pic{
+	width:71px;
+	height: 71px;
+	border:solid #FAFAFA 1px;
+	float: left;
+	margin-top: 10px;
+}
+#cart_thumb_prod_info{
+	width: 55%;
+	min-height: 80px;
+	height:80px;
+	float: left;
+	display: inline-block;
+	text-align: left;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+#cart_thumb_prod_detail_container , #cart_thumb_prod_detail_container_po{
+	border-bottom: #848484 solid 2px;
+	width:100%;
+	height: 120px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	z-index: 999;
+}
+#cart_thumb_prod_detail_container li{
+	font-size: 0.8em;
+	}
+#cart_thumb_checkout{
+	width: 90%;
+	height: 20px;
+	font-size: 15px;
+	text-align: center;
+	background-color: gray;
+	bottom: -1px;
+	margin: auto;
+	position: static;
+}
+#cart_thumb_content .checkout_button a, #cart_thumb_content_po .checkout_button a{
+	width: 70%;
+	margin: auto;
+}
+#admin_menu{
+	width: 100px;
+	border: black solid 1px;
+	text-align: center;
+}
+#member_menu{
+	width: 200px;
+	margin-left: 30px;
+	display: inline;
+	height: 40px;
+	overflow: none;
+	padding: 0;
+}
+#member_menu li{
+	margin-left: 10px;
+	color: white;
+}
+#prof_icon{
+	height: 40px;
+	width: 40px;
+	
+}
+#head_menu{
+	width: 100%;
+	min-width: 1200px;
+	text-align: left;
+	display: inline-block;
+	height: 40px;
+	color:black;
+	text-decoration: none;
+	font-family:'Morningtype'; 	
+}
+#head_menu.stick{
+	position: fixed;
+	top: 0;
+	z-index: 99;
+	width: 100%;
+	min-width: 1200px;
+	opacity: 0.9;
+	text-align: center;
+	height: 40px;
+	display: block;
+	font-size: 0.5em;
+	background-color: white;
+}
+
+#head_menu_aligner{
+	width:989px;
+	top:40px;
+	color:black;
+	margin: auto;
+}
+#head_menu ul{
+	list-style-type: none;
+	border-top:solid black 1px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#head_menu li{
+	display: inline-block;
+}
+#head_menu li a{
+	font-size: 1.1em;
+	color:black;
+	padding: 10px;
+	display: inline-block;
+	margin-right: 10px;
+}
+#head_menu ul li li a{
+	font-size: 1.5em;
+	padding: 10px;
+	display: inline-block;
+	margin-right: 10px;
+}
+#head_menu li a:hover{
+	background-color: #F2F2F2;
+	color: gray;
+}
+
+.report_table{
+	margin : auto;
+	width: 980px;
+}
+.report_table .title{
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+.report_table .content{
+	text-align: center;
+}
+.report_table tr:nth-child(even){
+ 	background-color: #FFF1F8; 
+}
+.page_title
+{
+	width: 200px;
+	margin: 30px auto 30px auto;
+}
+#flash_notice
+{
+	margin:-15px auto 0 auto;
+	width: 250px;
+	text-align:center;
+	background-color: #00ff00;
+	color:#ffffff;
+}
+
+#authentification li
+{
+	display:inline;
+	font-size: 10px;
+}
+#signup
+{
+	font-size: 10px;
+}
+#logout
+{
+	margin-left:10px;
+}
+#user_name
+{
+	color:#ff2994;
+}
+/*for drop down function*/
+#head_menu .dropdown-menu ul{
+	background-color: white;
+	table-layout: fixed;
+	z-index: 3;
+	padding-left: 5px;
+
+}
+#head_menu .dropdown-menu ul li{
+	height: 30px;
+	display: table-cell;
+	float: left;
+	white-space:nowrap;
+	width: 100%;
+	font-size: 0.5em;
+	line-height: 10px;
+}
+#head_menu .dropdown-menu ul li a{
+	color: black;
+	font-weight: italic;
+	height: 5px;
+	width: 80%;
+}
+#head_menu .dropdown-menu ul li a:hover{
+	background-color: #ffd2ff;
+	position: absolute;
+	text-align: left;
+	display: block;
+	margin: 0;
+	color: black;
+}
+.dropdown-menu
+{
+	display:none;
+	position:absolute;
+	float:left;
+	margin-top: -0.1px;
+	background-color: white;
+
+}
+.dropdown-double
+{
+	width: 400px;
+	height: 220px;
+}
+.submenu_container{
+	float: left;
+	width: 45%;
+	margin: 2px;
+}
+
+
+ul li{
+	position: relative;
+}
+ul li .title_menu{
+	font-style: bolder;
+	border-bottom: solid gray 1px;
+	line-height: 10px;
+
+}
+ul li:hover .dropdown-menu{
+	display:block;
+	position: absolute;
+	min-width:150px;
+	z-index: 100;
+	left:0;
+	text-align: left;
+	background-color: #FAFAFA;
+	-webkit-transition: all 0.3s ease-out;
+              -moz-transition: all 0.3s ease-out;
+              -o-transition: all 0.3s ease-out;
+              transition: all 0.3s ease-out;
+}
+
+
+/*Bagian Footer*/
+
+#footer_container{
+	margin:auto;
+	height:350px;
+	width:80%;
+	/*border:solid blue 5px;*/
+}
+
+footer{
+	display: inline-block;
+	width: 100%;
+	min-width: 1200px;
+	font-family: 'Morningtype';
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	font-size: 0.3em;
+	border-top:solid black 1px;
+	border-bottom:solid black 1px;
+	height:170%;
+	margin:0 auto 0 auto;
+	text-align: left;
+}
+#footer_left{
+	border-right:black solid 1px;
+	width:65%;
+	margin: 10px 0px 10px 0px;
+	height: 80%;
+	float: left;
+	padding:10px;
+}
+footer p , a{
+	margin: 0px;
+	font-size: 10px;
+}
+#footer_right{
+	border-left:black solid 1px;
+	width: 28%;
+	height: 80%;
+	margin: 10px 0px 10px 0px;
+	display: inline-block;
+	text-align: right;
+	padding: 10px;
+}
+.soc_med_icon{
+	width: 100%;
+	height: 50px;
+}
+.soc_med_icon li{
+	display: inline;
+	float: right;
+	margin-left: 10px;
+}
+#footer_bottom{
+	border: black solid 1px;
+	width: 100%;
+}
+.subcontent{
+	color: grey;
+	font-size: 10px;
+}
+.subcontent li{
+	float: left;
+	display: inline;
+	margin-right: 10px;
+}
+.subcontent a{
+	text-decoration: none;
+	color: grey;
+	font-size: 10px;
+}
+/*end for footer*/
+#home_container
+{
+	width: 1200px;
+	margin: 50px auto 0 auto;
+	min-height: 1300px;
+	padding-top: 30px;
+	background-color: #F7F5F2;
+	overflow: auto;
+}
+.banner{
+	width: 980px;
+	height: 180px;
+	margin: 5px auto 30px auto;
+}
+/*for index page*/
+
+#product_helper_menu{
+	width: 100%;
+	height:50px;
+	text-align: left;
+	padding-left: 5px;
+	margin-bottom: 10px;
+}
+#product_display_container{
+	width: 1000px;
+	min-height: 1000px;
+	height: 100%;
+	float:left;
+	padding:5px 0 0 10px;
+}
+
+#product_helper_container{
+	width:	130px;
+	height: 500px;
+	float: left;
+	padding: 5px;
+	border-top: gray solid 1px;
+	margin-left: 10px;
+	margin-right: 10px
+}
+#category_helper{
+	width:100%;
+	height: 100px;
+	border-bottom: gray solid 1px;
+}
+.category_button{
+	border:solid black 1px;
+	text-align: center;
+	cursor: pointer;
+	min-height: 10px;
+	min-width: 30px;
+	max-width: 50px;
+	border-radius: 0.3em;
+	background-color: black;
+	color:white;
+}
+.category_button:hover{
+	background-color: gray;
+	border:solid gray 1px;
+	color:white;
+}
+#color_helper{
+	width:100%;
+	height: 200px;
+	overflow-y: auto;
+	border-bottom: gray solid 1px;
+}
+.warna_product{
+	width:30px;
+	height: 20px;
+	border:solid gray 1px;
+	float: left;
+	margin:1px;
+}
+.warna_product:hover{
+	border:solid black 1px;
+	opacity: 0.7;
+}
+#index_image_display_container{
+	width:240px;
+	height:370px;
+	float:left;
+	margin:5px;
+	display:inline-block;
+}
+
+#index_image_display{
+	width: 230px;
+	height: 250px;
+	overflow: hidden;
+	margin:auto;
+	
+}
+#index_image_display:hover{
+	/*box-shadow: 5px 5px 5px #888888;
+	display:inline-block;*/
+	opacity: 0.7;
+	border:solid white 3px;
+	border-radius: 0.9em;
+}
+#index_image_display:focus{
+	outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+#index_product_summary{
+	width:230px;
+	height:37px;
+	text-align:center;
+	margin:auto;
+}
+#info_bottom{
+	width:100%;
+	height: 100%;
+	background-color: #f4f4f4;
+	padding:5px;
+	margin-top: 25px;
+
+}
+.info p{
+	font-size: 1em;
+	font-family: 'Morningtype';
+	text-align: justify;
+}
+
+.main_poster{
+	width:970px;
+	height: 400px;
+	border:solid white 3px;
+	margin: auto;
+	overflow: hidden;
+	border-radius: 0.9em;
+	
+}
+#shop_helper{
+	width:200px;
+	height:500px;
+	display: inline-block;
+	float: left;
+	margin:0px 10px 10px 10px;
+}
+#home_first_section{
+	height:410px;
+	margin: 10px auto 35px auto;
+}
+#second_poster{
+	width:1010px;
+	height: 500px;
+	margin: 0px auto 50px auto;
+}
+.shop_link_box{
+	width: 150px;
+	height: 80px;
+	margin: 0 auto 10px auto;
+}
+.fb_follow{
+	width: 150px;
+	height: 227px;
+	margin: 10px auto 0 auto;
+	text-align: center;
+	padding: 5px;
+}
+
+.brand_image{
+	width: 150px;
+	height: 100px;
+	float: left;
+	margin-left: 10%;
+}
+#top_seller_product_index_page{
+	width:975px;
+	height:120px;
+	margin: 10px auto 0 auto;
+	border-top:black solid 2px;
+	border-bottom:black solid 2px;
+	
+}
+#top_seller_product_index_page #title{
+	
+	height: 100%;
+	width: 20%;
+	float: left;
+}
+
+#top_seller_image_container{
+	
+	height: 120px;
+	width: 710px;
+	float: left;
+}
+.slider_button_left , .slider_button_right{
+	height: 120px;
+	width: 30px;
+	float: left;
+	opacity: 0.5;
+	cursor: pointer;
+}
+#owl-top_seller .item{
+	overflow: hidden;
+	width: 150px;
+	height: 100px;
+	float: left;
+	margin: 10px 5px 0px 10px;
+	border:solid white 2px;
+	border-radius: 0.9em;
+}
+.top_seller_image_index_page img{
+	position: relative;
+	top: -30px;
+	left: -30px;
+	
+}
+.sub_second_poster_container{
+	width:500px;
+	height: 380px;
+	border:solid red 1px;
+	float: left;
+	margin:10px;
+	padding-top: 10px;
+}
+.main_page_short_desc{
+	width: 80%;
+	margin: auto;
+	text-align: center;	
+	font-size: 0.8em;
+	padding: 10px;
+}
+
+.sub_poster{
+	width:480px;
+	height: 380px;
+	float: left;
+	display: inline-block;
+	cursor: pointer;
+	margin: 5px;		
+}
+.sub_poster a{
+	display: none;
+	position: absolute;
+	text-align: center;
+	width:480px;
+	line-height: 250px;
+	background-color: black;
+	font-size: 1.3em;
+	z-index: 10;
+}
+.sub_poster a:hover{
+	color: white;
+	border:solid white 2px;
+}
+.sub_poster img{
+	width:480px;
+	height: 250px;
+	border:solid white 2px;
+	cursor: pointer;
+	position: absolute;
+	z-index: 5;
+}
+.subposter_pic{
+	width: 480px;
+	height:250px;
+}
+.subposter_info{
+	width:460px;
+	height:50px;
+	display: block;
+	text-align: center;
+	padding:10px;
+}
+/*
+.sub_poster:hover{
+	opacity: 0.5;
+	width:480px;
+	height: 250px;
+	position: absolute;
+	background-color: black;
+	z-index: 20;
+}
+.subposter_info{
+	cursor: pointer;
+	display: none;
+}
+.sub_poster_info:hover > img{
+	display: block;
+	position: absolute;
+	border:solid white 2px;
+	font-size: 1.3em;
+	color:white;
+	background-color: black;
+	opacity: 0.6;
+	text-align: center;
+	line-height: 200px;
+	width:480px;
+	height: 250px;
+}
+.subposter_info a{
+	color:white;
+	font-size: 3em;
+	border:solid red 2px;
+}
+.subposter_info a:hover{
+	color:white;
+	font-size: 3em;
+}*/
+
+.submit_button{
+	width: 250px;
+	height:40px;
+	margin-top:30px;
+	font-size:1.5em;
+}
+#fb_message{
+	width:250px;
+	height: 20px;
+	bottom: 10px;
+	right: 10px;
+	position: fixed;
+	background-color: #626262;
+	overflow: none;
+	border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+#fb_message_hide{
+	cursor: pointer;
+	color: white;
+	width: 100%;
+	height: 25px;
+	margin-left: 5px;
+
+}
+#about_us_footer{
+	width:100%;
+	background-color: #F3F781;
+	height:50px;
+	text-align: center;
+}
+#about_us_footer h1{
+	width:650px;
+	margin:auto;
+	text-align: center;
+	font-size: 2.5em;
+}
+/*! fancyBox v2.1.5 fancyapps.com | fancyapps.com/fancybox/#license */
+
+.fancybox-wrap,
+.fancybox-skin,
+.fancybox-outer,
+.fancybox-inner,
+.fancybox-image,
+.fancybox-wrap iframe,
+.fancybox-wrap object,
+.fancybox-nav,
+.fancybox-nav span,
+.fancybox-tmp
+{
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: none;
+	vertical-align: top;
+}
+
+.fancybox-wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 8020;
+}
+
+.fancybox-skin {
+	position: relative;
+	background: #f9f9f9;
+	color: #444;
+	text-shadow: none;
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	        border-radius: 4px;
+}
+
+.fancybox-opened {
+	z-index: 8030;
+}
+
+.fancybox-opened .fancybox-skin {
+	-webkit-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	   -moz-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+	        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.fancybox-outer, .fancybox-inner {
+	position: relative;
+}
+
+.fancybox-inner {
+	overflow: hidden;
+}
+
+.fancybox-type-iframe .fancybox-inner {
+	-webkit-overflow-scrolling: touch;
+}
+
+.fancybox-error {
+	color: #444;
+	font: 14px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 0;
+	padding: 15px;
+	white-space: nowrap;
+}
+
+.fancybox-image, .fancybox-iframe {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.fancybox-image {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+  background-image: url(/assets/fancybox_sprite.png);
+}
+
+#fancybox-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -22px;
+	margin-left: -22px;
+	background-position: 0 -108px;
+	opacity: 0.8;
+	cursor: pointer;
+	z-index: 8060;
+}
+
+#fancybox-loading div {
+	width: 44px;
+	height: 44px;
+  background: url(/assets/fancybox_loading.gif) center center no-repeat;
+}
+
+.fancybox-close {
+	position: absolute;
+	top: -18px;
+	right: -18px;
+	width: 36px;
+	height: 36px;
+	cursor: pointer;
+	z-index: 8040;
+}
+
+.fancybox-nav {
+	position: absolute;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	cursor: pointer;
+	text-decoration: none;
+  background: transparent url(/assets/blank.gif); /* helps IE */
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	z-index: 8040;
+}
+
+.fancybox-prev {
+	left: 0;
+}
+
+.fancybox-next {
+	right: 0;
+}
+
+.fancybox-nav span {
+	position: absolute;
+	top: 50%;
+	width: 36px;
+	height: 34px;
+	margin-top: -18px;
+	cursor: pointer;
+	z-index: 8040;
+	visibility: hidden;
+}
+
+.fancybox-prev span {
+	left: 10px;
+	background-position: 0 -36px;
+}
+
+.fancybox-next span {
+	right: 10px;
+	background-position: 0 -72px;
+}
+
+.fancybox-nav:hover span {
+	visibility: visible;
+}
+
+.fancybox-tmp {
+	position: absolute;
+	top: -99999px;
+	left: -99999px;
+	visibility: hidden;
+	max-width: 99999px;
+	max-height: 99999px;
+	overflow: visible !important;
+}
+
+/* Overlay helper */
+
+.fancybox-lock {
+    overflow: hidden !important;
+    width: auto;
+}
+
+.fancybox-lock body {
+    overflow: hidden !important;
+}
+
+.fancybox-lock-test {
+    overflow-y: hidden !important;
+}
+
+.fancybox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	z-index: 8010;
+  background: url(/assets/fancybox_overlay.png);
+}
+
+.fancybox-overlay-fixed {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+
+.fancybox-lock .fancybox-overlay {
+	overflow: auto;
+	overflow-y: scroll;
+}
+
+/* Title helper */
+
+.fancybox-title {
+	visibility: hidden;
+	font: normal 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;
+	position: relative;
+	text-shadow: none;
+	z-index: 8050;
+}
+
+.fancybox-opened .fancybox-title {
+	visibility: visible;
+}
+
+.fancybox-title-float-wrap {
+	position: absolute;
+	bottom: 0;
+	right: 50%;
+	margin-bottom: -35px;
+	z-index: 8050;
+	text-align: center;
+}
+
+.fancybox-title-float-wrap .child {
+	display: inline-block;
+	margin-right: -100%;
+	padding: 2px 20px;
+	background: transparent; /* Fallback for web browsers that doesn't support RGBa */
+	background: rgba(0, 0, 0, 0.8);
+	-webkit-border-radius: 15px;
+	   -moz-border-radius: 15px;
+	        border-radius: 15px;
+	text-shadow: 0 1px 2px #222;
+	color: #FFF;
+	font-weight: bold;
+	line-height: 24px;
+	white-space: nowrap;
+}
+
+.fancybox-title-outside-wrap {
+	position: relative;
+	margin-top: 10px;
+	color: #fff;
+}
+
+.fancybox-title-inside-wrap {
+	padding-top: 10px;
+}
+
+.fancybox-title-over-wrap {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	padding: 10px;
+	background: #000;
+	background: rgba(0, 0, 0, .8);
+}
+
+/*Retina graphics!*/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	   only screen and (min--moz-device-pixel-ratio: 1.5),
+	   only screen and (min-device-pixel-ratio: 1.5){
+
+	#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+    background-image: url(/assets/fancybox_sprite@2x.png);
+		background-size: 44px 152px; /*The size of the normal image, half the size of the hi-res image*/
+	}
+
+	#fancybox-loading div {
+    background-image: url(/assets/fancybox_loading@2x.gif);
+		background-size: 24px 24px; /*The size of the normal image, half the size of the hi-res image*/
+	}
+}
+#fancybox-buttons {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	z-index: 8050;
+}
+
+#fancybox-buttons.top {
+	top: 10px;
+}
+
+#fancybox-buttons.bottom {
+	bottom: 10px;
+}
+
+#fancybox-buttons ul {
+	display: block;
+	width: 166px;
+	height: 30px;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+	border: 1px solid #111;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+	   -moz-box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+	        box-shadow: inset 0 0 0 1px rgba(255,255,255,.05);
+	background: rgb(50,50,50);
+	background: -moz-linear-gradient(top, rgb(68,68,68) 0%, rgb(52,52,52) 50%, rgb(41,41,41) 50%, rgb(51,51,51) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgb(68,68,68)), color-stop(50%,rgb(52,52,52)), color-stop(50%,rgb(41,41,41)), color-stop(100%,rgb(51,51,51)));
+	background: -webkit-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
+	background: -o-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
+	background: -ms-linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
+	background: linear-gradient(top, rgb(68,68,68) 0%,rgb(52,52,52) 50%,rgb(41,41,41) 50%,rgb(51,51,51) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 );
+}
+
+#fancybox-buttons ul li {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#fancybox-buttons a {
+	display: block;
+	width: 30px;
+	height: 30px;
+	text-indent: -9999px;
+	background-color: transparent;
+  background-image: url(/assets/fancybox_buttons.png);
+	background-repeat: no-repeat;
+	outline: none;
+	opacity: 0.8;
+}
+
+#fancybox-buttons a:hover {
+	opacity: 1;
+}
+
+#fancybox-buttons a.btnPrev {
+	background-position: 5px 0;
+}
+
+#fancybox-buttons a.btnNext {
+	background-position: -33px 0;
+	border-right: 1px solid #3e3e3e;
+}
+
+#fancybox-buttons a.btnPlay {
+	background-position: 0 -30px;
+}
+
+#fancybox-buttons a.btnPlayOn {
+	background-position: -30px -30px;
+}
+
+#fancybox-buttons a.btnToggle {
+	background-position: 3px -60px;
+	border-left: 1px solid #111;
+	border-right: 1px solid #3e3e3e;
+	width: 35px
+}
+
+#fancybox-buttons a.btnToggleOn {
+	background-position: -27px -60px;
+}
+
+#fancybox-buttons a.btnClose {
+	border-left: 1px solid #111;
+	width: 35px;
+	background-position: -56px 0px;
+}
+
+#fancybox-buttons a.btnDisabled {
+	opacity : 0.4;
+	cursor: default;
+}
+#fancybox-thumbs {
+	position: fixed;
+	left: 0;
+	width: 100%;
+	overflow: hidden;
+	z-index: 8050;
+}
+
+#fancybox-thumbs.bottom {
+	bottom: 2px;
+}
+
+#fancybox-thumbs.top {
+	top: 2px;
+}
+
+#fancybox-thumbs ul {
+	position: relative;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#fancybox-thumbs ul li {
+	float: left;
+	padding: 1px;
+	opacity: 0.5;
+}
+
+#fancybox-thumbs ul li.active {
+	opacity: 0.75;
+	padding: 0;
+	border: 1px solid #fff;
+}
+
+#fancybox-thumbs ul li:hover {
+	opacity: 1;
+}
+
+#fancybox-thumbs ul li a {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid #222;
+	background: #111;
+	outline: none;
+}
+
+#fancybox-thumbs ul li img {
+	display: block;
+	position: relative;
+	border: 0;
+	padding: 0;
+	max-width: none;
+}
+/*
+
+
+
+ */
+
+/*
+ * jQuery File Upload UI Plugin CSS
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+/* line 14, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+
+/* line 18, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+.progress-animated .progress-bar,
+.progress-animated .bar {
+  background: url(/assets/progressbar.gif) !important;
+  filter: none;
+}
+
+/* line 22, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+.fileupload-process {
+  float: right;
+  display: none;
+}
+
+/* line 27, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+.fileupload-processing .fileupload-process,
+.files .processing .preview {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url(/assets/loading.gif) center no-repeat;
+  background-size: contain;
+}
+
+/* line 35, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+.files audio,
+.files video {
+  max-width: 300px;
+}
+
+@media (max-width: 767px) {
+  /* line 42, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+  .fileupload-buttonbar .toggle,
+  .files .toggle,
+  .files .btn span {
+    display: none;
+  }
+
+  /* line 45, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+  .files .name {
+    width: 80px;
+    word-wrap: break-word;
+  }
+
+  /* line 50, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+  .files audio,
+  .files video {
+    max-width: 80px;
+  }
+
+  /* line 54, /Users/hansinciputra/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/jquery-fileupload-rails-0.4.6/app/assets/stylesheets/jquery.fileupload-ui.scss */
+  .files img,
+  .files canvas {
+    max-width: 100%;
+  }
+}
+/* 
+ * 	Core Owl Carousel CSS File
+ *	v1.3.3
+ */
+
+/* clearfix */
+
+.owl-carousel .owl-wrapper:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+/* display none until init */
+.owl-carousel{
+	display: none;
+	position: relative;
+	width: 100%;
+	-ms-touch-action: pan-y;
+}
+.owl-carousel .owl-wrapper{
+	display: none;
+	position: relative;
+	-webkit-transform: translate3d(0px, 0px, 0px);
+}
+.owl-carousel .owl-wrapper-outer{
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+.owl-carousel .owl-wrapper-outer.autoHeight{
+	-webkit-transition: height 500ms ease-in-out;
+	-moz-transition: height 500ms ease-in-out;
+	-ms-transition: height 500ms ease-in-out;
+	-o-transition: height 500ms ease-in-out;
+	transition: height 500ms ease-in-out;
+}
+	
+.owl-carousel .owl-item{
+	float: left;
+}
+.owl-controls .owl-page,
+.owl-controls .owl-buttons div{
+	cursor: pointer;
+}
+.owl-controls {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* mouse grab icon */
+.grabbing { 
+    cursor:url(grabbing.png) 8 8, move;
+}
+
+/* fix */
+.owl-carousel  .owl-wrapper,
+.owl-carousel  .owl-item{
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility:    hidden;
+	-ms-backface-visibility:     hidden;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+}
+
+/*
+* 	Owl Carousel Owl Demo Theme 
+*	v1.3.3
+*/
+
+
+.owl-theme .owl-controls{
+	margin-top: 10px;
+	text-align: center;
+}
+
+/* Styling Next and Prev buttons */
+
+.owl-theme .owl-controls .owl-buttons div{
+	color: #FFF;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;/*IE7 life-saver */
+	margin: 5px;
+	padding: 3px 10px;
+	font-size: 12px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	background: #869791;
+	filter: Alpha(Opacity=50);/*IE7 fix*/
+	opacity: 0.5;
+}
+/* Clickable class fix problem with hover on touch devices */
+/* Use it for non-touch hover action */
+.owl-theme .owl-controls.clickable .owl-buttons div:hover{
+	filter: Alpha(Opacity=100);/*IE7 fix*/
+	opacity: 1;
+	text-decoration: none;
+}
+
+/* Styling Pagination*/
+
+.owl-theme .owl-controls .owl-page{
+	display: inline-block;
+	zoom: 1;
+	*display: inline;/*IE7 life-saver */
+}
+.owl-theme .owl-controls .owl-page span{
+	display: block;
+	width: 12px;
+	height: 12px;
+	margin: 5px 7px;
+	filter: Alpha(Opacity=50);/*IE7 fix*/
+	opacity: 0.5;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	background: #869791;
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+	filter: Alpha(Opacity=100);/*IE7 fix*/
+	opacity: 1;
+}
+
+/* If PaginationNumbers is true */
+
+.owl-theme .owl-controls .owl-page span.owl-numbers{
+	height: auto;
+	width: auto;
+	color: #FFF;
+	padding: 2px 10px;
+	font-size: 12px;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+
+/* preloading images */
+.owl-item.loading{
+	min-height: 150px;
+	background: url(AjaxLoader.gif) no-repeat center center
+}
+/*!
+ *
+ * jQuery TE 1.4.0 , http://jqueryte.com/
+ * Copyright (C) 2013, Fatih Koca (fattih@fattih.com), (http://jqueryte.com/about)
+
+ * jQuery TE is provided under the MIT LICENSE.
+ *
+*/
+
+/* editor's general field */
+
+.jqte {
+	margin:10px 0;
+	border:#000 1px solid;
+	border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;
+	box-shadow:0 0 3px #999; -webkit-box-shadow:0 0 3px #999; -moz-box-shadow:0 0 3px #999;
+	overflow:hidden;
+	transition:box-shadow 0.4s, border 0.4s; -webkit-transition:-webkit-box-shadow 0.4s, border 0.4s; -moz-transition:-moz-box-shadow 0.4s, border 0.4s; -o-transition:-o-box-shadow 0.4s, border 0.4s;
+}
+.jqte * {
+	color:#333;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+}
+.jqte_focused {
+	border-color:#00AAE7;
+	box-shadow:0 0 10px #00BDFF; -webkit-box-shadow:0 0 10px #00BDFF; -moz-box-shadow:0 0 10px #00BDFF;
+}
+/* toolbar */
+.jqte_toolbar {
+	overflow:auto;
+	padding:3px 4px;
+	background:#EEE;
+	border-bottom:#BBB 1px solid;
+}
+.jqte_tool {
+	float:left;
+	margin:0;
+	padding:0;
+	cursor:pointer;
+}
+.jqte_tool, .jqte_tool_icon, .jqte_tool_label {
+	border:#EEE 1px solid;
+	border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px
+}
+.jqte_hiddenField {
+	display:none
+}
+.jqte_tool_icon {
+	display:block;
+	width:22px;
+	height:22px;
+	background:url(jquery-te.png) no-repeat
+}
+.jqte_tool.jqte_tool_1 .jqte_tool_label {
+	position:relative;
+	display:block;
+	padding:3px;
+	width:70px;
+	height:16px;
+	overflow:hidden;
+}
+.jqte_tool.jqte_tool_1 .jqte_tool_text {
+	font:bold 13px Arial,sans-serif;
+	color:#222;
+}
+.jqte_tool.jqte_tool_1 .jqte_tool_icon {
+	position:absolute;
+	top:10px;
+	right:2px;
+	width:6px;
+	height:4px;
+	background-position:-19px -23px;
+	border:none;
+	border-radius:none; -webkit-border-radius:none; -moz-border-radius:none
+}
+.jqte_tool.jqte_tool_2 .jqte_tool_icon {
+	background-position:0 0
+}
+.jqte_tool.jqte_tool_3 .jqte_tool_icon {
+	background-position:-22px 0
+}
+.jqte_tool.jqte_tool_4 .jqte_tool_icon {
+	background-position:-44px 0
+}
+.jqte_tool.jqte_tool_5 .jqte_tool_icon {
+	background-position:-66px 0
+}
+.jqte_tool.jqte_tool_6 .jqte_tool_icon {
+	background-position:-88px 0
+}
+.jqte_tool.jqte_tool_7 .jqte_tool_icon {
+	background-position:-110px 0
+}
+.jqte_tool.jqte_tool_8 .jqte_tool_icon {
+	background-position:-132px 0
+}
+.jqte_tool.jqte_tool_9 .jqte_tool_icon {
+	background-position:-154px 0
+}
+.jqte_tool.jqte_tool_10 .jqte_tool_icon {
+	background-position:-176px 0
+}
+.jqte_tool.jqte_tool_11 .jqte_tool_icon {
+	background-position:-198px 0
+}
+.jqte_tool.jqte_tool_12 .jqte_tool_icon {
+	background-position:-220px 0
+}
+.jqte_tool.jqte_tool_13 .jqte_tool_icon {
+	background-position:-242px 0
+}
+.jqte_tool.jqte_tool_14 .jqte_tool_icon {
+	background-position:-264px 0
+}
+.jqte_tool.jqte_tool_15 .jqte_tool_icon {
+	background-position:-286px 0
+}
+.jqte_tool.jqte_tool_16 .jqte_tool_icon {
+	background-position:-308px 0
+}
+.jqte_tool.jqte_tool_17 .jqte_tool_icon {
+	background-position:-330px 0
+}
+.jqte_tool.jqte_tool_18 .jqte_tool_icon {
+	background-position:-352px 0
+}
+.jqte_tool.jqte_tool_19 .jqte_tool_icon {
+	background-position:-374px 0
+}
+.jqte_tool.jqte_tool_20 .jqte_tool_icon {
+	background-position:-396px 0
+}
+.jqte_tool.jqte_tool_21 .jqte_tool_icon {
+	background-position:-418px 0
+}
+.jqte_tool:hover {
+	background-color:#FFF;
+	border-color:#FFF
+}
+.jqte_tool:hover .jqte_tool_icon, .jqte_tool:hover .jqte_tool_label {
+	border:#AAA 1px solid
+}
+.jqte_tool:active .jqte_tool_icon, .jqte_tool:active .jqte_tool_label {
+	border:#777 1px solid
+}
+.jqte_tool.jqte_tool_1:hover .jqte_tool_icon, .jqte_tool.jqte_tool_1:active .jqte_tool_icon {
+	border:none
+}
+.jqte_tool_depressed {
+	background-color:#DDD;
+	border-color:#CCC
+}
+.jqte_tool_depressed .jqte_tool_icon {
+	border-color:#AAA
+}
+.jqte_tool_depressed:hover {
+	background-color:#EEE
+}
+/* link form area */
+.jqte_linkform {
+	padding:5px 10px;
+	background:#DDD;
+	border-bottom:#BBB 1px solid;
+}
+.jqte_linktypeselect {
+	position:relative;
+	float:left;
+	width:130px;
+	background:#EEE;
+	cursor:pointer
+}
+.jqte_linktypeselect:Active {
+	background:#FFF
+}
+.jqte_linktypeview {
+	padding:3px 5px;
+	border:#333 1px solid;
+	color:#777;
+	border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px;
+	outline:none
+}
+.jqte_linktypetext {
+	font-size:12px;
+}
+.jqte_linktypearrow {
+	position:absolute;
+	bottom:8px; right:6px;
+	width:7px;
+	height:6px;
+	margin:0 auto;
+	background:url(jquery-te.png) -7px -23px no-repeat;
+}
+.jqte_linktypes {
+	display:none;
+	position:absolute;
+	top:22px; left:1px;
+	width:125px;
+	background:#FFF;
+	border:#333 1px solid;
+	box-shadow:0 1px 4px #AAA; -webkit-box-shadow:0 1px 4px #AAA; -moz-box-shadow:0 1px 4px #AAA
+}
+.jqte_linktypes a {
+	display:block;
+	padding:4px 5px;
+	font-size:12px;
+}
+.jqte_linktypes a:hover {
+	background:#DDD
+}
+.jqte_linkinput {
+	float:left;
+	margin:0 5px;
+	padding:3px 5px;
+	width:300px;
+	background:#EEE;
+	border:#333 1px solid;
+	color:#777;
+	font-size:12px;
+	border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px;
+	outline:none;
+}
+.jqte_linkinput:focus, .jqte_linkinput:hover {
+	background:#FFF;
+	border-color:#000;
+}
+.jqte_linkbutton {
+	float:left;
+	padding:3px 12px;
+	background:#AAA;
+	border:#333 1px solid;
+	color:#FFF;
+	font-size:12px;
+	font-weight:bold;
+	cursor:pointer;
+	border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px;
+	box-shadow:inset 0 1px #EEE; -webkit-box-shadow:inset 0 1px #EEE; -moz-box-shadow:inset 0 1px #EEE;
+}
+.jqte_linkbutton:hover {
+	background:#A1A1A1
+}
+.jqte_linkbutton:active {
+	box-shadow:inset 0 1px #CCC; -webkit-box-shadow:inset 0 1px #CCC; -moz-box-shadow:inset 0 1px #CCC;
+	background:#888;
+}
+
+/* text format menu */
+.jqte_formats {
+	display:none;
+	position:absolute;
+	width:180px;
+	oveflow-x:hidden;
+	overflow-y:auto;
+	background:#FFF;
+	border:#AAA 1px solid;
+	box-shadow:0 0 5px #AAA; -webkit-box-shadow:0 0 5px #AAA; -moz-box-shadow:0 0 5px #AAA;
+	z-index:100;
+}
+.jqte_format {
+	display:block;
+	padding:4px 7px;
+	font-size:13px
+}
+.jqte_format:hover {
+	background:#DDD
+}
+.jqte_format_1, .jqte_format_2, .jqte_format_3, .jqte_format_4, .jqte_format_5, .jqte_format_6 {
+	font-weight:bold
+}
+.jqte_format_1 {
+	font-size:22px
+}
+.jqte_format_2 {
+	font-size:20px
+}
+.jqte_format_3 {
+	font-size:18px
+}
+.jqte_format_4 {
+	font-size:16px
+}
+.jqte_format_5 {
+	font-size:14px
+}
+.jqte_format_6 {
+	font-size:12px
+}
+.jqte_format_7 {
+	font-family:"Courier New", Courier, monospace
+}
+
+/* font size menu */
+.jqte_fontsizes {
+	display:none;
+	position:absolute;
+	width:180px;
+	height:198px;
+	oveflow-x:hidden;
+	overflow-y:auto;
+	background:#FFF;
+	border:#AAA 1px solid;
+	box-shadow:0 0 5px #AAA; -webkit-box-shadow:0 0 5px #AAA; -moz-box-shadow:0 0 5px #AAA
+}
+.jqte_fontsize {
+	display:block;
+	padding:3px 7px;
+}
+.jqte_fontsize:hover {
+	background:#DDD
+}
+
+/* color pallette */
+.jqte_cpalette {
+	display:none;
+	position:absolute;
+	padding:6px;
+	width:144px;
+	background:#FFF;
+	border:#AAA 1px solid;
+	box-shadow:0 0 5px #AAA; -webkit-box-shadow:0 0 5px #AAA; -moz-box-shadow:0 0 5px #AAA
+}
+.jqte_color {
+	display:block;
+	float:left;
+	width:16px;
+	height:16px;
+	border:#FFF 1px solid;
+}
+.jqte_color:hover {
+	border-color:#000
+}
+.jqte_colorSeperator {
+    float:none;
+    clear:both;
+    height:7px;
+}
+
+/* editor area */
+.jqte_editor, .jqte_source {
+	padding:10px;
+	background:#FFF;
+	min-height:400px;
+	max-height:900px;
+	overflow:auto;
+	outline:none;
+	word-wrap:break-word; -ms-word-wrap:break-word;
+	resize:vertical
+}
+.jqte_editor div, .jqte_editor p {
+	margin:0 0 7px
+}
+.jqte_editor a:link, .jqte_editor a:link * {
+	color:#0066FF !important;
+	text-decoration:underline;
+}
+.jqte_editor blockquote {
+	margin-top:0;
+	margin-bottom:7px
+}
+.jqte_editor img {
+    float:left;
+	margin:0 10px 5px 0
+}
+.jqte_editor a[jqte-setlink], .jqte_editor a[jqte-setlink] * {
+	background:#3297FD !important;
+	color:#FFF !important
+}
+.jqte_editor h1, .jqte_editor h2, .jqte_editor h3, .jqte_editor h4, .jqte_editor h5, .jqte_editor h6, .jqte_editor pre {
+	display:block;
+	margin:0 0 3px;
+}
+.jqte_editor h1, .jqte_editor h1 * {
+	font-size:26px
+}
+.jqte_editor h2, .jqte_editor h2 * {
+	font-size:24px
+}
+.jqte_editor h3, .jqte_editor h3 * {
+	font-size:22px
+}
+.jqte_editor h4, .jqte_editor h4 * {
+	font-size:20px
+}
+.jqte_editor h5, .jqte_editor h5 * {
+	font-size:18px
+}
+.jqte_editor h6, .jqte_editor h6 * {
+	font-size:15px
+}
+.jqte_editor pre, .jqte_editor pre * {
+	font-family:"Courier New", Courier, monospace
+}
+
+/* source area */
+.jqte_source, .jqte_source textarea {
+	background:#FFF1E8
+}
+.jqte_source textarea {
+	margin:0 !important;
+	padding:0 !important;
+	display:block !important;
+	width:100% !important;
+	min-height:100px;
+	font-family:Courier, Arial, sans-serif !important;
+	font-weight:normal;
+	font-size:15px;
+	overflow:hidden !important;
+	outline:none;
+	resize:none;
+}
+.jqte_source textarea, .jqte_source textarea:focus {
+	css_shadow:none !important;
+	background:none !important;
+	border:none !important;
+}
+
+/* title box */
+.jqte_title {
+	display:none;
+	position:absolute;
+	z-index:9999;
+}
+.jqte_titleArrow {
+	position:relative;
+}
+.jqte_titleArrowIcon {
+	width:7px;
+	height:6px;
+	margin:0 auto;
+	background:url(jquery-te.png) 0 -23px no-repeat;
+}
+.jqte_titleText {
+	padding:5px 7px;
+	margin-top:0;
+	min-width:5px;
+	min-height:1px;
+	max-width:400px;
+	background:#000;
+	border-radius:3px; -webkit-border-radius:3px; -moz-border-radius:3px;
+	word-wrap:break-word; -ms-word-wrap:break-word
+}
+.jqte_titleText, .jqte_titleText * {
+	color:#FFF;
+	font-size:11px
+}
+
+/* placeholder */
+.jqte_placeholder {
+	position:relative;
+	display:none;
+}
+.jqte_placeholder_text {
+	position:absolute;
+	top:43px;
+	left:10px;
+	font-size:14px;
+	color:#CCC;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/admin.css.scss */
+#admin_container {
+  width: 80%;
+  height: 500px;
+  border: black solid 1px;
+  margin: 20px auto 20px auto;
+  padding: 10px;
+}
+
+/* line 12, /Users/hansinciputra/shinfi/app/assets/stylesheets/admin.css.scss */
+#admin_container ul {
+  list-style-type: square;
+  display: block;
+  position: absolute;
+  margin: 30px;
+}
+
+/* line 18, /Users/hansinciputra/shinfi/app/assets/stylesheets/admin.css.scss */
+.notif {
+  color: red;
+  display: inline-block;
+}
+
+/* line 22, /Users/hansinciputra/shinfi/app/assets/stylesheets/admin.css.scss */
+#fb_comment {
+  width: 300px;
+  height: 50px;
+  color: red;
+  float: right;
+}
+/* line 1, /Users/hansinciputra/shinfi/app/assets/stylesheets/brands.css.scss */
+#index_image_display_container {
+  width: 240px;
+  height: 370px;
+  float: left;
+  margin: 5px;
+  display: inline-block;
+}
+
+/* line 9, /Users/hansinciputra/shinfi/app/assets/stylesheets/brands.css.scss */
+#index_logo_display {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  margin: auto;
+  cursor: pointer;
+  border: solid black 1px;
+}
+
+/* line 18, /Users/hansinciputra/shinfi/app/assets/stylesheets/brands.css.scss */
+#index_product_summary {
+  width: 230px;
+  height: 37px;
+  text-align: center;
+  margin: auto;
+}
+
+/* line 24, /Users/hansinciputra/shinfi/app/assets/stylesheets/brands.css.scss */
+#new_brand_link {
+  border: solid black 1px;
+  width: 150px;
+  text-align: center;
+  top: 10px;
+  margin: auto;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#cart_table {
+  border: black solid 1px;
+  width: 100%;
+  text-align: center;
+}
+
+/* line 10, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#cart_table tr:nth-child(even) {
+  background-color: #e5eeff;
+}
+
+/* line 13, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#cart_table td {
+  border: black solid 1px;
+}
+
+/* line 16, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+.remove_item {
+  width: 5%;
+}
+
+/* line 19, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#cart_prod_image {
+  float: left;
+  margin: 5px;
+  z-index: 999;
+}
+
+/* line 24, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+.cart_prod_detail {
+  text-align: left;
+}
+
+/* line 27, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#cart_quantity input {
+  width: 50px;
+}
+
+/* line 30, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#checkout_container {
+  width: 70%;
+  padding: 10px;
+  border: black solid 1px;
+}
+
+/* line 35, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#helpermenu {
+  max-width: 1000px;
+  min-width: 990px;
+  margin: 20px auto 20px auto;
+  height: 100px;
+}
+
+/* line 42, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+.helpermenu_pointer:hover, #center:hover, #right:hover, #right a:hover {
+  background-color: black;
+  color: white;
+}
+
+/* line 46, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#helpermenu_break {
+  width: 55px;
+  height: 100%;
+  background-color: white;
+  float: left;
+}
+
+/* line 52, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#left {
+  max-width: 250px;
+  height: 100%;
+  border: solid white 1px;
+  float: left;
+  text-align: center;
+  background-color: #f4f4f4;
+}
+
+/* line 60, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#center {
+  width: 170px;
+  height: 100%;
+  border: solid white 1px;
+  float: left;
+  text-align: center;
+  overflow: auto;
+  background-color: #f4f4f4;
+}
+
+/* line 69, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#right {
+  width: 150px;
+  height: 100%;
+  border: solid white 1px;
+  text-align: center;
+  float: left;
+  display: inline-block;
+  background-color: #f4f4f4;
+}
+
+/* line 78, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+.checkout_button a {
+  display: block;
+  margin-top: 30px;
+  padding-top: 5px;
+  font-size: 15px;
+  width: 250px;
+  height: 20px;
+  background-color: #bebebe;
+  text-align: center;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+/* line 90, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+.checkout_button a:hover {
+  background-color: black;
+  color: white;
+}
+
+/* line 94, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#continue_shop a {
+  display: block;
+  margin-top: 20px;
+  width: 250px;
+  height: 20px;
+  border: solid black 1px;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+/* line 105, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#continue_shop a:hover {
+  background-color: white;
+  color: black;
+}
+
+/* line 110, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#notification {
+  display: none;
+}
+
+/* line 114, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+.limit_quantity_input:hover + #notification {
+  display: block;
+}
+
+/* line 117, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+.customer_notes {
+  float: right;
+}
+
+/* line 120, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#address_box {
+  border: solid black 1px;
+  width: 300px;
+  min-height: 110px;
+  margin: 0 10px 10px 0;
+  padding: 5px;
+}
+
+/* line 127, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+.checkout_table {
+  width: 340px;
+  height: 250px;
+}
+
+/* line 131, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#left_checkout {
+  float: left;
+}
+
+/* line 134, /Users/hansinciputra/shinfi/app/assets/stylesheets/cart.css.scss */
+#right_checkout {
+  display: inline-block;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/categories.css.scss */
+#category_left {
+  width: 45%;
+  border: solid black 1px;
+  float: left;
+  margin-top: 50px;
+  padding: 10px;
+}
+
+/* line 12, /Users/hansinciputra/shinfi/app/assets/stylesheets/categories.css.scss */
+#category_right {
+  width: 50%;
+  border: solid black 1px;
+  margin-top: 50px;
+  padding: 10px;
+  display: inline-block;
+}
+
+/* line 20, /Users/hansinciputra/shinfi/app/assets/stylesheets/categories.css.scss */
+#display_category {
+  width: 70%;
+  padding: 10px;
+  margin: auto;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/compinfos.css.scss */
+#content_title input {
+  width: 720px;
+  height: 30px;
+  font-size: 20px;
+}
+
+/* line 10, /Users/hansinciputra/shinfi/app/assets/stylesheets/compinfos.css.scss */
+#compinfo {
+  border: black solid 1px;
+  width: 750px;
+  min-height: 1200px;
+  padding: 15px;
+  margin: 10px;
+  float: left;
+}
+
+/* line 18, /Users/hansinciputra/shinfi/app/assets/stylesheets/compinfos.css.scss */
+#show_info {
+  border: black solid 1px;
+  width: 550px;
+  float: left;
+  margin: 10px;
+  padding: 15px;
+}
+
+/* line 25, /Users/hansinciputra/shinfi/app/assets/stylesheets/compinfos.css.scss */
+#display_info {
+  border: black solid 1px;
+  height: 800px;
+  width: 900px;
+  overflow-y: auto;
+  padding: 25px;
+  margin: 10px;
+}
+/* line 7, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+.craft_pic {
+  width: 250px;
+  height: 250px;
+  border: solid black 1px;
+  border-radius: 0.7em 0.7em 0.7em 0.7em;
+  overflow: hidden;
+}
+
+/* line 14, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+.craft_pic_container {
+  width: 510px;
+  height: 510px;
+  border: solid #F2F2F2 4px;
+  border-radius: 0.9em;
+  background-color: white;
+  overflow: hidden;
+  padding: 10px;
+  float: left;
+}
+
+/* line 24, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_pic_show {
+  width: 100%;
+}
+
+/* line 28, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_dp {
+  width: 510px;
+  height: 430px;
+}
+
+/* line 33, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#thumb_craft_pic_container {
+  width: 100%;
+  height: 80px;
+  background-color: #F2F2F2;
+  border: solid #F2F2F2 3px;
+}
+
+/* line 39, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+.thumb_craft_pic {
+  width: 70px;
+  height: 70px;
+  border: solid black 1px;
+  border-radius: 0.9em;
+  overflow: hidden;
+  margin: 2px 0px 0px 5px;
+  float: left;
+  cursor: pointer;
+}
+
+/* line 49, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_container {
+  background-color: white;
+  width: 100%;
+  min-height: 1000px;
+  margin: 50px auto 50px auto;
+  padding: 20px 15px 20px 15px;
+}
+
+/* line 56, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_container_top {
+  width: 100%;
+  height: 540px;
+}
+
+/* line 61, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_container_middle {
+  width: 99%;
+  min-height: 500px;
+  overflow: auto;
+  background-color: #F7F5F2;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+/* line 70, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_product_description {
+  padding: 10px;
+  width: 65%;
+  min-height: 450px;
+  border: solid #E0ECF8 4px;
+  background-color: white;
+  float: left;
+  border-radius: 0.9em;
+}
+
+/* line 79, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_seller_detail {
+  width: 25%;
+  min-height: 450px;
+  padding: 10px;
+  float: right;
+  border: solid black 4px;
+  background-color: white;
+  border-radius: 0.9em;
+}
+
+/* line 88, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+.craft_review {
+  width: 400px;
+  height: 310px;
+  padding: 10px;
+  border-top: solid #E3F6CE 4px;
+  border-left: solid #E3F6CE 4px;
+  border-right: solid #E3F6CE 4px;
+  float: right;
+  background-color: #E3F6CE;
+}
+
+/* line 98, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+.craft_add_to_cart {
+  width: 400px;
+  height: 180px;
+  padding: 10px;
+  border: solid #E3F6CE 4px;
+  float: right;
+}
+
+/* line 106, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_product_recomendation_side {
+  width: 150px;
+  height: 500px;
+  background-color: white;
+  border: solid #DBDAD9 1px;
+  border-radius: 0.7em 0.7em 0.7em 0.7em;
+  float: left;
+}
+
+/* line 115, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_recomendation_container {
+  width: 150px;
+  height: 150px;
+  border: solid black 1px;
+  margin-top: 10px;
+}
+
+/* line 121, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_recomendation_product_pic {
+  width: 120px;
+  height: 120px;
+  border: solid blue 1px;
+  margin: auto;
+}
+
+/* line 127, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_recomendation_product_details {
+  width: 120px;
+  height: 25px;
+  margin: auto;
+}
+
+/* line 133, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#new_craft_form {
+  background-color: white;
+  width: 700px;
+  min-height: 1200px;
+  margin: auto;
+  padding: 10px;
+}
+
+/* line 140, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#remove {
+  width: 10px;
+  height: 10px;
+  border: solid black 1px;
+  font-weight: bold;
+  color: red;
+  float: right;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* line 150, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#more {
+  float: left;
+  cursor: pointer;
+  margin: 10px 10px 10px;
+  display: inline-block;
+  width: 100%;
+  height: 20px;
+  border: solid black 1px;
+}
+
+/* line 160, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#craft_pic_container {
+  width: 95%;
+  margin: auto;
+  height: 80%;
+  border: solid black 1px;
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+}
+
+/* line 167, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+.slider_button_left_craft {
+  cursor: pointer;
+  float: left;
+  opacity: 0.2;
+  width: 35px;
+}
+
+/* line 173, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+.slider_button_right_craft {
+  cursor: pointer;
+  top: 450px;
+  float: right;
+  opacity: 0.2;
+  width: 35px;
+}
+
+/* line 180, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+.slider_button_left_craft :hover, .slider_button_right_craft :hover {
+  opacity: 0.5;
+}
+
+/* line 183, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#slider_button {
+  width: 510px;
+  height: 80px;
+  position: absolute;
+  top: 450px;
+}
+
+/* line 190, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#brand_pic_craft {
+  width: 150px;
+  margin: auto;
+}
+
+/* line 194, /Users/hansinciputra/shinfi/app/assets/stylesheets/crafts.css.scss */
+#min-range, #max-range {
+  width: 50px;
+  height: 30px;
+  text-align: center;
+  font-size: 0.6em;
+  color: green;
+  float: left;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/customers.css.scss */
+.customer_form_container {
+  width: 350px;
+  margin: auto;
+  padding: 15px;
+}
+
+/* line 11, /Users/hansinciputra/shinfi/app/assets/stylesheets/customers.css.scss */
+.two_column {
+  width: 550px;
+  height: 50px;
+}
+
+/* line 15, /Users/hansinciputra/shinfi/app/assets/stylesheets/customers.css.scss */
+.two_column .column1 {
+  float: left;
+  margin-right: 20px;
+}
+
+/* line 19, /Users/hansinciputra/shinfi/app/assets/stylesheets/customers.css.scss */
+#customer_container {
+  width: 100%;
+  min-height: 900px;
+  border: solid black 1px;
+  padding: 50px;
+  margin: auto;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/fabrics.css.scss */
+#middler {
+  margin: auto;
+  width: 98%;
+  height: 100%;
+}
+
+/* line 10, /Users/hansinciputra/shinfi/app/assets/stylesheets/fabrics.css.scss */
+.type_checkbox_helper {
+  background-color: white;
+  border: solid #F2F2F2 2px;
+  width: 100%;
+  height: 100px;
+  max-height: 100px;
+  padding-left: 5px;
+  overflow: auto;
+  float: left;
+}
+
+/* line 21, /Users/hansinciputra/shinfi/app/assets/stylesheets/fabrics.css.scss */
+.type_checkbox_helper input[type="radio"] + label {
+  display: inline-block;
+  width: 80%;
+  font-size: 0.9em;
+}
+
+/* line 27, /Users/hansinciputra/shinfi/app/assets/stylesheets/fabrics.css.scss */
+#list_pic_container_fabric {
+  width: 500px;
+  height: 300px;
+}
+
+/* line 31, /Users/hansinciputra/shinfi/app/assets/stylesheets/fabrics.css.scss */
+label > input {
+  visibility: hidden;
+  position: absolute;
+}
+
+/* line 35, /Users/hansinciputra/shinfi/app/assets/stylesheets/fabrics.css.scss */
+label > input + div {
+  cursor: pointer;
+}
+@font-face {
+  font-family: "Morningtype";
+  src: url(/assets/Morningtype.ttf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+a, :link {
+  text-decoration: none;
+  color: #FA58D0;
+}
+
+/* line 9, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+a:hover {
+  color: black;
+}
+
+/* line 12, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+/* line 19, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.label_Prod {
+  width: 4em;
+  text-align: right;
+  margin-right: 0.5em;
+  display: inline;
+}
+
+/* line 27, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.answer_Prod {
+  width: 15em;
+  text-align: left;
+  margin-right: 0.5em;
+}
+
+/* line 34, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.textField {
+  width: 75px;
+  margin-left: 20px;
+}
+
+/* line 39, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_form_container {
+  margin: auto;
+  width: 99%;
+  height: 200px;
+  padding: 10px;
+}
+
+/* line 45, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.measurement input {
+  width: 80px;
+  display: inline-block;
+  height: 20px;
+}
+
+/* line 51, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.inventory_value {
+  float: left;
+  z-index: 999;
+}
+
+/* line 56, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.inventory_value input {
+  width: 30px;
+  margin-right: 5px;
+  float: left;
+}
+
+/* line 61, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_form_container label {
+  width: 5em;
+  float: left;
+  text-align: right;
+  margin-right: 0.5em;
+  display: block;
+}
+
+/* line 68, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_form_left {
+  width: 290px;
+  float: left;
+}
+
+/* line 72, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_form_right {
+  width: 290px;
+  float: left;
+}
+
+/* line 77, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#InventoryList {
+  margin-left: 20px;
+  padding: 10px;
+  overflow: auto;
+  height: 670px;
+}
+
+/* line 86, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#InventoryContainer {
+  margin: auto;
+  width: 100%;
+  padding-left: 50px 10px;
+}
+
+/* line 92, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#InventoryDetail {
+  margin-left: 30px;
+}
+
+/* line 96, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#InventoryLeft {
+  border: solid black 5px;
+  width: 350px;
+  height: 100%;
+  margin-top: 225px;
+  float: left;
+  text-align: left;
+}
+
+/* line 104, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#InventoryRight {
+  width: 650px;
+  margin-left: 40%;
+}
+
+/* line 110, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#imgContainer {
+  width: 250px;
+  height: 250px;
+  padding: auto;
+  margin-bottom: 10px;
+}
+
+/* line 118, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_table tr:nth-child(even) {
+  background-color: #FFF1F8;
+}
+
+/* line 121, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+table {
+  border-collapse: collapse;
+  width: 550px;
+}
+
+/* line 125, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_table {
+  background-color: #FFFFFF;
+  width: 550px;
+  margin-top: 20px;
+}
+
+/* line 131, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_table td {
+  border: red solid 1px;
+}
+
+/* line 134, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.prodCodeTitle {
+  width: 200px;
+  text-align: center;
+}
+
+/* line 138, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.prodResult {
+  width: 400px;
+  text-align: center;
+}
+
+/* line 142, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#picture_frame {
+  max-width: 320px;
+  max-height: 310px;
+  float: left;
+}
+
+/* line 148, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#le_picture {
+  max-width: 320px;
+  min-height: 320px;
+}
+
+/* line 155, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#prod_detail {
+  margin-left: 20px;
+  width: 250px;
+  float: left;
+  display: inline-block;
+}
+
+/* line 163, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#fb_like_container {
+  width: 30px;
+  float: left;
+}
+
+/* line 168, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.le_small_picture_container {
+  width: 330px;
+  height: 100px;
+  margin: auto;
+  padding: 5px 0 5px 5px;
+  overflow: auto;
+}
+
+/* line 176, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+.le_small_picture {
+  border: black solid 2px;
+  border-radius: 0.9em;
+  width: 33px;
+  height: 33px;
+  margin-right: 5px;
+  margin-top: 5px;
+  float: left;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* line 190, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#product_container {
+  border: black solid 4px;
+  border-radius: 0.9em;
+  width: 70%;
+  margin: 20px auto 20px auto;
+  min-height: 1200px;
+  padding: 10px 0 0 50px;
+  background-color: white;
+}
+
+/* line 200, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#comments_box {
+  border-top: grey solid 1px;
+  border-bottom: grey solid 1px;
+  width: 600px;
+  height: 450px;
+  float: left;
+  margin-top: 180px;
+  padding: 20px;
+  overflow: auto;
+}
+
+/* line 211, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_cart a {
+  display: block;
+  margin-top: 30px;
+  padding-top: 10px;
+  font-size: 18px;
+  width: 200px;
+  height: 30px;
+  background-color: #bebebe;
+  text-align: center;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+/* line 223, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_cart a:hover {
+  background-color: black;
+  color: white;
+}
+
+/* line 228, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_po_cart a {
+  display: block;
+  margin-top: 30px;
+  padding-top: 10px;
+  font-size: 18px;
+  width: 200px;
+  height: 30px;
+  background-color: black;
+  text-align: center;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+/* line 240, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#inventory_po_cart a:hover {
+  background-color: #FAFAFA;
+  color: black;
+}
+
+/* line 244, /Users/hansinciputra/shinfi/app/assets/stylesheets/inventories.css.scss */
+#submit_button {
+  margin-top: 10px;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#tips_1 {
+  width: 250px;
+  float: right;
+  color: #BDBDBD;
+}
+
+/* line 10, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#insert_materials_container {
+  width: 90%;
+  min-height: 200px;
+  border: solid black 1px;
+  padding: 20px;
+  margin: auto;
+}
+
+/* line 17, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_submit {
+  width: 200px;
+  height: 30px;
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* line 26, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_submit:hover {
+  border: solid black 1px;
+  background-color: white;
+  color: black;
+}
+
+/* line 32, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#insert_materials_container li {
+  list-style: none;
+}
+
+/* line 35, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#insert_materials_container li label {
+  float: left;
+  display: inline;
+  width: 10em;
+  margin-right: 0.5px;
+}
+
+/* line 41, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#insert_materials_container li input[type=radio] {
+  float: left;
+  border: solid black 1px;
+}
+
+/* line 45, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_thumb_pic {
+  width: 50px;
+  height: 50px;
+  border: solid black 1px;
+  margin: auto;
+}
+
+/* line 51, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#material_table {
+  width: 100%;
+}
+
+/* line 54, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#material_table a {
+  font-size: 1.2em;
+}
+
+/* line 59, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#material_table th, td {
+  border-bottom: solid #E6E6E6 1px;
+  padding: 5px;
+}
+
+/* line 63, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_image_column {
+  width: 70px;
+}
+
+/* line 66, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_name_column {
+  min-width: 120px;
+  max-width: 150px;
+  overflow: auto;
+  text-align: left;
+}
+
+/* line 72, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_name_column a {
+  color: black;
+}
+
+/* line 76, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.config_material_button {
+  border: solid black 1px;
+  border-radius: 0.9em;
+}
+
+/* line 80, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_config_column {
+  width: 10px;
+}
+
+/* line 83, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_config_column a {
+  width: 20px;
+  padding: 5px;
+  border-radius: 0.2em;
+  border: solid black 1px;
+  background-color: black;
+  color: white;
+}
+
+/* line 91, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.material_config_column a:hover {
+  border: solid #E6E6E6 1px;
+  background-color: white;
+  color: black;
+}
+
+/* line 96, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#material_table tr:nth-child(even) {
+  background-color: #F6CEF5;
+}
+
+/* line 99, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#upload_preview {
+  width: 150px;
+  height: 150px;
+  border: solid black 1px;
+  background-color: #E6E6E6;
+}
+
+/* line 105, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+#material_kategory {
+  color: #6E6E6E;
+}
+
+/* line 108, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.price_material {
+  color: white;
+}
+
+/* line 112, /Users/hansinciputra/shinfi/app/assets/stylesheets/materials.css.scss */
+.price_material p {
+  margin: auto;
+  min-width: 110px;
+  max-width: 130px;
+  height: 25px;
+  background-color: #31B404;
+  color: white;
+  line-height: 22px;
+  font-size: 1.2em;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#order_container {
+  margin: 0 auto 50px auto;
+  border: black solid 2px;
+  width: 800px;
+}
+
+/* line 10, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#inventory_ordered {
+  text-align: center;
+  border: black solid 2px;
+  background-color: white;
+  margin-left: 50px;
+  width: 700px;
+}
+
+/* line 17, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#customer_detail {
+  margin: 0 40px 30px 50px;
+  width: 500px;
+  border: black solid 2px;
+  text-align: left;
+  float: left;
+}
+
+/* line 24, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#order_detail {
+  margin-left: 50px;
+}
+
+/* line 27, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+.left_q {
+  width: 100px;
+  padding-left: 10px;
+  border-right: black solid 2px;
+}
+
+/* line 32, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+.right_q {
+  padding-left: 10px;
+  max-width: 500px;
+}
+
+/* line 36, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#sub_title {
+  width: 300px;
+  margin: 20px auto 20px auto;
+  text-align: center;
+  border-bottom: solid black 1px;
+}
+
+/* line 42, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#small_title {
+  margin: 0px 10px 0px 10px;
+  border-bottom: black solid 2px;
+}
+
+/* line 46, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#admin_menu {
+  width: 200px;
+  margin: auto;
+}
+
+/* line 50, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+.currency_small {
+  text-align: left;
+  padding-left: 15px;
+}
+
+/* line 55, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+.currency_large {
+  width: 180px;
+  text-align: left;
+  padding-left: 45px;
+}
+
+/* line 61, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#c_line {
+  border-bottom: black solid 2px;
+  width: 120px;
+  text-align: right;
+}
+
+/* line 66, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+.c_title {
+  text-align: right;
+}
+
+/* line 70, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#payment_status {
+  border: black solid 1px;
+  width: 160px;
+  height: 120px;
+  text-align: center;
+}
+
+/* line 76, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#bank_detail {
+  width: 300px;
+  margin-left: 50px;
+}
+
+/* line 81, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#signature {
+  margin: 0 0 50px 500px;
+  text-align: center;
+  width: 250px;
+}
+
+/* line 87, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#sign {
+  height: 100px;
+}
+
+/* line 90, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#POpage .report_table tr:nth-child(even) {
+  background-color: #e5eeff;
+}
+
+/* line 94, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#additional_transaction label {
+  width: 200px;
+  text-align: left;
+  float: left;
+}
+
+/* line 100, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#additional_transaction select {
+  width: 200px;
+  text-align: left;
+}
+
+/* line 104, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#additional_transaction input {
+  border: solid black 1px;
+  width: 200px;
+  display: inline-block;
+}
+
+/* line 109, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#admin_menu_order {
+  margin-top: 12px;
+  margin-left: 940px;
+  width: 80px;
+  float: left;
+  position: relative;
+  z-index: 9999;
+}
+
+/* line 119, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+#img_container {
+  width: 100%;
+  height: 400px;
+  border: black solid 1px;
+}
+
+/* line 124, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+.prodResult input {
+  width: 50px;
+}
+
+/* line 127, /Users/hansinciputra/shinfi/app/assets/stylesheets/orders.css.scss */
+.customer_notes_display_invoice {
+  margin-right: 50px;
+  padding: 0 10px 10px 10px;
+  width: 30%;
+  min-height: 100px;
+  float: right;
+  background-color: #FBFBEF;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/poster.css.scss */
+#list_pic_container_poster {
+  width: 400px;
+  height: 450px;
+  overflow: scroll;
+}
+/* line 4, /Users/hansinciputra/shinfi/app/assets/stylesheets/product_images.css.scss */
+.selected_dp {
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  border: solid #A9F5D0 5px;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+}
+
+/* line 11, /Users/hansinciputra/shinfi/app/assets/stylesheets/product_images.css.scss */
+.not_selected {
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  border: solid black 1px;
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+}
+
+/* line 19, /Users/hansinciputra/shinfi/app/assets/stylesheets/product_images.css.scss */
+#list_pic_container {
+  width: 95%;
+  margin: auto;
+  height: 200px;
+  overflow: auto;
+}
+
+/* line 26, /Users/hansinciputra/shinfi/app/assets/stylesheets/product_images.css.scss */
+#list_pic {
+  height: 70px;
+  width: 70px;
+  overflow: none;
+  margin-right: 10px;
+  display: inline;
+}
+
+/* line 35, /Users/hansinciputra/shinfi/app/assets/stylesheets/product_images.css.scss */
+#remove_picture {
+  position: relative;
+  top: -55px;
+  margin-left: -15px;
+  background-color: black;
+  color: white;
+  z-index: 999;
+}
+/* line 1, /Users/hansinciputra/shinfi/app/assets/stylesheets/report.css.scss */
+.report_admin_table {
+  border: solid black 1px;
+  text-align: center;
+  width: 350px;
+}
+
+/* line 6, /Users/hansinciputra/shinfi/app/assets/stylesheets/report.css.scss */
+.report_container {
+  border: solid black 1px;
+  float: left;
+  margin: 30px;
+  text-align: center;
+}
+/* line 1, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+body {
+  font-family: 'Morningtype';
+  background-color: #fff;
+  color: #333;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 9, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+p, ol, ul, td {
+  font-family: 'Morningtype';
+  font-size: 13px;
+  line-height: 18px;
+}
+
+/* line 15, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+/* line 21, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+a {
+  color: #000;
+}
+/* line 23, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+a:visited {
+  color: #666;
+}
+/* line 26, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+a:hover {
+  color: black;
+}
+
+/* line 32, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+div.field, div.actions {
+  margin-bottom: 10px;
+}
+
+/* line 37, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+#notice {
+  color: green;
+}
+
+/* line 41, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+/* line 47, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+/* line 54, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+/* line 64, /Users/hansinciputra/shinfi/app/assets/stylesheets/scaffolds.css.scss */
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+/* line 4, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#new_user {
+  width: 400px;
+  height: 300px;
+  margin: auto;
+}
+
+/* line 11, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#submit_button {
+  text-align: center;
+}
+
+/* line 15, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#login_container {
+  border: black solid 1px;
+  width: 800px;
+  height: 300px;
+  padding: 30px;
+  margin: auto;
+  margin-top: 10px;
+}
+
+/* line 23, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#login {
+  width: 420px;
+  float: left;
+  border-right: solid black 2px;
+  margin-right: 20px;
+  height: 90%;
+}
+
+/* line 31, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#guest {
+  width: 350px;
+  float: left;
+  text-align: center;
+}
+
+/* line 36, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.social_login {
+  width: 330px;
+  margin: 20px auto 20px auto;
+  height: 60px;
+}
+
+/* line 41, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#user_container {
+  width: 1000px;
+  min-height: 900px;
+  border: solid black 2px;
+  border-radius: 5px;
+  padding: 50px;
+  margin: 30px auto 10px auto;
+  background-color: white;
+  overflow: auto;
+}
+
+/* line 51, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#user_personal_menu {
+  width: 720px;
+  height: 50px;
+}
+
+/* line 55, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#user_content_container {
+  width: 700px;
+  min-height: 500px;
+  border: solid black 2px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 62, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_page_right {
+  float: left;
+}
+
+/* line 65, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_page_left {
+  float: left;
+  width: 250px;
+}
+
+/* line 69, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#user_personal_menu_container {
+  float: left;
+  width: 200px;
+  height: 200px;
+}
+
+/* line 74, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_personal_menu {
+  width: 150px;
+  height: 20px;
+  text-align: center;
+  border: solid black 1px;
+  color: white;
+  margin: 5px auto 0 auto;
+}
+
+/* line 82, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_personal_menu a {
+  display: block;
+  height: 100%;
+  background-color: black;
+  color: white;
+}
+
+/* line 88, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_personal_menu a:hover {
+  display: block;
+  height: 100%;
+  background-color: white;
+  color: black;
+}
+
+/* line 94, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_menu_button {
+  height: 50px;
+  width: 175px;
+  float: left;
+  border-top: solid black 2px;
+  border-left: solid black 2px;
+  border-right: solid black 2px;
+  text-align: center;
+  line-height: 50px;
+}
+
+/* line 104, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_menu_button a {
+  display: block;
+  font-size: 0.9em;
+}
+
+/* line 108, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_menu_button a:hover {
+  background-color: #BDBDBD;
+  color: white;
+}
+
+/* line 112, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#prof_pic {
+  width: 200px;
+  height: 200px;
+  border: black solid 2px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+/* line 122, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.desc_left {
+  text-align: right;
+  width: 150px;
+  float: left;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* line 129, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.answer_right {
+  width: 150px;
+  min-height: 18px;
+  float: left;
+  display: inline-block;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 137, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.desc_address {
+  width: 250px;
+  margin-left: 2px;
+}
+
+/* line 141, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.answer_address {
+  width: 500px;
+  min-height: 100px;
+  display: inline-block;
+  background-color: #F2F2F2;
+  padding: 10px;
+  margin: 10px 0 0 70px;
+}
+
+/* line 149, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#change_password_button, #edit_button {
+  float: left;
+  margin-left: 20px;
+}
+
+/* line 153, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#change_password_button a, #edit_button a {
+  display: block;
+  width: 250px;
+  height: 30px;
+  background-color: #F2F2F2;
+}
+
+/* line 159, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#change_password_button a:hover, #edit_button a:hover {
+  background-color: black;
+  color: white;
+}
+
+/* line 163, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#user_page_menu {
+  width: 80%;
+  height: 30px;
+  border: solid grey 2px;
+  margin: 20px auto 0 auto;
+  padding: 20px;
+}
+
+/* line 170, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_order_table {
+  width: 700px;
+  height: 100px;
+  border: solid black 2px;
+  margin: auto;
+}
+
+/* line 176, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_order_table td {
+  text-align: center;
+}
+
+/* line 180, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_order_table th {
+  background-color: #58FA58;
+  height: 50px;
+}
+
+/* line 184, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+.user_order_table td a {
+  font-size: 0.8em;
+}
+
+/* line 187, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#report_container {
+  width: 700px;
+  height: 400px;
+  overflow: auto;
+}
+
+/* line 192, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#e_stamp_table th, td {
+  text-align: center;
+}
+
+/* line 196, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#user_img_thumb {
+  width: 70px;
+  height: 70px;
+  border: solid black 1px;
+  border-radius: 100%;
+  overflow: hidden;
+  float: left;
+}
+
+/* line 204, /Users/hansinciputra/shinfi/app/assets/stylesheets/users.css.scss */
+#user_thumb_detail {
+  width: 150px;
+  height: 60px;
+  float: left;
+  margin-left: 5px;
+}
+/* line 5, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#form_workshop_container {
+  width: 70%;
+  float: left;
+  overflow: auto;
+}
+
+/* line 10, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#upload_pic_box {
+  width: 25%;
+  min-height: 300px;
+  border: solid black 1px;
+  border-radius: 0.7em;
+  margin: 97px 0 0 10px;
+  float: left;
+  background-color: #F2F2F2;
+  padding: 5px;
+  overflow: auto;
+  text-align: center;
+}
+
+/* line 22, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#form_workshop_container label {
+  color: #A4A4A4;
+  font-weight: strong;
+  font-size: 1.2em;
+  margin: auto;
+  text-align: center;
+}
+
+/* line 29, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.workshop_button {
+  width: 49%;
+  height: 50px;
+  cursor: pointer;
+  float: left;
+  font-size: 1.2em;
+  margin-left: 2px;
+}
+
+/* line 37, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.workshop_button:hover {
+  opacity: 0.7;
+}
+
+/* line 40, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.workshop_button_new {
+  width: 150px;
+  height: 80px;
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 5px;
+  margin-left: 2px;
+  background-color: black;
+  color: white;
+  border: solid black 2px;
+  border-radius: 0.8em;
+}
+
+/* line 52, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.workshop_button_new:hover {
+  opacity: 0.7;
+  color: white;
+}
+
+/* line 56, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#submit_workshop {
+  background-color: black;
+  color: white;
+  border: solid black 1px;
+}
+
+/* line 61, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#save_workshop {
+  background-color: white;
+  color: black;
+}
+
+/* line 66, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.title_box {
+  width: 70%;
+  border: solid white 1px;
+  border-bottom: solid black 2px;
+  font-size: 2em;
+}
+
+/* line 72, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#uploaded_workshop_pic_box {
+  width: 93%;
+  min-height: 300px;
+  overflow: auto;
+  margin: auto;
+}
+
+/* line 78, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_thmb_pic {
+  width: 70px;
+  height: 70px;
+  margin-left: 5px;
+  margin-top: 5px;
+  float: left;
+  display: inline-block;
+}
+
+/* line 86, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_thmb_pic img {
+  border: solid black 1px;
+}
+
+/* line 89, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#no_workshop_pic {
+  width: 100px;
+  height: 100px;
+  border: solid black 1px;
+  margin: auto;
+}
+
+/* line 95, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#list_workshop_container {
+  width: 99%;
+  min-height: 150px;
+  overflow: auto;
+}
+
+/* line 101, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_item_container {
+  border: solid black 3px;
+  border-radius: 0.9em;
+  float: left;
+  width: 95px;
+  margin: 5px;
+  overflow: hidden;
+}
+
+/* line 109, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_item_container :hover {
+  opacity: 0.8;
+}
+
+/* line 112, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_item_details {
+  width: 100%;
+  height: 20px;
+  text-align: center;
+}
+
+/* line 117, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_item_container img {
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border: solid black 1px;
+}
+
+/* line 123, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.workshop_left {
+  border: solid white 3px;
+  background-color: white;
+  width: 65%;
+  float: left;
+  margin: 10px 0 10px 0;
+  padding: 20px;
+}
+
+/* line 131, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.workshop_right {
+  border: solid blue 1px;
+  width: 29%;
+  float: left;
+  margin-top: 10px;
+}
+
+/* line 137, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_show_container {
+  width: 96%;
+  background-color: white;
+  padding: 10px;
+  min-height: 600px;
+  margin: 10px 0 10px 0;
+}
+
+/* line 144, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_show_description {
+  width: 94%;
+  background-color: white;
+  float: left;
+  padding: 20px;
+  min-height: 500px;
+}
+
+/* line 151, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_comments {
+  min-height: 300px;
+  background-color: white;
+  float: left;
+  width: 98%;
+  margin: 10px 0 10px 0;
+}
+
+/* line 158, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_reactions {
+  min-height: 100px;
+}
+
+/* line 161, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_image {
+  width: 510px;
+  height: 430px;
+  margin: auto;
+  border: solid white 3px;
+  border-radius: 0.8em;
+  overflow: hidden;
+}
+
+/* line 169, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_image_thumb {
+  margin: auto;
+  width: 200px;
+  height: 42px;
+  overflow: hidden;
+  overflow-x: auto;
+  border: solid black 1px;
+}
+
+/* line 177, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_image_thumb img {
+  margin: 0 2px 0 2px;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border: solid black 1px;
+}
+
+/* line 184, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#workshop_user {
+  width: 96%;
+  height: 80px;
+  padding: 10px;
+}
+
+/* line 190, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.thumb_workshop_button a {
+  float: left;
+  line-height: 25px;
+  width: 40%;
+  height: 25px;
+  border: solid black 1px;
+  margin-left: 10px;
+  border-radius: 0.3em;
+}
+
+/* line 199, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.thumb_workshop_button a:hover {
+  background-color: white;
+}
+
+/* line 202, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.thumb_workshop_button a:active {
+  background-color: black;
+  color: white;
+}
+
+/* line 206, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#popupinfo_workshop {
+  border: dashed black 2px;
+  width: 100px;
+  height: 50px;
+  padding: 10px;
+  font-size: 0.7em;
+  background-color: #F2F5A9;
+  color: #FA5858;
+  position: absolute;
+  top: 450px;
+  margin-left: 100px;
+  display: none;
+}
+
+/* line 219, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#remove_button_prodimg_container {
+  width: 43px;
+  height: 70px;
+  padding: 5px;
+  float: right;
+}
+
+/* line 225, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#remove_button_prodimg {
+  border: solid black 1px;
+  border-radius: 1em;
+  background-color: red;
+  color: black;
+  display: inline-block;
+  float: left;
+  font-size: 0.7em;
+  width: 41px;
+  margin-top: 8px;
+}
+
+/* line 236, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#remove_button_prodimg:hover {
+  background-color: white;
+}
+
+/* line 239, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#set_dp_prodimg {
+  border: solid black 1px;
+  border-radius: 1em;
+  background-color: #64FE2E;
+  color: black;
+  display: inline-block;
+  float: left;
+  font-size: 0.5em;
+  width: 41px;
+  height: 15px;
+}
+
+/* line 251, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+#set_dp_prodimg:hover {
+  background-color: white;
+}
+
+/* line 254, /Users/hansinciputra/shinfi/app/assets/stylesheets/workshops.css.scss */
+.selected_dp_wrkshp {
+  border: solid red 3px;
+}
