@@ -1,0 +1,30 @@
+<div id = "new_craft_step_guide">
+  <ul id = "step_infographic">
+    <li>Step 1</li>
+    <div class="step_line">&#8594</div>
+    <li class="step_selected">Step 2</li>
+    <div class="step_line">&#8594</div>
+    <li>Step 3</li>
+  </ul>
+  <div id="step_explanation">
+    <h1>Pilihan Material</h1>
+    <ol>
+      <li>Untuk membuat custom material kamu harus sudah memiliki list material yang didaftarkan. caranya dengan upload material ke page  <%= link_to 'My Material', material_path(@craft.id) %>.
+      </li>
+      <li> Setelah material di upload maka pada kolom sebelah kiri akan muncul daftar seluruh material yang tersedia</li>
+      <li>
+        Untuk pertama kali centang seluruh material yang dibutuhkan untuk membuat <%=@craft.name%> pada kategori dari material disebelah kiri
+      </li>
+      <li>
+        Setelah kategori material tercentang pada kolom sebelah kanan akan muncul daftar perlengkapan untuk setiap kategori yang tercentang. Pilih beberapa item yang akan ditampilkan pada saat customer melakukan pemilihan material dengan cara klik pada gambar. 
+      </li>
+      <li>
+        Sekeliling gambar akan berwarna hijau menandakan bahwa gambar telah terpilih
+      </li>
+      <li>
+        Tips: ada baiknya material yang di pilih untuk setiap kategori tidak melebihi 10 jenis
+      </li>
+ 
+    </ol>
+  </div>
+</div>

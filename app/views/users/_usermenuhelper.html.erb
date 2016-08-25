@@ -4,7 +4,7 @@
 				<%end%>
 				<!--menu hanya untuk user yang bersangkutan tersebut dan admin-->
 				<li class="user_personal_menu"><%=link_to 'Workshop',workshops_path(:user_id => session[:user_id])%></li>
-
+				<li class="user_personal_menu"><%=link_to 'Craft',user_craft_crafts_path(:user_id => session[:user_id])%></li>
 				<% if current_user && current_user.role == "Admin" || @user.id == session[:user_id] %>
 				<li class="user_personal_menu"><%=link_to 'My Materials',materials_path(:user_id => session[:user_id])%></li>
 				<li class="user_personal_menu"><%=link_to 'Profilku',user_profile_user_path(:id => session[:user_id])%></li>

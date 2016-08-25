@@ -1,0 +1,52 @@
+<div id = "user_container">
+	<div class="user_page_left">
+		<div id ="prof_pic" class="user_page_left">
+			<% if @user && @user.profpic %>
+			<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+			<%end%>
+		</div>
+		<div id = "user_personal_menu_container">
+			<%= render 'users/usermenuhelper' %>
+		</div>
+	</div>
+	
+	<div id = "user_content_container" class= "user_page_right">
+				<!--Steps-->
+		<%= render 'craft_guide_step3'%>
+		<h1><%= @craft.name%></h1>
+		<%= form_for @craft,:multiple => true do |x|%>
+		
+		<div id="step3_custom">
+		<table>
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Description</th>
+					<th>Category</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>
+			<%@material.each do |material|%>
+				<%=	x.fields_for :craft_materials do |y|%>
+					<!--hidden field, insert data-->
+					<%= y.text_field :craft_id ,:value=>@craft.id%>
+					<%= y.text_field :material_id,:value=>material.id%>		
+					<!--end-->		
+							<tr>
+								<td><%= image_tag material.picture_url(:thumb_small)%></td>
+								<td><%=material.name%></td>
+								<td><%=material.purpose%></td>
+								<td><%=y.number_field :price%></td>
+							</tr>
+				<%end%>		
+			<%end%>
+			</tbody>
+		</table>
+		</div>
+				<%=x.submit 'Done', :class=>'step_submit'%>
+	<%end%>
+
+	</div>
+
+</div>

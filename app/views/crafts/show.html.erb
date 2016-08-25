@@ -62,7 +62,9 @@
   <strong><h2><%= @craft.name %></h2></strong>
   <br>
   <strong>Prod desc:</strong>
+  <% if @craft.prod_desc%>
   <%= @craft.prod_desc.html_safe %>
+  <%end%>
 </p>
   </div>
   <div id = "craft_seller_detail">

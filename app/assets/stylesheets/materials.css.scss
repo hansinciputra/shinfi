@@ -72,6 +72,9 @@
 .material_name_column a{
 	color:black;	
 }
+.material_name_column a:hover{
+	color:#FA58F4;	
+}
 
 .config_material_button{
 	border:solid black 1px;
@@ -96,6 +99,10 @@
 #material_table tr:nth-child(even){
 	background-color: #F6CEF5; 
 }
+#material_table tr:hover{
+	background-color: #CEF6F5; 
+	cursor:pointer;
+}
 #upload_preview{
 	width: 150px;
 	height:150px;
@@ -116,6 +123,7 @@
 	height:25px;
 	background-color:#31B404;
 	color:white;
+	border:solid black 2px;
 	line-height:22px;
 	font-size:1.2em;
 }

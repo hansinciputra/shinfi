@@ -2,8 +2,10 @@ class Order < ActiveRecord::Base
 	belongs_to :customer
 	belongs_to :user
 	belongs_to :order_status
+	#many to many relations with inventory
 	has_many :inventory_orders, :inverse_of => :order, :dependent => :destroy
 	has_many :inventories, through: :inventory_orders
+	#many to many relations with craft
 	has_many :craft_orders, :inverse_of => :order, :dependent => :destroy
 	has_many :crafts, through: :craft_orders
 

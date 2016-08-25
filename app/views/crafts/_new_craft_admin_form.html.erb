@@ -1,0 +1,96 @@
+  <div id = "new_craft_form">
+<%= form_for(@craft) do |f| %>
+  <% if @craft.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@craft.errors.count, "error") %> prohibited this craft from being saved:</h2>
+
+      <ul>
+      <% @craft.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <% if @displaypic %>
+  <% if @displaypic.displaypic == 1 %>
+    <div class="craft_pic">
+      <%= image_tag @displaypic.prod_img_url(:thumb).to_s %>
+    </div>  
+  <%end%>
+  <%end%>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.collection_select :user_id, @user, :id, :name, :prompt=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br>
+   <%= f.collection_select :category, @categories, :name, :name, :prompt=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :subcategory %><br>
+   <%= f.collection_select :subcategory, @subcategories, :name, :name, :prompt=>true %>
+  </div>
+  <div class="field">
+    <%= f.label 'What Will Affect the price? (Size, Material, or Quantity?)' %><br>
+    <%= f.text_field :price_determinant %>
+  </div>
+    <div class="field">
+    <%= f.label 'Based on what affect the price , elaborate each pricing point' %><br>
+      
+    <%= f.fields_for :price_dets do |determinant|%> 
+      <%= render 'price_det_fields' , t: determinant %>
+    <%end%>
+    <%= link_to_add_fields 'Add More', f, :price_dets %>
+  </div>
+  <div class="field">
+    <h3><%= f.label 'My Stories' %></h3><br>
+    <%= f.text_area :prod_desc , :size => "100x80", :class=>'textarea_box'%>
+  </div>
+  <div class="field">
+    <%= f.label :brand_id %><br>
+    <%= f.collection_select :brand_id, @brand, :id, :name, :prompt=>true %>
+  </div>
+  <div class="field">
+    <%= f.label 'Quantity Maksimal Pembelian' %><br>
+    <%= f.text_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label 'Product Active Status (Not Active product will not be displayed)' %><br>
+    <%= f.select :active , options_for_select(["Active","Not Active"]) %>
+  </div>
+  <div class="actions">
+    <div id = "submit_button">
+      <% if @craft.id %>
+      <div id ="list_pic_container">
+        <div id = "craft_pic_container">
+          <h3>Klik to set/change display picture</h3>
+          <% @craft.product_images.each do |f|%>
+              <% if f.id != nil %>
+              <div id ="list_pic">
+               <%= link_to image_tag(f.prod_img_url(:medium_thumb).to_s) , set_display_picture_craft_product_image_path(@craft, :prod_id=>f.id), :confirm => "Set Sebagai Display Picture?", :method=> :post , :class => (f.displaypic ==1? 'selected_dp' : 'not_selected')
+                %>
+               <%= link_to 'x', remove_photo_inventory_path(@craft, :prod_id => f.id), :confirm => "Buang Gambar?", :method => :delete, :id=> 'remove_picture' %>
+             </div>
+             <%end%> 
+        <%end%>
+        </div> 
+        <button><%= link_to 'Upload More Picture', new_product_image_path(:id => @craft.id) %></button>
+      
+      </div>
+        <h3><%= f.submit "Finished" %> | <%= link_to 'Back', crafts_path %></h3>
+
+        <%else%>
+        <%= f.submit "Next Step" %> <!--this submit button will go to controller create action-->
+        <%= link_to 'Back', crafts_path %>
+      <%end%>
+  </div>
+<% end %>
+  </div>
+  <script>
+  $(".textarea_box").jqte();
+</script>
