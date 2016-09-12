@@ -23,28 +23,35 @@
 					<th>Image</th>
 					<th>Description</th>
 					<th>Category</th>
-					<th>Price</th>
+					<th>Additional Price</th>
+					
 				</tr>
 			</thead>
 			<tbody>
 			<%@material.each do |material|%>
 				<%=	x.fields_for :craft_materials do |y|%>
 					<!--hidden field, insert data-->
-					<%= y.text_field :craft_id ,:value=>@craft.id%>
-					<%= y.text_field :material_id,:value=>material.id%>		
+					<%= y.hidden_field :craft_id ,:value=>@craft.id%>
+					<%= y.hidden_field :material_id,:value=>material.id%>
+					<%= y.hidden_field :selected,:value=>'YES'%>		
 					<!--end-->		
 							<tr>
 								<td><%= image_tag material.picture_url(:thumb_small)%></td>
 								<td><%=material.name%></td>
 								<td><%=material.purpose%></td>
 								<td><%=y.number_field :price%></td>
+								
 							</tr>
 				<%end%>		
 			<%end%>
 			</tbody>
 		</table>
 		</div>
+				<div id = "submit_custom_craft_container">
 				<%=x.submit 'Done', :class=>'step_submit'%>
+				<br>
+				<%=link_to '<< Back to Step 2', :back,:class=>'step_submit' %>
+				</div>
 	<%end%>
 
 	</div>

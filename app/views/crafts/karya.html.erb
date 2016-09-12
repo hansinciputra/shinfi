@@ -1,1 +1,27 @@
-this is karya page
+<div id="Main_Container">
+	<h1><%= @craft.name%></h1>
+	<div id="karya_main_pic_container">
+		<div id="karya_main_pic">
+		</div>
+		<div id = "karya_main_pic_thumb_container">
+			<div id="karya_main_pic_thumb">
+			</div>
+			<div id="karya_main_pic_thumb">
+			</div>
+			<div id="karya_main_pic_thumb">
+			</div>
+		</div>
+	</div><!--for Karya_main_pic_container-->
+	<div id ="karya_description">
+		<%= @craft.prod_desc %>
+	</div>
+	<div id="karya_selection_container">
+		Choice
+		<%= @material.each do |x| %>
+			<%= x.name %>
+		<%end%>
+	</div><!--for karya_selection_container-->
+	<div id="karya_order_detail">
+		Order Detail
+	</div>
+</div><!--for Main Container-->

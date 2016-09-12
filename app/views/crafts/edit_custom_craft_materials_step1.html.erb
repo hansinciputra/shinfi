@@ -1,0 +1,98 @@
+<div id = "user_container">
+	
+		<!--Steps-->
+	
+		<br>
+		<h1>Edit Materials For <%= @craft.name %></h1>
+		</br>
+			<div id = "select_edit_category_container">
+				<h3 class="step_notification">Step 1</h3>
+				<h4 class="step_notification">Select Material Category</h4>
+				<%= form_tag 'edit_custom_craft_materials_step1',:id=>'custom_craft_form' do %>
+				<ul>
+					<% @category.each do |category|%>
+						<li>
+							<%if @purpose%>
+							<!--1. reload page after click on purpose to display materials-->
+								<%= check_box_tag 'category_selected[]',category.purpose,(@purpose.include? category.purpose) ? checked = true : checked = false ,class: 'checkbox_material'%>
+								<%= category.purpose %>
+								<!--transfer the craft.id-->
+								<%= hidden_field_tag 'craft_id',@craft.id%>
+							<%else%>
+							<!--to display selected category before edit-->
+								<%= check_box_tag 'category_selected[]',category.purpose ,(@category_checked.include? category.purpose) ? checked = true : checked = false,class: 'checkbox_material'%>
+								<%= category.purpose %>
+							<%end%>
+						</li>
+
+					<%end%>
+				</ul>
+				<%end%>
+			</div>
+			<%= form_tag 'edit_step1_save' do %>
+			<!--transfer the craft.id-->
+			<%= hidden_field_tag 'craft_id',@craft.id%>
+			<div id = "edit_display_material_container">
+				<h3 class="step_notification">Step 2</h3>
+				<h4 class="step_notification">Choose Materials that can be used</h4>
+				<!--to display the selected category after user change step 1 purpose-->
+				<%if @purpose %>
+					<% @purpose.each do |purpose| %>
+						<% materials = Material.where(:purpose => purpose).where(:user_id=>@craft.user_id)%>
+						<h2 id = "material_category"><%= purpose%></h2>
+						<% materials.each do |material|%>						
+							<div class = <%=(@material_checked.include? material.id) ? 'material_selected_first' : "material_pic_thumb"%>>
+								<%= image_tag material.picture_url(:thumb) %>
+								<!--if materials is selected, set default value as checked-->
+							<%= check_box_tag 'material_selected[]',material.id, (@material_checked.include? material.id) ? true : false %>
+							
+							</div>	
+						<%end%>
+					<%end%>
+					<!--to display the selected category when user first create the craft-->
+				<%else%>
+					<% @category_checked.each do |purpose| %>
+						<% 
+							materials = Material.where(:purpose => purpose).where(:user_id=>@craft.user_id)
+						%>
+						<h2 id = "material_category"><%= purpose%></h2>
+						<% materials.each do |material|%>						
+							<div class = <%=(@material_checked.include? material.id) ? 'material_selected_first' : "material_pic_thumb"%>>
+								<%= image_tag material.picture_url(:thumb) %>
+								<!--if materials is selected, set default value as checked-->
+							<%= check_box_tag 'material_selected[]',material.id, (@material_checked.include? material.id) ? true : false %>
+							
+							</div>	
+						<%end%>
+					<%end%>	
+				<%end%>
+			</div>
+		<%= submit_tag 'Finished', :class=>'step_edit_submit'%>
+		<%end%>
+	
+
+</div>
+<script>
+$(document).ready(function(){
+	$(".material_pic_thumb").click(function(){
+		
+		$(this).toggleClass('material_checked');
+		if ($(this).is('.material_checked')){
+			$(this).find('input:checkbox').prop('checked',true);
+		}else{
+			$(this).find('input:checkbox').prop('checked',false);
+		}
+	});
+	$(".material_selected_first").click(function(){
+		$(this).toggleClass('material_unchecked');
+		if ($(this).is('.material_unchecked')){
+			$(this).find('input:checkbox').prop('checked',false);
+		}else{
+			$(this).find('input:checkbox').prop('checked',true);
+		}
+	});
+	$(".checkbox_material").click(function(){
+		$("#custom_craft_form").submit();
+	});
+});
+</script>

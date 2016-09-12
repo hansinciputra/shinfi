@@ -1,0 +1,49 @@
+this is custom craft
+<br>
+
+<%= form_for @craft do |craft|%>
+
+<ul>
+	<li>Product Name</li>
+	<li><%= craft.text_field :name %></li>
+
+	<li>Change Category</li>
+	<li><%= craft.text_field :category %></li>
+
+	<li>Price</li>
+	<li><%= craft.text_field :price %></li>
+
+	<li>Product Description</li>
+	<li><%= craft.text_area :prod_desc %></li>
+</ul>
+
+<h3>Change <%= @craft.name %> Materials List</h3>
+<%= link_to 'klik', edit_custom_craft_materials_step1_craft_path(@craft.id) %>
+<div>
+	<% @craftmaterial.each do |material| %>
+			<% pic = Material.find_by(:id=>material.material_id)%>
+				<%= image_tag pic.picture_url(:thumb_small) %>
+	<%end%>
+</div>
+<div id ="custom_step1"></div>
+<h3>Change <%= @craft.name %> Materials Additional Price</h3>
+<%= link_to 'klik', edit_custom_craft_materials_step2_craft_path(@craft.id) %>
+<div>
+	<table>
+		<tr>
+			<th>No.</th>
+			<th>Material</th>
+			<th>Additional Price</th>
+		</tr>
+		<% @craftmaterial.each_with_index do |material,index|%>
+		<% i = index + 1 %>
+		<tr>
+			<td><%= i %></td>
+			<td><%= material.name%></td>
+			<td><%= material.price %></td>
+		</tr>
+		<%end%>
+	</table>
+</div>
+<%= craft.submit %>
+<%end%>

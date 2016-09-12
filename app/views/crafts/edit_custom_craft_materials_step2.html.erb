@@ -1,0 +1,52 @@
+<div id = "user_container">
+
+	<div id = "user_content_container" class= "user_page_right">
+				<!--Steps-->
+
+		<h1><%= @craft.name%></h1>
+
+		<div id="step3_custom">
+		<%= form_for @craft,:url => edit_step2_save_craft_path,:multiple => true do |x|%>
+		<table>
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Description</th>
+					<th>Category</th>
+					<th>Price</th>
+					<th>Remove</th>
+				</tr>
+			</thead>
+			<tbody>	
+				<%@craft_material.each do |craft_material|%>
+				<!-- I don't know why but the second craft_material in the fields for 
+				is necesary to prevent dupliactions in fields_for --> 
+					<%=	x.fields_for :craft_materials ,craft_material do |y|%>
+					<tr>
+						<!--hidden field, insert data-->
+						
+						<%= y.hidden_field :craft_id %>
+						<%= y.hidden_field :material_id,:value=>craft_material.material_id%>
+						<%= y.hidden_field :selected,:value=>'YES'%>	
+
+						<!--end-->		
+						<% pic = Material.find_by(:id => craft_material.material_id)%>
+								
+									<td><%= image_tag pic.picture_url(:thumb_small)%></td>
+									<td><%=pic.name%></td>
+									<td><%=pic.purpose%></td>
+									<td><%= y.number_field :price,:value => craft_material.price%></td>
+									<td><%= link_to 'Remove' , del_craft_material_craft_path(craft_material.id)%></td>
+								</tr>
+					<%end%>		
+				<%end%>
+			
+			</tbody>
+		</table>
+		<%=x.submit 'Submit', :class=>'step_submit'%>
+		<%end%>
+		</div>
+		
+	</div>
+
+</div>

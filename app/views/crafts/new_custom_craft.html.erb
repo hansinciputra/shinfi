@@ -21,12 +21,13 @@
 					<% @category.each do |category|%>
 						<li>
 							<%if @purpose%>
+							<!--1. reload page after click on purpose to display materials-->
 								<%= check_box_tag 'category_selected[]',category.purpose,(@purpose.include? category.purpose) ? checked = true : checked = false ,class: 'checkbox_material'%>
 								<%= category.purpose %>
 								<!--transfer the craft.id-->
 								<%= hidden_field_tag 'craft_id',@craft.id%>
 							<%else%>
-							<!--we have no session record the frist call-->
+							<!--we have no session record the first call-->
 								<%= check_box_tag 'category_selected[]',category.purpose ,checked = false,class: 'checkbox_material'%>
 								<%= category.purpose %>
 							<%end%>

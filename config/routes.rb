@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :materials
-  resources :craft_materials
+  resources :craft_materials, :only => [:create]
   mount Ckeditor::Engine => '/ckeditor'
   resources :workshops do
     collection do
@@ -22,6 +22,18 @@ Rails.application.routes.draw do
       post 'custom_craft_step1'
       post 'custom_craft_step3'
       get 'karya'
+    end
+    member do 
+       
+       get 'del_craft_material'
+       get 'edit_custom_craft'
+       put 'edit_custom_craft'
+       post 'edit_step1_save'
+       patch 'edit_step2_save'
+       get 'edit_custom_craft_materials_step1'
+       post 'edit_custom_craft_materials_step1'
+       get 'edit_custom_craft_materials_step2'
+       put 'edit_custom_craft_materials_step2'
     end
   end
 

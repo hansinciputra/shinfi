@@ -16,9 +16,30 @@
 		<!--display all of the user craft-->
 		<li class="user_personal_menu"><%=link_to 'Customize Craft',new_custom_craft_crafts_path(:user_id => session[:user_id])%></li>
 		<%unless @craft.blank? %>
-			<% @craft.each do |craft| %>
-				<li><%=craft.name%></li>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Deskripsi</th>
+					<th>Harga</th>
+					<th>show</th>
+					<th>edit</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% @craft.each do |craft| %>		
+				<tr>
+					<td><%= link_to craft.name, karya_crafts_path(:id=>craft.id)%></td>
+					<td>Belum menulis deskripsi</td>
+					<td>Belum memasukan Harga</td>
+					<td>show</td>
+					<td><%= link_to 'edit' , edit_custom_craft_craft_path(craft.id)%></td>
+					<td>delete</td>
+				</tr>
 			<%end%>
+			</tbody>
+			</table>
 			<%else%>
 			<p>Kamu belum pernah membuat craft</p>
 		<%end%>

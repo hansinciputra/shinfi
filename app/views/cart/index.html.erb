@@ -76,7 +76,7 @@
 					<li id ="cart_prod_image">
 					<%= link_to(image_tag(craft_img.prod_img_url(:medium_thumb).to_s),craft_img.prod_img.to_s, :class=>"fancybox")%>
 					</li>
-					<li class ="cart_prod_detail"><b><%= link_to product.craft.name, craft_path(product.craft.id)%></b></li>
+					<li class ="cart_prod_detail"><b><%= link_to product.craft.name, craft_path(product.craft.id),:rel => 'nofollow'%></b></li>
 					<li class ="cart_prod_detail">Ukuran: <%= product.subject %></li>
 					<li class ="cart_prod_detail"><i><%= product.craft.subcategory %></i></li>
 				</ul>
@@ -97,7 +97,7 @@
 				<div id = "result_price"><%= number_to_currency(product.price * quantity.to_i, :unit => "Rp. ") %></div>
 			</td>
 			<td class= "remove_item">
-				<p><%= link_to(image_tag("trash.png"), cart_clear_craft_path(:id => product.id)) %></p>
+				<p><%= link_to(image_tag("trash.png"), cart_clear_craft_path(:id => product.id),:rel => 'nofollow') %></p>
 			</td>
 		</tr>
 		
