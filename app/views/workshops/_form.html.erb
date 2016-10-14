@@ -15,11 +15,11 @@
   
     <div id = "form_workshop_container">
       <div class="field">
-        <%= f.label 'What is it called?' %><br>
+        <%= f.label 'Have something to share?' %><br>
         <%= f.text_field :title, :size => "50%x20", :class=>'title_box' %>
       </div>
       <div class="field">
-        <%= f.label 'Tell us your story' %><br>
+        <%= f.label 'Tell us your story or share something!' %><br>
         <%= f.cktext_area :description,:ckeditor=>{:toolbar=>'mini',:height => '800'}, :size => "100x500", :class=>'textarea_box' %>
       </div>
       <div class="field">
@@ -34,27 +34,7 @@
         <%= f.submit 'Submit',:class=>'workshop_button',:id => 'submit_workshop', :value => 'Publish Now!'%>
         <%= f.submit 'Save and Quit',:class=>'workshop_button',:id => 'save_workshop', :value => 'Save & Publish Later'%>
       </div>
-    </div>
-    <div id = "upload_pic_box">
-      <!--dif approach begin-->
-      <h3>Upload Gambar Product</h3>
-      <div id ="upload_img_workshop_thumb" class ="thumb_workshop_button">
-        <%= link_to('Upload', new_workshop_image_path(:connector=>@connector), :class => 'iframe') %>
-      </div>
-      <div id ="refresh_img_workshop_thumb" class ="thumb_workshop_button">       
-          <%= link_to('Refresh',get_thumb_pic_workshops_path(:connector => @connector), :remote=>true)%>
-         <!--Calling the ajax file for display image-->
-       </div>
-          <div id = "uploaded_workshop_pic_box"></div>
-      <!--dif approach end-->
-      <div id = "popupinfo_workshop">
-      Hit refresh if the uploaded picture is not showing
-    </div>
-    </div>
-    
-    
-    
-        
+    </div>    
 <% end %>
 <script>
 $(document).ready(function(){

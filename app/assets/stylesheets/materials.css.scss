@@ -55,8 +55,11 @@
 
 	font-size:1.2em;
 }
-
-#material_table th, td{
+#material_table th{
+	border-bottom: solid #E6E6E6 1px;
+	padding:5px;
+}
+#material_table th td{
 	border-bottom: solid #E6E6E6 1px;
 	padding:5px;
 }

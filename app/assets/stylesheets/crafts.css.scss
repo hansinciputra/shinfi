@@ -136,6 +136,7 @@
 	min-height:1200px;
 	margin:auto;
 	padding:10px;
+
 }
 #remove{
 	width:10px;
@@ -245,6 +246,9 @@
 	display:inline-block;
 	cursor:pointer;
 }
+.material_pic_thumb input[type=radio]{
+	display : none;
+}
 .material_checked{
 	border:solid #A9F5A9 3px;
 	border-radius:0.8em;
@@ -285,10 +289,8 @@
 }
 
 #new_user_craft{
-	width:500px;
+	width:90%;
 	height:300px;
-	border:solid black 1px;
-	margin:auto;
 	padding:20px;
 	margin-top:10%;
 }
@@ -299,12 +301,24 @@
 	list-style-type:none;
 }
 #new_user_craft label{
-	font-size:3em;
+	font-size:2em;
 	width:100px;
 	padding:2px;
 	line-height:50px;
 }
 #new_user_craft input[type=text]{
+	font-size:2em;
+	max-width:300px;
+	height:50px;
+	background-color:#F2F2F2;
+	border-radius:0.3em;
+	padding-left: 10px;
+	padding-right:10px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+#new_user_craft input[type=number]{
 	font-size:2em;
 	max-width:230px;
 	height:50px;
@@ -316,7 +330,6 @@
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
     box-sizing: border-box;         /* Opera/IE 8+ */
 }
-
 #new_user_craft select{
 	border:solid black 2px;
 	border-radius:0.3em;
@@ -329,16 +342,22 @@
 	height:50px;
 	float:left;
 }
+.u_c_price{
+	font-size:2em;
+}
 .u_c_input{
 	width:100%;
 	height:50px;
 	display:inline-block;
 	margin-top:8px;
+	border-bottom:dashed #E6E6E6 1px;
+	padding:5px 0 5px 0;
 }
 #new_craft_step_guide{
 	width:103%;
 	min-height:180px;
 	margin:20px 0 10px -10px;
+	overflow:auto;
 }
 
 #step_explanation ol li{
@@ -441,14 +460,27 @@ karya_main_pic_thumb_container{
 	margin:10px 5px 0 5px;
 	float:left;
 }
-#karya_description{
+#karya_transaction_box{
+	width:400px;
+	height:500px;
+	border:solid black 1px;
+	float:right;
+}
+#karya_box2{
 	min-width:400px;
 	max-width:100%;
 	min-height:400px;
 	max-height:500px;
 	border: solid black 1px;
-	margin-left:20px;
 	float:left;
+	padding:20px;
+}
+#karya_box2_menu{
+	width:10%;
+	height:50px;
+	border:solid blue 1px;
+	display:inline-block;
+	margin:10px 10px 10px 0;	
 }
 #karya_selection_container{
 	width:970px;
@@ -457,7 +489,17 @@ karya_main_pic_thumb_container{
 	margin:20px 0 20px 0;
 	float:left;
 }
-
+#karya_material_selected_box table{
+	text-align:center;
+	margin:auto;
+	border:solid red 1px;
+}
+.karya_material_selected_pic{
+	width:150px;
+	height:150px;
+	border:solid black 1px;
+	display:inline-block;
+}
 #karya_order_detail{
 	width:970px;
 	min-height:470px;
@@ -474,4 +516,136 @@ karya_main_pic_thumb_container{
 	line-height:50px;
 	float:left;
 	display:inline-block;
+}
+
+#edit_custom_craft_container{
+	width:70%;
+	float:left;
+	overflow:auto;
+}
+#edit_custom_craft_container label{
+	font-size:1.5em;
+	margin-top:5px;
+	color:#BDBDBD;
+}
+#edit_custom_craft_container label .title_box{
+	width:50%;
+	font-size:1.5em;
+
+}
+
+#edit_custom_craft_container input[type=text]{
+	background-color:#F7F5F2;
+	border:solid #F7F5F2 1px;
+	border-bottom:solid black 2px;
+	padding-left: 10px;
+	padding-right:10px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+#edit_custom_craft_container input[type=text]:focus{
+	border: 3px solid #555;
+}
+#edit_custom_craft_container .field{
+	margin-bottom:20px;
+}
+#edit_custom_craft_container .textarea_box{
+	background-color: #f8f8f8;
+}
+#edit_custom_craft_container input[type=number]{
+	background-color:#F7F5F2;
+	border:none;
+	border-bottom:solid black 2px;
+	padding-left: 10px;
+	padding-right:10px;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+#edit_custom_craft_container input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  }
+
+#edit_custom_craft_container select{
+	border:solid black 2px;
+	border-radius:0.3em;
+	float:left;
+	height:30px;
+	width:350px;
+	font-size:1.5em;
+}
+#edit_custom_craft_container a{
+	color:white;
+}
+#edit_custom_craft_container a:hover{
+	color:black;
+}
+.edit_custom_material_box{
+	min-height:50px;
+	width:500px;
+}
+.edit_custom_link_01{
+	padding:5px;
+	border:solid black 1px;
+	width:10px;
+	height:10px;
+	width:60px;
+	background-color:black;
+	color:white;
+}
+.edit_custom_link_01:hover{
+	background-color:white;
+	color:black;
+}
+.edit_custom_material_box img{
+	border:solid black 1px;
+	height:50px;
+	width:50px;
+}
+.edit_custom_material_box h3{
+	color:#BDBDBD;
+}
+
+.craft_product_image_prod_img{
+	display:none;
+}
+.craft_upload_image_thumb{
+	border:solid black 2px;
+	border-radius:0.8em;
+	
+}
+.img_preview_container{
+	height:200px;
+	width:150px;
+	float:left;
+	margin-right:10px;
+}
+#remove_craft_thumb{
+	cursor:pointer;
+	width:85%;
+	margin:auto;
+	text-align:center;
+	height:15px;
+	font-size:1.5em;
+	border:solid black 2px;
+	background-color:#D8D8D8;
+	color:white;
+	padding:5px;
+}
+#remove_craft_thumb:hover{
+	background-color:#A4A4A4;
+}
+#new_craft_container{
+	
+}
+#upload_qty_left{
+	font-size:1.5em;
+	color:#BDBDBD;
+	width:250px;
+	height:80px;
+	padding:10px;
+	display:inline-block;
+	margin: 0 10px 0 10px;
 }

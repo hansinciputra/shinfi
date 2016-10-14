@@ -1,10 +1,21 @@
+		<div id ="prof_pic" class="user_page_left">
+			<% if @user && @user.profpic %>
+			<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+			<%end%>
+		</div>
+		<div id = "user_personal_menu_container">
 			<ul>
 				<% if current_user && current_user.role == "Admin" || @user.id == session[:user_id] %>
 				<li class="user_personal_menu"><%=link_to 'News Feed',user_path(:id => session[:user_id])%></li>
 				<%end%>
 				<!--menu hanya untuk user yang bersangkutan tersebut dan admin-->
 				<li class="user_personal_menu"><%=link_to 'Workshop',workshops_path(:user_id => session[:user_id])%></li>
-				<li class="user_personal_menu"><%=link_to 'Craft',user_craft_crafts_path(:user_id => session[:user_id])%></li>
+				<li class="user_personal_menu"><%=link_to 'Craft',user_craft_setup_crafts_path(:user_id => session[:user_id])%>
+						<li class="user_personal_submenu"><%=link_to 'My Craft List',list_user_craft_crafts_path(:user_id => session[:user_id])%></li>
+						<li class="user_personal_submenu"><%=link_to 'New Craft', new_craft_path(:user_id=>params[:user_id]),:"data-no-turbolink" => true%></li>
+						<li class="user_personal_submenu"><%=link_to 'Craft Setup',user_craft_setup_crafts_path(:user_id => session[:user_id])%></li>
+						
+				</li>
 				<% if current_user && current_user.role == "Admin" || @user.id == session[:user_id] %>
 				<li class="user_personal_menu"><%=link_to 'My Materials',materials_path(:user_id => session[:user_id])%></li>
 				<li class="user_personal_menu"><%=link_to 'Profilku',user_profile_user_path(:id => session[:user_id])%></li>
@@ -13,3 +24,4 @@
 
 				<%end%>
 			</ul>
+			</div>

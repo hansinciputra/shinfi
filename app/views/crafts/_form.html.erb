@@ -1,11 +1,4 @@
 <div id = "new_craft_step_guide">
-  <ul id = "step_infographic">
-    <li class="step_selected">Step 1</li>
-    <div class="step_line">&#8594</div>
-    <li>Step 2</li>
-    <div class="step_line">&#8594</div>
-    <li>Step 3</li>
-  </ul>
   <div id="step_explanation">
     <h1>Pendaftaran Craft</h1>
     <ol>
@@ -17,25 +10,151 @@
   </div>
 </div>
 <div id = "new_user_craft"%>
-<h1>Step 1</h1>
+<h1>Tambah Hasil Karya</h1>
 <%= form_for @craft do |craft|%>
+
+  <div id = "upload_preview_craft">
+          <% unless @craft_image.prod_img.blank? %>
+            <%=image_tag(@craft_image.prod_img_url(:thumb).to_s, :id=>"craft_image",:size=>'150' )%>
+          <%else%>
+            
+          <%end%>
+          <div id = "add_picture_toolset">
+            <h1> + </h1>
+            <p>Add Picture</p>
+          </div>
+          <div id = "upload_qty_left"></div>
+          <br>
+
+          <%= craft.fields_for :product_images do |img|%>
+            <%= img.file_field :prod_img, :class=>'craft_product_image_prod_img' %>
+          <%end%>
+  </div>
+
+  <script>
+  var counter = 0;
+  var upload_quota = 5;
+  $(document).ready(function(){
+    $("#add_picture_toolset").click(function () {
+      //if the selected input file already has files inside it, we add the counter so the next empty input get clicked
+      while(document.getElementById("craft_product_images_attributes_"+counter+"_prod_img").value !=""){
+        counter++;
+      }
+
+      $("#craft_product_images_attributes_"+counter+"_prod_img").trigger('click');    
+      
+    
+    //we call the previewFile function
+    document.getElementById('craft_product_images_attributes_'+counter+'_prod_img').addEventListener('change',previewFile);
+
+      //when reach the upload quota limit , hide the input element
+     if(upload_quota == 1){
+            $('#add_picture_toolset').css('display','none');
+      }
+    
+    });
+  });
+
+  function removePreview(new_counter){
+    counter = new_counter;
+    
+    //1. remove the selected file input
+    $("#craft_product_images_attributes_"+counter+"_prod_img").replaceWith($("#craft_product_images_attributes_"+counter+"_prod_img").clone(true));
+    //2.remove the preview of the selected
+    var parent = document.getElementById("img_preview_"+counter+"").parentNode.parentNode;
+    //loop to delete all children html elements
+    while(parent.hasChildNodes()){
+      parent.removeChild(parent.lastChild);
+    }
+    //set announcement of number of image uploade left
+    upload_quota = upload_quota + 1
+    document.getElementById('upload_qty_left').innerHTML = upload_quota + ' Gambar Lagi tersisa untuk diupload';
+
+      //return the upload box html code in page view
+       if(upload_quota > 0){
+            $('#add_picture_toolset').css('display','block');
+        }
+  }
+  function previewFile(evt){
+
+  //1.get the selected files object
+    var files = evt.target.files;
+  //2. loop through the file list and render image as thumbnails
+    for (var i = 0 ,f ; f = files[i] ; i++){
+      
+      //only process image file
+      if(!f.type.match('image.*')){
+        continue;
+      }
+      //use HTML5 filereader 
+      var reader = new FileReader();
+
+      //theFile value is f from second paranthesis
+      reader.onload = (function(theFile){
+
+        return function(e){
+
+          //create new <span>
+          span = document.createElement('span');
+          
+          //insert html inside the <span>
+          //we put the code inside the array incase user select multiple files
+          span.innerHTML = ['<div class="img_preview_container"><img src='+ e.target.result +' title='+ theFile.name +' height="150" width= "150" id = "img_preview_'+counter+'" class="craft_upload_image_thumb"/><div id = "remove_craft_thumb" onclick="removePreview('+counter+')">Remove</div></div>'].join('');
+          //insert the span inside upload preview <div>
+          //document.getElementById('upload_preview').insertBefore()
+          //where we insert the span into the page         
+          document.getElementById('upload_preview_craft').insertBefore(span);
+
+
+          //set announcement of number of image uploade left
+          upload_quota = upload_quota - 1
+
+          if(upload_quota>0){
+          document.getElementById('upload_qty_left').innerHTML = upload_quota + ' Gambar Lagi tersisa untuk diupload';
+          }else{
+            document.getElementById('upload_qty_left').innerHTML = 'Limit untuk upload 5 gambar sudah tercapai'
+          }
+         
+          //counter is from global variable so we know how many times has the function been called, we use this information to hack the image input id and name    
+          counter++;       
+          };
+      })(f);
+ //read data as url? why?
+      reader.readAsDataURL(f);
+    }
+  }
+  </script>
+
+<div id = "new_craft_container">
       <li>
-        <%= craft.hidden_field :user_id , :value => params[:user_id]%>
+        <%= craft.hidden_field :user_id , :value => session[:user_id]%>
       </li>
         <div class="u_c_input">
-         <div class="u_c_label_left"><%= craft.label 'Judul Karya'%></div>
+         <div class="u_c_label_left"><%= craft.label 'Nama Produk'%></div>
           <%= craft.text_field :name %>
         </div>
         <div class="u_c_input">
           <div class="u_c_label_left"><%= craft.label :category%></div>
           <%= craft.collection_select :category, @categories, :name, :name, :prompt=>true %>
         </div> 
-        <div class="u_c_input">
+        <!--<div class="u_c_input">
             <div class="u_c_label_left"><%= craft.label :subcategory %></div>
             <%= craft.collection_select :subcategory, @subcategories, :name, :name, :prompt=>true %>
         </div>
+      -->
+        <div class="u_c_input">
+         <div class="u_c_label_left"><%= craft.label 'Harga'%></div>
+          <span class="u_c_price">Rp.</span> <%= craft.number_field :price %> <span class="u_c_price">,-</span>
+        </div>
+        
+        <div class="u_c_input">
+         <div class="u_c_label_left"><%= craft.label 'Story'%></div><br>
+          </div>
+           <%= craft.cktext_area :prod_desc,:ckeditor=>{:toolbar=>'mini',:height => '200'}, :size => "100x500", :class=>'textarea_box' %>
+        
        
       
-      <%= craft.submit 'NEXT',:class=>'step_submit'%>
+      <%= craft.submit 'Simpan',:class=>'step_submit'%>
+</div>
 <%end%>
 </div>

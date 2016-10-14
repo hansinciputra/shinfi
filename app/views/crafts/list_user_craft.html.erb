@@ -1,0 +1,33 @@
+<div id = "user_container">
+	<div id = "crafter_detail_usercraft_container">
+		<div id ="profpic_usercraft">
+				<% if @user && @user.profpic %>
+				<%= image_tag @user.profpic.split("=")[0] <<"=large"%>
+				<%end%>
+		</div>
+	</div>
+	
+			<% @craft.each do |f|%>
+			<div id = "index_image_display_container_usercraft">
+				<%
+						@prod_img = ProductImage.find_by(:craft_id => f.id)
+				%>
+				<div id = "index_image_display_usercraft">
+					<% if @prod_img != nil %>
+						<%= link_to image_tag(@prod_img.prod_img_url(:craft_thumb).to_s), inventory_path(f.slug), :"data-no-turbolink" => true%>
+					<%end%>
+				</div>
+					<div id = "index_product_summary_usercraft">
+						<b><%= link_to f.name, karya_crafts_path(:id=>f.id)%></b>
+						<ul>
+							<li><%= f.category%></li>
+							<li><b><%= number_to_currency(f.price, :unit => "Rp. ")%></b></li>	
+						</ul>
+					</div>
+				</div>
+			<%end%>
+				<div class = "pagination">
+					<%= will_paginate @craft%>
+				</div>
+	
+</div>

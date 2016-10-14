@@ -1,49 +1,64 @@
-this is custom craft
+<div id = "Main_Container">
+<h1>Edit Craft</h1>
 <br>
-
+<div id = 'karya_main_pic_container'>
+	<h1>Product Picture</h1>
+	<p>baiknya diapakan? pakai page baru atau fancybox?</p>
+</div>
 <%= form_for @craft do |craft|%>
 
-<ul>
-	<li>Product Name</li>
-	<li><%= craft.text_field :name %></li>
-
-	<li>Change Category</li>
-	<li><%= craft.text_field :category %></li>
-
-	<li>Price</li>
-	<li><%= craft.text_field :price %></li>
-
-	<li>Product Description</li>
-	<li><%= craft.text_area :prod_desc %></li>
-</ul>
-
-<h3>Change <%= @craft.name %> Materials List</h3>
-<%= link_to 'klik', edit_custom_craft_materials_step1_craft_path(@craft.id) %>
-<div>
-	<% @craftmaterial.each do |material| %>
-			<% pic = Material.find_by(:id=>material.material_id)%>
-				<%= image_tag pic.picture_url(:thumb_small) %>
-	<%end%>
+<div id = "edit_custom_craft_container">
+	<div class="field">
+	<%= craft.label 'Product Name' %><br>
+	<%= craft.text_field :name,:class=>'title_box' %>
+	</div>
+	<div class="field">
+	<div class="u_c_input">
+          <div class="u_c_label_left"><%= craft.label :category%><br>
+          <%= craft.collection_select :category, @categories, :name, :name, :prompt=>true %>
+        </div> 
+	</div>
+	<div class="field">
+	<%= craft.label 'Price' %><br>
+	Rp.<%= craft.number_field :price ,:class=>'title_box'%>
+	</div>
+	<div class="field">
+	<%= craft.label 'Product Description' %><br>
+	<%= craft.text_area :prod_desc, :size => "45x10", :class=>'textarea_box' %>
+	</div>
 </div>
-<div id ="custom_step1"></div>
-<h3>Change <%= @craft.name %> Materials Additional Price</h3>
-<%= link_to 'klik', edit_custom_craft_materials_step2_craft_path(@craft.id) %>
-<div>
-	<table>
-		<tr>
-			<th>No.</th>
-			<th>Material</th>
-			<th>Additional Price</th>
-		</tr>
-		<% @craftmaterial.each_with_index do |material,index|%>
-		<% i = index + 1 %>
-		<tr>
-			<td><%= i %></td>
-			<td><%= material.name%></td>
-			<td><%= material.price %></td>
-		</tr>
-		<%end%>
-	</table>
+
+<div class = "edit_custom_material_box">
+	<h3>Change <%= @craft.name %> Materials List >> <%= link_to 'klik here!', edit_custom_craft_materials_step1_craft_path(@craft.id),:class=>'edit_custom_link_01' %></h3>
+	
+		
+			<% @craftmaterial.each do |material| %>
+					<% pic = Material.find_by(:id=>material.material_id)%>
+						<%= image_tag pic.picture_url(:thumb_small) %>
+			<%end%>
+		
 </div>
-<%= craft.submit %>
+<div class ="edit_custom_material_box">
+	<h3>Change <%= @craft.name %> Materials Additional Price >> <%= link_to 'klik here!', edit_custom_craft_materials_step2_craft_path(@craft.id),:class=>'edit_custom_link_01'  %></h3>
+	
+	<div>
+		<table>
+			<tr>
+				<th>No.</th>
+				<th>Material</th>
+				<th>Additional Price</th>
+			</tr>
+			<% @craftmaterial.each_with_index do |material,index|%>
+			<% i = index + 1 %>
+			<tr>
+				<td><%= i %></td>
+				<td><%= material.name%></td>
+				<td><%= number_to_currency material.price, :unit => "Rp." %></td>
+			</tr>
+			<%end%>
+		</table>
+	</div>
+</div>
+<%= craft.submit 'Save', :class=>'step_edit_submit'%>
 <%end%>
+</div>

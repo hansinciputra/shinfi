@@ -7,9 +7,12 @@ class CraftsController < ApplicationController
     @craft = Craft.all
     
   end
+  def list_user_craft
+    @craft = Craft.where(:user_id => params[:user_id]).paginate(:page => params[:page],:per_page => 24)
+  end
 
-  def user_craft
-    @craft = Craft.where(:user_id => params[:user_id])
+  def user_craft_setup
+    @craft = Craft.where(:user_id => params[:user_id]).paginate(:page => params[:page],:per_page => 24)
   end
   def craft_product
     
@@ -38,7 +41,9 @@ class CraftsController < ApplicationController
   #show custom crafts
   def karya
     @craft = Craft.find_by(:id=>params[:id])
+    @picture = ProductImage.where(:craft_id => @craft.id)
     @material = CraftMaterial.joins(:material).select('materials.id,materials.name,materials.picture,materials.purpose,materials.quantity,materials.price,craft_materials.craft_id,craft_materials.selected,craft_materials.price as addprice').where(:craft_id => @craft.id).where(:selected => 'YES')
+    @category = CraftMaterial.joins(:material).joins(:craft).select('materials.purpose,crafts.id').where(:craft_id=>@craft.id).uniq
   end
   # GET /crafts/new
   def new
@@ -46,6 +51,9 @@ class CraftsController < ApplicationController
     @categories = Category.all
     @subcategories = Subcategory.all
     @user = User.find_by(:id=>params[:user_id])
+    5.times do 
+      @craft_image = @craft.product_images.build 
+    end
   end
 
 
@@ -63,14 +71,15 @@ class CraftsController < ApplicationController
     @craft = Craft.find(params[:id])
     @user = User.find_by(:id=>@craft.user_id)
     @category = Material.select(:purpose).uniq.where(:user_id => @craft.user_id)
+
     @purpose = session[:custom_craft_categories]
   end
 
   def edit_custom_craft
     @craft = Craft.find(params[:id])
-    @craftmaterial = CraftMaterial.joins(:material).select('craft_materials.id, craft_materials.material_id,materials.name,craft_materials.price').where(:craft_id=>@craft.id)
+    @craftmaterial = CraftMaterial.joins(:material).select('craft_materials.id, craft_materials.material_id,materials.name,craft_materials.price').where(:craft_id=>@craft.id).order('material_id')
     @category = Material.select(:purpose).uniq.where(:user_id => @craft.user_id)
-
+    @categories = Category.all
 
   end
 
@@ -203,7 +212,7 @@ class CraftsController < ApplicationController
     @craft = Craft.new(craft_params)
     if @craft.save
       #redirect to next step of custom craft creation
-      redirect_to new_custom_craft_crafts_path(:id=>@craft.id), :notice => "Berhasil Menginput Craft Baru"
+      redirect_to karya_crafts_path(:id=>@craft.id), :notice => "Berhasil Menginput Craft Baru"
     else
       #need to reproduce all required file first
     @categories = Category.all
@@ -270,6 +279,6 @@ class CraftsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def craft_params
-      params.require(:craft).permit(:name, :PriceDet_id, :user_id, :category, :price_determinant,:subcategory, :prod_desc, :brand_id, :quantity, :active, :price_dets_attributes => [:id,:subject,:price,:availablity,:_destroy],:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic],:craft_materials_attributes => [:id,:craft_id,:material_id,:price,:selected])
+      params.require(:craft).permit(:name, :PriceDet_id, :user_id, :category, :price_determinant,:subcategory, :prod_desc, :brand_id, :quantity, :active,:price, :price_dets_attributes => [:id,:subject,:price,:availablity,:_destroy],:product_images_attributes => [:id,:prod_img,:remove_prod_img,:displaypic],:craft_materials_attributes => [:id,:craft_id,:material_id,:price,:selected])
     end
 end

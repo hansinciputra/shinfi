@@ -1,0 +1,49 @@
+<div id = "user_container">
+	<h1>Craft Setup</h1>
+		<!--to create new craft-->
+		
+		<%unless @craft.blank? %>
+		<br>
+		<table class = "table_with_border_001">
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Name</th>
+					<th>Harga</th>
+					<th></th>
+					<th>edit</th>
+					<th>delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--display all of the user craft-->
+			<% @craft.each_with_index do |craft,index| %>
+			<% index = index + 1 %>		
+				<tr>
+					<td><%= index %></td>
+					<td><%= link_to craft.name, karya_crafts_path(:id=>craft.id)%></td>
+					<td>
+						<% unless craft.prod_desc %>
+							Belum memasukan Harga
+						<% else %>
+							<%=craft.price%>
+						<%end%>
+					</td>
+					<td>
+						<% @checker = CraftMaterial.find_by(:craft_id => craft.id)%>
+						<%unless @checker =nil  %>
+							Customized this craft
+						<%else%>
+							Edit Customization
+						<%end%>	
+					</td>
+					<td><%= link_to 'edit' , edit_custom_craft_craft_path(craft.id)%></td>
+					<td>delete</td>
+				</tr>
+			<%end%>
+			</tbody>
+			</table>
+			<%else%>
+			<p>Kamu belum pernah membuat craft</p>
+		<%end%>
+	</div>

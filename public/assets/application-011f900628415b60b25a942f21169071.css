@@ -358,7 +358,7 @@
 	float: left;
 	white-space:nowrap;
 	width: 100%;
-	font-size: 0.5em;
+	font-size: 1em;
 	line-height: 10px;
 }
 #head_menu .dropdown-menu ul li a{
@@ -437,7 +437,7 @@ footer{
 	font-style: normal;
 	font-variant: normal;
 	font-weight: bold;
-	font-size: 0.3em;
+	font-size: 1em;
 	border-top:solid black 1px;
 	border-bottom:solid black 1px;
 	height:170%;
@@ -1751,7 +1751,7 @@ footer p , a{
 .jqte_format {
 	display:block;
 	padding:4px 7px;
-	font-size:13px
+	font-size:13px;
 }
 .jqte_format:hover {
 	background:#DDD

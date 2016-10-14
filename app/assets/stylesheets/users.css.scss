@@ -79,6 +79,12 @@
 	color:white;
 	margin:5px auto 0 auto;
 }
+.user_personal_submenu{
+	width:150px;
+	height:20px;
+	margin:auto;
+	text-align:center;
+}
 .user_personal_menu a{
 	display:block;
 	height:100%;
@@ -206,4 +212,42 @@
 	height:60px;
 	float:left;
 	margin-left:5px;
+}
+
+#profpic_usercraft{
+	width: 150px;
+	height:150px;
+	border:black solid 2px;
+	margin:auto;
+	border-radius:100%;
+	overflow:hidden;
+}
+#crafter_detail_usercraft_container{
+	width:300px;
+	min-height:450px;
+	margin: 5px 5px 0 5px;
+	border:solid black 1px;
+	float:left;
+	padding:10px;
+}
+
+#index_image_display_container_usercraft{
+	width:150px;
+	height:230px;
+	margin:5px;
+	float:left;
+	display:inline-block;
+}
+#index_image_display_usercraft{
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	margin: 0 auto 10px auto;
+}
+#index_product_summary_usercraft{
+	width:150px;
+	height:37px;
+	text-align:center;
+	margin:auto;
+	font-size: 1.5em;
 }

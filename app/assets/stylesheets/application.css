@@ -21,7 +21,44 @@
  body{
  	background-color: #F7F5F2;
  }
-
+textarea{
+	resize:none;
+	padding: 12px 20px;
+	border-radius: 4px;
+	font-size: 16px;
+	
+}
+#users_menu_global{
+	position: fixed;
+	z-index: 9999;
+	left: 0px;
+	top:0px;
+	width: 50px;
+	border: solid white 1px;
+	height: 100%;
+	background-color: #FE9A2E;
+	border-bottom-right-radius:0.8em;
+	border-top-right-radius: 0.8em;
+	opacity: 0.9;
+	-o-transition:.5s;
+ 	-ms-transition:.5s;
+  	-moz-transition:.5s;
+  	-webkit-transition:.5s;
+  	/* ...and now for the proper property */
+  	transition:.5s;
+}
+#user_menu_helper_container{
+	padding:50px 20px 0 20px;
+	height: 100%;
+	overflow: hidden;
+	display: none;
+}
+#users_menu_global:hover #user_menu_helper_container{
+	display: block;
+}
+#users_menu_global:hover{
+	width: 250px;
+}
  #background_color{
  	height: 100%;
  	width: 100%;
@@ -42,6 +79,7 @@
 	min-height: 1000px;
 	background-color: #F7F5F2;
 	overflow: auto;
+	font-size: 1.5em;
 }
 
 ::-webkit-scrollbar { 
@@ -103,16 +141,20 @@
 	text-align: center;
 }
 #user_nav{
-	
+	font-size: 1em;
 }
 #user_nav a{
-	font-size: 0.8em;
+	font-size: 1.2em;
+}
+#user_nav a:hover{
+	color:#FE2EF7;
 }
 #sign_in_home{
 	border:solid black 2px;
 	width: 80px;
 	height: 30px;
 	padding-top: 10px;
+	font-size: 1.5em;
 }
 #sign_in_home a{
 	font-size: 1.1em;
@@ -266,7 +308,6 @@
 #head_menu_aligner{
 	width:989px;
 	top:40px;
-	color:black;
 	margin: auto;
 }
 #head_menu ul{
@@ -280,14 +321,14 @@
 	display: inline-block;
 }
 #head_menu li a{
-	font-size: 1.1em;
+	font-size: 1.3em;
 	color:black;
 	padding: 10px;
 	display: inline-block;
 	margin-right: 10px;
 }
 #head_menu ul li li a{
-	font-size: 1.5em;
+	font-size: 1.2em;
 	padding: 10px;
 	display: inline-block;
 	margin-right: 10px;
@@ -357,11 +398,10 @@
 	float: left;
 	white-space:nowrap;
 	width: 100%;
-	font-size: 0.5em;
+	font-size: 0.8em;
 	line-height: 10px;
 }
 #head_menu .dropdown-menu ul li a{
-	color: black;
 	font-weight: italic;
 	height: 5px;
 	width: 80%;
@@ -436,10 +476,10 @@ footer{
 	font-style: normal;
 	font-variant: normal;
 	font-weight: bold;
-	font-size: 0.3em;
+	font-size: 0.5em;
 	border-top:solid black 1px;
 	border-bottom:solid black 1px;
-	height:170%;
+	min-height:170%;
 	margin:0 auto 0 auto;
 	text-align: left;
 }
@@ -451,9 +491,11 @@ footer{
 	float: left;
 	padding:10px;
 }
+#footer_left p{
+	font-size: 2em;
+}
 footer p , a{
 	margin: 0px;
-	font-size: 10px;
 }
 #footer_right{
 	border-left:black solid 1px;
@@ -474,8 +516,15 @@ footer p , a{
 	margin-left: 10px;
 }
 #footer_bottom{
-	border: black solid 1px;
+	border-top: black solid 1px;
 	width: 100%;
+	overflow: auto;
+}
+#about_us_footer h1{
+	width:650px;
+	margin:auto;
+	text-align: center;
+	font-size: 1.5em;
 }
 .subcontent{
 	color: grey;
@@ -582,7 +631,7 @@ footer p , a{
 	width: 230px;
 	height: 250px;
 	overflow: hidden;
-	margin:auto;
+	margin: 0 auto 10px auto;
 	
 }
 #index_image_display:hover{
@@ -602,6 +651,10 @@ footer p , a{
 	height:37px;
 	text-align:center;
 	margin:auto;
+	font-size: 1.5em;
+}
+#index_product_summary ul li{
+	font-size: 1.2em;
 }
 #info_bottom{
 	width:100%;
@@ -609,6 +662,7 @@ footer p , a{
 	background-color: #f4f4f4;
 	padding:5px;
 	margin-top: 25px;
+	font-size: 1.2em;
 
 }
 .info p{
@@ -824,12 +878,46 @@ footer p , a{
 #about_us_footer{
 	width:100%;
 	background-color: #F3F781;
-	height:50px;
+	min-height:50px;
 	text-align: center;
+	padding:10px;
 }
-#about_us_footer h1{
-	width:650px;
-	margin:auto;
+
+#add_picture_toolset{
+	border:dashed black 1px;
+	border-color:#BDBDBD;
+	border-radius:0.9em;
+	color:#BDBDBD;
+	width:70px;
+	height: 70px;
+	cursor: pointer;
+	float:left;
+}
+#add_picture_toolset h1{
+	font-size: 5em;
+	line-height: 40px;
+	width:5px;
+	height: 5px;
+	margin: 10px 20px 0 20px;
+}
+#add_picture_toolset p{
 	text-align: center;
-	font-size: 2.5em;
+	margin-top: 32px;
+}
+/*universal table with border*/
+.table_with_border_001{
+	width:100%;
+}
+.table_with_border_001 th{
+	font-size: 1.5em;
+	padding:10px;
+}
+.table_with_border_001 tr{
+	border-bottom: solid #A4A4A4 1px;
+}
+.table_with_border_001 tr:hover{
+	background-color: #E6E6E6;
+}
+.table_with_border_001 tr td{
+	padding:5px;
 }

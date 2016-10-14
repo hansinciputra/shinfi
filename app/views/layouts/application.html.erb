@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <div id="background_color">
+  <% if session[:user_id] != nil%>
+  <div id="users_menu_global"><div id="user_menu_helper_container"><%= render 'users/usermenuhelper' %></div></div>
+  <%end%>
 <head>
   <%  session[:return_to] = request.referer %>
   <% if current_user && current_user.role == "Admin" %>

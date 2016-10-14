@@ -48,6 +48,8 @@ CKEDITOR.editorConfig = function( config )
   config.filebrowserUploadUrl = "/ckeditor/attachment_files";
 
   config.allowedContent = true;
+  config.enterMode = CKEDITOR.ENTER_BR;
+  config.extraPlugins = 'autogrow';
 
   // Toolbar groups configuration.
   config.toolbar = [
@@ -65,10 +67,11 @@ CKEDITOR.editorConfig = function( config )
   ];
 
   config.toolbar_mini = [
-    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
-    { name: 'styles', items: [ 'Font', 'FontSize' ] },
-    { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
-    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-    { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] }
+    { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'/*, 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'*/ ] },
+    /* name: 'styles', items: [ 'Font', 'FontSize' ] },*/
+    /*{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },*/
+    { name: 'links', items: [ 'Link' ] },
+    { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic'/*, 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' */] },
+    { name: 'insert', items: [ 'Image'/*, 'Table', 'HorizontalRule', 'SpecialChar' */] }
   ];
 };

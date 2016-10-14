@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   resources :crafts do
     collection do
       get 'craft_product'
-      get 'user_craft'
+      get 'user_craft_setup'
+      get 'list_user_craft'
       post 'admin_new_craft'
       get 'new_custom_craft'
       post 'custom_craft_step1'

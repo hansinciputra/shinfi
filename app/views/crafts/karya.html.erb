@@ -2,26 +2,133 @@
 	<h1><%= @craft.name%></h1>
 	<div id="karya_main_pic_container">
 		<div id="karya_main_pic">
+			<%if @picture %>
+			<%= image_tag @picture.first.prod_img_url %>
+			<%end%>
 		</div>
 		<div id = "karya_main_pic_thumb_container">
-			<div id="karya_main_pic_thumb">
-			</div>
-			<div id="karya_main_pic_thumb">
-			</div>
-			<div id="karya_main_pic_thumb">
-			</div>
+			<%if @picture %>
+			<% @picture.each do |pic|  %>
+				<div id="karya_main_pic_thumb">
+					<%= image_tag pic.prod_img_url(:medium_thumb) %>
+				</div>
+			<%end%>
+			<%end%>
 		</div>
 	</div><!--for Karya_main_pic_container-->
-	<div id ="karya_description">
-		<%= @craft.prod_desc %>
+	<div id ="karya_transaction_box">
+		<table>
+			<tr>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr>
+				<td>Harga</td>
+				<td><%= @craft.price %></td>
+			</tr>
+			
+		</table>
+	</div>
+	<div id ="karya_box2_menu">Story</div>
+	<div id ="karya_box2_menu">Review</div>
+	<div id ="karya_box2">
+		<%= @craft.prod_desc.html_safe %>
 	</div>
 	<div id="karya_selection_container">
 		Choice
-		<%= @material.each do |x| %>
-			<%= x.name %>
+		<div id ="karya_material_selected_box">
+			<table style="border:solid blue 1px">
+				<th>
+				<% @category.each do |purpose|%>
+					<td><%= purpose.purpose %></td>
+				<%end%>
+				</th>
+				<tr>
+					<td>
+					</td>
+				<% @category.each_with_index do |purpose,index|%>
+				<% index = index + 1%>
+					<td style="border:solid blue 1px">
+						<div id="karya_selected_pic_<%=index.to_i%>" class = "karya_material_selected_pic">
+						<img src = "" id ="old_image_<%=index.to_i%>"></img>
+						</div>
+					</td>
+				<%end%>
+				</tr>
+			</table>
+		</div>
+		<% @category.each do |purpose| %>
+		<div id = "selection_purpose">
+
+			<% materials = Material.where(:purpose => purpose.purpose).where(:user_id=>@craft.user_id)%>
+						<h2 id = "material_category"><%= purpose.purpose%></h2>
+						<br>
+						<% materials.each do |material|%>						
+							<div class = "material_pic_thumb"><%= image_tag material.picture_url(:thumb) , :class=>'material_img', :onclick=>"set_price(2131)" %>
+							<%= material.price%>
+							<!--this radio button allow separation for each array loop of purpose-->
+							<!--squish = Returns the string, first removing all whitespace on both ends of the string, and then changing remaining consecutive whitespace groups into one space each.-->
+							<!--change the space in purpose to '_' , so we can call this class on javascript,javascript wont allow space within class name-->
+							<%= radio_button_tag purpose.purpose,material.id,false,class: purpose.purpose.squish.downcase.tr(" ","_")%>
+							</div>
+						<%end%>				
+		</div>				
 		<%end%>
 	</div><!--for karya_selection_container-->
 	<div id="karya_order_detail">
 		Order Detail
+		<table border = solid>
+			<tr>
+				<th>a</th>
+				<th>b</th>
+				<th>c</th>
+			</tr>
+			<tr>
+				<td><%= @craft.name %></td>
+				<td></td>
+				<td><%= @craft.price %></td>
+			</tr>
+			<tr>
+				<td>purpose.purpose</td>
+				<td>additional price</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Total</td>
+				<td>Final Price</td>
+			</tr>
+		</table>
 	</div>
 </div><!--for Main Container-->
+
+<script>
+
+	$(document).ready(function(){
+
+		$(".material_pic_thumb").click(function(){
+			var val =  $(this).find('input:radio').prop('checked')?false:true;
+			$(this).find('input:radio').prop('checked',val);
+			if(val == true){
+				set_display();
+				set_price();
+			};
+		});
+	
+		function set_display(){
+		<% @category.each_with_index do |purpose, index| %>
+		<% index = index + 1 %>
+			//1. get the src value of clicked image
+			var new_image = ($("input[type='radio'][name='<%=purpose.purpose%>']:checked").prev().attr('src'));
+			//2. replace the src of the new image
+			document.getElementById("old_image_<%=index.to_i%>").src = new_image;
+		<%end%>
+		}
+		function set_price(id){
+			alert(id);
+			
+		}
+	});
+	
+	
+</script>
