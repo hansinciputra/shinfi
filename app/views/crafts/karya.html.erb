@@ -17,16 +17,24 @@
 		</div>
 	</div><!--for Karya_main_pic_container-->
 	<div id ="karya_transaction_box">
-		<table>
+		<table id = "karya_payment_summary" border=solid>
 			<tr>
-				<th></th>
-				<th></th>
+				<th>a</th>
+				<th>b</th>
+				<th>c</th>
 			</tr>
+			<tbody>
 			<tr>
-				<td>Harga</td>
-				<td><%= @craft.price %></td>
+				<td><%= @craft.name %></td>
+				<td></td>
+				<td class = 'pricing_summary'><%= @craft.price %></td>
 			</tr>
-			
+			</tbody>
+			<tr>
+				<td colspan = 1>Total</td>
+				<td></td>
+				<td><div id="final_price_summary"><%=@craft.price.to_i%></div></td>
+			</tr>
 		</table>
 	</div>
 	<div id ="karya_box2_menu">Story</div>
@@ -49,6 +57,7 @@
 				<% @category.each_with_index do |purpose,index|%>
 				<% index = index + 1%>
 					<td style="border:solid blue 1px">
+						<!--Display the selected pic-->
 						<div id="karya_selected_pic_<%=index.to_i%>" class = "karya_material_selected_pic">
 						<img src = "" id ="old_image_<%=index.to_i%>"></img>
 						</div>
@@ -57,46 +66,52 @@
 				</tr>
 			</table>
 		</div>
-		<% @category.each do |purpose| %>
+
+		<% @category.each_with_index do |purpose,index| %>
 		<div id = "selection_purpose">
 
-			<% materials = Material.where(:purpose => purpose.purpose).where(:user_id=>@craft.user_id)%>
+			<% 
+			index = index+1
+			materials = Material.where(:purpose => purpose.purpose).where(:user_id=>@craft.user_id)
+			%>
+			<div id = "material_section_<%=index.to_i%>" class = "material_selection_container">
 						<h2 id = "material_category"><%= purpose.purpose%></h2>
 						<br>
 						<% materials.each do |material|%>						
-							<div class = "material_pic_thumb"><%= image_tag material.picture_url(:thumb) , :class=>'material_img', :onclick=>"set_price(2131)" %>
-							<%= material.price%>
+							<div class = "material_pic_thumb"><%= image_tag material.picture_url(:thumb) , :class=>'material_img' %>
+							<%=material.price%>
 							<!--this radio button allow separation for each array loop of purpose-->
 							<!--squish = Returns the string, first removing all whitespace on both ends of the string, and then changing remaining consecutive whitespace groups into one space each.-->
 							<!--change the space in purpose to '_' , so we can call this class on javascript,javascript wont allow space within class name-->
 							<%= radio_button_tag purpose.purpose,material.id,false,class: purpose.purpose.squish.downcase.tr(" ","_")%>
+							<%=hidden_field_tag('material_name',material.name ,:id=>'material_name')%>
+							<%= hidden_field_tag('material_price',material.price ,:id=>'material_price')%>
+							<%= hidden_field_tag('material_purpose',material.purpose ,:id=>'material_purpose')%>
 							</div>
 						<%end%>				
-		</div>				
+			</div>	
+		</div>			
 		<%end%>
 	</div><!--for karya_selection_container-->
 	<div id="karya_order_detail">
 		Order Detail
-		<table border = solid>
+		<table id = "order_detail_table">
 			<tr>
 				<th>a</th>
 				<th>b</th>
 				<th>c</th>
 			</tr>
+			<tbody>
 			<tr>
 				<td><%= @craft.name %></td>
 				<td></td>
-				<td><%= @craft.price %></td>
+				<td class = 'pricing'><%= @craft.price.to_i %></td>
 			</tr>
+			</tbody>
 			<tr>
-				<td>purpose.purpose</td>
-				<td>additional price</td>
+				<td colspan = 1>Total</td>
 				<td></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>Total</td>
-				<td>Final Price</td>
+				<td><div id="final_price"><%=@craft.price%></div></td>
 			</tr>
 		</table>
 	</div>
@@ -107,14 +122,56 @@
 	$(document).ready(function(){
 
 		$(".material_pic_thumb").click(function(){
+			
+			//check the radio button when the material_pic_thumb class is clicked
 			var val =  $(this).find('input:radio').prop('checked')?false:true;
 			$(this).find('input:radio').prop('checked',val);
+
+			//to display one one selected
+			$(this).addClass('material_checked').siblings().removeClass('material_checked');
+
+			var material_price = $(this).find('#material_price').val();
+			var material_name = $(this).find('#material_name').val();
+			//purpose is used to hack the order display
+			var material_purpose = $(this).find('#material_purpose').val();
+
 			if(val == true){
 				set_display();
-				set_price();
+				//split and join because purpose usually has space
+				set_price(material_name,material_price,material_purpose.split(' ').join('_'));
 			};
+
+			//calculate and display the total
+				var sum = 0;	
+				$(".pricing").each(function(){
+				var value = $(this).text();
+				if(!isNaN(value) && value.length != 0){
+					sum += parseFloat(value);
+				}		
+				});
+				//calculate the sum for summary section
+				var sum_summary = 0;	
+				$(".pricing_summary").each(function(){
+				var value = $(this).text();
+				if(!isNaN(value) && value.length != 0){
+					sum_summary += parseFloat(value);
+				}
+				});
+			//display the sum inside the final_price div
+			var final_price = document.getElementById("final_price");
+			var final_price_summary = document.getElementById("final_price_summary")
+			final_price.innerHTML = sum;
+			final_price_summary.innerHTML = sum_summary;
 		});
-	
+		//to display each material container
+		<% @category.each_with_index do |purpose, index| %>
+		<% index = index + 1 %>
+			$("#karya_selected_pic_<%=index.to_i%>").click(function(){
+				$(".material_selection_container").hide()		
+				$("#material_section_<%=index.to_i%>").show();
+				
+			});
+		<%end%>
 		function set_display(){
 		<% @category.each_with_index do |purpose, index| %>
 		<% index = index + 1 %>
@@ -124,9 +181,23 @@
 			document.getElementById("old_image_<%=index.to_i%>").src = new_image;
 		<%end%>
 		}
-		function set_price(id){
-			alert(id);
-			
+		function set_price(name,price,purpose){
+			//1. get element of table row with id of Material_purpose
+			var check = document.getElementById('Material_'+purpose)
+			var check_summary = document.getElementById('Summary_'+purpose)
+			//2.check if the selected element is exist or not, if exist this means we need to replace the row, to do so, we first delete the selected element and added new one.
+			if(check != null )
+			{
+				check.parentNode.removeChild(check);
+			}
+			if(check_summary != null)
+			{
+				check_summary.parentNode.removeChild(check_summary);
+			}
+			//3. append the selected element and assign id of Material_purpose to the element
+			$("#order_detail_table > tbody:last-child").prepend('<tr id = Material_'+purpose+'><td>'+name+'</td><td class = pricing>'+price+'</td></tr>');
+			//also append to the order summary table
+			$("#karya_payment_summary > tbody:last-child").prepend('<tr id = Summary_'+purpose+'><td>'+name+'</td><td class = pricing_summary>'+price+'</td></tr>');
 		}
 	});
 	

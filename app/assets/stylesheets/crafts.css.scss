@@ -499,6 +499,7 @@ karya_main_pic_thumb_container{
 	height:150px;
 	border:solid black 1px;
 	display:inline-block;
+	cursor:pointer;
 }
 #karya_order_detail{
 	width:970px;
@@ -648,4 +649,17 @@ input[type=number]::-webkit-outer-spin-button {
 	padding:10px;
 	display:inline-block;
 	margin: 0 10px 0 10px;
+}
+#order_detail_table{
+	width:80%;
+	margin:auto;
+}
+#karya_payment_summary{
+	width:80%;
+	margin:auto;
+}
+.material_selection_container{
+	border:solid green 1px;
+	min-height:500px;
+	display:none;
 }
